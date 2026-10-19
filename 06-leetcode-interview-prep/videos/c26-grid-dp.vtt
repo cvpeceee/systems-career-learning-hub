@@ -1,0 +1,55 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:06.525
+Grid dynamic programming fills a table cell by cell, where each cell only looks at neighbors already filled in.
+
+00:00:07.875 --> 00:00:11.962
+Picture a city with streets in a grid, and you may only walk right or down.
+
+00:00:12.412 --> 00:00:18.925
+How many ways reach a corner? Exactly the ways to reach the corner above plus the ways to reach the corner to the left.
+
+00:00:19.375 --> 00:00:23.183
+You never recount a route: you write the number on each corner and reuse it.
+
+00:00:23.633 --> 00:00:25.839
+That written number is the D P table.
+
+00:00:27.189 --> 00:00:30.451
+Here is the unique paths table for a three by four grid.
+
+00:00:30.901 --> 00:00:34.001
+The top row and left column have only one way each.
+
+00:00:34.451 --> 00:00:36.831
+Every other cell is up plus left.
+
+00:00:37.281 --> 00:00:40.381
+The bottom right corner holds ten, the number of routes.
+
+00:00:41.731 --> 00:00:44.784
+Maximal square uses the same idea with a minimum.
+
+00:00:45.234 --> 00:00:53.059
+A cell can be the bottom right corner of a square of side k only if its up, left and diagonal neighbors all allow side k minus one.
+
+00:00:53.509 --> 00:00:56.795
+So dp equals one plus the minimum of those three.
+
+00:00:57.245 --> 00:01:01.459
+The biggest value in the table is the side of the biggest square of ones.
+
+00:01:02.809 --> 00:01:04.876
+A memory trick interviewers like.
+
+00:01:05.326 --> 00:01:09.749
+Each row only needs the row above, so keep one row and a saved diagonal.
+
+00:01:10.199 --> 00:01:13.648
+Memory drops from rows times columns to just columns.
+
+00:01:14.098 --> 00:01:18.347
+Always say the recurrence, the base cases and the fill order before coding.
+
+00:01:19.697 --> 00:01:26.489
+Define the cell, write the recurrence from finished neighbors, fill row by row, and shrink to one row if asked.

@@ -1,0 +1,55 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:06.571
+A monotonic stack finds, for every item, the next item that is bigger or smaller, in one pass.
+
+00:00:07.921 --> 00:00:11.439
+Picture people standing in a line at a parade, looking right.
+
+00:00:11.889 --> 00:00:16.103
+Short people behind a tall person can never be seen past that tall person.
+
+00:00:16.553 --> 00:00:22.010
+So when a tall person arrives, every shorter person waiting has found their answer, and they leave.
+
+00:00:22.460 --> 00:00:27.069
+The waiting people always stand from tallest to shortest. That is the monotonic stack.
+
+00:00:28.419 --> 00:00:31.740
+Daily temperatures: how many days until a warmer day?
+
+00:00:32.190 --> 00:00:37.252
+We push day indexes. The stack keeps temperatures decreasing from bottom to top.
+
+00:00:37.702 --> 00:00:44.006
+When seventy five arrives, it is warmer than seventy one and seventy three, so both pop and get their answers.
+
+00:00:44.456 --> 00:00:48.473
+Each day is pushed once and popped once, so the whole thing is linear.
+
+00:00:49.823 --> 00:00:51.437
+How to choose the direction.
+
+00:00:51.887 --> 00:00:57.100
+Want next greater? Keep the stack decreasing, and pop while the new item is bigger.
+
+00:00:57.550 --> 00:01:02.182
+Want next smaller? Keep it increasing, and pop while the new item is smaller.
+
+00:01:02.632 --> 00:01:07.276
+Store indexes, not values, so you can compute distances and widths.
+
+00:01:08.626 --> 00:01:10.623
+Where it shows up in interviews.
+
+00:01:11.073 --> 00:01:15.253
+Largest rectangle in a histogram and maximal rectangle in a matrix.
+
+00:01:15.703 --> 00:01:19.998
+Trapping rain water, where a pop finds a basin between two walls.
+
+00:01:20.448 --> 00:01:23.954
+Stock span and removing digits to make the smallest number.
+
+00:01:25.304 --> 00:01:31.098
+Keep a stack sorted, pop when the new item breaks the order, and the popped item has found its answer.

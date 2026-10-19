@@ -1,0 +1,43 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:05.689
+Topological sort puts tasks in an order where every task comes after the tasks it depends on.
+
+00:00:07.039 --> 00:00:08.606
+Think about getting dressed.
+
+00:00:09.056 --> 00:00:13.677
+Socks before shoes, underwear before trousers, shirt before tie.
+
+00:00:14.127 --> 00:00:17.401
+Any order that respects all of these arrows is fine.
+
+00:00:17.851 --> 00:00:24.341
+If the rules were shoes before socks and socks before shoes, there would be no valid order. That is a cycle.
+
+00:00:25.691 --> 00:00:30.683
+Kahn's algorithm counts incoming arrows for each node. That count is the in degree.
+
+00:00:31.133 --> 00:00:34.779
+Every node with in degree zero is ready, so put it in a queue.
+
+00:00:35.229 --> 00:00:39.490
+Take one out, add it to the order, and remove its outgoing arrows.
+
+00:00:39.940 --> 00:00:42.796
+Any neighbor whose count drops to zero becomes ready.
+
+00:00:44.146 --> 00:00:45.562
+How to detect a cycle.
+
+00:00:46.012 --> 00:00:51.399
+If the output order has fewer nodes than the graph, some nodes never reached zero.
+
+00:00:51.849 --> 00:00:53.846
+Those nodes are stuck in a cycle.
+
+00:00:54.296 --> 00:00:58.685
+This is exactly the course schedule problem: can you finish all courses?
+
+00:01:00.035 --> 00:01:06.513
+Count in degrees, start from zeros, peel layer by layer. Fewer outputs than nodes means a cycle.

@@ -1,0 +1,67 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:07.314
+Prefix sums and Fenwick trees answer one question very fast: what is the total between position l and position r?
+
+00:00:08.664 --> 00:00:10.162
+Think of a car odometer.
+
+00:00:10.612 --> 00:00:15.442
+To know how far you drove between Tuesday and Friday, you do not re-drive the road.
+
+00:00:15.892 --> 00:00:19.677
+You read the odometer on Friday and subtract the reading from Tuesday.
+
+00:00:20.127 --> 00:00:25.804
+A prefix sum array is an odometer for an array: each cell stores the running total so far.
+
+00:00:27.154 --> 00:00:29.418
+Here is an array and its prefix array.
+
+00:00:29.868 --> 00:00:34.790
+P of i is the sum of the first i numbers, with P of zero equal to zero.
+
+00:00:35.240 --> 00:00:39.733
+The sum from index one to index three is P of four minus P of one.
+
+00:00:40.183 --> 00:00:44.677
+That is twelve minus three, which is nine, computed with one subtraction.
+
+00:00:46.027 --> 00:00:50.067
+Prefix sums plus a hash map count subarrays that add up to k.
+
+00:00:50.517 --> 00:00:55.114
+As we walk, we keep a map from each prefix total to how many times we saw it.
+
+00:00:55.564 --> 00:01:02.217
+If the current total minus k was seen before, every earlier spot with that total starts a subarray summing to k.
+
+00:01:02.667 --> 00:01:05.616
+This turns an n squared search into one pass.
+
+00:01:06.966 --> 00:01:13.409
+But plain prefix sums break when values change: one update forces you to rewrite every later total.
+
+00:01:13.859 --> 00:01:18.260
+A Fenwick tree, also called a binary indexed tree, fixes this.
+
+00:01:18.710 --> 00:01:23.946
+Each cell stores the sum of a block whose length is the lowest set bit of its index.
+
+00:01:24.396 --> 00:01:29.945
+Update and query both walk about log n cells, by adding or removing that lowest bit.
+
+00:01:31.295 --> 00:01:33.838
+Here is a query for the first seven numbers.
+
+00:01:34.288 --> 00:01:38.212
+Seven is binary one one one. Cell seven covers one number.
+
+00:01:38.662 --> 00:01:42.203
+Drop the lowest bit to get six, which covers two numbers.
+
+00:01:42.653 --> 00:01:47.320
+Drop again to get four, which covers four numbers. Three cells, and we are done.
+
+00:01:48.670 --> 00:01:57.285
+Static data: use a prefix array. Changing data: use a Fenwick tree. Ranges of any shape: say segment tree as the follow up.

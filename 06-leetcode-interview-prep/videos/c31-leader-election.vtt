@@ -1,0 +1,43 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:07.419
+Many systems need exactly one node in charge. Leader election picks it, and leases make sure an old leader steps down.
+
+00:00:08.769 --> 00:00:13.076
+Think of a group project where one person holds the only marker for the whiteboard.
+
+00:00:13.526 --> 00:00:16.858
+Whoever holds the marker writes; everyone else reads.
+
+00:00:17.308 --> 00:00:22.776
+If that person leaves the room for too long, the group votes and gives a new marker to someone else.
+
+00:00:23.226 --> 00:00:28.463
+The old person must know their marker has expired, or two people would write over each other.
+
+00:00:29.813 --> 00:00:32.007
+Here is a Raft style election.
+
+00:00:32.457 --> 00:00:35.905
+The leader sends heartbeats. Followers reset their timers.
+
+00:00:36.355 --> 00:00:41.521
+The leader crashes, heartbeats stop, and one follower's random timer fires first.
+
+00:00:41.971 --> 00:00:47.475
+It becomes a candidate for term two, asks for votes, and wins with a majority of three.
+
+00:00:48.825 --> 00:00:51.518
+Avoiding two leaders, called split brain.
+
+00:00:51.968 --> 00:00:55.463
+Require a majority, so two groups can never both win.
+
+00:00:55.913 --> 00:01:01.393
+Use a term or epoch number, a fencing token, and reject writes from older terms.
+
+00:01:01.843 --> 00:01:07.230
+Leases give the leader a time limited right to act; it must stop before the lease ends.
+
+00:01:08.580 --> 00:01:16.997
+Majority votes pick one leader, terms and fencing tokens reject old leaders, and leases bound how long anyone can act alone.

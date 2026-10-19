@@ -1,0 +1,43 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:05.190
+A content delivery network keeps copies of popular files close to the people who watch them.
+
+00:00:06.540 --> 00:00:08.003
+Think of a bakery chain.
+
+00:00:08.453 --> 00:00:12.597
+Baking everything in one central factory means long delivery trips.
+
+00:00:13.047 --> 00:00:20.454
+So each neighborhood shop keeps the most popular bread on its shelves, and only orders from the factory when it runs out.
+
+00:00:20.904 --> 00:00:24.527
+The shops are edge caches, and the factory is the origin.
+
+00:00:25.877 --> 00:00:27.386
+Here is a request path.
+
+00:00:27.836 --> 00:00:30.936
+A viewer asks the nearest edge for a video chunk.
+
+00:00:31.386 --> 00:00:33.894
+On a hit the edge answers immediately.
+
+00:00:34.344 --> 00:00:39.858
+On a miss it asks a regional shield cache, and only then the origin, then keeps a copy.
+
+00:00:41.208 --> 00:00:43.577
+Words to use in a design interview.
+
+00:00:44.027 --> 00:00:49.449
+Hit ratio, the share of requests served from cache, drives cost and latency.
+
+00:00:49.899 --> 00:00:53.347
+Time to live and versioned file names decide freshness.
+
+00:00:53.797 --> 00:00:59.997
+Netflix pre-positions popular titles on its Open Connect appliances overnight, before people press play.
+
+00:01:01.347 --> 00:01:07.918
+Cache popular content at the edge, shield the origin, and plan freshness with TTLs and versioned names.

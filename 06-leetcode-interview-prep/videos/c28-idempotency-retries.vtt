@@ -1,0 +1,43 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:05.143
+Networks fail in the middle of requests. Idempotency makes it safe to try again.
+
+00:00:06.493 --> 00:00:08.362
+Think about an elevator call button.
+
+00:00:08.812 --> 00:00:15.268
+Pressing it five times does not call five elevators. The result of one press and five presses is the same.
+
+00:00:15.718 --> 00:00:18.852
+A payment API should behave like that button.
+
+00:00:19.302 --> 00:00:25.932
+The client attaches an idempotency key, a unique ticket number, and the server remembers the result for that ticket.
+
+00:00:27.282 --> 00:00:29.081
+Here is the dangerous case.
+
+00:00:29.531 --> 00:00:33.653
+The client sends charge, with key k1. The server charges the card.
+
+00:00:34.103 --> 00:00:39.269
+The reply is lost on the way back, so the client times out and retries with the same key.
+
+00:00:39.719 --> 00:00:45.280
+The server sees k1 already done and returns the saved result. No second charge.
+
+00:00:46.630 --> 00:00:49.045
+Retry rules that interviewers check.
+
+00:00:49.495 --> 00:00:55.254
+Reuse the same key for every retry of one logical request. A new key means a new charge.
+
+00:00:55.704 --> 00:01:03.982
+Retry only on timeouts, connection errors, too many requests and five hundred errors, never on four hundred errors like bad input.
+
+00:01:04.432 --> 00:01:08.019
+Back off exponentially with jitter, and cap the attempts.
+
+00:01:09.369 --> 00:01:15.023
+Make writes idempotent with a key, retry only safe failures, and back off with jitter.

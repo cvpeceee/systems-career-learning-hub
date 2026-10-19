@@ -98,7 +98,7 @@ L.append(dict(id='c10-dynamic-programming',title='Dynamic Programming',used=['p1
 ]))
 # ---- extra depth scenes (inserted before each recap) ----
 _R=globals().get('ROOT','.')
-for _f in ('lessons2a.py','lessons2b.py'): exec(open(_R+'/lessons/'+_f).read())
+for _f in ('lessons2a.py','lessons2b.py','lessons2c.py'): exec(open(_R+'/lessons/'+_f).read())
 X={
 'c02-arrays-pointers':[S('array',['One more classic: binary search on a rotated array, like a log ring buffer that wrapped around.','Pick the middle. At least one half is still in sorted order.','If the target falls inside the sorted half, keep that half. Otherwise keep the other one.','Each step throws away half the array, so it costs log n steps.'],title='Binary search on a wrapped array',states=[dict(a=[4,5,6,7,0,1,2],ptr={'lo':0,'mid':3,'hi':6},note='left half [4..7] sorted; 0 not inside'),dict(a=[4,5,6,7,0,1,2],ptr={'lo':4,'mid':5,'hi':6},note='left half [0,1] sorted; 0 inside'),dict(a=[4,5,6,7,0,1,2],ptr={'lo':4,'mid':4,'hi':4},hl=[4],note='found at index 4')])],
 'c03-hash-tables':[S('bullets',['In the interview, say out loud why a hash map fits: you need fast membership or counting.','Mention the trade: you spend memory to buy time.','And remember the classic bug in Two Sum: check for the partner before inserting yourself.'],title='Interview tips',items=['Say why: fast "seen before?" or counting','Trade memory for time','Check before insert (Two Sum [3,3])'])],

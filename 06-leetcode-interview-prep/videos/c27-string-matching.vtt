@@ -1,0 +1,43 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:04.679
+How do you find a pattern inside a long text without starting over after every mismatch?
+
+00:00:06.029 --> 00:00:08.850
+Imagine reading a song lyric and humming along.
+
+00:00:09.300 --> 00:00:14.316
+If you sang la la la and then made a mistake, you do not restart the whole song.
+
+00:00:14.766 --> 00:00:19.804
+You remember that the last la la is still the start of the chorus, and continue from there.
+
+00:00:20.254 --> 00:00:24.678
+KMP remembers that overlap in a small table called the failure function.
+
+00:00:26.028 --> 00:00:29.267
+Here is the failure table for the pattern A B A B C.
+
+00:00:29.717 --> 00:00:35.336
+Each entry is the length of the longest proper prefix that is also a suffix of the pattern up to that point.
+
+00:00:35.786 --> 00:00:41.719
+At index three, A B A B ends with A B, which is also its start, so the value is two.
+
+00:00:42.169 --> 00:00:46.337
+On a mismatch, jump the pattern pointer to that value instead of zero.
+
+00:00:47.687 --> 00:00:51.623
+Rolling hash, used by Rabin Karp, is the other classic.
+
+00:00:52.073 --> 00:00:55.114
+Turn each window into a number, like reading digits.
+
+00:00:55.564 --> 00:01:00.650
+Sliding by one removes the leftmost digit and adds a new one, in constant time.
+
+00:01:01.100 --> 00:01:04.838
+If hashes match, compare characters to rule out a rare collision.
+
+00:01:06.188 --> 00:01:14.419
+KMP never re-reads text thanks to the failure table; rolling hash compares windows as numbers. Both run in linear time.
