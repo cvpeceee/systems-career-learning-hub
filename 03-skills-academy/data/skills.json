@@ -1,0 +1,2993 @@
+{
+ "generated": "2026-10-01",
+ "method": "Job->skill mapping in tools/build_skills.py. 'sampled' postings were read via web search on 2026-10-01; 'inferred' from title/team; 'saved-map' from the Sep 2026 saved-jobs skill map. Ratings (1-5) are judgment calls for Chandra's profile.",
+ "counts": {
+  "skills": 54,
+  "jobs": 53,
+  "newAlertJobs": 35,
+  "savedJobs": 18,
+  "sampled": 13
+ },
+ "topNewAlertSkills": [
+  {
+   "id": "cpp",
+   "name": "Modern C/C++ systems programming",
+   "newAlertCount": 21,
+   "companies": [
+    "Cisco",
+    "Clockwork Systems",
+    "CrowdStrike",
+    "F5",
+    "Ford",
+    "Google",
+    "Intel",
+    "Microsoft",
+    "NVIDIA",
+    "OpenAI",
+    "Palo Alto Networks",
+    "Unity"
+   ]
+  },
+  {
+   "id": "dist-sys",
+   "name": "Distributed systems fundamentals",
+   "newAlertCount": 21,
+   "companies": [
+    "Anthropic",
+    "Clockwork Systems",
+    "Cloudflare",
+    "CrowdStrike",
+    "F5",
+    "General Motors",
+    "Google",
+    "JPMorganChase",
+    "Microsoft",
+    "NVIDIA",
+    "OpenAI",
+    "Palo Alto Networks",
+    "Walmart"
+   ]
+  },
+  {
+   "id": "python",
+   "name": "Python for tooling/infra",
+   "newAlertCount": 19,
+   "companies": [
+    "Anthropic",
+    "Cisco",
+    "Clockwork Systems",
+    "General Motors",
+    "Google",
+    "Intel",
+    "JPMorganChase",
+    "Microsoft",
+    "NVIDIA",
+    "OpenAI",
+    "Palo Alto Networks"
+   ]
+  },
+  {
+   "id": "sysdesign",
+   "name": "Large-scale system design",
+   "newAlertCount": 18,
+   "companies": [
+    "Anthropic",
+    "Cloudflare",
+    "CrowdStrike",
+    "F5",
+    "General Motors",
+    "Google",
+    "JPMorganChase",
+    "Microsoft",
+    "NVIDIA",
+    "OpenAI",
+    "Palo Alto Networks",
+    "Walmart"
+   ]
+  },
+  {
+   "id": "leadership",
+   "name": "Technical leadership & cross-team influence",
+   "newAlertCount": 18,
+   "companies": [
+    "Cisco",
+    "Cloudflare",
+    "CrowdStrike",
+    "Ford",
+    "Google",
+    "Microsoft",
+    "NVIDIA",
+    "OpenAI",
+    "Palo Alto Networks",
+    "Walmart"
+   ]
+  },
+  {
+   "id": "cloud",
+   "name": "Public cloud (AWS/GCP/Azure) & IaC",
+   "newAlertCount": 14,
+   "companies": [
+    "Anthropic",
+    "CrowdStrike",
+    "F5",
+    "General Motors",
+    "Google",
+    "JPMorganChase",
+    "Microsoft",
+    "NVIDIA",
+    "OpenAI",
+    "Palo Alto Networks",
+    "Walmart"
+   ]
+  },
+  {
+   "id": "k8s",
+   "name": "Kubernetes & containers",
+   "newAlertCount": 13,
+   "companies": [
+    "Anthropic",
+    "F5",
+    "General Motors",
+    "Google",
+    "NVIDIA",
+    "OpenAI",
+    "Palo Alto Networks",
+    "Walmart"
+   ]
+  },
+  {
+   "id": "go-rust",
+   "name": "Go or Rust",
+   "newAlertCount": 11,
+   "companies": [
+    "Anthropic",
+    "Clockwork Systems",
+    "Cloudflare",
+    "CrowdStrike",
+    "F5",
+    "NVIDIA",
+    "OpenAI",
+    "Palo Alto Networks",
+    "Walmart"
+   ]
+  },
+  {
+   "id": "linux-kernel",
+   "name": "Linux kernel internals (VM, scheduler, syscalls)",
+   "newAlertCount": 10,
+   "companies": [
+    "Cisco",
+    "CrowdStrike",
+    "Intel",
+    "NVIDIA",
+    "OpenAI",
+    "Palo Alto Networks"
+   ]
+  },
+  {
+   "id": "perf-eng",
+   "name": "Performance engineering & profiling",
+   "newAlertCount": 10,
+   "companies": [
+    "Anthropic",
+    "Clockwork Systems",
+    "CrowdStrike",
+    "Intel",
+    "Microsoft",
+    "NVIDIA",
+    "Unity"
+   ]
+  }
+ ],
+ "skills": [
+  {
+   "id": "cpp",
+   "name": "Modern C/C++ systems programming",
+   "cluster": "cpp",
+   "tier": "core",
+   "aiHard": 4,
+   "robotics": 5,
+   "polyBuilds": "yes",
+   "polyNote": "Daily: vendor C drivers + C++ middleware on NXP/Qualcomm/Ambarella",
+   "jobCount": 29,
+   "newAlertCount": 21,
+   "savedCount": 8,
+   "companies": [
+    "Broadcom",
+    "Cisco",
+    "Clockwork Systems",
+    "Cloudflare",
+    "CrowdStrike",
+    "F5",
+    "Ford",
+    "Google",
+    "Intel",
+    "Microsoft",
+    "NVIDIA",
+    "OpenAI",
+    "Palo Alto Networks",
+    "Unity"
+   ],
+   "newAlertCompanies": [
+    "Cisco",
+    "Clockwork Systems",
+    "CrowdStrike",
+    "F5",
+    "Ford",
+    "Google",
+    "Intel",
+    "Microsoft",
+    "NVIDIA",
+    "OpenAI",
+    "Palo Alto Networks",
+    "Unity"
+   ],
+   "jobs": [
+    "pan-sw",
+    "cisco-1",
+    "cisco-2",
+    "cisco-3",
+    "f5",
+    "ms-coreai",
+    "nv-prof",
+    "nv-umd",
+    "nv-devtech",
+    "nv-driverperf",
+    "nv-kernel-csp",
+    "clockwork",
+    "unity",
+    "g-dcn",
+    "g-netsoft",
+    "g-cloudai",
+    "g-embedded",
+    "cs-sensor",
+    "oai-cfs",
+    "ford",
+    "intel-mw",
+    "s-cf-dist",
+    "s-nv-power",
+    "s-nv-cudadrv",
+    "s-nv-pcuda",
+    "s-broadcom",
+    "s-g-gdc",
+    "s-nv-cudadl",
+    "s-oai-host"
+   ]
+  },
+  {
+   "id": "memmodel",
+   "name": "C++ memory model & atomics",
+   "cluster": "cpp",
+   "tier": "core",
+   "aiHard": 5,
+   "robotics": 4,
+   "polyBuilds": "partial",
+   "polyNote": "Shared buffers between capture/encode threads; needs formal depth",
+   "jobCount": 3,
+   "newAlertCount": 3,
+   "savedCount": 0,
+   "companies": [
+    "NVIDIA",
+    "Unity"
+   ],
+   "newAlertCompanies": [
+    "NVIDIA",
+    "Unity"
+   ],
+   "jobs": [
+    "nv-umd",
+    "nv-driverperf",
+    "unity"
+   ]
+  },
+  {
+   "id": "ub-safety",
+   "name": "Undefined behavior, memory safety & sanitizers",
+   "cluster": "cpp",
+   "tier": "core",
+   "aiHard": 4,
+   "robotics": 4,
+   "polyBuilds": "partial",
+   "polyNote": "Vendor-code crashes, ASan/UBSan triage",
+   "jobCount": 2,
+   "newAlertCount": 2,
+   "savedCount": 0,
+   "companies": [
+    "CrowdStrike",
+    "Unity"
+   ],
+   "newAlertCompanies": [
+    "CrowdStrike",
+    "Unity"
+   ],
+   "jobs": [
+    "unity",
+    "cs-sensor"
+   ]
+  },
+  {
+   "id": "linux-kernel",
+   "name": "Linux kernel internals (VM, scheduler, syscalls)",
+   "cluster": "kernel",
+   "tier": "core",
+   "aiHard": 5,
+   "robotics": 4,
+   "polyBuilds": "partial",
+   "polyNote": "Kernel config/debug on embedded SoCs",
+   "jobCount": 16,
+   "newAlertCount": 10,
+   "savedCount": 6,
+   "companies": [
+    "Cisco",
+    "CrowdStrike",
+    "Intel",
+    "NVIDIA",
+    "OpenAI",
+    "Palo Alto Networks"
+   ],
+   "newAlertCompanies": [
+    "Cisco",
+    "CrowdStrike",
+    "Intel",
+    "NVIDIA",
+    "OpenAI",
+    "Palo Alto Networks"
+   ],
+   "jobs": [
+    "pan-sw",
+    "cisco-1",
+    "cisco-2",
+    "cisco-3",
+    "nv-umd",
+    "nv-driverperf",
+    "nv-kernel-csp",
+    "cs-sensor",
+    "oai-cfs",
+    "intel-mw",
+    "s-nv-power",
+    "s-nv-cudadrv",
+    "s-nv-pcuda",
+    "s-nv-cns",
+    "s-nv-solnet",
+    "s-oai-host"
+   ]
+  },
+  {
+   "id": "drivers",
+   "name": "Device drivers (char/platform, DT, IRQ, DMA)",
+   "cluster": "kernel",
+   "tier": "core",
+   "aiHard": 5,
+   "robotics": 5,
+   "polyBuilds": "yes",
+   "polyNote": "Lontium bridge, camera sensor, NXP peripherals",
+   "jobCount": 13,
+   "newAlertCount": 9,
+   "savedCount": 4,
+   "companies": [
+    "Broadcom",
+    "Cisco",
+    "CrowdStrike",
+    "Google",
+    "NVIDIA",
+    "OpenAI"
+   ],
+   "newAlertCompanies": [
+    "Cisco",
+    "CrowdStrike",
+    "Google",
+    "NVIDIA",
+    "OpenAI"
+   ],
+   "jobs": [
+    "cisco-1",
+    "cisco-2",
+    "cisco-3",
+    "nv-umd",
+    "nv-driverperf",
+    "nv-kernel-csp",
+    "g-embedded",
+    "cs-sensor",
+    "oai-cfs",
+    "s-nv-power",
+    "s-nv-cudadrv",
+    "s-broadcom",
+    "s-oai-host"
+   ]
+  },
+  {
+   "id": "pcie-dma",
+   "name": "PCIe, DMA, IOMMU & MMIO",
+   "cluster": "kernel",
+   "tier": "core",
+   "aiHard": 5,
+   "robotics": 4,
+   "polyBuilds": "partial",
+   "polyNote": "DMA buffers for video; PCIe on Qualcomm/accelerator parts",
+   "jobCount": 5,
+   "newAlertCount": 4,
+   "savedCount": 1,
+   "companies": [
+    "Cisco",
+    "NVIDIA",
+    "OpenAI"
+   ],
+   "newAlertCompanies": [
+    "Cisco",
+    "NVIDIA"
+   ],
+   "jobs": [
+    "cisco-1",
+    "cisco-2",
+    "nv-driverperf",
+    "nv-kernel-csp",
+    "s-oai-host"
+   ]
+  },
+  {
+   "id": "kernel-debug",
+   "name": "Kernel debugging (kdump, GDB, ftrace, crash)",
+   "cluster": "kernel",
+   "tier": "core",
+   "aiHard": 5,
+   "robotics": 4,
+   "polyBuilds": "partial",
+   "polyNote": "Oops/hang triage on devices",
+   "jobCount": 5,
+   "newAlertCount": 4,
+   "savedCount": 1,
+   "companies": [
+    "Cisco",
+    "NVIDIA",
+    "OpenAI"
+   ],
+   "newAlertCompanies": [
+    "Cisco",
+    "NVIDIA",
+    "OpenAI"
+   ],
+   "jobs": [
+    "cisco-1",
+    "cisco-2",
+    "nv-kernel-csp",
+    "oai-cfs",
+    "s-oai-host"
+   ]
+  },
+  {
+   "id": "bringup",
+   "name": "Board bring-up, boot flow & BSP",
+   "cluster": "embedded",
+   "tier": "core",
+   "aiHard": 5,
+   "robotics": 5,
+   "polyBuilds": "yes",
+   "polyNote": "New-board bring-up across SoC vendors",
+   "jobCount": 8,
+   "newAlertCount": 7,
+   "savedCount": 1,
+   "companies": [
+    "Cisco",
+    "Ford",
+    "Google",
+    "NVIDIA",
+    "OpenAI"
+   ],
+   "newAlertCompanies": [
+    "Cisco",
+    "Ford",
+    "Google",
+    "NVIDIA",
+    "OpenAI"
+   ],
+   "jobs": [
+    "cisco-1",
+    "cisco-2",
+    "cisco-3",
+    "nv-kernel-csp",
+    "g-embedded",
+    "oai-cfs",
+    "ford",
+    "s-oai-host"
+   ]
+  },
+  {
+   "id": "yocto",
+   "name": "OS images, Yocto/Buildroot & packaging",
+   "cluster": "embedded",
+   "tier": "core",
+   "aiHard": 4,
+   "robotics": 4,
+   "polyBuilds": "partial",
+   "polyNote": "Product image builds; maps to fleet OS-image engineering",
+   "jobCount": 1,
+   "newAlertCount": 1,
+   "savedCount": 0,
+   "companies": [
+    "OpenAI"
+   ],
+   "newAlertCompanies": [
+    "OpenAI"
+   ],
+   "jobs": [
+    "oai-cfs"
+   ]
+  },
+  {
+   "id": "buses",
+   "name": "I2C/SPI/UART/MIPI/GPIO peripherals",
+   "cluster": "embedded",
+   "tier": "core",
+   "aiHard": 4,
+   "robotics": 5,
+   "polyBuilds": "yes",
+   "polyNote": "Sensors, HDMI bridges, codecs on I2C/MIPI",
+   "jobCount": 4,
+   "newAlertCount": 4,
+   "savedCount": 0,
+   "companies": [
+    "Cisco",
+    "Ford",
+    "Google"
+   ],
+   "newAlertCompanies": [
+    "Cisco",
+    "Ford",
+    "Google"
+   ],
+   "jobs": [
+    "cisco-1",
+    "cisco-2",
+    "g-embedded",
+    "ford"
+   ]
+  },
+  {
+   "id": "camera-isp",
+   "name": "Camera/video pipeline, ISP & codecs",
+   "cluster": "embedded",
+   "tier": "core",
+   "aiHard": 4,
+   "robotics": 5,
+   "polyBuilds": "yes",
+   "polyNote": "Conferencing video path on Ambarella CV7/Qualcomm",
+   "jobCount": 2,
+   "newAlertCount": 2,
+   "savedCount": 0,
+   "companies": [
+    "Google",
+    "Intel"
+   ],
+   "newAlertCompanies": [
+    "Google",
+    "Intel"
+   ],
+   "jobs": [
+    "g-embedded",
+    "intel-mw"
+   ]
+  },
+  {
+   "id": "firmware",
+   "name": "Firmware, BMC & power management",
+   "cluster": "embedded",
+   "tier": "core",
+   "aiHard": 4,
+   "robotics": 5,
+   "polyBuilds": "partial",
+   "polyNote": "Power/thermal states on devices",
+   "jobCount": 8,
+   "newAlertCount": 6,
+   "savedCount": 2,
+   "companies": [
+    "Cisco",
+    "Ford",
+    "Google",
+    "NVIDIA",
+    "OpenAI"
+   ],
+   "newAlertCompanies": [
+    "Cisco",
+    "Ford",
+    "Google",
+    "NVIDIA",
+    "OpenAI"
+   ],
+   "jobs": [
+    "cisco-1",
+    "cisco-2",
+    "nv-kernel-csp",
+    "g-embedded",
+    "oai-cfs",
+    "ford",
+    "s-nv-power",
+    "s-oai-host"
+   ]
+  },
+  {
+   "id": "concurrency",
+   "name": "Multithreading & synchronization",
+   "cluster": "conc",
+   "tier": "core",
+   "aiHard": 4,
+   "robotics": 5,
+   "polyBuilds": "yes",
+   "polyNote": "Capture/encode/network threads",
+   "jobCount": 9,
+   "newAlertCount": 8,
+   "savedCount": 1,
+   "companies": [
+    "Cisco",
+    "CrowdStrike",
+    "Intel",
+    "NVIDIA",
+    "Unity"
+   ],
+   "newAlertCompanies": [
+    "Cisco",
+    "CrowdStrike",
+    "Intel",
+    "NVIDIA",
+    "Unity"
+   ],
+   "jobs": [
+    "cisco-1",
+    "cisco-2",
+    "cisco-3",
+    "nv-umd",
+    "nv-driverperf",
+    "unity",
+    "cs-sensor",
+    "intel-mw",
+    "s-nv-cudadrv"
+   ]
+  },
+  {
+   "id": "lockfree",
+   "name": "Lock-free data structures",
+   "cluster": "conc",
+   "tier": "core",
+   "aiHard": 5,
+   "robotics": 4,
+   "polyBuilds": "partial",
+   "polyNote": "Ring buffers between pipeline stages",
+   "jobCount": 1,
+   "newAlertCount": 1,
+   "savedCount": 0,
+   "companies": [
+    "CrowdStrike"
+   ],
+   "newAlertCompanies": [
+    "CrowdStrike"
+   ],
+   "jobs": [
+    "cs-sensor"
+   ]
+  },
+  {
+   "id": "arch-perf",
+   "name": "Computer architecture: caches, coherence, NUMA",
+   "cluster": "conc",
+   "tier": "core",
+   "aiHard": 5,
+   "robotics": 4,
+   "polyBuilds": "partial",
+   "polyNote": "ARM SoC cache/DMA coherency",
+   "jobCount": 6,
+   "newAlertCount": 4,
+   "savedCount": 2,
+   "companies": [
+    "NVIDIA",
+    "Unity"
+   ],
+   "newAlertCompanies": [
+    "NVIDIA",
+    "Unity"
+   ],
+   "jobs": [
+    "nv-umd",
+    "nv-driverperf",
+    "nv-kernel-csp",
+    "unity",
+    "s-nv-cudadrv",
+    "s-nv-pcuda"
+   ]
+  },
+  {
+   "id": "perf-eng",
+   "name": "Performance engineering & profiling",
+   "cluster": "conc",
+   "tier": "core",
+   "aiHard": 5,
+   "robotics": 5,
+   "polyBuilds": "partial",
+   "polyNote": "Latency/frame-drop optimization",
+   "jobCount": 11,
+   "newAlertCount": 10,
+   "savedCount": 1,
+   "companies": [
+    "Anthropic",
+    "Clockwork Systems",
+    "CrowdStrike",
+    "Intel",
+    "Microsoft",
+    "NVIDIA",
+    "Unity"
+   ],
+   "newAlertCompanies": [
+    "Anthropic",
+    "Clockwork Systems",
+    "CrowdStrike",
+    "Intel",
+    "Microsoft",
+    "NVIDIA",
+    "Unity"
+   ],
+   "jobs": [
+    "ms-coreai",
+    "nv-prof",
+    "nv-devtech",
+    "nv-dynamo",
+    "nv-driverperf",
+    "clockwork",
+    "unity",
+    "a-velocity",
+    "cs-sensor",
+    "intel-mw",
+    "s-nv-cudadl"
+   ]
+  },
+  {
+   "id": "cuda",
+   "name": "CUDA programming model",
+   "cluster": "gpu",
+   "tier": "adjacent",
+   "aiHard": 4,
+   "robotics": 4,
+   "polyBuilds": "no",
+   "polyNote": "Adjacency; CV7/QCOM DSP/NPU offload is the mental bridge",
+   "jobCount": 6,
+   "newAlertCount": 4,
+   "savedCount": 2,
+   "companies": [
+    "NVIDIA"
+   ],
+   "newAlertCompanies": [
+    "NVIDIA"
+   ],
+   "jobs": [
+    "nv-prof",
+    "nv-umd",
+    "nv-devtech",
+    "nv-driverperf",
+    "s-nv-pcuda",
+    "s-nv-cudadl"
+   ]
+  },
+  {
+   "id": "gpu-arch",
+   "name": "GPU architecture & memory hierarchy",
+   "cluster": "gpu",
+   "tier": "adjacent",
+   "aiHard": 4,
+   "robotics": 4,
+   "polyBuilds": "no",
+   "polyNote": "Analogous to ISP/NPU dataflow constraints",
+   "jobCount": 3,
+   "newAlertCount": 2,
+   "savedCount": 1,
+   "companies": [
+    "NVIDIA"
+   ],
+   "newAlertCompanies": [
+    "NVIDIA"
+   ],
+   "jobs": [
+    "nv-prof",
+    "nv-devtech",
+    "s-nv-cudadl"
+   ]
+  },
+  {
+   "id": "cuda-driver",
+   "name": "GPU driver stack (UMD/KMD, launch path, graphs)",
+   "cluster": "gpu",
+   "tier": "adjacent",
+   "aiHard": 5,
+   "robotics": 3,
+   "polyBuilds": "partial",
+   "polyNote": "Driver skills transfer directly; GPU specifics are new",
+   "jobCount": 4,
+   "newAlertCount": 2,
+   "savedCount": 2,
+   "companies": [
+    "NVIDIA"
+   ],
+   "newAlertCompanies": [
+    "NVIDIA"
+   ],
+   "jobs": [
+    "nv-umd",
+    "nv-driverperf",
+    "s-nv-cudadrv",
+    "s-nv-pcuda"
+   ]
+  },
+  {
+   "id": "gpu-sharing",
+   "name": "GPU sharing & virtualization (MIG/MPS)",
+   "cluster": "gpu",
+   "tier": "adjacent",
+   "aiHard": 5,
+   "robotics": 2,
+   "polyBuilds": "no",
+   "polyNote": "New",
+   "jobCount": 4,
+   "newAlertCount": 2,
+   "savedCount": 2,
+   "companies": [
+    "NVIDIA"
+   ],
+   "newAlertCompanies": [
+    "NVIDIA"
+   ],
+   "jobs": [
+    "nv-dgx",
+    "nv-umd",
+    "s-nv-pcuda",
+    "s-nv-cns"
+   ]
+  },
+  {
+   "id": "nsight",
+   "name": "GPU profiling tools (Nsight, CUPTI)",
+   "cluster": "gpu",
+   "tier": "adjacent",
+   "aiHard": 4,
+   "robotics": 3,
+   "polyBuilds": "no",
+   "polyNote": "New",
+   "jobCount": 2,
+   "newAlertCount": 2,
+   "savedCount": 0,
+   "companies": [
+    "NVIDIA"
+   ],
+   "newAlertCompanies": [
+    "NVIDIA"
+   ],
+   "jobs": [
+    "nv-prof",
+    "nv-devtech"
+   ]
+  },
+  {
+   "id": "llm-serving",
+   "name": "LLM inference serving (batching, KV cache)",
+   "cluster": "infer",
+   "tier": "adjacent",
+   "aiHard": 4,
+   "robotics": 3,
+   "polyBuilds": "no",
+   "polyNote": "New; edge inference on CV7 is a small-scale analog",
+   "jobCount": 10,
+   "newAlertCount": 7,
+   "savedCount": 3,
+   "companies": [
+    "Anthropic",
+    "General Motors",
+    "Google",
+    "JPMorganChase",
+    "Microsoft",
+    "NVIDIA",
+    "Palo Alto Networks",
+    "Toshiba Global Commerce Solutions"
+   ],
+   "newAlertCompanies": [
+    "Anthropic",
+    "General Motors",
+    "Google",
+    "Microsoft",
+    "NVIDIA"
+   ],
+   "jobs": [
+    "gm-ai",
+    "ms-coreai",
+    "nv-devtech",
+    "nv-dynamo",
+    "g-cloudai",
+    "a-cloudinf",
+    "a-velocity",
+    "s-jpmc-agent",
+    "s-pan-fde",
+    "s-toshiba"
+   ]
+  },
+  {
+   "id": "model-parallel",
+   "name": "Tensor/pipeline/expert parallelism",
+   "cluster": "infer",
+   "tier": "adjacent",
+   "aiHard": 4,
+   "robotics": 2,
+   "polyBuilds": "no",
+   "polyNote": "New",
+   "jobCount": 3,
+   "newAlertCount": 2,
+   "savedCount": 1,
+   "companies": [
+    "NVIDIA"
+   ],
+   "newAlertCompanies": [
+    "NVIDIA"
+   ],
+   "jobs": [
+    "nv-devtech",
+    "nv-dynamo",
+    "s-nv-cudadl"
+   ]
+  },
+  {
+   "id": "ml-infra",
+   "name": "ML platform & accelerator fleet infrastructure",
+   "cluster": "infer",
+   "tier": "adjacent",
+   "aiHard": 3,
+   "robotics": 3,
+   "polyBuilds": "no",
+   "polyNote": "New",
+   "jobCount": 7,
+   "newAlertCount": 4,
+   "savedCount": 3,
+   "companies": [
+    "Bank of America",
+    "General Motors",
+    "Google",
+    "JPMorganChase",
+    "Microsoft",
+    "NVIDIA"
+   ],
+   "newAlertCompanies": [
+    "General Motors",
+    "Google",
+    "Microsoft",
+    "NVIDIA"
+   ],
+   "jobs": [
+    "gm-ai",
+    "ms-coreai",
+    "nv-dgx",
+    "g-cloudai",
+    "s-jpmc-agent",
+    "s-boa",
+    "s-nv-cudadl"
+   ]
+  },
+  {
+   "id": "dist-sys",
+   "name": "Distributed systems fundamentals",
+   "cluster": "dist",
+   "tier": "adjacent",
+   "aiHard": 4,
+   "robotics": 3,
+   "polyBuilds": "partial",
+   "polyNote": "Device fleet + cloud services interactions",
+   "jobCount": 26,
+   "newAlertCount": 21,
+   "savedCount": 5,
+   "companies": [
+    "Anthropic",
+    "Clockwork Systems",
+    "Cloudflare",
+    "CrowdStrike",
+    "F5",
+    "General Motors",
+    "Google",
+    "JPMorganChase",
+    "Microsoft",
+    "NVIDIA",
+    "OpenAI",
+    "Palo Alto Networks",
+    "Perplexity",
+    "Walmart",
+    "evoke"
+   ],
+   "newAlertCompanies": [
+    "Anthropic",
+    "Clockwork Systems",
+    "Cloudflare",
+    "CrowdStrike",
+    "F5",
+    "General Motors",
+    "Google",
+    "JPMorganChase",
+    "Microsoft",
+    "NVIDIA",
+    "OpenAI",
+    "Palo Alto Networks",
+    "Walmart"
+   ],
+   "jobs": [
+    "pan-sw",
+    "f5",
+    "gm-ai",
+    "ms-coreai",
+    "nv-dgx",
+    "nv-prof",
+    "nv-dynamo",
+    "clockwork",
+    "g-dcn",
+    "g-netsoft",
+    "g-cloudai",
+    "a-cloudinf",
+    "a-velocity",
+    "a-dist",
+    "a-platform",
+    "cs-identity",
+    "wmt-principal",
+    "wmt-staff",
+    "oai-identity",
+    "jpmc-data",
+    "cf-config",
+    "s-evoke",
+    "s-cf-dist",
+    "s-g-gdc",
+    "s-pplx-storage",
+    "s-pplx-api"
+   ]
+  },
+  {
+   "id": "consensus",
+   "name": "Consensus & replication (Raft/Paxos)",
+   "cluster": "dist",
+   "tier": "adjacent",
+   "aiHard": 5,
+   "robotics": 2,
+   "polyBuilds": "no",
+   "polyNote": "New",
+   "jobCount": 3,
+   "newAlertCount": 2,
+   "savedCount": 1,
+   "companies": [
+    "Anthropic",
+    "Cloudflare"
+   ],
+   "newAlertCompanies": [
+    "Anthropic",
+    "Cloudflare"
+   ],
+   "jobs": [
+    "a-dist",
+    "cf-config",
+    "s-cf-dist"
+   ]
+  },
+  {
+   "id": "storage-data",
+   "name": "Data platforms, storage & streaming",
+   "cluster": "dist",
+   "tier": "optional",
+   "aiHard": 3,
+   "robotics": 2,
+   "polyBuilds": "no",
+   "polyNote": "New",
+   "jobCount": 8,
+   "newAlertCount": 6,
+   "savedCount": 2,
+   "companies": [
+    "Anthropic",
+    "Cloudflare",
+    "CrowdStrike",
+    "Google",
+    "JPMorganChase",
+    "Perplexity",
+    "Walmart"
+   ],
+   "newAlertCompanies": [
+    "Anthropic",
+    "Cloudflare",
+    "CrowdStrike",
+    "JPMorganChase",
+    "Walmart"
+   ],
+   "jobs": [
+    "a-dist",
+    "cs-identity",
+    "wmt-principal",
+    "wmt-staff",
+    "jpmc-data",
+    "cf-config",
+    "s-g-gdc",
+    "s-pplx-storage"
+   ]
+  },
+  {
+   "id": "tcpip",
+   "name": "TCP/IP & Linux networking",
+   "cluster": "net",
+   "tier": "adjacent",
+   "aiHard": 4,
+   "robotics": 4,
+   "polyBuilds": "partial",
+   "polyNote": "RTP/SIP/TCP on conferencing devices",
+   "jobCount": 7,
+   "newAlertCount": 5,
+   "savedCount": 2,
+   "companies": [
+    "Clockwork Systems",
+    "F5",
+    "Google",
+    "NVIDIA",
+    "Palo Alto Networks"
+   ],
+   "newAlertCompanies": [
+    "Clockwork Systems",
+    "F5",
+    "Google",
+    "Palo Alto Networks"
+   ],
+   "jobs": [
+    "pan-sw",
+    "f5",
+    "clockwork",
+    "g-dcn",
+    "g-netsoft",
+    "s-nv-ainet",
+    "s-nv-solnet"
+   ]
+  },
+  {
+   "id": "routing",
+   "name": "L2/L3, BGP & SDN control planes",
+   "cluster": "net",
+   "tier": "adjacent",
+   "aiHard": 4,
+   "robotics": 2,
+   "polyBuilds": "no",
+   "polyNote": "New",
+   "jobCount": 9,
+   "newAlertCount": 6,
+   "savedCount": 3,
+   "companies": [
+    "Broadcom",
+    "Cisco",
+    "F5",
+    "Google",
+    "NVIDIA"
+   ],
+   "newAlertCompanies": [
+    "Cisco",
+    "F5",
+    "Google"
+   ],
+   "jobs": [
+    "cisco-1",
+    "cisco-2",
+    "cisco-3",
+    "f5",
+    "g-dcn",
+    "g-netsoft",
+    "s-broadcom",
+    "s-nv-ainet",
+    "s-nv-solnet"
+   ]
+  },
+  {
+   "id": "dataplane",
+   "name": "Fast-path data planes (DPDK/XDP/VPP)",
+   "cluster": "net",
+   "tier": "adjacent",
+   "aiHard": 5,
+   "robotics": 3,
+   "polyBuilds": "partial",
+   "polyNote": "Zero-copy media paths are analogous",
+   "jobCount": 6,
+   "newAlertCount": 4,
+   "savedCount": 2,
+   "companies": [
+    "Broadcom",
+    "Cisco",
+    "Clockwork Systems",
+    "F5",
+    "NVIDIA",
+    "Palo Alto Networks"
+   ],
+   "newAlertCompanies": [
+    "Cisco",
+    "Clockwork Systems",
+    "F5",
+    "Palo Alto Networks"
+   ],
+   "jobs": [
+    "pan-sw",
+    "cisco-3",
+    "f5",
+    "clockwork",
+    "s-broadcom",
+    "s-nv-solnet"
+   ]
+  },
+  {
+   "id": "rdma",
+   "name": "RDMA/RoCE/InfiniBand & collectives",
+   "cluster": "net",
+   "tier": "adjacent",
+   "aiHard": 5,
+   "robotics": 2,
+   "polyBuilds": "no",
+   "polyNote": "New; DMA mental model transfers",
+   "jobCount": 6,
+   "newAlertCount": 4,
+   "savedCount": 2,
+   "companies": [
+    "Clockwork Systems",
+    "Google",
+    "NVIDIA"
+   ],
+   "newAlertCompanies": [
+    "Clockwork Systems",
+    "Google",
+    "NVIDIA"
+   ],
+   "jobs": [
+    "nv-dgx",
+    "nv-dynamo",
+    "clockwork",
+    "g-dcn",
+    "s-nv-ainet",
+    "s-nv-solnet"
+   ]
+  },
+  {
+   "id": "lb-traffic",
+   "name": "Load balancing & request routing",
+   "cluster": "net",
+   "tier": "adjacent",
+   "aiHard": 4,
+   "robotics": 2,
+   "polyBuilds": "no",
+   "polyNote": "New",
+   "jobCount": 4,
+   "newAlertCount": 3,
+   "savedCount": 1,
+   "companies": [
+    "Anthropic",
+    "F5",
+    "NVIDIA",
+    "Perplexity"
+   ],
+   "newAlertCompanies": [
+    "Anthropic",
+    "F5",
+    "NVIDIA"
+   ],
+   "jobs": [
+    "f5",
+    "nv-dynamo",
+    "a-cloudinf",
+    "s-pplx-api"
+   ]
+  },
+  {
+   "id": "k8s",
+   "name": "Kubernetes & containers",
+   "cluster": "cloud",
+   "tier": "adjacent",
+   "aiHard": 3,
+   "robotics": 2,
+   "polyBuilds": "no",
+   "polyNote": "New",
+   "jobCount": 16,
+   "newAlertCount": 13,
+   "savedCount": 3,
+   "companies": [
+    "Anthropic",
+    "F5",
+    "General Motors",
+    "Google",
+    "NVIDIA",
+    "OpenAI",
+    "Palo Alto Networks",
+    "Walmart"
+   ],
+   "newAlertCompanies": [
+    "Anthropic",
+    "F5",
+    "General Motors",
+    "Google",
+    "NVIDIA",
+    "OpenAI",
+    "Palo Alto Networks",
+    "Walmart"
+   ],
+   "jobs": [
+    "pan-devprod",
+    "f5",
+    "gm-ai",
+    "nv-dgx",
+    "nv-dynamo",
+    "nv-kernel-csp",
+    "g-cloudai",
+    "a-cloudinf",
+    "a-velocity",
+    "a-dist",
+    "wmt-principal",
+    "wmt-staff",
+    "oai-cfs",
+    "s-pan-fde",
+    "s-nv-cns",
+    "s-g-gdc"
+   ]
+  },
+  {
+   "id": "cloud",
+   "name": "Public cloud (AWS/GCP/Azure) & IaC",
+   "cluster": "cloud",
+   "tier": "adjacent",
+   "aiHard": 2,
+   "robotics": 1,
+   "polyBuilds": "no",
+   "polyNote": "New",
+   "jobCount": 18,
+   "newAlertCount": 14,
+   "savedCount": 4,
+   "companies": [
+    "Anthropic",
+    "CrowdStrike",
+    "F5",
+    "General Motors",
+    "Google",
+    "JPMorganChase",
+    "Microsoft",
+    "NVIDIA",
+    "OpenAI",
+    "Palo Alto Networks",
+    "Perplexity",
+    "Toshiba Global Commerce Solutions",
+    "Walmart"
+   ],
+   "newAlertCompanies": [
+    "Anthropic",
+    "CrowdStrike",
+    "F5",
+    "General Motors",
+    "Google",
+    "JPMorganChase",
+    "Microsoft",
+    "NVIDIA",
+    "OpenAI",
+    "Palo Alto Networks",
+    "Walmart"
+   ],
+   "jobs": [
+    "pan-devprod",
+    "f5",
+    "gm-ai",
+    "ms-coreai",
+    "nv-dgx",
+    "g-cloudai",
+    "a-cloudinf",
+    "a-dist",
+    "a-platform",
+    "cs-identity",
+    "wmt-principal",
+    "wmt-staff",
+    "oai-identity",
+    "jpmc-data",
+    "s-pan-fde",
+    "s-toshiba",
+    "s-nv-cns",
+    "s-pplx-storage"
+   ]
+  },
+  {
+   "id": "deploy",
+   "name": "Safe rollout, canary & config management",
+   "cluster": "cloud",
+   "tier": "adjacent",
+   "aiHard": 4,
+   "robotics": 4,
+   "polyBuilds": "partial",
+   "polyNote": "Device firmware/OTA rollouts",
+   "jobCount": 7,
+   "newAlertCount": 6,
+   "savedCount": 1,
+   "companies": [
+    "Anthropic",
+    "Cloudflare",
+    "Google",
+    "OpenAI",
+    "Palo Alto Networks"
+   ],
+   "newAlertCompanies": [
+    "Anthropic",
+    "Cloudflare",
+    "Google",
+    "OpenAI",
+    "Palo Alto Networks"
+   ],
+   "jobs": [
+    "pan-devprod",
+    "g-netsoft",
+    "a-cloudinf",
+    "a-velocity",
+    "oai-cfs",
+    "cf-config",
+    "s-cf-dist"
+   ]
+  },
+  {
+   "id": "cicd",
+   "name": "CI/CD, testing at scale & developer productivity",
+   "cluster": "cloud",
+   "tier": "adjacent",
+   "aiHard": 3,
+   "robotics": 3,
+   "polyBuilds": "partial",
+   "polyNote": "Device build/test pipelines, HIL farms",
+   "jobCount": 7,
+   "newAlertCount": 6,
+   "savedCount": 1,
+   "companies": [
+    "Anthropic",
+    "Bank of America",
+    "Cloudflare",
+    "Ford",
+    "General Motors",
+    "Palo Alto Networks"
+   ],
+   "newAlertCompanies": [
+    "Anthropic",
+    "Cloudflare",
+    "Ford",
+    "General Motors",
+    "Palo Alto Networks"
+   ],
+   "jobs": [
+    "pan-devprod",
+    "gm-ai",
+    "a-cloudinf",
+    "a-velocity",
+    "ford",
+    "cf-config",
+    "s-boa"
+   ]
+  },
+  {
+   "id": "provisioning",
+   "name": "Bare-metal provisioning & fleet lifecycle",
+   "cluster": "cloud",
+   "tier": "adjacent",
+   "aiHard": 4,
+   "robotics": 3,
+   "polyBuilds": "partial",
+   "polyNote": "Factory provisioning / device enrollment analog",
+   "jobCount": 2,
+   "newAlertCount": 2,
+   "savedCount": 0,
+   "companies": [
+    "NVIDIA",
+    "OpenAI"
+   ],
+   "newAlertCompanies": [
+    "NVIDIA",
+    "OpenAI"
+   ],
+   "jobs": [
+    "nv-dgx",
+    "oai-cfs"
+   ]
+  },
+  {
+   "id": "identity",
+   "name": "AuthN/AuthZ, OAuth/OIDC & identity systems",
+   "cluster": "sec",
+   "tier": "optional",
+   "aiHard": 3,
+   "robotics": 1,
+   "polyBuilds": "partial",
+   "polyNote": "Device-to-cloud auth/provisioning",
+   "jobCount": 5,
+   "newAlertCount": 3,
+   "savedCount": 2,
+   "companies": [
+    "Anthropic",
+    "Bank of America",
+    "CrowdStrike",
+    "OpenAI",
+    "Perplexity"
+   ],
+   "newAlertCompanies": [
+    "Anthropic",
+    "CrowdStrike",
+    "OpenAI"
+   ],
+   "jobs": [
+    "a-platform",
+    "cs-identity",
+    "oai-identity",
+    "s-boa",
+    "s-pplx-api"
+   ]
+  },
+  {
+   "id": "zerotrust",
+   "name": "Zero trust, mTLS & PKI",
+   "cluster": "sec",
+   "tier": "optional",
+   "aiHard": 4,
+   "robotics": 2,
+   "polyBuilds": "partial",
+   "polyNote": "Device certificates, secure boot keys",
+   "jobCount": 3,
+   "newAlertCount": 3,
+   "savedCount": 0,
+   "companies": [
+    "CrowdStrike",
+    "F5",
+    "OpenAI"
+   ],
+   "newAlertCompanies": [
+    "CrowdStrike",
+    "F5",
+    "OpenAI"
+   ],
+   "jobs": [
+    "f5",
+    "cs-identity",
+    "oai-identity"
+   ]
+  },
+  {
+   "id": "endpoint",
+   "name": "Endpoint sensors & OS internals (Linux/macOS/Windows)",
+   "cluster": "sec",
+   "tier": "adjacent",
+   "aiHard": 5,
+   "robotics": 2,
+   "polyBuilds": "partial",
+   "polyNote": "Kernel hooks & low-level OS knowledge transfer",
+   "jobCount": 1,
+   "newAlertCount": 1,
+   "savedCount": 0,
+   "companies": [
+    "CrowdStrike"
+   ],
+   "newAlertCompanies": [
+    "CrowdStrike"
+   ],
+   "jobs": [
+    "cs-sensor"
+   ]
+  },
+  {
+   "id": "secure-coding",
+   "name": "Secure coding & exploit mitigations",
+   "cluster": "sec",
+   "tier": "optional",
+   "aiHard": 4,
+   "robotics": 3,
+   "polyBuilds": "partial",
+   "polyNote": "Hardening device firmware",
+   "jobCount": 3,
+   "newAlertCount": 1,
+   "savedCount": 2,
+   "companies": [
+    "Bank of America",
+    "JPMorganChase",
+    "Palo Alto Networks"
+   ],
+   "newAlertCompanies": [
+    "Palo Alto Networks"
+   ],
+   "jobs": [
+    "pan-sw",
+    "s-jpmc-agent",
+    "s-boa"
+   ]
+  },
+  {
+   "id": "observability",
+   "name": "Metrics, logging & tracing",
+   "cluster": "obs",
+   "tier": "adjacent",
+   "aiHard": 3,
+   "robotics": 3,
+   "polyBuilds": "partial",
+   "polyNote": "Device telemetry/diagnostics",
+   "jobCount": 9,
+   "newAlertCount": 8,
+   "savedCount": 1,
+   "companies": [
+    "Anthropic",
+    "Clockwork Systems",
+    "Cloudflare",
+    "JPMorganChase",
+    "NVIDIA",
+    "Palo Alto Networks",
+    "Walmart"
+   ],
+   "newAlertCompanies": [
+    "Anthropic",
+    "Clockwork Systems",
+    "Cloudflare",
+    "JPMorganChase",
+    "NVIDIA",
+    "Palo Alto Networks",
+    "Walmart"
+   ],
+   "jobs": [
+    "pan-devprod",
+    "nv-dgx",
+    "nv-prof",
+    "clockwork",
+    "a-velocity",
+    "wmt-principal",
+    "jpmc-data",
+    "cf-config",
+    "s-cf-dist"
+   ]
+  },
+  {
+   "id": "ebpf",
+   "name": "eBPF tracing & programmability",
+   "cluster": "obs",
+   "tier": "adjacent",
+   "aiHard": 5,
+   "robotics": 3,
+   "polyBuilds": "no",
+   "polyNote": "New; perfect bridge from kernel work",
+   "jobCount": 4,
+   "newAlertCount": 4,
+   "savedCount": 0,
+   "companies": [
+    "Clockwork Systems",
+    "CrowdStrike",
+    "NVIDIA"
+   ],
+   "newAlertCompanies": [
+    "Clockwork Systems",
+    "CrowdStrike",
+    "NVIDIA"
+   ],
+   "jobs": [
+    "nv-prof",
+    "nv-kernel-csp",
+    "clockwork",
+    "cs-sensor"
+   ]
+  },
+  {
+   "id": "profiling-svc",
+   "name": "Continuous profiling services",
+   "cluster": "obs",
+   "tier": "adjacent",
+   "aiHard": 4,
+   "robotics": 3,
+   "polyBuilds": "no",
+   "polyNote": "New",
+   "jobCount": 1,
+   "newAlertCount": 1,
+   "savedCount": 0,
+   "companies": [
+    "NVIDIA"
+   ],
+   "newAlertCompanies": [
+    "NVIDIA"
+   ],
+   "jobs": [
+    "nv-prof"
+   ]
+  },
+  {
+   "id": "ros2",
+   "name": "ROS 2 & robotics middleware",
+   "cluster": "robo",
+   "tier": "optional",
+   "aiHard": 3,
+   "robotics": 5,
+   "polyBuilds": "no",
+   "polyNote": "From v1 plan",
+   "jobCount": 0,
+   "newAlertCount": 0,
+   "savedCount": 0,
+   "companies": [],
+   "newAlertCompanies": [],
+   "jobs": []
+  },
+  {
+   "id": "control",
+   "name": "Control & kinematics (PID, IK)",
+   "cluster": "robo",
+   "tier": "optional",
+   "aiHard": 4,
+   "robotics": 5,
+   "polyBuilds": "no",
+   "polyNote": "From v1 plan",
+   "jobCount": 1,
+   "newAlertCount": 0,
+   "savedCount": 1,
+   "companies": [
+    "NVIDIA"
+   ],
+   "newAlertCompanies": [],
+   "jobs": [
+    "s-nv-power"
+   ]
+  },
+  {
+   "id": "realtime",
+   "name": "Real-time OS / PREEMPT_RT & determinism",
+   "cluster": "robo",
+   "tier": "core",
+   "aiHard": 5,
+   "robotics": 5,
+   "polyBuilds": "partial",
+   "polyNote": "Low-latency A/V paths",
+   "jobCount": 3,
+   "newAlertCount": 2,
+   "savedCount": 1,
+   "companies": [
+    "Ford",
+    "Google",
+    "NVIDIA"
+   ],
+   "newAlertCompanies": [
+    "Ford",
+    "Google"
+   ],
+   "jobs": [
+    "g-embedded",
+    "ford",
+    "s-nv-power"
+   ]
+  },
+  {
+   "id": "edge-ai",
+   "name": "Edge perception & on-device AI",
+   "cluster": "robo",
+   "tier": "adjacent",
+   "aiHard": 4,
+   "robotics": 5,
+   "polyBuilds": "yes",
+   "polyNote": "Ambarella CVflow / Qualcomm NPU inference",
+   "jobCount": 2,
+   "newAlertCount": 2,
+   "savedCount": 0,
+   "companies": [
+    "Google",
+    "Intel"
+   ],
+   "newAlertCompanies": [
+    "Google",
+    "Intel"
+   ],
+   "jobs": [
+    "g-embedded",
+    "intel-mw"
+   ]
+  },
+  {
+   "id": "sysdesign",
+   "name": "Large-scale system design",
+   "cluster": "design",
+   "tier": "core",
+   "aiHard": 4,
+   "robotics": 3,
+   "polyBuilds": "partial",
+   "polyNote": "Device+cloud architecture",
+   "jobCount": 24,
+   "newAlertCount": 18,
+   "savedCount": 6,
+   "companies": [
+    "Anthropic",
+    "Cloudflare",
+    "CrowdStrike",
+    "F5",
+    "General Motors",
+    "Google",
+    "JPMorganChase",
+    "Microsoft",
+    "NVIDIA",
+    "OpenAI",
+    "Palo Alto Networks",
+    "Perplexity",
+    "Walmart",
+    "evoke"
+   ],
+   "newAlertCompanies": [
+    "Anthropic",
+    "Cloudflare",
+    "CrowdStrike",
+    "F5",
+    "General Motors",
+    "Google",
+    "JPMorganChase",
+    "Microsoft",
+    "NVIDIA",
+    "OpenAI",
+    "Palo Alto Networks",
+    "Walmart"
+   ],
+   "jobs": [
+    "pan-devprod",
+    "pan-sw",
+    "f5",
+    "gm-ai",
+    "ms-coreai",
+    "nv-dynamo",
+    "g-dcn",
+    "g-netsoft",
+    "g-cloudai",
+    "a-cloudinf",
+    "a-dist",
+    "a-platform",
+    "cs-identity",
+    "wmt-principal",
+    "wmt-staff",
+    "oai-identity",
+    "jpmc-data",
+    "cf-config",
+    "s-evoke",
+    "s-jpmc-agent",
+    "s-pan-fde",
+    "s-nv-ainet",
+    "s-g-gdc",
+    "s-pplx-api"
+   ]
+  },
+  {
+   "id": "leadership",
+   "name": "Technical leadership & cross-team influence",
+   "cluster": "design",
+   "tier": "core",
+   "aiHard": 5,
+   "robotics": 4,
+   "polyBuilds": "partial",
+   "polyNote": "Vendor coordination across NXP/QCOM/Ambarella/Lontium",
+   "jobCount": 22,
+   "newAlertCount": 18,
+   "savedCount": 4,
+   "companies": [
+    "Cisco",
+    "Cloudflare",
+    "CrowdStrike",
+    "Ford",
+    "Google",
+    "Microsoft",
+    "NVIDIA",
+    "OpenAI",
+    "Palo Alto Networks",
+    "Walmart",
+    "evoke"
+   ],
+   "newAlertCompanies": [
+    "Cisco",
+    "Cloudflare",
+    "CrowdStrike",
+    "Ford",
+    "Google",
+    "Microsoft",
+    "NVIDIA",
+    "OpenAI",
+    "Palo Alto Networks",
+    "Walmart"
+   ],
+   "jobs": [
+    "pan-devprod",
+    "pan-sw",
+    "cisco-1",
+    "cisco-2",
+    "cisco-3",
+    "ms-coreai",
+    "nv-prof",
+    "nv-umd",
+    "nv-dynamo",
+    "g-dcn",
+    "g-netsoft",
+    "g-cloudai",
+    "g-embedded",
+    "cs-identity",
+    "wmt-principal",
+    "oai-identity",
+    "ford",
+    "cf-config",
+    "s-evoke",
+    "s-nv-pcuda",
+    "s-nv-ainet",
+    "s-g-gdc"
+   ]
+  },
+  {
+   "id": "customer-facing",
+   "name": "Partner/customer technical engagement",
+   "cluster": "design",
+   "tier": "optional",
+   "aiHard": 5,
+   "robotics": 3,
+   "polyBuilds": "yes",
+   "polyNote": "Daily work with silicon vendors",
+   "jobCount": 10,
+   "newAlertCount": 5,
+   "savedCount": 5,
+   "companies": [
+    "Anthropic",
+    "Broadcom",
+    "Ford",
+    "NVIDIA",
+    "Palo Alto Networks"
+   ],
+   "newAlertCompanies": [
+    "Anthropic",
+    "Ford",
+    "NVIDIA"
+   ],
+   "jobs": [
+    "nv-devtech",
+    "nv-kernel-csp",
+    "a-cloudinf",
+    "a-platform",
+    "ford",
+    "s-pan-fde",
+    "s-broadcom",
+    "s-nv-ainet",
+    "s-nv-cns",
+    "s-nv-solnet"
+   ]
+  },
+  {
+   "id": "dsa",
+   "name": "DS&A interview coding",
+   "cluster": "coding",
+   "tier": "core",
+   "aiHard": 2,
+   "robotics": 3,
+   "polyBuilds": "partial",
+   "polyNote": "Needs reps without AI",
+   "jobCount": 7,
+   "newAlertCount": 7,
+   "savedCount": 0,
+   "companies": [
+    "Google",
+    "Intel",
+    "Unity",
+    "Walmart"
+   ],
+   "newAlertCompanies": [
+    "Google",
+    "Intel",
+    "Unity",
+    "Walmart"
+   ],
+   "jobs": [
+    "unity",
+    "g-dcn",
+    "g-netsoft",
+    "g-cloudai",
+    "g-embedded",
+    "wmt-staff",
+    "intel-mw"
+   ]
+  },
+  {
+   "id": "python",
+   "name": "Python for tooling/infra",
+   "cluster": "coding",
+   "tier": "adjacent",
+   "aiHard": 2,
+   "robotics": 3,
+   "polyBuilds": "partial",
+   "polyNote": "Scripts/test automation",
+   "jobCount": 26,
+   "newAlertCount": 19,
+   "savedCount": 7,
+   "companies": [
+    "Anthropic",
+    "Bank of America",
+    "Cisco",
+    "Clockwork Systems",
+    "General Motors",
+    "Google",
+    "Intel",
+    "JPMorganChase",
+    "Microsoft",
+    "NVIDIA",
+    "OpenAI",
+    "Palo Alto Networks",
+    "Perplexity",
+    "Toshiba Global Commerce Solutions"
+   ],
+   "newAlertCompanies": [
+    "Anthropic",
+    "Cisco",
+    "Clockwork Systems",
+    "General Motors",
+    "Google",
+    "Intel",
+    "JPMorganChase",
+    "Microsoft",
+    "NVIDIA",
+    "OpenAI",
+    "Palo Alto Networks"
+   ],
+   "jobs": [
+    "pan-devprod",
+    "cisco-1",
+    "cisco-2",
+    "cisco-3",
+    "gm-ai",
+    "ms-coreai",
+    "nv-dgx",
+    "nv-devtech",
+    "nv-kernel-csp",
+    "clockwork",
+    "g-cloudai",
+    "a-cloudinf",
+    "a-velocity",
+    "a-dist",
+    "a-platform",
+    "oai-identity",
+    "oai-cfs",
+    "jpmc-data",
+    "intel-mw",
+    "s-jpmc-agent",
+    "s-pan-fde",
+    "s-toshiba",
+    "s-boa",
+    "s-pplx-storage",
+    "s-pplx-api",
+    "s-nv-cudadl"
+   ]
+  },
+  {
+   "id": "go-rust",
+   "name": "Go or Rust",
+   "cluster": "coding",
+   "tier": "optional",
+   "aiHard": 3,
+   "robotics": 3,
+   "polyBuilds": "no",
+   "polyNote": "New",
+   "jobCount": 15,
+   "newAlertCount": 11,
+   "savedCount": 4,
+   "companies": [
+    "Anthropic",
+    "Clockwork Systems",
+    "Cloudflare",
+    "CrowdStrike",
+    "F5",
+    "NVIDIA",
+    "OpenAI",
+    "Palo Alto Networks",
+    "Perplexity",
+    "Walmart",
+    "evoke"
+   ],
+   "newAlertCompanies": [
+    "Anthropic",
+    "Clockwork Systems",
+    "Cloudflare",
+    "CrowdStrike",
+    "F5",
+    "NVIDIA",
+    "OpenAI",
+    "Palo Alto Networks",
+    "Walmart"
+   ],
+   "jobs": [
+    "pan-devprod",
+    "f5",
+    "nv-dgx",
+    "nv-dynamo",
+    "clockwork",
+    "a-cloudinf",
+    "a-dist",
+    "cs-identity",
+    "wmt-principal",
+    "oai-identity",
+    "cf-config",
+    "s-evoke",
+    "s-cf-dist",
+    "s-nv-cns",
+    "s-pplx-storage"
+   ]
+  }
+ ],
+ "jobs": [
+  {
+   "id": "pan-devprod",
+   "company": "Palo Alto Networks",
+   "title": "Senior Principal Engineer, Developer Productivity",
+   "evidence": "inferred",
+   "source": "oct-alerts",
+   "skills": [
+    "cicd",
+    "k8s",
+    "cloud",
+    "python",
+    "go-rust",
+    "leadership",
+    "sysdesign",
+    "observability",
+    "deploy"
+   ]
+  },
+  {
+   "id": "pan-sw",
+   "company": "Palo Alto Networks",
+   "title": "Sr Principal Engineer, Software",
+   "evidence": "inferred",
+   "source": "oct-alerts",
+   "skills": [
+    "cpp",
+    "dataplane",
+    "tcpip",
+    "sysdesign",
+    "leadership",
+    "dist-sys",
+    "secure-coding",
+    "linux-kernel"
+   ]
+  },
+  {
+   "id": "cisco-1",
+   "company": "Cisco",
+   "title": "Principal Software Engineer (San Jose)",
+   "evidence": "sampled",
+   "source": "oct-alerts",
+   "skills": [
+    "cpp",
+    "python",
+    "bringup",
+    "drivers",
+    "buses",
+    "concurrency",
+    "kernel-debug",
+    "firmware",
+    "routing",
+    "linux-kernel",
+    "leadership",
+    "pcie-dma"
+   ]
+  },
+  {
+   "id": "cisco-2",
+   "company": "Cisco",
+   "title": "Principal Software Engineer (Milpitas)",
+   "evidence": "inferred",
+   "source": "oct-alerts",
+   "skills": [
+    "cpp",
+    "python",
+    "bringup",
+    "drivers",
+    "buses",
+    "concurrency",
+    "kernel-debug",
+    "firmware",
+    "routing",
+    "linux-kernel",
+    "leadership",
+    "pcie-dma"
+   ]
+  },
+  {
+   "id": "cisco-3",
+   "company": "Cisco",
+   "title": "Principal Software Engineer (San Jose #2)",
+   "evidence": "inferred",
+   "source": "oct-alerts",
+   "skills": [
+    "cpp",
+    "python",
+    "bringup",
+    "drivers",
+    "concurrency",
+    "routing",
+    "linux-kernel",
+    "leadership",
+    "dataplane"
+   ]
+  },
+  {
+   "id": "f5",
+   "company": "F5",
+   "title": "Principal Software Development Engineer",
+   "evidence": "sampled",
+   "source": "oct-alerts",
+   "skills": [
+    "routing",
+    "tcpip",
+    "dataplane",
+    "cloud",
+    "k8s",
+    "dist-sys",
+    "cpp",
+    "go-rust",
+    "sysdesign",
+    "lb-traffic",
+    "zerotrust"
+   ]
+  },
+  {
+   "id": "gm-ai",
+   "company": "General Motors",
+   "title": "Staff Software Engineer, AI Platform",
+   "evidence": "inferred",
+   "source": "oct-alerts",
+   "skills": [
+    "ml-infra",
+    "k8s",
+    "cloud",
+    "python",
+    "dist-sys",
+    "sysdesign",
+    "llm-serving",
+    "cicd"
+   ]
+  },
+  {
+   "id": "ms-coreai",
+   "company": "Microsoft",
+   "title": "Principal Software Engineer, CoreAI",
+   "evidence": "inferred",
+   "source": "oct-alerts",
+   "skills": [
+    "ml-infra",
+    "llm-serving",
+    "dist-sys",
+    "cloud",
+    "sysdesign",
+    "leadership",
+    "cpp",
+    "python",
+    "perf-eng"
+   ]
+  },
+  {
+   "id": "nv-dgx",
+   "company": "NVIDIA",
+   "title": "Senior DGX Cloud AI Infrastructure SWE",
+   "evidence": "inferred",
+   "source": "oct-alerts",
+   "skills": [
+    "k8s",
+    "cloud",
+    "ml-infra",
+    "gpu-sharing",
+    "dist-sys",
+    "go-rust",
+    "python",
+    "observability",
+    "provisioning",
+    "rdma"
+   ]
+  },
+  {
+   "id": "nv-prof",
+   "company": "NVIDIA",
+   "title": "Principal SWE, Profiling Services",
+   "evidence": "inferred",
+   "source": "oct-alerts",
+   "skills": [
+    "profiling-svc",
+    "nsight",
+    "perf-eng",
+    "cuda",
+    "gpu-arch",
+    "dist-sys",
+    "observability",
+    "cpp",
+    "leadership",
+    "ebpf"
+   ]
+  },
+  {
+   "id": "nv-umd",
+   "company": "NVIDIA",
+   "title": "Senior SWE, CUDA UMD \u2013 Graphs and GPU Sharing",
+   "evidence": "sampled",
+   "source": "oct-alerts",
+   "skills": [
+    "cpp",
+    "cuda-driver",
+    "cuda",
+    "gpu-sharing",
+    "concurrency",
+    "linux-kernel",
+    "arch-perf",
+    "memmodel",
+    "leadership",
+    "drivers"
+   ]
+  },
+  {
+   "id": "nv-devtech",
+   "company": "NVIDIA",
+   "title": "Senior Developer Technology Engineer (AI)",
+   "evidence": "inferred",
+   "source": "oct-alerts",
+   "skills": [
+    "cuda",
+    "gpu-arch",
+    "nsight",
+    "perf-eng",
+    "llm-serving",
+    "model-parallel",
+    "python",
+    "cpp",
+    "customer-facing"
+   ]
+  },
+  {
+   "id": "nv-dynamo",
+   "company": "NVIDIA",
+   "title": "Distinguished Engineer, Dynamo",
+   "evidence": "sampled",
+   "source": "oct-alerts",
+   "skills": [
+    "llm-serving",
+    "model-parallel",
+    "dist-sys",
+    "lb-traffic",
+    "k8s",
+    "go-rust",
+    "leadership",
+    "sysdesign",
+    "rdma",
+    "perf-eng"
+   ]
+  },
+  {
+   "id": "nv-driverperf",
+   "company": "NVIDIA",
+   "title": "Senior System SWE, Performance \u2013 CUDA Driver",
+   "evidence": "sampled",
+   "source": "oct-alerts",
+   "skills": [
+    "cpp",
+    "cuda-driver",
+    "linux-kernel",
+    "concurrency",
+    "arch-perf",
+    "perf-eng",
+    "memmodel",
+    "pcie-dma",
+    "cuda",
+    "drivers"
+   ]
+  },
+  {
+   "id": "nv-kernel-csp",
+   "company": "NVIDIA",
+   "title": "Senior Linux Kernel Systems SWE \u2013 CSP Engagements",
+   "evidence": "sampled",
+   "source": "oct-alerts",
+   "skills": [
+    "linux-kernel",
+    "drivers",
+    "pcie-dma",
+    "kernel-debug",
+    "ebpf",
+    "arch-perf",
+    "bringup",
+    "cpp",
+    "python",
+    "k8s",
+    "customer-facing",
+    "firmware"
+   ]
+  },
+  {
+   "id": "clockwork",
+   "company": "Clockwork Systems",
+   "title": "Senior SWE, Network Observability",
+   "evidence": "sampled",
+   "source": "oct-alerts",
+   "skills": [
+    "rdma",
+    "tcpip",
+    "observability",
+    "ebpf",
+    "dataplane",
+    "dist-sys",
+    "cpp",
+    "go-rust",
+    "python",
+    "perf-eng"
+   ]
+  },
+  {
+   "id": "unity",
+   "company": "Unity",
+   "title": "Senior Core Engineer",
+   "evidence": "inferred",
+   "source": "oct-alerts",
+   "skills": [
+    "cpp",
+    "memmodel",
+    "concurrency",
+    "arch-perf",
+    "perf-eng",
+    "dsa",
+    "ub-safety"
+   ]
+  },
+  {
+   "id": "g-dcn",
+   "company": "Google",
+   "title": "Staff SWE, Distributed Cloud Networking",
+   "evidence": "sampled",
+   "source": "oct-alerts",
+   "skills": [
+    "cpp",
+    "routing",
+    "dist-sys",
+    "sysdesign",
+    "tcpip",
+    "dsa",
+    "leadership",
+    "rdma"
+   ]
+  },
+  {
+   "id": "g-netsoft",
+   "company": "Google",
+   "title": "Senior Staff SWE, NetSoft Design, Global Infrastructure",
+   "evidence": "inferred",
+   "source": "oct-alerts",
+   "skills": [
+    "routing",
+    "sysdesign",
+    "dist-sys",
+    "cpp",
+    "leadership",
+    "tcpip",
+    "deploy",
+    "dsa"
+   ]
+  },
+  {
+   "id": "g-cloudai",
+   "company": "Google",
+   "title": "Senior Staff SWE, Google Cloud AI",
+   "evidence": "inferred",
+   "source": "oct-alerts",
+   "skills": [
+    "ml-infra",
+    "llm-serving",
+    "dist-sys",
+    "k8s",
+    "cloud",
+    "sysdesign",
+    "leadership",
+    "python",
+    "cpp",
+    "dsa"
+   ]
+  },
+  {
+   "id": "g-embedded",
+   "company": "Google",
+   "title": "Senior SWE, Embedded Systems, Platforms and Devices",
+   "evidence": "sampled",
+   "source": "oct-alerts",
+   "skills": [
+    "cpp",
+    "bringup",
+    "realtime",
+    "drivers",
+    "camera-isp",
+    "dsa",
+    "leadership",
+    "edge-ai",
+    "firmware",
+    "buses"
+   ]
+  },
+  {
+   "id": "a-cloudinf",
+   "company": "Anthropic",
+   "title": "Staff+ Sr SWE, Cloud Inference",
+   "evidence": "sampled",
+   "source": "oct-alerts",
+   "skills": [
+    "dist-sys",
+    "cloud",
+    "k8s",
+    "cicd",
+    "deploy",
+    "llm-serving",
+    "lb-traffic",
+    "python",
+    "go-rust",
+    "customer-facing",
+    "sysdesign"
+   ]
+  },
+  {
+   "id": "a-velocity",
+   "company": "Anthropic",
+   "title": "Staff+ SWE, Inference Velocity",
+   "evidence": "inferred",
+   "source": "oct-alerts",
+   "skills": [
+    "cicd",
+    "deploy",
+    "llm-serving",
+    "python",
+    "perf-eng",
+    "dist-sys",
+    "k8s",
+    "observability"
+   ]
+  },
+  {
+   "id": "a-dist",
+   "company": "Anthropic",
+   "title": "Staff+ SWE, Distributed Systems",
+   "evidence": "inferred",
+   "source": "oct-alerts",
+   "skills": [
+    "dist-sys",
+    "consensus",
+    "storage-data",
+    "k8s",
+    "cloud",
+    "sysdesign",
+    "python",
+    "go-rust"
+   ]
+  },
+  {
+   "id": "a-platform",
+   "company": "Anthropic",
+   "title": "Staff+ SWE, Platform Ecosystem",
+   "evidence": "inferred",
+   "source": "oct-alerts",
+   "skills": [
+    "identity",
+    "sysdesign",
+    "cloud",
+    "dist-sys",
+    "python",
+    "customer-facing"
+   ]
+  },
+  {
+   "id": "cs-identity",
+   "company": "CrowdStrike",
+   "title": "Principal SWE, Continuous Identity",
+   "evidence": "inferred",
+   "source": "oct-alerts",
+   "skills": [
+    "identity",
+    "zerotrust",
+    "dist-sys",
+    "storage-data",
+    "go-rust",
+    "cloud",
+    "sysdesign",
+    "leadership"
+   ]
+  },
+  {
+   "id": "cs-sensor",
+   "company": "CrowdStrike",
+   "title": "Sr SWE II, Sensor (Mac/Linux/Windows)",
+   "evidence": "sampled",
+   "source": "oct-alerts",
+   "skills": [
+    "cpp",
+    "endpoint",
+    "linux-kernel",
+    "concurrency",
+    "lockfree",
+    "ub-safety",
+    "perf-eng",
+    "ebpf",
+    "drivers"
+   ]
+  },
+  {
+   "id": "wmt-principal",
+   "company": "Walmart",
+   "title": "Principal Software Engineer",
+   "evidence": "inferred",
+   "source": "oct-alerts",
+   "skills": [
+    "dist-sys",
+    "sysdesign",
+    "cloud",
+    "k8s",
+    "storage-data",
+    "leadership",
+    "observability",
+    "go-rust"
+   ]
+  },
+  {
+   "id": "wmt-staff",
+   "company": "Walmart",
+   "title": "Staff Software Engineer",
+   "evidence": "inferred",
+   "source": "oct-alerts",
+   "skills": [
+    "dist-sys",
+    "sysdesign",
+    "cloud",
+    "k8s",
+    "storage-data",
+    "dsa"
+   ]
+  },
+  {
+   "id": "oai-identity",
+   "company": "OpenAI",
+   "title": "Senior Staff SWE, Identity Infrastructure",
+   "evidence": "inferred",
+   "source": "oct-alerts",
+   "skills": [
+    "identity",
+    "zerotrust",
+    "dist-sys",
+    "sysdesign",
+    "cloud",
+    "go-rust",
+    "python",
+    "leadership"
+   ]
+  },
+  {
+   "id": "oai-cfs",
+   "company": "OpenAI",
+   "title": "Software Engineer, Compute Foundations Systems",
+   "evidence": "sampled",
+   "source": "oct-alerts",
+   "skills": [
+    "linux-kernel",
+    "drivers",
+    "yocto",
+    "provisioning",
+    "bringup",
+    "firmware",
+    "deploy",
+    "kernel-debug",
+    "k8s",
+    "python",
+    "cpp"
+   ]
+  },
+  {
+   "id": "ford",
+   "company": "Ford",
+   "title": "Staff Supplier Software Integration Engineer",
+   "evidence": "inferred",
+   "source": "oct-alerts",
+   "skills": [
+    "bringup",
+    "buses",
+    "firmware",
+    "cicd",
+    "customer-facing",
+    "leadership",
+    "cpp",
+    "realtime"
+   ]
+  },
+  {
+   "id": "jpmc-data",
+   "company": "JPMorganChase",
+   "title": "Lead SWE, Data and Payments Data Platform",
+   "evidence": "inferred",
+   "source": "oct-alerts",
+   "skills": [
+    "storage-data",
+    "dist-sys",
+    "cloud",
+    "python",
+    "sysdesign",
+    "observability"
+   ]
+  },
+  {
+   "id": "intel-mw",
+   "company": "Intel",
+   "title": "Senior Middleware Software Development Engineer",
+   "evidence": "inferred",
+   "source": "oct-alerts",
+   "skills": [
+    "cpp",
+    "concurrency",
+    "perf-eng",
+    "linux-kernel",
+    "edge-ai",
+    "camera-isp",
+    "python",
+    "dsa"
+   ]
+  },
+  {
+   "id": "cf-config",
+   "company": "Cloudflare",
+   "title": "Principal SWE, Distributed Systems (Config, Test, Deployment)",
+   "evidence": "sampled",
+   "source": "oct-alerts",
+   "skills": [
+    "deploy",
+    "dist-sys",
+    "consensus",
+    "cicd",
+    "observability",
+    "go-rust",
+    "leadership",
+    "sysdesign",
+    "storage-data"
+   ]
+  },
+  {
+   "id": "s-evoke",
+   "company": "evoke",
+   "title": "Principal Software Engineer | Golang",
+   "evidence": "saved-map",
+   "source": "sep-saved",
+   "skills": [
+    "go-rust",
+    "dist-sys",
+    "sysdesign",
+    "leadership"
+   ]
+  },
+  {
+   "id": "s-jpmc-agent",
+   "company": "JPMorganChase",
+   "title": "Lead Software Engineer - Agentic AI",
+   "evidence": "saved-map",
+   "source": "sep-saved",
+   "skills": [
+    "python",
+    "llm-serving",
+    "ml-infra",
+    "sysdesign",
+    "secure-coding"
+   ]
+  },
+  {
+   "id": "s-cf-dist",
+   "company": "Cloudflare",
+   "title": "Senior Distributed Systems Engineer",
+   "evidence": "saved-map",
+   "source": "sep-saved",
+   "skills": [
+    "dist-sys",
+    "go-rust",
+    "cpp",
+    "consensus",
+    "observability",
+    "deploy"
+   ]
+  },
+  {
+   "id": "s-nv-power",
+   "company": "NVIDIA",
+   "title": "Senior System Software Engineer - Datacenter Power Management",
+   "evidence": "saved-map",
+   "source": "sep-saved",
+   "skills": [
+    "firmware",
+    "cpp",
+    "realtime",
+    "control",
+    "linux-kernel",
+    "drivers"
+   ]
+  },
+  {
+   "id": "s-nv-cudadrv",
+   "company": "NVIDIA",
+   "title": "Senior Systems Software Engineer, CUDA Driver",
+   "evidence": "saved-map",
+   "source": "sep-saved",
+   "skills": [
+    "cpp",
+    "cuda-driver",
+    "linux-kernel",
+    "concurrency",
+    "arch-perf",
+    "drivers"
+   ]
+  },
+  {
+   "id": "s-nv-pcuda",
+   "company": "NVIDIA",
+   "title": "Principal System Software Engineer - CUDA Driver",
+   "evidence": "saved-map",
+   "source": "sep-saved",
+   "skills": [
+    "cpp",
+    "cuda-driver",
+    "cuda",
+    "linux-kernel",
+    "arch-perf",
+    "leadership",
+    "gpu-sharing"
+   ]
+  },
+  {
+   "id": "s-pan-fde",
+   "company": "Palo Alto Networks",
+   "title": "Senior Principal Forward Deployed Engineer",
+   "evidence": "saved-map",
+   "source": "sep-saved",
+   "skills": [
+    "customer-facing",
+    "cloud",
+    "k8s",
+    "python",
+    "sysdesign",
+    "llm-serving"
+   ]
+  },
+  {
+   "id": "s-broadcom",
+   "company": "Broadcom",
+   "title": "R&D Engineer Software 5",
+   "evidence": "saved-map",
+   "source": "sep-saved",
+   "skills": [
+    "cpp",
+    "routing",
+    "dataplane",
+    "drivers",
+    "customer-facing"
+   ]
+  },
+  {
+   "id": "s-nv-ainet",
+   "company": "NVIDIA",
+   "title": "Principal Architect, AI Networking",
+   "evidence": "saved-map",
+   "source": "sep-saved",
+   "skills": [
+    "rdma",
+    "routing",
+    "tcpip",
+    "sysdesign",
+    "customer-facing",
+    "leadership"
+   ]
+  },
+  {
+   "id": "s-toshiba",
+   "company": "Toshiba Global Commerce Solutions",
+   "title": "AI-Native Product Engineer",
+   "evidence": "saved-map",
+   "source": "sep-saved",
+   "skills": [
+    "python",
+    "llm-serving",
+    "cloud"
+   ]
+  },
+  {
+   "id": "s-boa",
+   "company": "Bank of America",
+   "title": "Senior Engineer - AI Security, Systems Eng & Dev Productivity",
+   "evidence": "saved-map",
+   "source": "sep-saved",
+   "skills": [
+    "identity",
+    "cicd",
+    "secure-coding",
+    "python",
+    "ml-infra"
+   ]
+  },
+  {
+   "id": "s-nv-cns",
+   "company": "NVIDIA",
+   "title": "Senior SWE, Cloud-Native Stack \u2013 CSP Engagements",
+   "evidence": "saved-map",
+   "source": "sep-saved",
+   "skills": [
+    "k8s",
+    "cloud",
+    "gpu-sharing",
+    "customer-facing",
+    "go-rust",
+    "linux-kernel"
+   ]
+  },
+  {
+   "id": "s-g-gdc",
+   "company": "Google",
+   "title": "Staff Engineer/TL, Google Distributed Cloud Storage",
+   "evidence": "saved-map",
+   "source": "sep-saved",
+   "skills": [
+    "storage-data",
+    "dist-sys",
+    "cpp",
+    "sysdesign",
+    "leadership",
+    "k8s"
+   ]
+  },
+  {
+   "id": "s-pplx-storage",
+   "company": "Perplexity",
+   "title": "MTS, Storage Platform",
+   "evidence": "saved-map",
+   "source": "sep-saved",
+   "skills": [
+    "storage-data",
+    "dist-sys",
+    "go-rust",
+    "python",
+    "cloud"
+   ]
+  },
+  {
+   "id": "s-pplx-api",
+   "company": "Perplexity",
+   "title": "MTS, API Platform",
+   "evidence": "saved-map",
+   "source": "sep-saved",
+   "skills": [
+    "dist-sys",
+    "lb-traffic",
+    "python",
+    "sysdesign",
+    "identity"
+   ]
+  },
+  {
+   "id": "s-nv-solnet",
+   "company": "NVIDIA",
+   "title": "Senior Solution Engineer, Networking",
+   "evidence": "saved-map",
+   "source": "sep-saved",
+   "skills": [
+    "tcpip",
+    "routing",
+    "rdma",
+    "dataplane",
+    "customer-facing",
+    "linux-kernel"
+   ]
+  },
+  {
+   "id": "s-nv-cudadl",
+   "company": "NVIDIA",
+   "title": "Senior SWE, CUDA Deep Learning Systems",
+   "evidence": "saved-map",
+   "source": "sep-saved",
+   "skills": [
+    "cuda",
+    "gpu-arch",
+    "ml-infra",
+    "perf-eng",
+    "python",
+    "cpp",
+    "model-parallel"
+   ]
+  },
+  {
+   "id": "s-oai-host",
+   "company": "OpenAI",
+   "title": "Host Systems Software Engineer",
+   "evidence": "saved-map",
+   "source": "sep-saved",
+   "skills": [
+    "cpp",
+    "linux-kernel",
+    "drivers",
+    "pcie-dma",
+    "bringup",
+    "kernel-debug",
+    "firmware"
+   ]
+  }
+ ]
+}
