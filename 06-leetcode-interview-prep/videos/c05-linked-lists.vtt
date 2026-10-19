@@ -1,0 +1,82 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:06.211
+Linked lists are chains of nodes connected by pointers. You have seen them in kernel code as list head.
+
+00:00:07.561 --> 00:00:11.845
+Picture a conga line. Each dancer holds the shoulder of the next person.
+
+00:00:12.295 --> 00:00:17.079
+To find the fifth dancer, you must start at the front and walk. There is no locker number.
+
+00:00:17.529 --> 00:00:21.871
+But adding a dancer in the middle is easy: two people just change who they hold.
+
+00:00:23.221 --> 00:00:25.659
+Here is a list one, two, three, four.
+
+00:00:26.109 --> 00:00:29.604
+Each box stores a value and a pointer to the next box.
+
+00:00:30.054 --> 00:00:33.339
+The last pointer is null, shown as an empty set symbol.
+
+00:00:33.789 --> 00:00:36.750
+To reach node four, you follow three arrows.
+
+00:00:38.100 --> 00:00:42.047
+Now let us reverse it in place, the classic interview question.
+
+00:00:42.497 --> 00:00:46.108
+We use three pointers: previous, current, and next.
+
+00:00:46.558 --> 00:00:49.646
+Save next, so we do not lose the rest of the line.
+
+00:00:50.096 --> 00:00:52.174
+Point current backwards at previous.
+
+00:00:52.624 --> 00:00:55.492
+Then move previous and current one step forward.
+
+00:00:55.942 --> 00:00:59.773
+Repeat until current falls off the end. Previous is the new head.
+
+00:01:01.123 --> 00:01:06.580
+A doubly linked list adds a previous pointer, so you can unlink any node in O of one if you hold it.
+
+00:01:07.030 --> 00:01:10.617
+That is exactly how an LRU cache moves an item to the front.
+
+00:01:11.067 --> 00:01:15.154
+Sentinel, or dummy, nodes at both ends remove most null checks.
+
+00:01:15.604 --> 00:01:20.202
+The cost: poor cache locality, because nodes are scattered in memory.
+
+00:01:21.552 --> 00:01:26.695
+A classic trick is the fast and slow pointer, sometimes called the tortoise and the hare.
+
+00:01:27.145 --> 00:01:31.081
+The slow pointer moves one step, the fast pointer moves two.
+
+00:01:31.531 --> 00:01:35.060
+When fast reaches the end, slow is exactly in the middle.
+
+00:01:35.510 --> 00:01:43.103
+If the list has a cycle, fast will eventually lap slow and they will meet. That is how you detect a loop in a corrupted descriptor chain.
+
+00:01:44.453 --> 00:01:46.612
+Interview tips for linked lists.
+
+00:01:47.062 --> 00:01:51.962
+Use a dummy head node when the head itself might change, like when deleting or merging.
+
+00:01:52.412 --> 00:01:57.776
+Draw three or four boxes on the whiteboard and update the arrows by hand before writing code.
+
+00:01:58.226 --> 00:02:04.797
+And in C plus plus, think about who owns each node, so you do not leak memory or free a node twice.
+
+00:02:06.147 --> 00:02:11.429
+Draw the boxes and arrows before you code. Most linked list bugs are lost pointers.

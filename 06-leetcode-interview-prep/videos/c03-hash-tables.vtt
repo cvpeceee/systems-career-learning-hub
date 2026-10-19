@@ -1,0 +1,79 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:05.364
+This lesson explains hash tables, the most useful data structure in coding interviews.
+
+00:00:06.714 --> 00:00:08.502
+Think of a coat check at a theater.
+
+00:00:08.952 --> 00:00:11.634
+You hand over your coat and get a ticket number.
+
+00:00:12.084 --> 00:00:17.366
+Later you show the ticket, and the attendant walks straight to that hook. No searching through every coat.
+
+00:00:17.816 --> 00:00:22.832
+A hash table does the same thing: a hash function turns your key into a hook number.
+
+00:00:24.182 --> 00:00:27.328
+Here we have eight buckets, numbered zero to seven.
+
+00:00:27.778 --> 00:00:33.873
+To store the key seventeen, we compute seventeen mod eight, which is one. It goes in bucket one.
+
+00:00:34.323 --> 00:00:37.470
+The key twenty five also gives one. That is a collision.
+
+00:00:37.920 --> 00:00:40.660
+We simply chain it in a short list in the same bucket.
+
+00:00:41.110 --> 00:00:44.558
+Lookups compute the bucket, then scan that tiny list.
+
+00:00:45.908 --> 00:00:49.983
+On average, insert, lookup, and delete are all O of one.
+
+00:00:50.433 --> 00:00:54.415
+The worst case is O of n, if every key lands in the same bucket.
+
+00:00:54.865 --> 00:01:01.750
+To keep chains short, the table grows and rehashes when it gets too full. That threshold is called the load factor.
+
+00:01:02.200 --> 00:01:08.190
+In C plus plus this is unordered map. In Java it is HashMap. In C sharp it is Dictionary.
+
+00:01:09.540 --> 00:01:12.002
+Here is how Two Sum uses a hash table.
+
+00:01:12.452 --> 00:01:19.371
+We walk the array once. For each number we ask the table: have I already seen the partner, target minus me?
+
+00:01:19.821 --> 00:01:23.618
+For two, we need seven. Not there yet, so we store two.
+
+00:01:24.068 --> 00:01:29.919
+For seven, we need two. The table says yes, at index zero. Done in one pass.
+
+00:01:31.269 --> 00:01:34.392
+A few systems notes for staff level interviews.
+
+00:01:34.842 --> 00:01:40.914
+Hash tables have poor locality when chains are pointers, so open addressing is often faster.
+
+00:01:41.364 --> 00:01:44.673
+Iteration order is not guaranteed, so never depend on it.
+
+00:01:45.123 --> 00:01:50.139
+Under concurrency, shard the table or use a concurrent map instead of one big lock.
+
+00:01:51.489 --> 00:01:57.491
+In the interview, say out loud why a hash map fits: you need fast membership or counting.
+
+00:01:57.941 --> 00:02:00.890
+Mention the trade: you spend memory to buy time.
+
+00:02:01.340 --> 00:02:06.402
+And remember the classic bug in Two Sum: check for the partner before inserting yourself.
+
+00:02:07.752 --> 00:02:11.699
+Whenever you hear "have I seen this before?", reach for a hash table.

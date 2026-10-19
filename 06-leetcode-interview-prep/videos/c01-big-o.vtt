@@ -1,0 +1,82 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:06.095
+Welcome, Chandra. This lesson is about Big O, the language interviewers use to talk about speed.
+
+00:00:06.545 --> 00:00:10.411
+No math degree needed. We will use everyday pictures first.
+
+00:00:11.761 --> 00:00:14.780
+Imagine you are handing out name badges at a conference.
+
+00:00:15.230 --> 00:00:23.485
+If you just hand each guest the top badge from a pile, every guest takes the same tiny effort. That is constant time, written O of one.
+
+00:00:23.935 --> 00:00:31.191
+If you must search the whole pile for each guest's name, the effort grows with the number of guests. That is linear, O of n.
+
+00:00:31.641 --> 00:00:37.597
+And if every guest must shake hands with every other guest, the work explodes. That is O of n squared.
+
+00:00:38.947 --> 00:00:40.897
+Here is the picture that matters.
+
+00:00:41.347 --> 00:00:45.504
+The green line is constant: it does not care how big the input is.
+
+00:00:45.954 --> 00:00:53.129
+Log n grows very slowly. Doubling the input adds just one more step, like guessing a page in a book by halving.
+
+00:00:53.579 --> 00:00:55.715
+Linear grows in a straight line.
+
+00:00:56.165 --> 00:00:58.510
+n log n is what good sorting costs.
+
+00:00:58.960 --> 00:01:04.556
+And n squared shoots off the chart. With a hundred thousand items, that is ten billion steps.
+
+00:01:05.906 --> 00:01:09.784
+Big O describes the shape of the growth, not the exact seconds.
+
+00:01:10.234 --> 00:01:15.296
+We drop constants. Two n and n are both O of n, because the shape is the same.
+
+00:01:15.746 --> 00:01:20.007
+We keep only the biggest term. n squared plus n is just O of n squared.
+
+00:01:20.457 --> 00:01:23.673
+Space complexity uses the same language for memory.
+
+00:01:24.123 --> 00:01:31.669
+For your systems work, also remember that constants still matter in the real world: cache misses, allocations, and locks.
+
+00:01:33.019 --> 00:01:35.051
+Let us count the work in a real loop.
+
+00:01:35.501 --> 00:01:41.410
+Scanning an array once touches each cell once. Eight items, eight steps. That is O of n.
+
+00:01:41.860 --> 00:01:48.873
+A nested loop that compares every pair touches about n squared over two pairs. Eight items, twenty eight pairs.
+
+00:01:49.323 --> 00:01:55.151
+Binary search on sorted data cuts the range in half each step. Eight items, only three steps.
+
+00:01:56.501 --> 00:01:58.985
+Here is a handy cheat sheet for interviews.
+
+00:01:59.435 --> 00:02:03.348
+If n is up to about ten thousand, n squared might pass.
+
+00:02:03.798 --> 00:02:08.245
+If n is a hundred thousand or a million, aim for n log n or n.
+
+00:02:08.695 --> 00:02:14.221
+If n is tiny, like twenty, even two to the n, exponential search, can work.
+
+00:02:14.671 --> 00:02:20.371
+Always say the complexity out loud after you code. It is one of the easiest points to earn.
+
+00:02:21.721 --> 00:02:28.815
+That is Big O. Next, open any problem in this course and you will see its brute force and optimal cost side by side.

@@ -1,0 +1,177 @@
+/* app.js - LeetCode-style interview prep (offline, no network). Data comes from data.js (window.DATA). */
+(function(){
+const D=window.DATA, $=s=>document.querySelector(s), app=$('#app');
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const LS={get(k,d){try{const v=localStorage.getItem('ip:'+k);return v===null?d:JSON.parse(v);}catch(e){return d;}},set(k,v){try{localStorage.setItem('ip:'+k,JSON.stringify(v));}catch(e){}}};
+const P=D.problems.filter(p=>p.meta.kind!=='component'), COMP={};D.problems.forEach(p=>COMP[p.meta.id]=p);
+const byId=id=>D.problems.find(p=>p.meta.id===id);
+let timers=[];function clearTimers(){timers.forEach(t=>clearInterval(t));timers=[];if(window.speechSynthesis)speechSynthesis.cancel();}
+/* ---------- syntax highlight ---------- */
+const KW=/\b(int|long|bool|boolean|char|void|auto|const|return|if|else|for|while|class|struct|public|private|static|new|var|using|namespace|vector|string|String|unordered_map|map|true|false|null|nullptr|this|break|continue|switch|case|default|foreach|in|out|import|readonly|final|explicit|override|template|typename|uint32_t|double|unsigned|size_t|object|throw)\b/g;
+function hl(line){let cm='';const i=line.indexOf('//');if(i>=0){cm=line.slice(i);line=line.slice(0,i);}
+  let h=esc(line).replace(/(&quot;[^&]*?&quot;|'.')/g,'<span class=st>$1</span>').replace(KW,'<span class=kw>$1</span>').replace(/\b(\d+)\b/g,'<span class=nu>$1</span>');
+  return h+(cm?'<span class=cm>'+esc(cm)+'</span>':'');}
+function codeBlock(src,cur,id){return '<pre class=code id="'+(id||'')+'">'+src.split('\n').map((l,i)=>'<span class="ln'+(i+1===cur?' cur':'')+'" data-l="'+(i+1)+'"><span class=no>'+(i+1)+'</span>'+hl(l)+'</span>').join('')+'</pre>';}
+function lineTable(src){const rows=src.split('\n').map((l,i)=>[i+1,l]).filter(([n,l])=>l.includes('//')&&l.trim().indexOf('//')>0);
+  return '<table><tr><th>#</th><th>Code</th><th>What it does (plain words)</th></tr>'+rows.map(([n,l])=>{const k=l.indexOf('//');return '<tr><td>'+n+'</td><td><code>'+esc(l.slice(0,k).trim())+'</code></td><td>'+esc(l.slice(k+2).trim())+'</td></tr>';}).join('')+'</table>';}
+/* ---------- generic value rendering for visualizers ---------- */
+function fmt(v){if(typeof v==='number'){if(v>=9e18||v===2147483647)return '∞';if(v<=-9e18||v===-2147483648)return '−∞';}return v;}
+function isPrim(v){return v===null||['number','string','boolean'].includes(typeof v);}
+function cellsHTML(arr,prev,ptrs){let h='<div class="cells cellrow">';arr.forEach((v,i)=>{const ch=prev&&JSON.stringify(prev[i])!==JSON.stringify(v);const pn=Object.keys(ptrs||{}).filter(k=>ptrs[k]===i);
+  h+='<div class="cell'+(ch?' ch':'')+(pn.length?' pt':'')+'">'+esc(isPrim(v)?fmt(v):JSON.stringify(v))+(pn.length?'<span class=pp>'+esc(pn.join(','))+'</span>':'')+'<span class=ix>'+i+'</span></div>';});return h+'</div>';}
+function treeSVG(arr,hi){const pos=[];if(!arr.length)return '<i class=small>(empty)</i>';const W=360;pos[0]={x:W/2,y:22,d:0,lo:0,hi:W};const q=[0];let i=1;
+  while(q.length&&i<arr.length){const p=q.shift();const m=pos[p];const mid=(m.lo+m.hi)/2;for(const s of[0,1]){if(i>=arr.length)break;if(arr[i]!==null){const lo=s?mid:m.lo,h2=s?m.hi:mid;pos[i]={x:(lo+h2)/2,y:22+(m.d+1)*48,d:m.d+1,lo,hi:h2,p};q.push(i);}i++;}}
+  const H=Math.max(...pos.filter(Boolean).map(p=>p.y))+24;let s='<svg viewBox="0 0 '+W+' '+H+'" width="'+W+'" style="max-width:100%">';
+  pos.forEach((n,k)=>{if(n&&n.p!==undefined){const P=pos[n.p];s+='<line x1='+P.x+' y1='+P.y+' x2='+n.x+' y2='+n.y+' stroke="#475569" stroke-width=2 />';}});
+  pos.forEach((n,k)=>{if(!n)return;const on=hi!==undefined&&arr[k]===hi;s+='<circle cx='+n.x+' cy='+n.y+' r=15 fill="'+(on?'#f59e0b':'#1e293b')+'" stroke="#94a3b8" stroke-width=2 /><text x='+n.x+' y='+(n.y+4)+' text-anchor=middle style="fill:'+(on?'#111':'#e2e8f0')+'">'+arr[k]+'</text>';});return s+'</svg>';}
+function graphSVG(edges,n,viz,vars){const one=viz.oneBased?1:0;const N=n+(one?1:0);const W=340,H=240,cx=W/2,cy=H/2,R=95;const P={};for(let v=one;v<N;v++){const a=2*Math.PI*(v-one)/n-Math.PI/2;P[v]=[cx+R*Math.cos(a),cy+R*Math.sin(a)];}
+  const hiN=new Set((viz.ptr||[]).map(k=>vars[k]).filter(x=>typeof x==='number'));let s='<svg viewBox="0 0 '+W+' '+H+'" width='+W+' style="max-width:100%"><defs><marker id=ar viewBox="0 0 10 10" refX=9 refY=5 markerWidth=6 markerHeight=6 orient=auto><path d="M0,0L10,5L0,10z" fill="#64748b"/></marker></defs>';
+  (edges||[]).forEach(e=>{let a=e[0],b=e[1];if(viz.dirEdge==='b->a'){a=e[1];b=e[0];}const A=P[a],B=P[b];if(!A||!B)return;const dx=B[0]-A[0],dy=B[1]-A[1],L=Math.hypot(dx,dy)||1;
+    const dir=viz.dirEdge||viz.weighted;s+='<line x1='+(A[0]+dx/L*16)+' y1='+(A[1]+dy/L*16)+' x2='+(B[0]-dx/L*17)+' y2='+(B[1]-dy/L*17)+' stroke="#64748b" stroke-width=2 '+(dir?'marker-end="url(#ar)"':'')+'/>';
+    if(viz.weighted)s+='<text x='+((A[0]+B[0])/2+4)+' y='+((A[1]+B[1])/2-4)+' style="fill:#fbbf24;font-size:11px">'+e[2]+'</text>';});
+  for(let v=one;v<N;v++){const on=hiN.has(v);s+='<circle cx='+P[v][0]+' cy='+P[v][1]+' r=15 fill="'+(on?'#f59e0b':'#1e293b')+'" stroke="#94a3b8" stroke-width=2 /><text x='+P[v][0]+' y='+(P[v][1]+4)+' text-anchor=middle style="fill:'+(on?'#111':'#e2e8f0')+'">'+v+'</text>';}return s+'</svg>';}
+function valHTML(name,v,prev,viz,vars){
+  if(v&&typeof v==='object'&&!Array.isArray(v)){
+    if(v.tree)return treeSVG(v.tree,vars[viz.cur||'val']);
+    if(v.list)return '<div class=cells>'+(v.list.length?v.list.map(x=>'<div class=cell>'+x+'</div>').join('<span style="align-self:center">→</span>'):'')+'<span style="align-self:center;color:#64748b">∅</span></div>';
+    if(v.map){const ks=Object.keys(v.map);const pm=prev&&prev.map||{};return ks.length?'<div>'+ks.map(k=>'<span class="chip'+(JSON.stringify(pm[k])!==JSON.stringify(v.map[k])?' ch':'')+'">'+esc(k)+' → '+esc(JSON.stringify(v.map[k]))+'</span>').join('')+'</div>':'<i class=small>{ } empty</i>';}
+    const k=Object.keys(v)[0];return '<div class=small>'+k+(k==='heap'?' (sorted view, top first)':k==='stack'?' (bottom → top)':'')+'</div>'+cellsHTML(v[k],prev&&prev[k]);}
+  if(Array.isArray(v)){if(v.length&&Array.isArray(v[0])&&v.every(r=>Array.isArray(r)&&r.every(isPrim))){
+      const rc=viz.ptr2?[vars[viz.ptr2[0]],vars[viz.ptr2[1]]]:null;return '<div style="display:grid;gap:3px">'+v.map((r,i)=>'<div class=cells>'+r.map((x,j)=>{const ch=prev&&prev[i]&&prev[i][j]!==x;const on=rc&&rc[0]===i&&rc[1]===j;return '<div class="cell'+(ch?' ch':'')+(on?' pt':'')+'">'+esc(x)+'</div>';}).join('')+'</div>').join('')+'</div>';}
+    let ptr={};if(name===viz.array||name===viz.ring){(viz.ptr||[]).forEach(k=>{if(typeof vars[k]==='number')ptr[k]=vars[k];});}
+    if(name===viz.ring&&typeof vars.head==='number')ptr={head:vars.head,tail:(vars.head+(vars.count||0))%v.length};
+    if(name===viz.bars||(viz.bars&&name===viz.array)){const mx=Math.max(1,...v);return '<div style="display:flex;align-items:flex-end;gap:3px;height:90px">'+v.map((x,i)=>'<div title="'+x+'" style="width:22px;height:'+(8+82*x/mx)+'px;background:'+(Object.values(ptr).includes(i)?'#a78bfa':'#334155')+';border-radius:4px 4px 0 0"></div>').join('')+'</div>'+cellsHTML(v,prev,ptr);}
+    return cellsHTML(v,prev,ptr);}
+  if(typeof v==='string'&&name===viz.array)return cellsHTML(v.split(''),prev&&typeof prev==='string'?prev.split(''):null,(()=>{const p={};(viz.ptr||[]).forEach(k=>{if(typeof vars[k]==='number')p[k]=vars[k];});return p;})());
+  return null;}
+function mergedVars(step){const o={};const fr=step.s||[];fr.forEach((f,k)=>{Object.keys(f.v).forEach(x=>{if(k===fr.length-1||!isPrim(f.v[x]))o[x]=f.v[x];});});return o;}
+function structView(step,prevStep,viz){if(!step)return '';const vars=mergedVars(step),pv=prevStep?mergedVars(prevStep):{};let h='<div class=viz>';const chips=[];
+  if(viz.graph&&vars[viz.graph]){h+='<div class=vbox><div class=vname>graph ('+viz.graph+')</div>'+graphSVG(vars[viz.graph],vars[viz.nodes]||(viz.oneBased?vars.n:0),viz,vars)+'</div>';}
+  Object.keys(vars).forEach(k=>{if(k==='_note'||(viz.graph&&k===viz.graph))return;const v=vars[k];const x=valHTML(k,v,pv[k],viz,vars);
+    if(x===null)chips.push('<span class="chip'+(JSON.stringify(pv[k])!==JSON.stringify(v)&&k in pv?' ch':'')+'">'+esc(k)+' = '+esc(isPrim(v)?fmt(v):JSON.stringify(v))+'</span>');else h+='<div class=vbox><div class=vname>'+esc(k)+'</div>'+x+'</div>';});
+  return '<div>'+chips.join('')+'</div>'+h+'</div>';}
+function stepCaption(step,prev){const v=mergedVars(step),pv=prev?mergedVars(prev):{};if(v._note)return v._note;if(step.k==='call')return 'Call '+step.s[step.s.length-1].f+'() — a new frame is pushed';if(step.k==='ret')return step.s[step.s.length-1].f+'() returns — its frame is popped';
+  const ch=Object.keys(v).filter(k=>isPrim(v[k])&&pv[k]!==v[k]).map(k=>k+' = '+fmt(v[k]));const big=Object.keys(v).filter(k=>!isPrim(v[k])&&k in pv&&JSON.stringify(pv[k])!==JSON.stringify(v[k]));return ch.concat(big.map(k=>k+' changed')).join(', ')||'same state, next line';}
+/* ---------- step player (shared by animation + execution visualizer) ---------- */
+function player(root,trace,viz,code,mode){const steps=mode==='anim'?trace.steps.filter(s=>s.k==='step'):trace.steps;let i=0,playing=null,speed=LS.get('speed',700);
+  root.innerHTML='<div class=ctrl><button data-a=first>⏮</button><button data-a=prev>◀ Step</button><button data-a=play class=pri>▶ Play</button><button data-a=next>Step ▶</button><button data-a=last>⏭</button><label class=small>speed <input type=range min=150 max=1500 step=50 value='+(1650-speed)+' data-a=speed></label><span class=small data-a=cnt></span></div><div class=note data-a=cap></div>'+
+   (mode==='exec'?'<div class=split><div data-a=code></div><div><div class=vname>Call stack (top = running now)</div><div class=frames data-a=frames></div></div></div><div class=card data-a=struct></div>':'<div class=card data-a=struct></div>');
+  const q=a=>root.querySelector('[data-a='+a+']');
+  if(mode==='exec')q('code').innerHTML=codeBlock(code,0,'');
+  function render(){const st=steps[i],pv=steps[i-1];q('cnt').textContent='step '+(i+1)+' / '+steps.length;q('cap').textContent=stepCaption(st,pv);q('struct').innerHTML=structView(st,pv,viz);
+    if(mode==='exec'){root.querySelectorAll('.ln').forEach(e=>e.classList.toggle('cur',+e.dataset.l===st.l));const cur=root.querySelector('.ln.cur');if(cur){const pre=cur.parentElement;pre.scrollTop=cur.offsetTop-pre.clientHeight/2;}
+      q('frames').innerHTML=st.s.map((f,k)=>'<div class="frame'+(k===st.s.length-1?' top':'')+'"><h5>'+esc(f.f)+'()'+(k===st.s.length-1&&st.k==='ret'?' ← returning':'')+'</h5>'+Object.keys(f.v).filter(x=>x!=='_note').map(x=>{const v=f.v[x];return '<span class=chip>'+esc(x)+' = '+esc(isPrim(v)?fmt(v):JSON.stringify(v).slice(0,60))+'</span>';}).join('')+'</div>').join('');}}
+  function stop(){if(playing){clearInterval(playing);playing=null;q('play').textContent='▶ Play';}}
+  root.addEventListener('click',e=>{const a=e.target.dataset&&e.target.dataset.a;if(!a)return;
+    if(a==='play'){if(playing)stop();else{if(i>=steps.length-1)i=0;playing=setInterval(()=>{if(i<steps.length-1){i++;render();}else stop();},speed);timers.push(playing);q('play').textContent='⏸ Pause';}return;}
+    stop();if(a==='first')i=0;if(a==='prev')i=Math.max(0,i-1);if(a==='next')i=Math.min(steps.length-1,i+1);if(a==='last')i=steps.length-1;render();});
+  q('speed').addEventListener('input',e=>{speed=1650-+e.target.value;LS.set('speed',speed);if(playing){stop();q('play').click();}});
+  render();return {get i(){return i;},n:steps.length};}
+/* ---------- progress ---------- */
+const prog=()=>LS.get('progress',{});function setStatus(id,s){const p=prog();p[id]=Object.assign(p[id]||{},{status:s,t:Date.now()});LS.set('progress',p);}
+function statusOf(id){return (prog()[id]||{}).status||'';}
+function badge(id){const s=statusOf(id);return s?'<span class="status st-'+s+'">'+(s==='solved'?'✓ solved':'↻ review')+'</span>':'';}
+/* ---------- pages ---------- */
+function home(){app.innerHTML='<div class=card><h2 style="margin-top:0">LeetCode-style prep for staff/principal systems interviews</h2>'+
+ '<div class=plain><h4>In plain words</h4>This is a gym, not a textbook. Each problem starts as a closed box: you read it, start the timer, and try it yourself — no AI, no peeking. Hints come in three small steps. Only when you click <b>Reveal</b> do you get the analogy-first explanation, the animated walkthrough, code in C#, Java and C++, and a step-by-step execution visualizer that shows the call stack.</div>'+
+ '<p>'+P.length+' coding problems · '+D.designs.length+' system design questions · '+D.lessons.length+' narrated concept videos. Every solution was compiled and tested in all three languages; every execution trace was recorded from a real run of the instrumented C++ solution.</p>'+
+ '<p><a href="#coding">Start coding practice →</a> · <a href="#design">System design →</a> · <a href="#concepts">Concept videos →</a> · <a href="#mock">Mock interview →</a></p></div>'+
+ '<div class=card><h3>Where these come from</h3><p class=small>'+esc(D.sources)+'</p></div>'+
+ '<div class=card><h3>Suggested order</h3><ol><li>Watch Big-O and Recursion &amp; the Call Stack.</li><li>Do one problem per pattern (filters on the Coding tab).</li><li>Do a design question every weekend; time it at 45 minutes.</li><li>From week 3, run a mock interview twice a week.</li></ol></div>';}
+function filters(){const pats=[...new Set(P.flatMap(p=>p.meta.patterns))].sort(),cos=[...new Set(P.flatMap(p=>p.meta.companies))].sort();const f=LS.get('filters',{});
+ const sel=(k,opts)=>'<select data-f='+k+'><option value="">'+k+': all</option>'+opts.map(o=>'<option'+(f[k]===o?' selected':'')+'>'+esc(o)+'</option>').join('')+'</select> ';
+ return sel('pattern',pats)+sel('company',cos)+sel('difficulty',['Easy','Medium','Hard'])+sel('status',['todo','solved','review'])+'<input data-f=q placeholder="search" value="'+esc(f.q||'')+'">';}
+function coding(){const f=LS.get('filters',{});const list=P.filter(p=>{const m=p.meta;const st=statusOf(m.id)||'todo';return (!f.pattern||m.patterns.includes(f.pattern))&&(!f.company||m.companies.includes(f.company))&&(!f.difficulty||m.difficulty===f.difficulty)&&(!f.status||st===f.status)&&(!f.q||(m.title+m.patterns.join()).toLowerCase().includes(f.q.toLowerCase()));});
+ app.innerHTML='<div class=card><h2 style="margin-top:0">Coding problems</h2><div class=ctrl>'+filters()+'</div><p class=small>'+list.length+' shown</p><div class=grid>'+list.map(p=>{const m=p.meta;return '<div class=item data-go="#p/'+m.id+'"><b>'+m.num+'. '+esc(m.title)+'</b><br><span class="'+m.difficulty+'">'+m.difficulty+'</span> '+badge(m.id)+'<br>'+m.patterns.map(x=>'<span class=pill>'+esc(x)+'</span>').join('')+'<div class=small>'+esc(m.companies.join(' · '))+'</div></div>';}).join('')+'</div></div>';
+ app.querySelectorAll('[data-f]').forEach(e=>e.addEventListener(e.tagName==='INPUT'?'input':'change',()=>{const f=LS.get('filters',{});f[e.dataset.f]=e.value;LS.set('filters',f);const pos=e.selectionStart;coding();const n=app.querySelector('[data-f='+e.dataset.f+']');if(e.tagName==='INPUT'){n.focus();n.setSelectionRange(pos,pos);}}));}
+function langTabs(p,root){const L=[['cpp','C++'],['java','Java'],['cs','C#']];let cur=LS.get('lang','cpp');
+ function r(){root.innerHTML='<div class=tabs>'+L.map(([k,n])=>'<button data-l='+k+(k===cur?' class=on':'')+'>'+n+'</button>').join('')+'</div>'+codeBlock(p.code[cur])+'<details style="margin-top:8px"><summary><b>Line-by-line explanation</b></summary>'+lineTable(p.code[cur])+'</details>'+
+   '<p class=small>Tested: '+['cpp','java','cs'].map(k=>(k==='cpp'?'C++ (g++ -fsanitize=address,undefined)':k==='java'?'Java (OpenJDK 21)':'C# (.NET 8)')+' '+(p.results[k].ok?'✅ ':'❌ ')+esc(p.results[k].log.split('\n').pop())).join(' · ')+'</p>';
+   root.querySelectorAll('[data-l]').forEach(b=>b.onclick=()=>{cur=b.dataset.l;LS.set('lang',cur);r();});}r();}
+function practiceBox(id,mins,hints,rubric){const key='code:'+id;const hs=LS.get('hints:'+id,0);
+ let h='<div class=card><h3 style="margin-top:0">Practice (no AI during attempts)</h3><div class=ctrl><span class=timer data-t>'+mins+':00</span><button data-tm=start class=pri>Start</button><button data-tm=pause>Pause</button><button data-tm=reset>Reset</button></div>'+
+  '<textarea data-ed placeholder="Write your solution here (C++, Java or C#). Talk through it out loud as if an interviewer is listening.">'+esc(LS.get(key,''))+'</textarea>'+
+  '<h4>Hints (one at a time)</h4><div data-hints>'+hints.map((x,i)=>i<hs?'<div class=plain>Hint '+(i+1)+': '+esc(x)+'</div>':'').join('')+'</div><button data-hint '+(hs>=hints.length?'disabled':'')+'>Show hint '+Math.min(hs+1,hints.length)+' of '+hints.length+'</button>'+
+  '<h4>Self-grade</h4>'+rubric.map((r,i)=>'<label style="display:block"><input type=checkbox data-rb='+i+(LS.get('rb:'+id,[]).includes(i)?' checked':'')+'> '+esc(r)+'</label>').join('')+'<p class=small data-score></p>'+
+  '<div class=ctrl><button data-st=solved>Mark solved</button><button data-st=review>Needs review</button></div></div>';return h;}
+function wirePractice(root,id,mins,hints){let left=LS.get('timer:'+id,mins*60),iv=null;const t=root.querySelector('[data-t]');const show=()=>{t.textContent=Math.floor(left/60)+':'+String(left%60).padStart(2,'0');t.style.color=left<=0?'#ef4444':'';};show();
+ root.querySelectorAll('[data-tm]').forEach(b=>b.onclick=()=>{const a=b.dataset.tm;if(a==='start'&&!iv){iv=setInterval(()=>{left--;LS.set('timer:'+id,left);show();if(left<=0){clearInterval(iv);iv=null;}},1000);timers.push(iv);}if(a==='pause'){clearInterval(iv);iv=null;}if(a==='reset'){clearInterval(iv);iv=null;left=mins*60;LS.set('timer:'+id,left);show();}});
+ const ed=root.querySelector('[data-ed]');ed.addEventListener('input',()=>LS.set('code:'+id,ed.value));ed.addEventListener('keydown',e=>{if(e.key==='Tab'){e.preventDefault();const s=ed.selectionStart;ed.value=ed.value.slice(0,s)+'    '+ed.value.slice(ed.selectionEnd);ed.selectionStart=ed.selectionEnd=s+4;}});
+ const hb=root.querySelector('[data-hint]');hb.onclick=()=>{let n=LS.get('hints:'+id,0);if(n<hints.length){n++;LS.set('hints:'+id,n);root.querySelector('[data-hints]').insertAdjacentHTML('beforeend','<div class=plain>Hint '+n+': '+esc(hints[n-1])+'</div>');hb.textContent='Show hint '+Math.min(n+1,hints.length)+' of '+hints.length;if(n>=hints.length)hb.disabled=true;}};
+ const sc=()=>{const c=[...root.querySelectorAll('[data-rb]')];const on=c.filter(x=>x.checked).map(x=>+x.dataset.rb);LS.set('rb:'+id,on);root.querySelector('[data-score]').textContent='Score: '+on.length+' / '+c.length+(on.length===c.length?' — interview-ready on this one.':'');};
+ root.querySelectorAll('[data-rb]').forEach(x=>x.onchange=sc);sc();root.querySelectorAll('[data-st]').forEach(b=>b.onclick=()=>{setStatus(id,b.dataset.st);b.textContent+=' ✓';});}
+function examplesHTML(m){return m.examples.map((e,i)=>'<div class=vbox style="margin:6px 0"><b>Example '+(i+1)+'</b><br><code>Input: '+esc(e.i)+'</code><br><code>Output: '+esc(e.o)+'</code>'+(e.e?'<div class=small>'+esc(e.e)+'</div>':'')+'</div>').join('');}
+function jargonHTML(m){return m.jargon?'<div class=term><b>Terms:</b> '+Object.entries(m.jargon).map(([k,v])=>'<b>'+esc(k)+'</b> = '+esc(v)).join(' · ')+'</div>':'';}
+function problem(id,embedded){const p=byId(id);if(!p){app.innerHTML='Not found';return;}const m=p.meta;const rev=LS.get('rev:'+id,false);
+ const head='<div class=card><h2 style="margin-top:0">'+m.num+'. '+esc(m.title)+' '+badge(id)+'</h2><span class="'+m.difficulty+'">'+m.difficulty+'</span> '+m.patterns.map(x=>'<span class=pill>'+esc(x)+'</span>').join('')+
+  '<div class=small>Companies: '+esc(m.companies.join(', '))+'<br>Course link: '+esc(m.course)+'</div>'+
+  (m.lc.length?'<div class=small><b>LeetCode:</b> '+m.lc.map(([n,t])=>'#'+n+' '+esc(t)).join(' · ')+'</div>':'')+(m.similar.length?'<div class=small><b>Similar LeetCode problems:</b> '+m.similar.map(([n,t])=>'#'+n+' '+esc(t)).join(' · ')+'</div>':'')+
+  '<h3>Problem</h3><p>'+m.statement+'</p>'+examplesHTML(m)+'<b>Constraints</b><ul>'+m.constraints.map(c=>'<li>'+esc(c)+'</li>').join('')+'</ul>'+
+  (m.sig?'<div class=small>Signature: <code>'+esc(m.sig.fn)+'('+m.sig.params.map(x=>x[1]+' '+x[0]).join(', ')+') → '+esc(m.sig.ret)+'</code></div>':'')+'</div>';
+ const mins=m.difficulty==='Easy'?20:m.difficulty==='Hard'?45:30;
+ const lockHTML='<div class=lock><p>Solutions, animations and the execution visualizer are hidden so your attempt stays honest.</p><button class=pri data-reveal>I have attempted it — reveal the solution</button></div>';
+ app.innerHTML=head+practiceBox(id,mins,m.hints,m.rubric)+'<div id=sol>'+(rev?'':lockHTML)+'</div>';
+ wirePractice(app,id,mins,m.hints);
+ const sol=$('#sol');const show=()=>{const tabs=[['learn','1 · Explanation'],['anim','2 · Animated walkthrough'],['code','3 · Code (C#, Java, C++)'],['exec','4 · Execution visualizer'],['interview','5 · Interview script']];let cur=LS.get('tab','learn');
+  sol.innerHTML='<div class=tabs>'+tabs.map(([k,n])=>'<button data-tab='+k+'>'+n+'</button>').join('')+'</div><div id=tabc class=card></div>';
+  const go=k=>{cur=k;LS.set('tab',k);sol.querySelectorAll('[data-tab]').forEach(b=>b.classList.toggle('on',b.dataset.tab===k));clearTimers();const c=$('#tabc');
+   if(k==='learn')c.innerHTML='<div class=plain><h4>In plain words</h4>'+esc(m.analogy)+'</div>'+jargonHTML(m)+'<h3>1. Brute force</h3><p>'+esc(m.brute.idea)+'</p><p><b>Time</b> '+esc(m.brute.time)+' · <b>Space</b> '+esc(m.brute.space)+'</p><p class=small>'+esc(m.brute.plain)+'</p>'+
+     '<h3>2. Optimal</h3><p>'+esc(m.optimal.idea)+'</p><p><b>Time</b> '+esc(m.optimal.time)+' · <b>Space</b> '+esc(m.optimal.space)+'</p><p class=small>'+esc(m.optimal.plain)+'</p><h3>Walkthrough on the example</h3><ol>'+m.walkthrough.map(w=>'<li>'+esc(w)+'</li>').join('')+'</ol>'+
+     '<h3>Common pitfalls</h3><ul>'+m.pitfalls.map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul>'+(D.lessonFor[id]?'<p>Concept video: '+D.lessonFor[id].map(l=>'<a href="#c/'+l+'">'+esc(D.lessons.find(x=>x.id===l).title)+'</a>').join(' · ')+'</p>':'');
+   if(k==='anim'){c.innerHTML='<p class=small>Real data: these frames come from running the solution on test case '+((m.traceCase||0)+1)+'. Changed values flash orange; pointers are purple.</p><div id=pl></div>';player($('#pl'),p.trace,m.viz||{},null,'anim');}
+   if(k==='code')langTabs(p,c);
+   if(k==='exec'){c.innerHTML='<p class=small>Step through the instrumented C++ run line by line. Each function call pushes a frame; each return pops it. The Java and C# versions follow the same steps.</p><div id=pl></div>';player($('#pl'),p.trace,m.viz||{},p.code.cpp,'exec');}
+   if(k==='interview')c.innerHTML='<h3>How to talk through it</h3><ol>'+m.script.map(x=>'<li>'+esc(x)+'</li>').join('')+'</ol><h3>Follow-ups the interviewer will ask</h3><ul>'+m.followups.map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul>';};
+  sol.querySelectorAll('[data-tab]').forEach(b=>b.onclick=()=>go(b.dataset.tab));go(cur);};
+ if(rev)show();else sol.querySelector('[data-reveal]').onclick=()=>{LS.set('rev:'+id,true);show();};}
+function designList(){app.innerHTML='<div class=card><h2 style="margin-top:0">System design</h2><div class=grid>'+D.designs.map(d=>'<div class=item data-go="#d/'+d.id+'"><b>'+esc(d.title)+'</b> '+badge(d.id)+'<div class=small>'+esc(d.companies.join(' · '))+'</div></div>').join('')+'</div></div>';}
+function archSVG(d,state){const idx={};d.nodes.forEach((n,i)=>idx[n[0]]=i);let s='<svg viewBox="-20 0 1040 560" class=arch style="width:100%;max-height:420px">';
+ s+='<defs><marker id=am viewBox="0 0 10 10" refX=10 refY=5 markerWidth=7 markerHeight=7 orient=auto><path d="M0,0L10,5L0,10z" fill="#64748b"/></marker></defs>';d.edges.forEach(([a,b])=>{const A=d.nodes[idx[a]],B=d.nodes[idx[b]];const dx=B[2]-A[2],dy=B[3]-A[3];const t=Math.min(85/Math.abs(dx||1e-9),30/Math.abs(dy||1e-9));s+='<line x1='+(A[2]+dx*t)+' y1='+(A[3]+dy*t)+' x2='+(B[2]-dx*t)+' y2='+(B[3]-dy*t)+' marker-end="url(#am)" />';});
+ d.nodes.forEach(n=>{const dead=state.dead===n[0];s+='<g class="'+(dead?'dead':state.on===n[0]?'on':'')+'" data-node="'+n[0]+'" style="cursor:pointer"><rect x='+(n[2]-85)+' y='+(n[3]-30)+' width=170 height=60 rx=10 /><foreignObject x='+(n[2]-82)+' y='+(n[3]-28)+' width=164 height=56><div xmlns="http://www.w3.org/1999/xhtml" style="font:600 13px system-ui;color:#e2e8f0;text-align:center;display:flex;align-items:center;justify-content:center;height:56px;line-height:1.2">'+esc(n[1])+(dead?' ✖':'')+'</div></foreignObject></g>';});
+ if(state.dot)s+='<circle cx='+state.dot[0]+' cy='+state.dot[1]+' r=12 fill="#f59e0b" />';return s+'</svg>';}
+function design(id){const d=D.designs.find(x=>x.id===id);const comp=COMP[d.component];const rev=LS.get('rev:'+id,false);
+ app.innerHTML='<div class=card><h2 style="margin-top:0">'+esc(d.title)+' '+badge(id)+'</h2><div class=small>Companies: '+esc(d.companies.join(', '))+'<br>Source: '+esc(d.source)+'</div><div class=plain><h4>In plain words</h4>'+esc(d.analogy)+'</div>'+
+  '<h3>Step 1 — ask clarifying questions first</h3><ul>'+d.clarify.map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul></div>'+practiceBox(id,45,['Write the functional and non-functional requirements before drawing anything.','Do the capacity math: QPS, storage, memory, bandwidth. Let the numbers pick the architecture.','Pick the 2 hardest parts for deep dives, and say what fails and how you detect and recover.'],d.rubric)+
+  '<div id=sol>'+(rev?'':'<div class=lock><p>The model answer (requirements, numbers, animated architecture, deep dives and component code) is hidden until you have tried it.</p><button class=pri data-reveal>Reveal the model answer</button></div>')+'</div>';
+ wirePractice(app,id,45,['Write the functional and non-functional requirements before drawing anything.','Do the capacity math: QPS, storage, memory, bandwidth. Let the numbers pick the architecture.','Pick the 2 hardest parts for deep dives, and say what fails and how you detect and recover.']);
+ const show=()=>{const nodes=d.nodes.map(n=>[n[0],n[1],n[2],n[3]]);const dd=Object.assign({},d,{nodes});
+  $('#sol').innerHTML='<div class=card><h3>Requirements</h3><b>Functional</b><ul>'+d.reqs.functional.map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul><b>Non-functional</b><ul>'+d.reqs.nonfunctional.map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul><h3>Capacity math</h3><ul>'+d.capacity.map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul></div>'+
+  '<div class=card><h3>Animated architecture</h3><div class=ctrl>'+d.flows.map((f,i)=>'<button data-flow='+i+' class=pri>▶ '+esc(f.name)+'</button>').join('')+'<span class=small>Tap a box to inject a failure there.</span></div><div id=arch></div><div class=note id=archnote></div></div>'+
+  '<div class=card><h3>Deep dives</h3><ul>'+d.deep.map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul><h3>Tradeoffs</h3><ul>'+d.tradeoffs.map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul><h3>Failure modes</h3><ul>'+d.failures.map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul></div>'+
+  '<div class=card><h3>Key component: '+esc(comp.meta.title)+'</h3><div class=plain><h4>In plain words</h4>'+esc(comp.meta.analogy)+'</div><p>'+comp.meta.statement+'</p><p><b>Idea:</b> '+esc(comp.meta.optimal.idea)+' <b>Time</b> '+esc(comp.meta.optimal.time)+'</p><div id=ccode></div><h4>Execution visualizer</h4><div id=cpl></div></div>';
+  const st={};const draw=()=>{$('#arch').innerHTML=archSVG(dd,st);$('#arch').querySelectorAll('[data-node]').forEach(g=>g.onclick=()=>{const k=g.dataset.node;st.dead=st.dead===k?null:k;$('#archnote').textContent=st.dead?'Failure injected at "'+d.nodes.find(n=>n[0]===k)[1]+'": '+(d.fail[k]||'No single point of failure here; traffic reroutes.'):'Failure cleared.';draw();});};draw();
+  $('#sol').querySelectorAll('[data-flow]').forEach(b=>b.onclick=()=>{clearTimers();const f=d.flows[+b.dataset.flow];const P=f.path.map(k=>d.nodes.find(n=>n[0]===k));let seg=0,t=0;
+   const iv=setInterval(()=>{t+=0.08;if(t>=1){t=0;seg++;}if(seg>=P.length-1){clearInterval(iv);st.dot=null;st.on=null;draw();$('#archnote').textContent=f.name+': done ('+f.path.length+' hops).';return;}
+    const A=P[seg],B=P[seg+1];st.on=B[0];if(st.dead===B[0]){clearInterval(iv);st.dot=[B[2],B[3]];draw();$('#archnote').textContent='Request hit the failed "'+B[1]+'": '+(d.fail[B[0]]||'rerouted.');return;}st.dot=[A[2]+(B[2]-A[2])*t,A[3]+(B[3]-A[3])*t];draw();$('#archnote').textContent=f.name+': '+A[1]+' → '+B[1];},40);timers.push(iv);});
+  langTabs(comp,$('#ccode'));player($('#cpl'),comp.trace,comp.meta.viz||{},comp.code.cpp,'exec');};
+ if(rev)show();else app.querySelector('[data-reveal]').onclick=()=>{LS.set('rev:'+id,true);show();};}
+function concepts(){app.innerHTML='<div class=card><h2 style="margin-top:0">Concept lessons (video + audio)</h2><p class=small>Each lesson is a narrated MP4 (offline Piper neural voice, captions burned in) plus an in-page animated version that uses your browser\'s voice.</p><div class=grid>'+D.lessons.map(l=>'<div class=item data-go="#c/'+l.id+'"><b>'+esc(l.title)+'</b><div class=small>'+Math.round(LessonPlayer.total(l))+' s · '+(D.videos[l.id]?'MP4 + in-page':'in-page')+'</div></div>').join('')+'</div></div>';}
+function concept(id){const l=D.lessons.find(x=>x.id===id);const used=(l.used||[]).filter(u=>byId(u));
+ app.innerHTML='<div class=card><h2 style="margin-top:0">'+esc(l.title)+'</h2><h3>Video lesson</h3>'+(D.videos[id]?'<video controls preload=metadata playsinline src="'+D.videos[id]+'"></video><p class=small>'+Math.round(LessonPlayer.total(l))+' s narrated MP4 · captions burned in · <a href="'+D.videos[id].replace('.mp4','.vtt')+'" download>captions (.vtt)</a></p>':'')+
+  '<h3>Interactive version</h3><canvas id=cv width=854 height=480></canvas><div class=ctrl><button id=cplay class=pri>▶ Play with voice</button><button id=cmute>🔇 Voice off</button><input id=cseek type=range min=0 max=1000 value=0 style="flex:1"><span id=ctime class=small></span></div>'+
+  '<details><summary>Transcript</summary>'+l.scenes.map(s=>'<p>'+s.sents.map(x=>esc(x.text)).join(' ')+'</p>').join('')+'</details>'+
+  (used.length?'<h3>Practice it</h3>'+used.map(u=>'<a href="#p/'+u+'">'+esc(byId(u).meta.title)+'</a>').join(' · '):'')+'</div>';
+ const cv=$('#cv'),ctx=cv.getContext('2d');const T=LessonPlayer.total(l);let t=0,run=null,voice=true,lastSent=-1,t0=0;
+ const sentStarts=[];let acc=0;l.scenes.forEach(s=>s.sents.forEach(x=>{sentStarts.push([acc,x.text]);acc+=x.d;}));
+ const draw=()=>{LessonPlayer.draw(ctx,l,t);$('#cseek').value=Math.round(t/T*1000);$('#ctime').textContent=Math.floor(t)+' / '+Math.round(T)+' s';};draw();
+ const speak=()=>{let k=-1;for(let i=0;i<sentStarts.length;i++)if(sentStarts[i][0]<=t+0.05)k=i;if(k!==lastSent){lastSent=k;if(voice&&k>=0&&window.speechSynthesis){speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(sentStarts[k][1]);u.rate=1.0;speechSynthesis.speak(u);}}};
+ const stop=()=>{if(run){clearInterval(run);run=null;}$('#cplay').textContent='▶ Play with voice';if(window.speechSynthesis)speechSynthesis.cancel();};
+ $('#cplay').onclick=()=>{if(run){stop();return;}if(t>=T-0.1)t=0;lastSent=-1;t0=performance.now()-t*1000;run=setInterval(()=>{t=(performance.now()-t0)/1000;if(t>=T){t=T;draw();stop();return;}speak();draw();},1000/30);timers.push(run);$('#cplay').textContent='⏸ Pause';};
+ $('#cmute').onclick=()=>{voice=!voice;$('#cmute').textContent=voice?'🔇 Voice off':'🔊 Voice on';if(!voice&&window.speechSynthesis)speechSynthesis.cancel();};
+ $('#cseek').oninput=e=>{t=e.target.value/1000*T;lastSent=-1;if(run)t0=performance.now()-t*1000;draw();};}
+function mock(){const unsolved=P.filter(p=>statusOf(p.meta.id)!=='solved');const pool=unsolved.length?unsolved:P;const pick=LS.get('mock',null);
+ const c=pick&&byId(pick.c)?byId(pick.c):pool[Math.floor(Math.random()*pool.length)];const d=pick?D.designs.find(x=>x.id===pick.d)||D.designs[0]:D.designs[Math.floor(Math.random()*D.designs.length)];LS.set('mock',{c:c.meta.id,d:d.id});
+ app.innerHTML='<div class=card><h2 style="margin-top:0">Mock interview</h2><div class=plain><h4>In plain words</h4>Two rounds, like a real loop: 35 minutes of coding, then 45 minutes of system design. Talk out loud, no AI, no peeking. Grade yourself with the rubric at the end of each round.</div>'+
+  '<h3>Round 1 — Coding (35 min)</h3><p><b>'+esc(c.meta.title)+'</b> ('+c.meta.difficulty+')</p><p>'+c.meta.statement+'</p>'+examplesHTML(c.meta)+'<p><a href="#p/'+c.meta.id+'">Open the full problem page (practice box, hints, then reveal) →</a></p>'+
+  '<h3>Round 2 — System design (45 min)</h3><p><b>'+esc(d.title)+'</b></p><p><a href="#d/'+d.id+'">Open the design page →</a></p><div class=ctrl><span class=timer id=mt>80:00</span><button id=ms class=pri>Start 80-min loop timer</button><button id=mn>🎲 New pair</button></div></div>';
+ let left=80*60,iv=null;$('#ms').onclick=()=>{if(iv)return;iv=setInterval(()=>{left--;$('#mt').textContent=Math.floor(left/60)+':'+String(left%60).padStart(2,'0');if(left<=0)clearInterval(iv);},1000);timers.push(iv);};$('#mn').onclick=()=>{LS.set('mock',null);mock();};}
+function progress(){const pr=prog();const all=P.map(p=>p.meta.id).concat(D.designs.map(d=>d.id));const solved=all.filter(i=>(pr[i]||{}).status==='solved').length,rev=all.filter(i=>(pr[i]||{}).status==='review').length;
+ const pats={};P.forEach(p=>p.meta.patterns.forEach(x=>{pats[x]=pats[x]||[0,0];pats[x][1]++;if(statusOf(p.meta.id)==='solved')pats[x][0]++;}));
+ app.innerHTML='<div class=card><h2 style="margin-top:0">Progress</h2><p>'+solved+' solved · '+rev+' to review · '+(all.length-solved-rev)+' not started (saved in this browser only).</p><table><tr><th>Pattern</th><th>Solved</th></tr>'+Object.entries(pats).sort().map(([k,[a,b]])=>'<tr><td>'+esc(k)+'</td><td><div style="background:#1e293b;border-radius:6px;width:160px;height:12px;display:inline-block;vertical-align:middle"><div style="background:#22c55e;height:12px;border-radius:6px;width:'+(160*a/b)+'px"></div></div> '+a+'/'+b+'</td></tr>').join('')+'</table><p><button id=rs>Reset all progress</button></p></div>';
+ $('#rs').onclick=()=>{if(confirm('Erase all progress, code drafts and timers in this browser?')){Object.keys(localStorage).filter(k=>k.startsWith('ip:')).forEach(k=>localStorage.removeItem(k));progress();}};}
+function route(){clearTimers();const h=location.hash||'#home';const [r,id]=h.slice(1).split('/');window.scrollTo(0,0);
+ if(r==='p')problem(id);else if(r==='d')design(id);else if(r==='c')concept(id);else if(r==='coding')coding();else if(r==='design')designList();else if(r==='concepts')concepts();else if(r==='mock')mock();else if(r==='progress')progress();else home();}
+app.addEventListener('click',e=>{const g=e.target.closest('[data-go]');if(g)location.hash=g.dataset.go;});
+window.addEventListener('hashchange',route);route();
+window.__IP={route,player};
+})();

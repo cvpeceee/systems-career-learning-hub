@@ -1,0 +1,79 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:07.256
+Trees are everywhere: file systems, device trees, PCIe topologies, and the DOM in a browser.
+
+00:00:08.606 --> 00:00:10.673
+A tree is like a company org chart.
+
+00:00:11.123 --> 00:00:17.462
+There is one root at the top, the CEO. Each person can have reports below them, called children.
+
+00:00:17.912 --> 00:00:19.874
+People with no reports are leaves.
+
+00:00:20.324 --> 00:00:25.014
+A binary tree means every person has at most two reports: a left and a right.
+
+00:00:26.364 --> 00:00:28.791
+A binary search tree adds one rule.
+
+00:00:29.241 --> 00:00:33.513
+Everything on the left of a node is smaller, and everything on the right is larger.
+
+00:00:33.963 --> 00:00:38.491
+So to find six, start at the root eight. Six is smaller, go left to four.
+
+00:00:38.941 --> 00:00:42.842
+Six is larger than four, go right. Found it in three steps.
+
+00:00:43.292 --> 00:00:47.228
+If the tree is balanced, a search takes about log n steps.
+
+00:00:48.578 --> 00:00:50.714
+There are classic ways to walk a tree.
+
+00:00:51.164 --> 00:00:58.386
+Depth first goes all the way down one branch before backing up. In-order depth first on a BST visits values in sorted order.
+
+00:00:58.836 --> 00:01:05.012
+Breadth first visits level by level using a queue: eight, then four and twelve, then the bottom row.
+
+00:01:06.362 --> 00:01:08.011
+Keep these costs in mind.
+
+00:01:08.461 --> 00:01:16.239
+Balanced trees, like red black trees, give O of log n search, insert, and delete. std map and Java TreeMap use them.
+
+00:01:16.689 --> 00:01:21.217
+An unbalanced tree can degrade into a linked list, with O of n operations.
+
+00:01:21.667 --> 00:01:25.150
+Tree recursion uses stack memory equal to the height of the tree.
+
+00:01:26.500 --> 00:01:30.947
+A very common interview bug: checking only a node against its own children.
+
+00:01:31.397 --> 00:01:35.426
+In this tree, three is less than six, so it looks fine locally.
+
+00:01:35.876 --> 00:01:42.482
+But three sits in the right subtree of five, so it must be greater than five. The tree is not a valid BST.
+
+00:01:42.932 --> 00:01:45.881
+The fix is to pass the allowed range down the recursion.
+
+00:01:47.231 --> 00:01:52.827
+A trie is a special tree for strings. Each edge is a letter, and paths spell words.
+
+00:01:53.277 --> 00:01:58.385
+Words that share a prefix share the same nodes, like car and cat sharing c and a.
+
+00:01:58.835 --> 00:02:03.920
+Search and prefix checks cost O of the word length, no matter how many words are stored.
+
+00:02:04.370 --> 00:02:08.085
+Tries power autocomplete and symbol lookup in code search tools.
+
+00:02:09.435 --> 00:02:15.519
+Practice Validate BST and Level Order Traversal next, and watch the tree light up step by step.

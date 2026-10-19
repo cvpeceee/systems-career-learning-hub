@@ -1,0 +1,76 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:06.560
+A heap gives you the smallest, or the largest, item instantly. It powers schedulers and top k problems.
+
+00:00:07.910 --> 00:00:10.011
+Think of a hospital emergency room.
+
+00:00:10.461 --> 00:00:15.233
+Patients do not wait in arrival order. The most urgent patient is always seen next.
+
+00:00:15.683 --> 00:00:20.977
+The triage nurse does not fully sort everyone, they just make sure the most urgent person is at the front.
+
+00:00:21.427 --> 00:00:25.804
+That partial order is cheap to maintain, and that is the idea of a heap.
+
+00:00:27.154 --> 00:00:30.022
+A min heap is a tree stored inside an array.
+
+00:00:30.472 --> 00:00:37.379
+The rule: every parent is smaller than or equal to its children. So the smallest is always at index zero, the root.
+
+00:00:37.829 --> 00:00:43.727
+The children of index i live at two i plus one and two i plus two. No pointers needed.
+
+00:00:45.077 --> 00:00:47.817
+To insert zero, place it at the end of the array.
+
+00:00:48.267 --> 00:00:52.087
+Then sift it up: while it is smaller than its parent, swap them.
+
+00:00:52.537 --> 00:00:56.241
+It swaps with two, then with one, and becomes the new root.
+
+00:00:56.691 --> 00:01:00.301
+At most log n swaps, because the tree is balanced.
+
+00:01:01.651 --> 00:01:03.184
+Here is a top k trick.
+
+00:01:03.634 --> 00:01:07.453
+To find the second largest number, keep a min heap of size two.
+
+00:01:07.903 --> 00:01:12.756
+Every new number goes in. If the heap grows past two, pop the smallest.
+
+00:01:13.206 --> 00:01:20.207
+At the end, the top of the heap is the answer. This costs n log k, great for streams of latency samples.
+
+00:01:21.557 --> 00:01:27.815
+In C plus plus, priority queue is a max heap by default. Pass greater to make it a min heap.
+
+00:01:28.265 --> 00:01:31.794
+In Java, PriorityQueue is a min heap by default.
+
+00:01:32.244 --> 00:01:38.734
+In C sharp, PriorityQueue takes an element and a priority, and dequeues the lowest priority first.
+
+00:01:39.184 --> 00:01:43.852
+Dijkstra's shortest path algorithm and OS schedulers both rely on heaps.
+
+00:01:45.202 --> 00:01:46.873
+Interview tips for heaps.
+
+00:01:47.323 --> 00:01:54.150
+Say which way the heap points and why. For the k largest, you want a min heap, so you can evict the smallest.
+
+00:01:54.600 --> 00:01:59.070
+Know that building a heap from an array takes only O of n, not n log n.
+
+00:01:59.520 --> 00:02:04.141
+And mention quickselect as an alternative for one-off kth element queries.
+
+00:02:05.491 --> 00:02:10.506
+Whenever you hear top k, smallest so far, or next event, think heap.

@@ -1,0 +1,67 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:06.571
+Dynamic programming sounds fancy, but it just means: do not solve the same small problem twice.
+
+00:00:07.921 --> 00:00:12.379
+Imagine climbing a staircase and writing the answer to each step on a sticky note.
+
+00:00:12.829 --> 00:00:18.890
+To answer step ten, you read the notes on steps nine and eight, instead of climbing from the bottom again.
+
+00:00:19.340 --> 00:00:21.662
+Those sticky notes are the DP table.
+
+00:00:23.012 --> 00:00:25.369
+Use DP when two things are true.
+
+00:00:25.819 --> 00:00:33.156
+First, the big answer can be built from answers to smaller versions of the same question. That is called optimal substructure.
+
+00:00:33.606 --> 00:00:39.725
+Second, the same smaller questions come up again and again. That is called overlapping subproblems.
+
+00:00:40.175 --> 00:00:44.377
+Then pick a state, write the recurrence, and fill a table from small to big.
+
+00:00:45.727 --> 00:00:52.101
+Let us solve coin change: make six using coins one, three, and four, with the fewest coins.
+
+00:00:52.551 --> 00:00:58.786
+Greedy would grab four, then one, then one: three coins. But three plus three is only two coins!
+
+00:00:59.236 --> 00:01:03.532
+The DP table stores the best answer for each amount from zero to six.
+
+00:01:03.982 --> 00:01:09.763
+For each amount a, try each coin as the last coin: one plus dp of a minus that coin.
+
+00:01:10.213 --> 00:01:17.655
+Watch the table fill. dp of six is the minimum of dp five, dp three, and dp two, plus one. That is two.
+
+00:01:19.005 --> 00:01:20.341
+There are two styles.
+
+00:01:20.791 --> 00:01:25.585
+Top down: write the recursion, then add a cache, called memoization.
+
+00:01:26.035 --> 00:01:30.343
+Bottom up: fill an array in order, with no recursion and no stack risk.
+
+00:01:30.793 --> 00:01:35.448
+Both have the same complexity. Here, amount times number of coins.
+
+00:01:36.798 --> 00:01:39.260
+Counting bits is DP in disguise.
+
+00:01:39.710 --> 00:01:45.515
+The number of one bits in i equals the count for i shifted right by one, plus the lowest bit.
+
+00:01:45.965 --> 00:01:50.748
+Shifting right just drops the last bit, and we already know that smaller answer.
+
+00:01:51.198 --> 00:01:54.089
+So each entry is one lookup and one addition.
+
+00:01:55.439 --> 00:02:02.625
+The hardest part of DP is naming the state. Practice coin change and counting bits, then you will see the pattern everywhere.

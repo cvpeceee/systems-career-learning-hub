@@ -1,0 +1,79 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:05.039
+Stacks and queues are two simple ways to line things up. Interviews use them constantly.
+
+00:00:06.389 --> 00:00:12.496
+A stack is a pile of plates. You add to the top and take from the top. Last in, first out.
+
+00:00:12.946 --> 00:00:19.517
+A queue is the line at a coffee shop. You join at the back and get served at the front. First in, first out.
+
+00:00:20.867 --> 00:00:22.736
+Watch a stack check brackets.
+
+00:00:23.186 --> 00:00:26.344
+We see an opening curly brace, so we push it.
+
+00:00:26.794 --> 00:00:29.093
+Then an opening square bracket, push.
+
+00:00:29.543 --> 00:00:34.396
+A closing square bracket must match the top plate. It does, so we pop.
+
+00:00:34.846 --> 00:00:40.349
+The closing curly brace matches the new top. Pop. The pile is empty, so the string is valid.
+
+00:00:41.699 --> 00:00:46.203
+A special trick is the monotonic stack: a stack kept in sorted order.
+
+00:00:46.653 --> 00:00:51.019
+For daily temperatures, the stack holds days still waiting for a warmer day.
+
+00:00:51.469 --> 00:00:56.554
+When a hotter day arrives, it pops every colder waiting day and gives them their answer.
+
+00:00:57.004 --> 00:01:01.021
+Each day is pushed once and popped once, so the whole thing is linear.
+
+00:01:02.371 --> 00:01:03.300
+Now a queue.
+
+00:01:03.750 --> 00:01:05.340
+Tasks join at the back.
+
+00:01:05.790 --> 00:01:07.950
+The front task is served and leaves.
+
+00:01:08.400 --> 00:01:14.623
+Breadth first search uses a queue so that nodes are processed in the order they were discovered, level by level.
+
+00:01:15.973 --> 00:01:19.920
+In driver code you use queues all the time, as ring buffers.
+
+00:01:20.370 --> 00:01:25.606
+A ring buffer is a fixed array where the head and tail indexes wrap around using modulo.
+
+00:01:26.056 --> 00:01:29.980
+Nothing is ever copied or shifted, so every operation is O of one.
+
+00:01:30.430 --> 00:01:36.990
+With one producer and one consumer, it can even be made lock free using atomic head and tail indexes.
+
+00:01:38.340 --> 00:01:41.045
+Common interview mistakes with stacks and queues.
+
+00:01:41.495 --> 00:01:44.502
+Popping from an empty stack. Always check first.
+
+00:01:44.952 --> 00:01:49.120
+Forgetting to check that the stack is empty at the very end of a bracket check.
+
+00:01:49.570 --> 00:01:54.516
+Using a Java Stack class instead of ArrayDeque, which is faster and the modern choice.
+
+00:01:54.966 --> 00:02:02.048
+And for ring buffers, mixing up full and empty when head equals tail. Keep a count, or leave one slot unused.
+
+00:02:03.398 --> 00:02:07.415
+Stacks for "most recent unfinished thing", queues for "oldest first".

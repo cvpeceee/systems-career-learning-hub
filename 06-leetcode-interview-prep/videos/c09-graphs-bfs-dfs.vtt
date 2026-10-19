@@ -1,0 +1,82 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:07.349
+Graphs model networks: servers and switches, build dependencies, road maps, and robot occupancy grids.
+
+00:00:08.699 --> 00:00:10.708
+A graph is just dots and lines.
+
+00:00:11.158 --> 00:00:15.326
+The dots are nodes, like cities. The lines are edges, like roads.
+
+00:00:15.776 --> 00:00:23.252
+Roads can be one way, which makes a directed graph, or carry a cost, like travel time, which makes a weighted graph.
+
+00:00:24.602 --> 00:00:27.714
+Breadth first search explores like ripples in a pond.
+
+00:00:28.164 --> 00:00:32.297
+Start at A. First visit every neighbor one step away: B and C.
+
+00:00:32.747 --> 00:00:35.893
+Then everything two steps away: D and E.
+
+00:00:36.343 --> 00:00:42.729
+Because it goes level by level, BFS finds the shortest path when every edge has the same cost.
+
+00:00:44.079 --> 00:00:48.003
+Depth first search is like exploring a maze with one hand on the wall.
+
+00:00:48.453 --> 00:00:52.342
+Go as deep as possible: A, then B, then D, then F.
+
+00:00:52.792 --> 00:00:56.693
+When you hit a dead end, back up and try the next unexplored path.
+
+00:00:57.143 --> 00:01:03.598
+DFS uses recursion or an explicit stack, and it is perfect for flood fill and cycle detection.
+
+00:01:04.948 --> 00:01:11.996
+Topological sort orders tasks so every dependency comes first, like building drivers before the app that uses them.
+
+00:01:12.446 --> 00:01:16.683
+Count how many arrows point into each node. Start with nodes that have zero.
+
+00:01:17.133 --> 00:01:21.673
+Each time you finish a node, remove its arrows. New zeros become ready.
+
+00:01:22.123 --> 00:01:25.710
+If nodes are left over and none are ready, there is a cycle.
+
+00:01:27.060 --> 00:01:27.920
+Quick guide.
+
+00:01:28.370 --> 00:01:31.040
+Unweighted shortest path: BFS.
+
+00:01:31.490 --> 00:01:35.379
+Weighted, non negative shortest path: Dijkstra with a heap.
+
+00:01:35.829 --> 00:01:41.030
+Connected groups or flood fill: DFS, BFS, or union find.
+
+00:01:41.480 --> 00:01:44.580
+Dependencies and ordering: topological sort.
+
+00:01:45.030 --> 00:01:48.223
+Always track visited nodes, or you will loop forever.
+
+00:01:49.573 --> 00:01:50.676
+Graphs in your world.
+
+00:01:51.126 --> 00:01:54.969
+A PCIe topology is a tree you walk with depth first search.
+
+00:01:55.419 --> 00:01:58.368
+Device driver probe order is a topological sort.
+
+00:01:58.818 --> 00:02:03.682
+A GPU cluster fabric is a weighted graph where shortest paths matter for collectives.
+
+00:02:05.032 --> 00:02:10.768
+Graphs look scary, but most graph problems are BFS or DFS with a visited set.

@@ -1,0 +1,82 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:05.735
+This lesson covers arrays and two of the most common interview patterns: two pointers and sliding windows.
+
+00:00:07.085 --> 00:00:09.860
+An array is a row of numbered lockers in a hallway.
+
+00:00:10.310 --> 00:00:17.323
+Because the lockers are numbered and side by side in memory, you can walk straight to locker number five without opening the others.
+
+00:00:17.773 --> 00:00:20.396
+That is why reading any index is O of one.
+
+00:00:20.846 --> 00:00:25.711
+But inserting a locker in the middle means shifting every locker after it, which is O of n.
+
+00:00:27.061 --> 00:00:28.419
+Here is an array in memory.
+
+00:00:28.869 --> 00:00:33.061
+Index zero holds three, index one holds eight, and so on.
+
+00:00:33.511 --> 00:00:39.014
+Reading index four is a single step: start address plus four times the element size.
+
+00:00:39.464 --> 00:00:45.594
+This is also why arrays are cache friendly, something you already know from driver code with DMA buffers.
+
+00:00:46.944 --> 00:00:48.418
+Now, two pointers.
+
+00:00:48.868 --> 00:00:51.759
+Put one finger at the left end and one at the right end.
+
+00:00:52.209 --> 00:00:55.843
+At every step, move one finger inward based on a rule.
+
+00:00:56.293 --> 00:01:00.600
+Because each finger only moves in one direction, the total work is linear.
+
+00:01:01.050 --> 00:01:06.461
+Container With Most Water uses exactly this: always move the finger at the shorter wall.
+
+00:01:07.811 --> 00:01:12.455
+A sliding window is two pointers that both move to the right, like a caterpillar.
+
+00:01:12.905 --> 00:01:17.688
+The right end grows the window. The left end shrinks it when a rule breaks.
+
+00:01:18.138 --> 00:01:25.533
+For the longest substring without repeats, when the head finds a letter already in the body, the tail jumps past the old copy.
+
+00:01:25.983 --> 00:01:30.326
+Each letter enters and leaves the window at most once, so it is O of n.
+
+00:01:31.676 --> 00:01:33.452
+How do you spot these patterns?
+
+00:01:33.902 --> 00:01:38.105
+If the input is sorted, or you need a pair, think two pointers.
+
+00:01:38.555 --> 00:01:44.232
+If the question says longest, shortest, or contiguous subarray, think sliding window.
+
+00:01:44.682 --> 00:01:50.092
+Watch the pitfalls: off by one on window length, and pointers that move backwards.
+
+00:01:51.442 --> 00:01:57.294
+One more classic: binary search on a rotated array, like a log ring buffer that wrapped around.
+
+00:01:57.744 --> 00:02:01.076
+Pick the middle. At least one half is still in sorted order.
+
+00:02:01.526 --> 00:02:06.855
+If the target falls inside the sorted half, keep that half. Otherwise keep the other one.
+
+00:02:07.305 --> 00:02:11.716
+Each step throws away half the array, so it costs log n steps.
+
+00:02:13.066 --> 00:02:20.984
+Try Two Sum, Longest Substring, and Container With Most Water in the practice tab, and watch the pointers move in the visualizer.
