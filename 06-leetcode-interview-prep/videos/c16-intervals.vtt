@@ -1,0 +1,67 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:06.026
+This lesson covers intervals: meetings, reservations, memory ranges and time windows.
+
+00:00:07.376 --> 00:00:09.999
+Think of a shared calendar for a meeting room.
+
+00:00:10.449 --> 00:00:13.445
+Each meeting is a bar with a start and an end.
+
+00:00:13.895 --> 00:00:17.122
+Two bars overlap if each one starts before the other ends.
+
+00:00:17.572 --> 00:00:24.144
+Most interval problems become easy once the bars are sorted by start time, because then you only compare neighbors.
+
+00:00:25.494 --> 00:00:29.267
+Merge intervals: sort by start, then sweep left to right.
+
+00:00:29.717 --> 00:00:37.008
+The first bar is one to three. The next, two to six, starts before three ends, so merge them into one to six.
+
+00:00:37.458 --> 00:00:41.022
+Eight to ten starts after six, so it begins a new group.
+
+00:00:41.472 --> 00:00:44.619
+One pass after sorting: n log n total.
+
+00:00:45.969 --> 00:00:48.581
+How many rooms do we need at the busiest moment?
+
+00:00:49.031 --> 00:00:53.454
+Sort meetings by start. Keep a min heap of end times for rooms in use.
+
+00:00:53.904 --> 00:00:59.767
+When a new meeting starts after the earliest end on top of the heap, that room is free: pop it.
+
+00:01:00.217 --> 00:01:04.722
+Push the new end time. The biggest the heap ever gets is the number of rooms.
+
+00:01:06.072 --> 00:01:07.070
+Vocabulary.
+
+00:01:07.520 --> 00:01:17.493
+Half open, written with a square bracket and a round bracket, means the end time is not included. A meeting ending at five and one starting at five do not clash.
+
+00:01:17.943 --> 00:01:25.327
+A sweep line walks through all start and end events in time order, adding one at a start and subtracting one at an end.
+
+00:01:25.777 --> 00:01:31.199
+An interval map, like a balanced tree keyed by start, answers can I book this in log n time.
+
+00:01:32.549 --> 00:01:33.919
+Systems uses.
+
+00:01:34.369 --> 00:01:38.386
+GPU cluster schedulers reserve nodes over time windows.
+
+00:01:38.836 --> 00:01:44.072
+Memory allocators merge adjacent free ranges, just like merging DMA regions.
+
+00:01:44.522 --> 00:01:48.725
+And monitoring systems compute busy time from start and stop events.
+
+00:01:50.075 --> 00:01:57.540
+Sort by start, compare neighbors, and use a heap or sweep line for peaks. Try Merge Intervals and Meeting Rooms Two.

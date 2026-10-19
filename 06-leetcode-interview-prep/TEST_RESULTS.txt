@@ -1,26 +1,74 @@
-d01-token-bucket: cpp=OK  trace=OK  java=OK  cs=OK | {'cpp': 'PASS 3/3', 'java': 'PASS 3/3', 'cs': 'PASS 3/3'}
-d02-hash-ring: cpp=OK  trace=OK  java=OK  cs=OK | {'cpp': 'PASS 3/3', 'java': 'PASS 3/3', 'cs': 'PASS 3/3'}
-d03-kv-block-alloc: cpp=OK  trace=OK  java=OK  cs=OK | {'cpp': 'PASS 3/3', 'java': 'PASS 3/3', 'cs': 'PASS 3/3'}
-d04-hit-counter: cpp=OK  trace=OK  java=OK  cs=OK | {'cpp': 'PASS 3/3', 'java': 'PASS 3/3', 'cs': 'PASS 3/3'}
-d05-ab-slots: cpp=OK  trace=OK  java=OK  cs=OK | {'cpp': 'PASS 3/3', 'java': 'PASS 3/3', 'cs': 'PASS 3/3'}
-p01-two-sum: cpp=OK  trace=OK  java=OK  cs=OK | {'cpp': 'PASS 6/6', 'java': 'PASS 6/6', 'cs': 'PASS 6/6'}
-p02-longest-substring: cpp=OK  trace=OK  java=OK  cs=OK | {'cpp': 'PASS 8/8', 'java': 'PASS 8/8', 'cs': 'PASS 8/8'}
-p03-container-water: cpp=OK  trace=OK  java=OK  cs=OK | {'cpp': 'PASS 6/6', 'java': 'PASS 6/6', 'cs': 'PASS 6/6'}
-p04-valid-parentheses: cpp=OK  trace=OK  java=OK  cs=OK | {'cpp': 'PASS 8/8', 'java': 'PASS 8/8', 'cs': 'PASS 8/8'}
-p05-daily-temperatures: cpp=OK  trace=OK  java=OK  cs=OK | {'cpp': 'PASS 5/5', 'java': 'PASS 5/5', 'cs': 'PASS 5/5'}
-p06-reverse-list: cpp=OK  trace=OK  java=OK  cs=OK | {'cpp': 'PASS 4/4', 'java': 'PASS 4/4', 'cs': 'PASS 4/4'}
-p07-validate-bst: cpp=OK  trace=OK  java=OK  cs=OK | {'cpp': 'PASS 7/7', 'java': 'PASS 7/7', 'cs': 'PASS 7/7'}
-p08-level-order: cpp=OK  trace=OK  java=OK  cs=OK | {'cpp': 'PASS 5/5', 'java': 'PASS 5/5', 'cs': 'PASS 5/5'}
-p09-kth-largest: cpp=OK  trace=OK  java=OK  cs=OK | {'cpp': 'PASS 5/5', 'java': 'PASS 5/5', 'cs': 'PASS 5/5'}
-p10-islands: cpp=OK  trace=OK  java=OK  cs=OK | {'cpp': 'PASS 5/5', 'java': 'PASS 5/5', 'cs': 'PASS 5/5'}
-p11-course-schedule: cpp=OK  trace=OK  java=OK  cs=OK | {'cpp': 'PASS 6/6', 'java': 'PASS 6/6', 'cs': 'PASS 6/6'}
-p12-network-delay: cpp=OK  trace=OK  java=OK  cs=OK | {'cpp': 'PASS 5/5', 'java': 'PASS 5/5', 'cs': 'PASS 5/5'}
-p13-redundant-connection: cpp=OK  trace=OK  java=OK  cs=OK | {'cpp': 'PASS 4/4', 'java': 'PASS 4/4', 'cs': 'PASS 4/4'}
-p14-trie: cpp=OK  trace=OK  java=OK  cs=OK | {'cpp': 'PASS 3/3', 'java': 'PASS 3/3', 'cs': 'PASS 3/3'}
-p15-merge-dma: cpp=OK  trace=OK  java=OK  cs=OK | {'cpp': 'PASS 6/6', 'java': 'PASS 6/6', 'cs': 'PASS 6/6'}
-p16-rotated-search: cpp=OK  trace=OK  java=OK  cs=OK | {'cpp': 'PASS 7/7', 'java': 'PASS 7/7', 'cs': 'PASS 7/7'}
-p17-subsets: cpp=OK  trace=OK  java=OK  cs=OK | {'cpp': 'PASS 3/3', 'java': 'PASS 3/3', 'cs': 'PASS 3/3'}
-p18-coin-change: cpp=OK  trace=OK  java=OK  cs=OK | {'cpp': 'PASS 5/5', 'java': 'PASS 5/5', 'cs': 'PASS 5/5'}
-p19-counting-bits: cpp=OK  trace=OK  java=OK  cs=OK | {'cpp': 'PASS 4/4', 'java': 'PASS 4/4', 'cs': 'PASS 4/4'}
-p20-lru-cache: cpp=OK  trace=OK  java=OK  cs=OK | {'cpp': 'PASS 3/3', 'java': 'PASS 3/3', 'cs': 'PASS 3/3'}
-p21-ring-buffer: cpp=OK  trace=OK  java=OK  cs=OK | {'cpp': 'PASS 3/3', 'java': 'PASS 3/3', 'cs': 'PASS 3/3'}
+Phase 2 test run (Oct 19, 2026): 70 directories (65 problems + 5 design components)
+C++ g++14 -fsanitize=address,undefined | Java OpenJDK 21 | C# .NET 8 | TSan: g++ -fsanitize=thread
+Totals: C++ 319/319, Java 319/319, C# 319/319 test cases pass. Java+C# traces recorded: 41 problems.
+
+d01-token-bucket: cpp=OK  trace=OK  java=OK  trace_java=OK  cs=OK  trace_cs=OK | {'cpp': 'PASS 3/3', 'trace': '21 steps', 'java': 'PASS 3/3', 'trace_java': '7 steps', 'cs': 'PASS 3/3', 'trace_cs': '7 steps'}
+d02-hash-ring: cpp=OK  trace=OK  java=OK  cs=OK | {'cpp': 'PASS 3/3', 'trace': '26 steps', 'java': 'PASS 3/3', 'cs': 'PASS 3/3'}
+d03-kv-block-alloc: cpp=OK  trace=OK  java=OK  trace_java=OK  cs=OK  trace_cs=OK | {'cpp': 'PASS 3/3', 'trace': '18 steps', 'java': 'PASS 3/3', 'trace_java': '5 steps', 'cs': 'PASS 3/3', 'trace_cs': '5 steps'}
+d04-hit-counter: cpp=OK  trace=OK  java=OK  cs=OK | {'cpp': 'PASS 3/3', 'trace': '21 steps', 'java': 'PASS 3/3', 'cs': 'PASS 3/3'}
+d05-ab-slots: cpp=OK  trace=OK  java=OK  trace_java=OK  cs=OK  trace_cs=OK | {'cpp': 'PASS 3/3', 'trace': '20 steps', 'java': 'PASS 3/3', 'trace_java': '6 steps', 'cs': 'PASS 3/3', 'trace_cs': '6 steps'}
+p01-two-sum: cpp=OK  trace=OK  java=OK  trace_java=OK  cs=OK  trace_cs=OK | {'cpp': 'PASS 6/6', 'trace': '7 steps', 'java': 'PASS 6/6', 'trace_java': '3 steps', 'cs': 'PASS 6/6', 'trace_cs': '3 steps'}
+p02-longest-substring: cpp=OK  trace=OK  java=OK  cs=OK | {'cpp': 'PASS 8/8', 'trace': '11 steps', 'java': 'PASS 8/8', 'cs': 'PASS 8/8'}
+p03-container-water: cpp=OK  trace=OK  java=OK  cs=OK | {'cpp': 'PASS 6/6', 'trace': '11 steps', 'java': 'PASS 6/6', 'cs': 'PASS 6/6'}
+p04-valid-parentheses: cpp=OK  trace=OK  java=OK  trace_java=OK  cs=OK  trace_cs=OK | {'cpp': 'PASS 8/8', 'trace': '6 steps', 'java': 'PASS 8/8', 'trace_java': '4 steps', 'cs': 'PASS 8/8', 'trace_cs': '4 steps'}
+p05-daily-temperatures: cpp=OK  trace=OK  java=OK  trace_java=OK  cs=OK  trace_cs=OK | {'cpp': 'PASS 5/5', 'trace': '16 steps', 'java': 'PASS 5/5', 'trace_java': '8 steps', 'cs': 'PASS 5/5', 'trace_cs': '8 steps'}
+p06-reverse-list: cpp=OK  trace=OK  java=OK  trace_java=OK  cs=OK  trace_cs=OK | {'cpp': 'PASS 4/4', 'trace': '8 steps', 'java': 'PASS 4/4', 'trace_java': '5 steps', 'cs': 'PASS 4/4', 'trace_cs': '5 steps'}
+p07-validate-bst: cpp=OK  trace=OK  java=OK  trace_java=OK  cs=OK  trace_cs=OK | {'cpp': 'PASS 7/7', 'trace': '26 steps', 'java': 'PASS 7/7', 'trace_java': '4 steps', 'cs': 'PASS 7/7', 'trace_cs': '4 steps'}
+p08-level-order: cpp=OK  trace=OK  java=OK  cs=OK | {'cpp': 'PASS 5/5', 'trace': '11 steps', 'java': 'PASS 5/5', 'cs': 'PASS 5/5'}
+p09-kth-largest: cpp=OK  trace=OK  java=OK  trace_java=OK  cs=OK  trace_cs=OK | {'cpp': 'PASS 5/5', 'trace': '8 steps', 'java': 'PASS 5/5', 'trace_java': '6 steps', 'cs': 'PASS 5/5', 'trace_cs': '6 steps'}
+p10-islands: cpp=OK  trace=OK  java=OK  trace_java=OK  cs=OK  trace_cs=OK | {'cpp': 'PASS 5/5', 'trace': '63 steps', 'java': 'PASS 5/5', 'trace_java': '6 steps', 'cs': 'PASS 5/5', 'trace_cs': '6 steps'}
+p11-course-schedule: cpp=OK  trace=OK  java=OK  trace_java=OK  cs=OK  trace_cs=OK | {'cpp': 'PASS 6/6', 'trace': '7 steps', 'java': 'PASS 6/6', 'trace_java': '4 steps', 'cs': 'PASS 6/6', 'trace_cs': '4 steps'}
+p12-network-delay: cpp=OK  trace=OK  java=OK  trace_java=OK  cs=OK  trace_cs=OK | {'cpp': 'PASS 5/5', 'trace': '11 steps', 'java': 'PASS 5/5', 'trace_java': '4 steps', 'cs': 'PASS 5/5', 'trace_cs': '4 steps'}
+p13-redundant-connection: cpp=OK  trace=OK  java=OK  trace_java=OK  cs=OK  trace_cs=OK | {'cpp': 'PASS 4/4', 'trace': '43 steps', 'java': 'PASS 4/4', 'trace_java': '4 steps', 'cs': 'PASS 4/4', 'trace_cs': '4 steps'}
+p14-trie: cpp=OK  trace=OK  java=OK  cs=OK | {'cpp': 'PASS 3/3', 'trace': '14 steps', 'java': 'PASS 3/3', 'cs': 'PASS 3/3'}
+p15-merge-dma: cpp=OK  trace=OK  java=OK  trace_java=OK  cs=OK  trace_cs=OK | {'cpp': 'PASS 6/6', 'trace': '6 steps', 'java': 'PASS 6/6', 'trace_java': '4 steps', 'cs': 'PASS 6/6', 'trace_cs': '4 steps'}
+p16-rotated-search: cpp=OK  trace=OK  java=OK  cs=OK | {'cpp': 'PASS 7/7', 'trace': '5 steps', 'java': 'PASS 7/7', 'cs': 'PASS 7/7'}
+p17-subsets: cpp=OK  trace=OK  java=OK  cs=OK | {'cpp': 'PASS 3/3', 'trace': '40 steps', 'java': 'PASS 3/3', 'cs': 'PASS 3/3'}
+p18-coin-change: cpp=OK  trace=OK  java=OK  cs=OK | {'cpp': 'PASS 5/5', 'trace': '9 steps', 'java': 'PASS 5/5', 'cs': 'PASS 5/5'}
+p19-counting-bits: cpp=OK  trace=OK  java=OK  cs=OK | {'cpp': 'PASS 4/4', 'trace': '10 steps', 'java': 'PASS 4/4', 'cs': 'PASS 4/4'}
+p20-lru-cache: cpp=OK  trace=OK  java=OK  cs=OK | {'cpp': 'PASS 3/3', 'trace': '39 steps', 'java': 'PASS 3/3', 'cs': 'PASS 3/3'}
+p21-ring-buffer: cpp=OK  trace=OK  java=OK  cs=OK | {'cpp': 'PASS 3/3', 'trace': '30 steps', 'java': 'PASS 3/3', 'cs': 'PASS 3/3'}
+p22-group-anagrams: cpp=OK  trace=OK  java=OK  cs=OK | {'cpp': 'PASS 4/4', 'trace': '8 steps', 'java': 'PASS 4/4', 'cs': 'PASS 4/4'}
+p23-top-k-frequent: cpp=OK  trace=OK  java=OK  trace_java=OK  cs=OK  trace_cs=OK | {'cpp': 'PASS 5/5', 'trace': '13 steps', 'java': 'PASS 5/5', 'trace_java': '6 steps', 'cs': 'PASS 5/5', 'trace_cs': '6 steps'}
+p24-product-except-self: cpp=OK  trace=OK  java=OK  trace_java=OK  cs=OK  trace_cs=OK | {'cpp': 'PASS 5/5', 'trace': '10 steps', 'java': 'PASS 5/5', 'trace_java': '8 steps', 'cs': 'PASS 5/5', 'trace_cs': '8 steps'}
+p25-trapping-rain-water: cpp=OK  trace=OK  java=OK  trace_java=OK  cs=OK  trace_cs=OK | {'cpp': 'PASS 5/5', 'trace': '7 steps', 'java': 'PASS 5/5', 'trace_java': '5 steps', 'cs': 'PASS 5/5', 'trace_cs': '5 steps'}
+p26-min-window: cpp=OK  trace=OK  java=OK  cs=OK | {'cpp': 'PASS 5/5', 'trace': '7 steps', 'java': 'PASS 5/5', 'cs': 'PASS 5/5'}
+p27-merge-k-lists: cpp=OK  trace=OK  java=OK  trace_java=OK  cs=OK  trace_cs=OK | {'cpp': 'PASS 5/5', 'trace': '10 steps', 'java': 'PASS 5/5', 'trace_java': '8 steps', 'cs': 'PASS 5/5', 'trace_cs': '8 steps'}
+p28-lca: cpp=OK  trace=OK  java=OK  trace_java=OK  cs=OK  trace_cs=OK | {'cpp': 'PASS 5/5', 'trace': '48 steps', 'java': 'PASS 5/5', 'trace_java': '16 steps', 'cs': 'PASS 5/5', 'trace_cs': '16 steps'}
+p29-serialize-tree: cpp=OK  trace=OK  java=OK  cs=OK | {'cpp': 'PASS 4/4', 'trace': '29 steps', 'java': 'PASS 4/4', 'cs': 'PASS 4/4'}
+p30-word-search-ii: cpp=OK  trace=OK  java=OK  trace_java=OK  cs=OK  trace_cs=OK | {'cpp': 'PASS 4/4', 'trace': '55 steps', 'java': 'PASS 4/4', 'trace_java': '9 steps', 'cs': 'PASS 4/4', 'trace_cs': '9 steps'}
+p31-rotting-oranges: cpp=OK  trace=OK  java=OK  trace_java=OK  cs=OK  trace_cs=OK | {'cpp': 'PASS 5/5', 'trace': '6 steps', 'java': 'PASS 5/5', 'trace_java': '4 steps', 'cs': 'PASS 5/5', 'trace_cs': '4 steps'}
+p32-clone-graph: cpp=OK  trace=OK  java=OK  cs=OK | {'cpp': 'PASS 4/4', 'trace': '6 steps', 'java': 'PASS 4/4', 'cs': 'PASS 4/4'}
+p33-alien-dictionary: cpp=OK  trace=OK  java=OK  trace_java=OK  cs=OK  trace_cs=OK | {'cpp': 'PASS 5/5', 'trace': '7 steps', 'java': 'PASS 5/5', 'trace_java': '5 steps', 'cs': 'PASS 5/5', 'trace_cs': '5 steps'}
+p34-cheapest-flights: cpp=OK  trace=OK  java=OK  trace_java=OK  cs=OK  trace_cs=OK | {'cpp': 'PASS 4/4', 'trace': '4 steps', 'java': 'PASS 4/4', 'trace_java': '2 steps', 'cs': 'PASS 4/4', 'trace_cs': '2 steps'}
+p35-accounts-merge: cpp=OK  trace=OK  java=OK  trace_java=OK  cs=OK  trace_cs=OK | {'cpp': 'PASS 4/4', 'trace': '8 steps', 'java': 'PASS 4/4', 'trace_java': '6 steps', 'cs': 'PASS 4/4', 'trace_cs': '6 steps'}
+p36-meeting-rooms-ii: cpp=OK  trace=OK  java=OK  trace_java=OK  cs=OK  trace_cs=OK | {'cpp': 'PASS 5/5', 'trace': '5 steps', 'java': 'PASS 5/5', 'trace_java': '3 steps', 'cs': 'PASS 5/5', 'trace_cs': '3 steps'}
+p37-insert-interval: cpp=OK  trace=OK  java=OK  cs=OK | {'cpp': 'PASS 5/5', 'trace': '7 steps', 'java': 'PASS 5/5', 'cs': 'PASS 5/5'}
+p38-median-two-sorted: cpp=OK  trace=OK  java=OK  trace_java=OK  cs=OK  trace_cs=OK | {'cpp': 'PASS 6/6', 'trace': '4 steps', 'java': 'PASS 6/6', 'trace_java': '2 steps', 'cs': 'PASS 6/6', 'trace_cs': '2 steps'}
+p39-koko-bananas: cpp=OK  trace=OK  java=OK  trace_java=OK  cs=OK  trace_cs=OK | {'cpp': 'PASS 5/5', 'trace': '6 steps', 'java': 'PASS 5/5', 'trace_java': '4 steps', 'cs': 'PASS 5/5', 'trace_cs': '4 steps'}
+p40-permutations: cpp=OK  trace=OK  java=OK  trace_java=OK  cs=OK  trace_cs=OK | {'cpp': 'PASS 3/3', 'trace': '55 steps', 'java': 'PASS 3/3', 'trace_java': '15 steps', 'cs': 'PASS 3/3', 'trace_cs': '15 steps'}
+p41-n-queens-ii: cpp=OK  trace=OK  java=OK  trace_java=OK  cs=OK  trace_cs=OK | {'cpp': 'PASS 5/5', 'trace': '54 steps', 'java': 'PASS 5/5', 'trace_java': '16 steps', 'cs': 'PASS 5/5', 'trace_cs': '16 steps'}
+p42-edit-distance: cpp=OK  trace=OK  java=OK  trace_java=OK  cs=OK  trace_cs=OK | {'cpp': 'PASS 5/5', 'trace': '7 steps', 'java': 'PASS 5/5', 'trace_java': '5 steps', 'cs': 'PASS 5/5', 'trace_cs': '5 steps'}
+p43-lis: cpp=OK  trace=OK  java=OK  cs=OK | {'cpp': 'PASS 5/5', 'trace': '10 steps', 'java': 'PASS 5/5', 'cs': 'PASS 5/5'}
+p44-house-robber: cpp=OK  trace=OK  java=OK  trace_java=OK  cs=OK  trace_cs=OK | {'cpp': 'PASS 5/5', 'trace': '7 steps', 'java': 'PASS 5/5', 'trace_java': '5 steps', 'cs': 'PASS 5/5', 'trace_cs': '5 steps'}
+p45-lcs: cpp=OK  trace=OK  java=OK  cs=OK | {'cpp': 'PASS 5/5', 'trace': '7 steps', 'java': 'PASS 5/5', 'cs': 'PASS 5/5'}
+p46-word-break: cpp=OK  trace=OK  java=OK  cs=OK | {'cpp': 'PASS 5/5', 'trace': '10 steps', 'java': 'PASS 5/5', 'cs': 'PASS 5/5'}
+p47-single-number: cpp=OK  trace=OK  java=OK  trace_java=OK  cs=OK  trace_cs=OK | {'cpp': 'PASS 4/4', 'trace': '7 steps', 'java': 'PASS 4/4', 'trace_java': '5 steps', 'cs': 'PASS 4/4', 'trace_cs': '5 steps'}
+p48-reverse-bits: cpp=OK  trace=OK  java=OK  cs=OK | {'cpp': 'PASS 4/4', 'trace': '6 steps', 'java': 'PASS 4/4', 'cs': 'PASS 4/4'}
+p49-k-closest: cpp=OK  trace=OK  java=OK  cs=OK | {'cpp': 'PASS 4/4', 'trace': '5 steps', 'java': 'PASS 4/4', 'cs': 'PASS 4/4'}
+p50-jump-game: cpp=OK  trace=OK  java=OK  trace_java=OK  cs=OK  trace_cs=OK | {'cpp': 'PASS 5/5', 'trace': '6 steps', 'java': 'PASS 5/5', 'trace_java': '4 steps', 'cs': 'PASS 5/5', 'trace_cs': '4 steps'}
+p51-decode-ways: cpp=OK  trace=OK  java=OK  cs=OK | {'cpp': 'PASS 6/6', 'trace': '4 steps', 'java': 'PASS 6/6', 'cs': 'PASS 6/6'}
+p52-kth-smallest-bst: cpp=OK  trace=OK  java=OK  cs=OK | {'cpp': 'PASS 4/4', 'trace': '5 steps', 'java': 'PASS 4/4', 'cs': 'PASS 4/4'}
+p53-search-2d-matrix: cpp=OK  trace=OK  java=OK  trace_java=OK  cs=OK  trace_cs=OK | {'cpp': 'PASS 5/5', 'trace': '6 steps', 'java': 'PASS 5/5', 'trace_java': '4 steps', 'cs': 'PASS 5/5', 'trace_cs': '4 steps'}
+p54-linked-list-cycle: cpp=OK  trace=OK  java=OK  cs=OK | {'cpp': 'PASS 5/5', 'trace': '8 steps', 'java': 'PASS 5/5', 'cs': 'PASS 5/5'}
+p55-lfu-cache: cpp=OK  trace=OK  java=OK  cs=OK | {'cpp': 'PASS 3/3', 'trace': '13 steps', 'java': 'PASS 3/3', 'cs': 'PASS 3/3'}
+p56-sliding-log-limiter: cpp=OK  trace=OK  java=OK  trace_java=OK  cs=OK  trace_cs=OK | {'cpp': 'PASS 3/3', 'trace': '8 steps', 'java': 'PASS 3/3', 'trace_java': '6 steps', 'cs': 'PASS 3/3', 'trace_cs': '6 steps'}
+p57-rolling-percentile: cpp=OK  trace=OK  java=OK  trace_java=OK  cs=OK  trace_cs=OK | {'cpp': 'PASS 5/5', 'trace': '7 steps', 'java': 'PASS 5/5', 'trace_java': '5 steps', 'cs': 'PASS 5/5', 'trace_cs': '5 steps'}
+p58-top-k-words: cpp=OK  trace=OK  java=OK  cs=OK | {'cpp': 'PASS 4/4', 'trace': '6 steps', 'java': 'PASS 4/4', 'cs': 'PASS 4/4'}
+p59-spsc-queue: cpp=OK  trace=OK  java=OK  trace_java=OK  cs=OK  trace_cs=OK  tsan=OK | {'cpp': 'PASS 4/4', 'trace': '12 steps', 'java': 'PASS 4/4', 'trace_java': '10 steps', 'cs': 'PASS 4/4', 'trace_cs': '10 steps', 'tsan': 'TSAN SPSC stress: cap64=ok cap1=ok cap1024=ok'}
+p60-task-scheduler: cpp=OK  trace=OK  java=OK  trace_java=OK  cs=OK  trace_cs=OK | {'cpp': 'PASS 5/5', 'trace': '9 steps', 'java': 'PASS 5/5', 'trace_java': '7 steps', 'cs': 'PASS 5/5', 'trace_cs': '7 steps'}
+p61-timer-wheel: cpp=OK  trace=OK  java=OK  trace_java=OK  cs=OK  trace_cs=OK | {'cpp': 'PASS 3/3', 'trace': '18 steps', 'java': 'PASS 3/3', 'trace_java': '16 steps', 'cs': 'PASS 3/3', 'trace_cs': '16 steps'}
+p62-buddy-allocator: cpp=OK  trace=OK  java=OK  trace_java=OK  cs=OK  trace_cs=OK | {'cpp': 'PASS 3/3', 'trace': '10 steps', 'java': 'PASS 3/3', 'trace_java': '8 steps', 'cs': 'PASS 3/3', 'trace_cs': '8 steps'}
+p63-my-calendar: cpp=OK  trace=OK  java=OK  cs=OK | {'cpp': 'PASS 3/3', 'trace': '7 steps', 'java': 'PASS 3/3', 'cs': 'PASS 3/3'}
+p64-bounded-blocking-queue: cpp=OK  trace=OK  java=OK  cs=OK  tsan=OK | {'cpp': 'PASS 3/3', 'trace': '11 steps', 'java': 'PASS 3/3', 'cs': 'PASS 3/3', 'tsan': 'TSAN BBQ stress: 4P4C=ok 2P3C=ok 8P2C=ok'}
+p65-sliding-window-max: cpp=OK  trace=OK  java=OK  trace_java=OK  cs=OK  trace_cs=OK | {'cpp': 'PASS 5/5', 'trace': '10 steps', 'java': 'PASS 5/5', 'trace_java': '8 steps', 'cs': 'PASS 5/5', 'trace_cs': '8 steps'}

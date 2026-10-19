@@ -1,0 +1,67 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:08.940
+This lesson is about union find, also called disjoint set union. It answers one question very fast: are these two things in the same group?
+
+00:00:10.290 --> 00:00:13.343
+Picture a school where every club has one captain.
+
+00:00:13.793 --> 00:00:21.676
+To ask whether two students are in the same club, you ask each of them: who is your captain? If the captains match, they are in the same club.
+
+00:00:22.126 --> 00:00:26.956
+To merge two clubs, one captain simply agrees to report to the other captain.
+
+00:00:27.406 --> 00:00:35.173
+That is the whole idea. Find means: follow the chain up to the captain. Union means: make one captain report to another.
+
+00:00:36.523 --> 00:00:39.983
+Here are six people, each starting as their own captain.
+
+00:00:40.433 --> 00:00:43.962
+We union one and two. Now one is the captain of two.
+
+00:00:44.412 --> 00:00:49.497
+We union three and four, then two and three. The groups join into one big tree.
+
+00:00:49.947 --> 00:00:54.580
+Five and six stay in their own small group, so find of five and find of one are different.
+
+00:00:55.930 --> 00:00:59.645
+In code, the whole structure is just one array called parent.
+
+00:01:00.095 --> 00:01:04.344
+parent of i holds who i reports to. A captain points to itself.
+
+00:01:04.794 --> 00:01:09.009
+Find follows parent pointers until it reaches someone who points to themself.
+
+00:01:09.459 --> 00:01:16.959
+Path compression is a shortcut: on the way back, point every visited node straight at the captain, so the next find is one step.
+
+00:01:18.309 --> 00:01:20.166
+Here are the words you will hear.
+
+00:01:20.616 --> 00:01:23.821
+A root, or representative, is the captain of a set.
+
+00:01:24.271 --> 00:01:29.751
+Union by rank or size attaches the smaller tree under the bigger one, which keeps trees short.
+
+00:01:30.201 --> 00:01:39.512
+With both tricks, each operation is almost constant time. The math name is inverse Ackermann, alpha of n, which is at most four for any real input.
+
+00:01:40.862 --> 00:01:42.255
+Where does this show up?
+
+00:01:42.705 --> 00:01:48.034
+Redundant Connection: an edge whose two ends already share a captain closes a cycle.
+
+00:01:48.484 --> 00:01:53.140
+Accounts Merge: emails are the people, and sharing an account means union.
+
+00:01:53.590 --> 00:02:01.844
+In systems: connected components in a network, grouping crash reports by shared stack frames, and Kruskal's minimum spanning tree.
+
+00:02:03.194 --> 00:02:11.159
+Remember: find walks up to the captain, union links two captains, and the two tricks make it nearly free. Try Redundant Connection next.

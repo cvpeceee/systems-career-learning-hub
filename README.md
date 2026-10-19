@@ -11,7 +11,7 @@ Everything built to grow from senior systems engineer (video devices, C++, C dri
 | `03-skills-academy/` | Skills Academy v2 | Skills from job alerts, animated sims (Raft, CUDA, KV cache) |
 | `04-interactive-tutorial/` | **Main course** (36 chapters, 146 lessons) | Drivers, CUDA, distributed systems, inference, robotics, staff-level role playbooks, plus the Tesla track |
 | `05-tesla-track/` | Tesla track on its own | FSD, AI, Optimus, motor control, ROS 2 |
-| `06-leetcode-interview-prep/` | **LeetCode-style interview prep** (phase 1) | 21 coding problems + 5 system design questions with timer/hints/rubrics, C#/Java/C++ solutions (all tested), animated walkthroughs, call-stack execution visualizer, 10 narrated concept videos, mock interviews |
+| `06-leetcode-interview-prep/` | **LeetCode-style interview prep** | 65 coding problems + 17 system design questions with timer/hints/rubrics, C#/Java/C++ solutions (all tested), animated walkthroughs, call-stack execution visualizer (C++, plus Java/C# for many), 22 narrated concept videos, mock interviews |
 | `source/` | Build files for the main course | Rebuild instructions in its README |
 | `screenshots/` | Preview pictures | One or two per course |
 

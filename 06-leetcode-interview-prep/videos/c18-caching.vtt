@@ -1,0 +1,70 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:05.584
+This lesson is about caches: keeping hot data close, and deciding what to throw away.
+
+00:00:06.934 --> 00:00:09.849
+Imagine a small desk next to a huge library.
+
+00:00:10.299 --> 00:00:16.684
+Books you are using right now sit on the desk, so grabbing them is instant. Fetching from the library takes minutes.
+
+00:00:17.134 --> 00:00:21.999
+The desk only holds five books. When a sixth arrives, one has to go back.
+
+00:00:22.449 --> 00:00:25.653
+The eviction policy is the rule for which book goes back.
+
+00:00:27.003 --> 00:00:31.531
+LRU means least recently used. Throw out the book you have not touched for the longest.
+
+00:00:31.981 --> 00:00:36.497
+Keep a doubly linked list in use order, plus a hash map from key to node.
+
+00:00:36.947 --> 00:00:42.241
+On every access, unlink the node and move it to the front. Both steps are constant time.
+
+00:00:42.691 --> 00:00:44.700
+When full, evict from the back.
+
+00:00:46.050 --> 00:00:51.228
+LFU means least frequently used. Throw out the book you used the fewest times.
+
+00:00:51.678 --> 00:00:56.693
+The constant time version keeps one list per use count, plus the current minimum count.
+
+00:00:57.143 --> 00:01:01.195
+A get moves a key from the count k list to the count k plus one list.
+
+00:01:01.645 --> 00:01:07.311
+LFU protects popular items from a one time scan, which would flush an LRU cache.
+
+00:01:08.661 --> 00:01:10.089
+More words you will hear.
+
+00:01:10.539 --> 00:01:13.894
+Hit rate is the fraction of lookups served from the cache.
+
+00:01:14.344 --> 00:01:21.182
+TTL, time to live, expires an entry after a fixed time, so stale data cannot live forever.
+
+00:01:21.632 --> 00:01:30.688
+Write through updates the cache and database together. Write back updates the cache first and flushes later: faster, but you can lose data in a crash.
+
+00:01:31.138 --> 00:01:38.058
+Cache aside means the application checks the cache, and on a miss, loads from the database and fills the cache.
+
+00:01:39.408 --> 00:01:40.824
+Systems examples.
+
+00:01:41.274 --> 00:01:47.195
+CPU caches use pseudo LRU in hardware because true LRU is too expensive per set.
+
+00:01:47.645 --> 00:01:53.311
+A CI build cache keys outputs by a hash of the inputs, so a hit is always correct.
+
+00:01:53.761 --> 00:02:02.573
+And watch for the stampede: when a hot key expires, thousands of requests miss at once. Fix it with a lock per key or early random refresh.
+
+00:02:03.923 --> 00:02:09.577
+A cache is a fast desk with an eviction rule. Practice LRU Cache, then LFU Cache.

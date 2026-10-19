@@ -1,0 +1,70 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:05.306
+This lesson covers backtracking: trying choices, and undoing them when they do not work.
+
+00:00:06.656 --> 00:00:09.512
+Picture walking through a maze with a ball of string.
+
+00:00:09.962 --> 00:00:13.340
+At each fork you pick a path and unroll string behind you.
+
+00:00:13.790 --> 00:00:18.725
+If you hit a dead end, you walk back along the string to the last fork and try the next path.
+
+00:00:19.175 --> 00:00:22.739
+Rolling the string back up is the undo step. That is backtracking.
+
+00:00:24.089 --> 00:00:28.001
+Here is permutations of one, two, three as a call stack.
+
+00:00:28.451 --> 00:00:34.941
+The first call chooses one. It calls deeper, which chooses two, then three. A full row is recorded.
+
+00:00:35.391 --> 00:00:40.581
+Then the deepest frame returns, and two is un-chosen so three can be tried in its place.
+
+00:00:41.031 --> 00:00:46.163
+Each frame on the stack is one decision. The depth of the stack is the length of the path.
+
+00:00:47.513 --> 00:00:50.125
+The template is always the same three lines.
+
+00:00:50.575 --> 00:00:54.209
+Choose: add an option to the current path and mark it used.
+
+00:00:54.659 --> 00:00:57.526
+Explore: recurse to make the next decision.
+
+00:00:57.976 --> 00:01:02.435
+Un-choose: remove it again, so the path is clean for the next option.
+
+00:01:02.885 --> 00:01:07.180
+And when the path is complete, save a COPY of it, not the path itself.
+
+00:01:08.530 --> 00:01:11.108
+Pruning is what makes backtracking fast enough.
+
+00:01:11.558 --> 00:01:15.087
+Pruning means refusing to go down a path that cannot succeed.
+
+00:01:15.537 --> 00:01:22.190
+N Queens prunes any square already attacked. Word Search Two prunes any letters that are not a prefix of a word.
+
+00:01:22.640 --> 00:01:27.922
+Good pruning can turn hours into milliseconds, even though the worst case stays exponential.
+
+00:01:29.272 --> 00:01:30.352
+Interview tips.
+
+00:01:30.802 --> 00:01:34.064
+Draw the decision tree for a tiny input before coding.
+
+00:01:34.514 --> 00:01:40.308
+State the complexity honestly: subsets is two to the n, permutations is n factorial.
+
+00:01:40.758 --> 00:01:45.553
+For duplicates in the input, sort first and skip equal neighbors at the same depth.
+
+00:01:46.903 --> 00:01:53.056
+Choose, explore, un-choose, and prune early. Try Subsets, Permutations and N Queens.

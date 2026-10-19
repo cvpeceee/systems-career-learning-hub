@@ -1,0 +1,58 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:09.404
+This lesson covers queues between threads, what happens when the consumer is slower than the producer, and the lock free single producer, single consumer ring.
+
+00:00:10.754 --> 00:00:13.680
+Picture a conveyor belt between a baker and a packer.
+
+00:00:14.130 --> 00:00:17.729
+The baker puts loaves on the belt; the packer takes them off.
+
+00:00:18.179 --> 00:00:23.995
+If the packer is slow, the belt fills up. Now the baker must wait, or loaves fall on the floor.
+
+00:00:24.445 --> 00:00:27.360
+Telling the baker to slow down is called backpressure.
+
+00:00:28.710 --> 00:00:33.481
+The single producer, single consumer queue is a ring buffer with two counters.
+
+00:00:33.931 --> 00:00:40.793
+The producer only writes the tail. The consumer only writes the head. Nobody shares a write, so no lock is needed.
+
+00:00:41.243 --> 00:00:47.036
+The queue is empty when head equals tail, and full when tail minus head equals the capacity.
+
+00:00:47.486 --> 00:00:52.490
+Atomics with release and acquire ordering make sure the data is visible before the counter moves.
+
+00:00:53.840 --> 00:00:54.966
+Words to know.
+
+00:00:55.416 --> 00:01:01.848
+Release ordering on a store says: every write before me is visible to anyone who acquires this value.
+
+00:01:02.298 --> 00:01:07.511
+Acquire ordering on a load says: I see everything the releasing thread wrote before.
+
+00:01:07.961 --> 00:01:16.285
+False sharing happens when head and tail sit on the same cache line, so two cores fight over it. Pad them onto separate sixty four byte lines.
+
+00:01:16.735 --> 00:01:24.549
+Thread sanitizer, or TSan, is a tool that detects data races at run time. Our SPSC tests run clean under it.
+
+00:01:25.899 --> 00:01:34.606
+With several producers or consumers, use a bounded blocking queue: a mutex plus two condition variables, not full and not empty.
+
+00:01:35.056 --> 00:01:39.073
+Always wait in a while loop, because wakeups can be spurious.
+
+00:01:39.523 --> 00:01:47.000
+The choices under overload are: block the producer, drop new items, drop old items, or fail fast with an error.
+
+00:01:47.450 --> 00:01:54.149
+Checkpoint writers in training jobs use exactly this, so a slow disk does not stall the GPUs forever.
+
+00:01:55.499 --> 00:02:02.755
+Bounded queues and backpressure keep systems alive under load. Try the SPSC queue and the bounded blocking queue problems.

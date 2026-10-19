@@ -1,0 +1,58 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:05.875
+This lesson covers sharding: splitting data across many machines when one machine is not enough.
+
+00:00:07.225 --> 00:00:10.069
+Imagine a phone book too big for one shelf.
+
+00:00:10.519 --> 00:00:16.730
+You split it into volumes: A to F on shelf one, G to M on shelf two, and so on.
+
+00:00:17.180 --> 00:00:21.755
+To find a name, you first pick the right shelf, then search only that volume.
+
+00:00:22.205 --> 00:00:26.605
+Each shelf is a shard. The rule that picks the shelf is the partition key.
+
+00:00:27.955 --> 00:00:29.638
+Two main ways to split.
+
+00:00:30.088 --> 00:00:38.273
+Range partitioning keeps keys in sorted ranges, like A to F. Range scans are easy, but a popular range becomes a hot spot.
+
+00:00:38.723 --> 00:00:45.144
+Hash partitioning spreads keys by hash. Load is even, but range scans must ask every shard.
+
+00:00:45.594 --> 00:00:51.352
+Many systems combine both: hash on user id, then sort by time inside each shard.
+
+00:00:52.702 --> 00:00:54.061
+Here is a hot spot.
+
+00:00:54.511 --> 00:00:59.050
+Shards are split by hash, but one celebrity user gets most of the traffic.
+
+00:00:59.500 --> 00:01:02.600
+Shard two is overloaded while the others are idle.
+
+00:01:03.050 --> 00:01:09.946
+A fix is to split that one hot key across sub keys, like user id plus a random suffix, and merge on read.
+
+00:01:11.296 --> 00:01:12.295
+Vocabulary.
+
+00:01:12.745 --> 00:01:21.476
+Rebalancing moves shards when nodes are added. Using many more shards than nodes, like a thousand shards on ten machines, makes moves small.
+
+00:01:21.926 --> 00:01:25.676
+A router, or coordinator, knows which shard lives where.
+
+00:01:26.126 --> 00:01:33.521
+A cross shard query is called scatter gather: send to all, then merge the answers, often with a heap for top k.
+
+00:01:33.971 --> 00:01:39.846
+Cross shard transactions are expensive, so choose a partition key that keeps related data together.
+
+00:01:41.196 --> 00:01:48.347
+Pick a partition key, watch for hot spots, and plan rebalancing early. See the vector search and object store designs.

@@ -1,0 +1,55 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:07.163
+This lesson covers consistent hashing, the trick that lets caches and databases add servers without reshuffling everything.
+
+00:00:08.513 --> 00:00:11.729
+Picture a round table with servers sitting at a few seats.
+
+00:00:12.179 --> 00:00:16.661
+Each key also gets a spot on the edge of the table, using a hash.
+
+00:00:17.111 --> 00:00:21.000
+A key walks clockwise and belongs to the first server it meets.
+
+00:00:21.450 --> 00:00:27.545
+If a new server sits down, only the keys just before its seat move to it. Everyone else stays put.
+
+00:00:28.895 --> 00:00:32.355
+First, why not just use hash of key modulo n?
+
+00:00:32.805 --> 00:00:39.562
+With modulo, changing n from four servers to five changes the answer for about eighty percent of keys.
+
+00:00:40.012 --> 00:00:46.003
+For a cache, that means almost every lookup misses at once, and the database behind it gets crushed.
+
+00:00:46.453 --> 00:00:49.924
+Consistent hashing moves only about one over n of the keys.
+
+00:00:51.274 --> 00:00:54.548
+Here is the ring with three servers, A, B and C.
+
+00:00:54.998 --> 00:00:59.050
+Key k one hashes to here, walks clockwise and lands on B.
+
+00:00:59.500 --> 00:01:02.461
+Now server D joins between A and B.
+
+00:01:02.911 --> 00:01:07.984
+Only key k one moves from B to D. Keys owned by A and C do not move at all.
+
+00:01:09.334 --> 00:01:10.333
+Vocabulary.
+
+00:01:10.783 --> 00:01:20.036
+Virtual nodes: each real server sits at many seats, like a hundred, so load spreads evenly and a failed server's keys scatter across many others.
+
+00:01:20.486 --> 00:01:25.652
+The lookup is a binary search over sorted seat positions, so log of the number of seats.
+
+00:01:26.102 --> 00:01:30.677
+Replication: store a key on the first R distinct servers clockwise.
+
+00:01:32.027 --> 00:01:41.175
+Remember: a ring, a clockwise walk, virtual nodes for balance, and only one over n of keys move. Open the hash ring component to trace it.

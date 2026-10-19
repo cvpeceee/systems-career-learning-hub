@@ -1,0 +1,58 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:08.858
+This lesson covers the CAP theorem, consistency levels, and quorums: the vocabulary behind every distributed storage interview question.
+
+00:00:10.208 --> 00:00:14.469
+Picture two bank branches that share account balances over a phone line.
+
+00:00:14.919 --> 00:00:19.296
+One day the line is cut. A customer at branch one wants to withdraw money.
+
+00:00:19.746 --> 00:00:24.669
+Branch one can refuse until the line is back, which is consistent but not available.
+
+00:00:25.119 --> 00:00:30.715
+Or it can allow it and risk the other branch allowing it too, which is available but not consistent.
+
+00:00:32.065 --> 00:00:36.709
+CAP stands for consistency, availability and partition tolerance.
+
+00:00:37.159 --> 00:00:42.337
+Consistency here means every read sees the latest write, as if there were one copy.
+
+00:00:42.787 --> 00:00:47.129
+Availability means every request to a working node gets an answer.
+
+00:00:47.579 --> 00:00:54.859
+A partition is a network split. Partitions will happen, so the real choice during one is consistency or availability.
+
+00:00:56.209 --> 00:00:58.194
+Quorums make the trade off adjustable.
+
+00:00:58.644 --> 00:01:03.683
+With N copies, a write waits for W acks, and a read asks R replicas.
+
+00:01:04.133 --> 00:01:12.167
+If R plus W is greater than N, every read set overlaps every write set, so a read always reaches at least one fresh copy.
+
+00:01:12.617 --> 00:01:19.490
+With N equals three, W equals two and R equals two, you can lose one node and still read your writes.
+
+00:01:20.840 --> 00:01:23.487
+Consistency levels from strongest to weakest.
+
+00:01:23.937 --> 00:01:27.397
+Linearizable: behaves like one copy with one clock.
+
+00:01:27.847 --> 00:01:30.749
+Read your writes: you always see your own updates.
+
+00:01:31.199 --> 00:01:36.447
+Eventual: replicas converge if writes stop, but reads can be stale for a while.
+
+00:01:36.897 --> 00:01:41.564
+PACELC adds: even without a partition, you trade latency for consistency.
+
+00:01:42.914 --> 00:01:52.620
+During a partition, pick consistency or availability; quorums with R plus W greater than N give overlap. Use this language in every storage design.

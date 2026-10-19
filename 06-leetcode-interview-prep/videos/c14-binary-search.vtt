@@ -1,0 +1,67 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:05.724
+This lesson covers binary search, including the powerful trick of binary searching the answer itself.
+
+00:00:07.074 --> 00:00:11.892
+Think of guessing a number between one and a hundred, where a friend says higher or lower.
+
+00:00:12.342 --> 00:00:17.520
+A smart guesser always picks the middle. Each answer throws away half of the remaining numbers.
+
+00:00:17.970 --> 00:00:22.057
+After only seven guesses you have found any number between one and a hundred.
+
+00:00:22.507 --> 00:00:25.514
+That halving is why binary search costs log n.
+
+00:00:26.864 --> 00:00:30.172
+Here is a sorted array, and we search for the value nine.
+
+00:00:30.622 --> 00:00:37.844
+Low is zero, high is seven, so mid is three, holding seven. Seven is smaller than nine, so search the right half.
+
+00:00:38.294 --> 00:00:42.880
+Now mid is five, holding eleven. Too big, so search the left part.
+
+00:00:43.330 --> 00:00:46.523
+Mid is four, holding nine. Found in three steps.
+
+00:00:47.873 --> 00:00:51.309
+Now the more powerful idea: searching for an answer.
+
+00:00:51.759 --> 00:00:57.193
+In Koko Eating Bananas, we want the slowest eating speed that still finishes in time.
+
+00:00:57.643 --> 00:01:05.352
+If a speed works, every faster speed also works. The answers look like no, no, no, yes, yes, yes.
+
+00:01:05.802 --> 00:01:10.747
+Binary search finds the first yes. Each check costs one pass over the piles.
+
+00:01:12.097 --> 00:01:13.653
+A little vocabulary.
+
+00:01:14.103 --> 00:01:19.746
+The invariant is the promise your loop keeps, for example: the answer is always between low and high.
+
+00:01:20.196 --> 00:01:26.871
+Lower bound finds the first element greater than or equal to x. Upper bound finds the first element greater than x.
+
+00:01:27.321 --> 00:01:33.788
+A monotonic predicate is a yes or no test that flips only once. If you can find one, you can binary search.
+
+00:01:35.138 --> 00:01:36.334
+The classic bugs.
+
+00:01:36.784 --> 00:01:42.043
+Overflow in low plus high, so write low plus high minus low divided by two.
+
+00:01:42.493 --> 00:01:47.578
+Infinite loops when low equals mid; pick one loop style and stick to it.
+
+00:01:48.028 --> 00:01:52.986
+And off by one at the edges. Test with arrays of size zero, one and two.
+
+00:01:54.336 --> 00:02:01.267
+If the data is sorted, or the answer is monotonic, think binary search. Try Koko, then Median of Two Sorted Arrays.

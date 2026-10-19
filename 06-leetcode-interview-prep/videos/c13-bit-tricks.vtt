@@ -1,0 +1,67 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:06.130
+This lesson is about bit tricks. You already use them in driver code; here is how interviews use them.
+
+00:00:07.480 --> 00:00:10.766
+Think of an integer as a row of thirty two light switches.
+
+00:00:11.216 --> 00:00:14.826
+Each switch is a bit: one is on, zero is off.
+
+00:00:15.276 --> 00:00:22.626
+AND keeps a light on only if both rows have it on. OR turns it on if either does. XOR turns it on if exactly one does.
+
+00:00:23.076 --> 00:00:28.079
+Shifting slides the whole row left or right, which is multiplying or dividing by two.
+
+00:00:29.429 --> 00:00:33.179
+Let us look at the number twelve in binary: one one zero zero.
+
+00:00:33.629 --> 00:00:37.310
+x and one tells you the lowest bit, so twelve is even.
+
+00:00:37.760 --> 00:00:42.613
+x and minus x isolates the lowest set bit. For twelve that is four.
+
+00:00:43.063 --> 00:00:50.040
+x and x minus one clears the lowest set bit. Twelve becomes eight. Repeat until zero to count the set bits.
+
+00:00:51.390 --> 00:00:53.457
+XOR has two magic rules.
+
+00:00:53.907 --> 00:00:58.702
+Any number XOR itself is zero. Any number XOR zero is itself.
+
+00:00:59.152 --> 00:01:05.247
+So in Single Number, XOR everything together, and the pairs cancel out, leaving the lonely number.
+
+00:01:05.697 --> 00:01:13.754
+RAID five storage uses the same rule: the parity block is the XOR of all data blocks, so any one lost block can be rebuilt.
+
+00:01:15.104 --> 00:01:18.436
+Bitmasks also store sets of small integers.
+
+00:01:18.886 --> 00:01:23.670
+Bit i set means item i is in the set. Union is OR, intersection is AND.
+
+00:01:24.120 --> 00:01:31.132
+N Queens keeps three masks: taken columns and the two diagonal directions, so checking a square is one AND.
+
+00:01:31.582 --> 00:01:37.294
+The buddy allocator finds a block's partner with offset XOR size, flipping exactly one bit.
+
+00:01:38.644 --> 00:01:40.618
+Watch out for language gotchas.
+
+00:01:41.068 --> 00:01:45.491
+Java has no unsigned int, so use the triple right shift or a long.
+
+00:01:45.941 --> 00:01:52.698
+In C plus plus, shifting a signed negative number or shifting by thirty two or more is undefined behavior.
+
+00:01:53.148 --> 00:01:58.245
+C sharp has real unsigned types, uint and ulong, which make this simpler.
+
+00:01:59.595 --> 00:02:04.646
+Bits are cheap and fast. Practice Single Number, Counting Bits and Reverse Bits.

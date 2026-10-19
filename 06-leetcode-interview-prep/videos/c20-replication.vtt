@@ -1,0 +1,58 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:06.838
+This lesson covers replication: keeping copies of data on several machines so a failure does not lose anything.
+
+00:00:08.188 --> 00:00:12.925
+Imagine one student takes the class notes, and two friends keep photocopies.
+
+00:00:13.375 --> 00:00:16.475
+If the note taker is sick, a friend can share the notes.
+
+00:00:16.925 --> 00:00:20.849
+But if the friends copy only once a week, their copies may be out of date.
+
+00:00:21.299 --> 00:00:28.288
+The big question in replication is: when do we tell the teacher the notes are saved? After one copy, or after all of them?
+
+00:00:29.638 --> 00:00:31.717
+Here is leader based replication.
+
+00:00:32.167 --> 00:00:34.256
+A client sends a write to the leader.
+
+00:00:34.706 --> 00:00:37.853
+The leader appends it to its log and sends it to the followers.
+
+00:00:38.303 --> 00:00:42.378
+Once enough followers confirm, the leader replies OK to the client.
+
+00:00:43.728 --> 00:00:44.726
+Vocabulary.
+
+00:00:45.176 --> 00:00:49.994
+Synchronous replication waits for followers before replying: safe, but slower.
+
+00:00:50.444 --> 00:00:56.145
+Asynchronous replication replies immediately: fast, but a crash can lose the latest writes.
+
+00:00:56.595 --> 00:01:02.748
+Replication lag is how far behind a follower is. Reading from a lagging follower can show you old data.
+
+00:01:03.198 --> 00:01:06.693
+Failover is promoting a follower to leader when the leader dies.
+
+00:01:08.043 --> 00:01:14.231
+Consensus is how replicas agree on one leader and one log order, even when machines crash.
+
+00:01:14.681 --> 00:01:19.824
+Raft does this with terms, which are numbered election rounds, and a majority vote.
+
+00:01:20.274 --> 00:01:27.507
+A write is committed once a majority of nodes has it in their log. With five nodes, two can fail and the system still works.
+
+00:01:27.957 --> 00:01:33.878
+Split brain, two leaders at once, is prevented because two majorities always overlap.
+
+00:01:35.228 --> 00:01:44.725
+Copies protect data; acks decide safety versus speed; majorities prevent split brain. See the object store and Kafka log designs.
