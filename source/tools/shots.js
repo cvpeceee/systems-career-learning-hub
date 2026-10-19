@@ -1,0 +1,31 @@
+const { chromium } = require('/workspace/tutorial-review/tools/node_modules/playwright-core');
+const INT = '/workspace/tutorial-review/Improved_Interactive_Tutorial_with_Tesla_Track.html', D = '/workspace/tutorial-review/screenshots/oct12/';
+(async () => {
+  const b = await chromium.launch({ executablePath: '/usr/bin/google-chrome', args: ['--no-sandbox'] });
+  const errs = [];
+  const page = async (vp) => { const p = await (await b.newContext({ viewport: vp, deviceScaleFactor: 1 })).newPage(); p.on('pageerror', (e) => errs.push(e.message)); p.on('console', (m) => { if (m.type() === 'error') errs.push(m.text()); }); await p.goto('file://' + INT); await p.waitForTimeout(500); return p; };
+  const open = async (p, re) => { const rows = p.locator('.chapter-row'); const n = await rows.count(); for (let i = 0; i < n; i++) if (re.test(await rows.nth(i).innerText())) { await rows.nth(i).click(); break; } await p.waitForTimeout(250); };
+  const lesson = async (p, k) => { await p.locator('.stage-nav button').nth(k).click(); await p.waitForTimeout(250); };
+  const click = async (p, re) => { const t = p.locator('.sim-body button, .sim-body label'); const c = await t.count(); for (let i = 0; i < c; i++) if (re.test(await t.nth(i).innerText().catch(() => ''))) { await t.nth(i).click().catch(() => {}); await p.waitForTimeout(100); return; } };
+  let p = await page({ width: 1366, height: 900 });
+  const rows = p.locator('.chapter-row'); await rows.nth(35).scrollIntoViewIfNeeded(); await p.waitForTimeout(200);
+  await p.screenshot({ path: D + '01_chapter_list_ch31-36.png' });
+  await open(p, /Frontier Training Infrastructure/); await lesson(p, 0);
+  let sim = p.locator('.sim-card'); await sim.scrollIntoViewIfNeeded();
+  for (const re of [/Young/, /Async sharded/, /Hot spares/]) await click(p, re);
+  await sim.screenshot({ path: D + '02_ch31_goodput_sim.png' });
+  p = await page({ width: 1366, height: 900 }); await open(p, /Automotive Telematics Platform/); await lesson(p, 2);
+  sim = p.locator('.sim-card'); await sim.scrollIntoViewIfNeeded(); await click(p, /^dm-verity$/); await click(p, /Signed boot data/);
+  await sim.screenshot({ path: D + '03_ch34_verity_sim.png' });
+  p = await page({ width: 1366, height: 900 }); await open(p, /High-Profile Role Playbooks/); await lesson(p, 0);
+  sim = p.locator('.sim-card'); await sim.scrollIntoViewIfNeeded(); await click(p, /Interview loop/);
+  await sim.screenshot({ path: D + '04_ch36_anthropic_playbook_loop.png' });
+  await lesson(p, 5); await p.locator('.lesson-article').screenshot({ path: D + '05_ch36_star_bank_lesson.png' });
+  p = await page({ width: 1366, height: 900 }); await p.locator('.track-tabs button').nth(1).click(); await p.waitForTimeout(200);
+  await p.locator('.gym-strip button').nth(1).click(); await p.waitForTimeout(200);
+  const cards = p.locator('.gym-card'); const nc = await cards.count(); for (let i = 0; i < nc; i++) if (/fault-tolerant training platform/.test(await cards.nth(i).innerText())) { await cards.nth(i).click(); break; }
+  await p.waitForTimeout(300); await p.locator('.drill').screenshot({ path: D + '06_drill_trainsched.png' });
+  p = await page({ width: 390, height: 844 }); await open(p, /Robotics Platform/); await lesson(p, 1);
+  await p.locator('.sim-card').scrollIntoViewIfNeeded(); await p.screenshot({ path: D + '07_mobile_ch35_simplex_sim.png', fullPage: false });
+  console.log('errors', errs.length, errs.slice(0, 3)); await b.close();
+})();
