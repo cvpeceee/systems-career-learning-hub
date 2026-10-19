@@ -17,7 +17,8 @@ sources=('Questions are adapted from (1) cvpeceee/systems-career-learning-hub: t
  'and (2) cvpeceee/interview-mastery-courses: 8 company courses (Amazon, Anthropic, Apple, Google, Meta, Microsoft, NVIDIA, OpenAI) and 3 systems courses (Systems & AI Infrastructure, Specialized Systems Roles, Storage Systems), '
  'which list the high-frequency patterns (arrays/hash maps, trees, graphs BFS/DFS/topological sort/shortest path, DP, intervals, sliding window, LRU cache, rate limiter, concurrency) and design prompts (rate limiter, top-K, storage, inference serving, safe OTA, telemetry/monitoring). '
  'LeetCode numbers are listed only for well-known problems.')
-data=dict(problems=probs,designs=designs,lessons=lessons,videos=videos,lessonFor=lessonFor,sources=sources)
+cns={};exec(open(R+'/company/companies.py').read(),cns)
+data=dict(companies=cns['C'],csrc=cns['SRC'],clinks=cns['SOURCES'],problems=probs,designs=designs,lessons=lessons,videos=videos,lessonFor=lessonFor,sources=sources)
 open(S+'/data.js','w').write('window.DATA='+json.dumps(data,ensure_ascii=False,separators=(',',':'))+';\n')
 for f in ('index.html','app.js','player.js'): shutil.copy(R+'/web/'+f,S)
 print(len(probs),'problems',len(designs),'designs',len(lessons),'lessons', os.path.getsize(S+'/data.js')//1024,'KB data')
