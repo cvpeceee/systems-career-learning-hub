@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chandra Vig — Systems → Robotics Learning Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;650&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/hub.css" />
+</head>
+<body>
+  <button type="button" class="btn menu-toggle" id="menu-toggle" aria-label="Menu">☰ Menu</button>
+  <div class="app">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <h1>Learning Hub</h1>
+        <div class="sub">Chandra Vig · Systems → Optimus-adjacent skills that redeploy</div>
+      </div>
+      <div class="nav-group-label">Navigate</div>
+      <button type="button" class="nav-btn active" data-view="home"><span class="ico">◎</span> Home / Roadmap</button>
+      <button type="button" class="nav-btn" data-view="demos"><span class="ico">◈</span> Interactive Labs</button>
+      <button type="button" class="nav-btn" data-view="tutorials"><span class="ico">▸</span> Guided Tutorials</button>
+      <button type="button" class="nav-btn" data-view="resources"><span class="ico">⧉</span> Resource Library</button>
+      <button type="button" class="nav-btn" data-view="projects"><span class="ico">⚒</span> Pet Projects</button>
+      <button type="button" class="nav-btn" data-view="jobs"><span class="ico">⌖</span> Job Target Board</button>
+      <button type="button" class="nav-btn" data-view="gym"><span class="ico">⚡</span> Interview Gym</button>
+      <div class="progress-pill">
+        <div>Progress (local)</div>
+        <div class="bar"><div class="fill" id="progress-fill"></div></div>
+        <div id="progress-label" style="color:var(--text-muted)">0 checks</div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <!-- HOME -->
+      <section class="view active" id="view-home">
+        <div class="north-star">
+          <h3>North star</h3>
+          <p style="margin:0;color:var(--text-muted);max-width:70ch">
+            Dream: <strong style="color:var(--text)">Tesla Optimus</strong> — only via skills that redeploy to Figure, Apptronik, BD, NVIDIA Isaac, warehouse robotics, and host/systems teams.
+            Strength today: Poly video devices — C/C++ vendor drivers (NXP, Qualcomm, Ambarella). Avoid CUDA-deep as Plan A.
+          </p>
+        </div>
+        <div class="view-header">
+          <h2>6–12 month roadmap</h2>
+          <p>Visual timeline matching your career plan. Check items as you go — progress stays in this browser.</p>
+        </div>
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="months">M1–3 · SoC / drivers + coding</div>
+            <strong>Deepen the superpower</strong>
+            <p style="margin:.35rem 0 0;font-size:.9rem">Device tree, char driver, IRQ/DMA mental model, QEMU/mock lab. 4–5 interview problems/week in C++. Factory-floor analogies.</p>
+            <ul class="check-list">
+              <li><input type="checkbox" data-progress-id="m1-bootlin" id="m1-bootlin" /><label for="m1-bootlin">Bootlin slides started + LiveOverflow drivers watched</label></li>
+              <li><input type="checkbox" data-progress-id="m1-mock" id="m1-mock" /><label for="m1-mock">Char-driver userspace mock running</label></li>
+              <li><input type="checkbox" data-progress-id="m1-neet" id="m1-neet" /><label for="m1-neet">NeetCode rhythm: 4–5/week, no AI on attempt</label></li>
+            </ul>
+          </div>
+          <div class="tl-item m2">
+            <div class="months">M4–6 · ROS 2 / edge vision</div>
+            <strong>Same hands, new factory</strong>
+            <p style="margin:.35rem 0 0;font-size:.9rem">ROS 2 pub/sub intuition, edge perception pipeline, Ambarella/QC latency story, systems interview depth.</p>
+            <ul class="check-list">
+              <li><input type="checkbox" data-progress-id="m2-ros" id="m2-ros" /><label for="m2-ros">Fake-ROS toy + real ROS 2 tutorials begun</label></li>
+              <li><input type="checkbox" data-progress-id="m2-perc" id="m2-perc" /><label for="m2-perc">Mini edge perception pipeline + latency histogram</label></li>
+              <li><input type="checkbox" data-progress-id="m2-pid" id="m2-pid" /><label for="m2-pid">PID joint lab tuned; findings written</label></li>
+            </ul>
+          </div>
+          <div class="tl-item m3">
+            <div class="months">M7–9 · Host I/O / realtime</div>
+            <strong>Compute ↔ physical world at speed</strong>
+            <p style="margin:.35rem 0 0;font-size:.9rem">PCIe/DMA/NIC models, thin GPU literacy (awareness only), apply Tier-1 host roles, quantify Poly wins.</p>
+            <ul class="check-list">
+              <li><input type="checkbox" data-progress-id="m3-pcie" id="m3-pcie" /><label for="m3-pcie">PCIe/DMA lab + host war-story kit practiced aloud</label></li>
+              <li><input type="checkbox" data-progress-id="m3-apply" id="m3-apply" /><label for="m3-apply">Tier-1 applications started (OpenAI Host, NVIDIA net, Broadcom NOS)</label></li>
+            </ul>
+          </div>
+          <div class="tl-item m4">
+            <div class="months">M10–12 · Story + applications</div>
+            <strong>Liquidity + dream</strong>
+            <p style="margin:.35rem 0 0;font-size:.9rem">Narrative: embedded → robot/edge compute. Mix: 50% robotics/embedded, 30% host/systems, 20% infra backup.</p>
+            <ul class="check-list">
+              <li><input type="checkbox" data-progress-id="m4-resume" id="m4-resume" /><label for="m4-resume">3 SCCR war stories on resume/LinkedIn</label></li>
+              <li><input type="checkbox" data-progress-id="m4-mocks" id="m4-mocks" /><label for="m4-mocks">Mock interviews: coding + device/robot platform design</label></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:1.25rem">
+          <h3>Weekly rhythm</h3>
+          <div class="rhythm-grid">
+            <div class="rhythm-item"><strong>3× coding</strong>45–60 min, timer, no AI on attempt</div>
+            <div class="rhythm-item"><strong>2× systems/robotics</strong>Visual course + analogy notes</div>
+            <div class="rhythm-item"><strong>1× build</strong>Pet project session</div>
+            <div class="rhythm-item"><strong>1× write-up</strong>Diagram or 1-page design note</div>
+          </div>
+          <p style="margin:1rem 0 0;font-size:.88rem">
+            <a href="#" data-goto="demos">Open interactive labs →</a> ·
+            <a href="#" data-goto="projects">Pet projects →</a>
+          </p>
+        </div>
+      </section>
+
+      <!-- DEMOS -->
+      <section class="view" id="view-demos">
+        <div class="view-header">
+          <h2>Interactive labs</h2>
+          <p>Offline canvas demos — play with sliders and clicks. Each: analogy → demo → try-this.</p>
+        </div>
+        <div class="section-nav-chips">
+          <button type="button" class="chip" data-scroll="demo-soc">SoC Factory</button>
+          <button type="button" class="chip" data-scroll="demo-dt">Device Tree</button>
+          <button type="button" class="chip" data-scroll="demo-irq">IRQ vs Poll</button>
+          <button type="button" class="chip" data-scroll="demo-pid">PID Lab</button>
+          <button type="button" class="chip" data-scroll="demo-ros">ROS 2 Bus</button>
+          <button type="button" class="chip" data-scroll="demo-mem">Memory</button>
+          <button type="button" class="chip" data-scroll="demo-pcie">PCIe/DMA</button>
+        </div>
+        <div class="demo-list">
+          <article id="demo-soc">
+            <h3>A · SoC Factory Floor</h3>
+            <div class="analogy-box"><strong>Analogy:</strong> CPU = foreman, DMA = forklifts, IRQ = alarm bells, drivers = shift supervisors, DRAM = warehouse, ISP = production line.</div>
+            <div class="demo-shell" data-demo="soc">
+              <div class="demo-toolbar">
+                <button type="button" class="btn" data-act="pause">Pause</button>
+                <button type="button" class="btn primary" data-act="burst">Burst traffic</button>
+                <label><input type="checkbox" data-progress-id="demo-soc-done" id="demo-soc-done" /> Understood roles</label>
+              </div>
+              <div class="demo-canvas-wrap"><canvas></canvas></div>
+              <div class="demo-aside">Click nodes…</div>
+            </div>
+            <div class="try-box"><strong>Try this:</strong> Watch DMA move packets without the CPU. Then sketch your Poly Ambarella path: sensor → ISP → DRAM → encode.</div>
+          </article>
+
+          <article id="demo-dt">
+            <h3>B · Device Tree Binding</h3>
+            <div class="analogy-box"><strong>Analogy:</strong> The .dts is the floor plan; the driver is the contractor who only starts work when the compatible string matches the job site.</div>
+            <div class="demo-shell" data-demo="dt">
+              <div class="demo-toolbar">
+                <button type="button" class="btn" data-act="back">Back</button>
+                <button type="button" class="btn primary" data-act="next">Next</button>
+                <button type="button" class="btn" data-act="reset">Reset</button>
+                <label><input type="checkbox" data-progress-id="demo-dt-done" id="demo-dt-done" /> Binding flow clear</label>
+              </div>
+              <div class="demo-canvas-wrap"><canvas></canvas></div>
+              <div class="demo-aside">Step through…</div>
+            </div>
+            <div class="try-box"><strong>Try this:</strong> Open <code>projects/02-dt-bringup/</code> and validate the sample sensor node.</div>
+          </article>
+
+          <article id="demo-irq">
+            <h3>C · Interrupt vs Polling</h3>
+            <div class="analogy-box"><strong>Analogy:</strong> IRQ = doorbell; polling = checking the mailbox every second. Doorbells save CPU; busy-wait burns it.</div>
+            <div class="demo-shell" data-demo="irqpoll">
+              <div class="demo-toolbar">
+                <button type="button" class="btn primary" data-mode="irq">Interrupt</button>
+                <button type="button" class="btn" data-mode="poll">Polling</button>
+                <label>Event rate <input type="range" min="1" max="30" value="8" data-param="rate" /> <span data-val="rate">8</span>/s</label>
+                <label><input type="checkbox" data-progress-id="demo-irq-done" id="demo-irq-done" /> Tradeoff understood</label>
+              </div>
+              <div class="demo-canvas-wrap"><canvas></canvas></div>
+              <div class="demo-aside">Toggle mode…</div>
+            </div>
+            <div class="try-box"><strong>Try this:</strong> Crank event rate in both modes. When would you deliberately poll on a robot control loop?</div>
+          </article>
+
+          <article id="demo-pid">
+            <h3>D · PID Control Lab</h3>
+            <div class="analogy-box"><strong>Analogy:</strong> Cruise control / robot joint — P reacts now, I clears steady-state error, D damps overshoot.</div>
+            <div class="demo-shell" data-demo="pid">
+              <div class="demo-toolbar">
+                <label>Kp <input type="range" min="0" max="5" step="0.05" value="1.2" data-param="kp" /> <span data-val="kp">1.20</span></label>
+                <label>Ki <input type="range" min="0" max="3" step="0.05" value="0.4" data-param="ki" /> <span data-val="ki">0.40</span></label>
+                <label>Kd <input type="range" min="0" max="2" step="0.05" value="0.15" data-param="kd" /> <span data-val="kd">0.15</span></label>
+                <label>SP <input type="range" min="0" max="1.5" step="0.05" value="1" data-param="sp" /> <span data-val="sp">1.00</span></label>
+                <button type="button" class="btn primary" data-act="step">Step setpoint</button>
+                <button type="button" class="btn" data-act="reset-pid">Reset plant</button>
+                <label><input type="checkbox" data-progress-id="demo-pid-done" id="demo-pid-done" /> Tuned once</label>
+              </div>
+              <div class="demo-canvas-wrap"><canvas></canvas></div>
+              <div class="demo-aside">Tune gains…</div>
+            </div>
+            <div class="try-box"><strong>Try this:</strong> Match with <code>projects/05-pid-joint/</code> and fill findings.md.</div>
+          </article>
+
+          <article id="demo-ros">
+            <h3>E · ROS 2 Message Bus</h3>
+            <div class="analogy-box"><strong>Analogy:</strong> Nodes = workers; topics = radio channels. Pub/sub decouples camera from controller — but latency budgets still rule.</div>
+            <div class="demo-shell" data-demo="ros">
+              <div class="demo-toolbar">
+                <label>Budget <input type="range" min="20" max="100" value="50" data-param="budget" /> <span data-val="budget">50 ms</span></label>
+                <label><input type="checkbox" data-progress-id="demo-ros-done" id="demo-ros-done" /> Pub/sub clear</label>
+              </div>
+              <div class="demo-canvas-wrap"><canvas></canvas></div>
+              <div class="demo-aside">Watch messages…</div>
+            </div>
+            <div class="try-box"><strong>Try this:</strong> Run <code>projects/04-ros2-toy/</code> fake ROS, then migrate concepts to real ROS 2.</div>
+          </article>
+
+          <article id="demo-mem">
+            <h3>F · Memory Hierarchy</h3>
+            <div class="analogy-box"><strong>Analogy:</strong> L1 = pocket, L2 = desk, DRAM = warehouse, disk = offsite storage. Misses escalate cost wildly.</div>
+            <div class="demo-shell" data-demo="mem">
+              <div class="demo-toolbar">
+                <button type="button" class="btn primary" data-act="access">Access memory</button>
+                <label><input type="checkbox" data-progress-id="demo-mem-done" id="demo-mem-done" /> Hierarchy clear</label>
+              </div>
+              <div class="demo-canvas-wrap"><canvas></canvas></div>
+              <div class="demo-aside">Click Access…</div>
+            </div>
+            <div class="try-box"><strong>Try this:</strong> Relate to DMA: why cache sync / IOMMU / CMA show up in bring-up bugs.</div>
+          </article>
+
+          <article id="demo-pcie">
+            <h3>G · PCIe / DMA Host Path</h3>
+            <div class="analogy-box"><strong>Analogy:</strong> BAR registers = control panel; DMA = freight elevator between host DRAM and device memory. Core story for OpenAI Host / robot compute.</div>
+            <div class="demo-shell" data-demo="pcie">
+              <div class="demo-toolbar">
+                <button type="button" class="btn primary" data-act="step-pcie">Step</button>
+                <button type="button" class="btn" data-act="auto-pcie">Auto-play</button>
+                <label><input type="checkbox" data-progress-id="demo-pcie-done" id="demo-pcie-done" /> Host path clear</label>
+              </div>
+              <div class="demo-canvas-wrap"><canvas></canvas></div>
+              <div class="demo-aside">Step the path…</div>
+            </div>
+            <div class="try-box"><strong>Try this:</strong> Practice explaining “DMA stuck” from <code>projects/06-host-io-stories/</code> in two minutes.</div>
+          </article>
+        </div>
+      </section>
+
+      <!-- TUTORIALS -->
+      <section class="view" id="view-tutorials">
+        <div class="view-header">
+          <h2>Guided tutorials</h2>
+          <p>Step through with Next/Back. Quizzes check the mental model. Mark complete when Done.</p>
+        </div>
+        <div class="grid grid-2">
+          <div class="card">
+            <ul class="check-list">
+              <li><input type="checkbox" data-progress-id="tut-char" id="tut-char" /><label for="tut-char">Char driver tutorial done</label></li>
+            </ul>
+            <div id="tutorial-char"></div>
+          </div>
+          <div class="card">
+            <ul class="check-list">
+              <li><input type="checkbox" data-progress-id="tut-bringup" id="tut-bringup" /><label for="tut-bringup">Bring-up tutorial done</label></li>
+            </ul>
+            <div id="tutorial-bringup"></div>
+          </div>
+          <div class="card">
+            <ul class="check-list">
+              <li><input type="checkbox" data-progress-id="tut-vision" id="tut-vision" /><label for="tut-vision">Edge vision tutorial done</label></li>
+            </ul>
+            <div id="tutorial-vision"></div>
+          </div>
+          <div class="card">
+            <ul class="check-list">
+              <li><input type="checkbox" data-progress-id="tut-story" id="tut-story" /><label for="tut-story">Story template tutorial done</label></li>
+            </ul>
+            <div id="tutorial-story"></div>
+          </div>
+          <div class="card" style="grid-column:1/-1">
+            <ul class="check-list">
+              <li><input type="checkbox" data-progress-id="tut-coding" id="tut-coding" /><label for="tut-coding">Coding warm-up rules done</label></li>
+            </ul>
+            <div id="tutorial-coding"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- RESOURCES -->
+      <section class="view" id="view-resources">
+        <div class="view-header">
+          <h2>Resource library</h2>
+          <p>Curated from career research · P0 first. Free vs gated marked. Links open externally.</p>
+        </div>
+        <div class="card">
+          <label style="color:var(--text-muted);font-size:.85rem">Filter
+            <select id="res-filter" style="margin-left:.5rem;background:var(--bg-elev);color:var(--text);border:1px solid var(--border);padding:.35rem .5rem;border-radius:6px">
+              <option value="ALL">All</option>
+              <option value="P0">P0 — Drivers + coding</option>
+              <option value="P1">P1 — Arch / ROS / control</option>
+              <option value="P2">P2 — Edge perception</option>
+              <option value="P3">P3 — Optional RDMA</option>
+            </select>
+          </label>
+          <table class="res-table" style="margin-top:1rem">
+            <thead><tr><th>Pri</th><th>Resource</th><th>Why for you</th></tr></thead>
+            <tbody id="res-body"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- PROJECTS -->
+      <section class="view" id="view-projects">
+        <div class="view-header">
+          <h2>Pet projects</h2>
+          <p>Hands-on scaffolds under <code>learning-hub/projects/</code>. READMEs have goals, steps, success criteria, interview talking points.</p>
+        </div>
+        <div class="grid grid-2">
+          <div class="card proj-card">
+            <span class="tag">P1 · M1–3</span>
+            <h3>Virtual Char Driver Lab</h3>
+            <div class="path">projects/01-char-driver-lab/</div>
+            <p>Userspace C++ mock of open/read/write/ioctl + threaded IRQ. Stretch: real module stubs.</p>
+            <ul class="check-list"><li><input type="checkbox" data-progress-id="proj-01" id="proj-01" /><label for="proj-01">Mock built & exercised</label></li></ul>
+          </div>
+          <div class="card proj-card">
+            <span class="tag green">P2 · M1–3</span>
+            <h3>Device Tree + Bring-up</h3>
+            <div class="path">projects/02-dt-bringup/</div>
+            <p>Sample .dts, checklist, Python/C++ DT structure validator.</p>
+            <ul class="check-list"><li><input type="checkbox" data-progress-id="proj-02" id="proj-02" /><label for="proj-02">Validator run on sample</label></li></ul>
+          </div>
+          <div class="card proj-card">
+            <span class="tag amber">P3 · M4–6</span>
+            <h3>Mini Edge Perception</h3>
+            <div class="path">projects/03-edge-perception/</div>
+            <p>OpenCV pipeline + latency histogram; Ambarella/QC mapping story.</p>
+            <ul class="check-list"><li><input type="checkbox" data-progress-id="proj-03" id="proj-03" /><label for="proj-03">Pipeline runs + histogram</label></li></ul>
+          </div>
+          <div class="card proj-card">
+            <span class="tag amber">P4 · M4–6</span>
+            <h3>ROS 2 Toy (fake ROS)</h3>
+            <div class="path">projects/04-ros2-toy/</div>
+            <p>Pure Python pub/sub teaching topics; migration notes to real ROS 2.</p>
+            <ul class="check-list"><li><input type="checkbox" data-progress-id="proj-04" id="proj-04" /><label for="proj-04">Three nodes talking</label></li></ul>
+          </div>
+          <div class="card proj-card">
+            <span class="tag purple">P5 · M4–6</span>
+            <h3>PID Joint Simulator</h3>
+            <div class="path">projects/05-pid-joint/</div>
+            <p>Standalone Python matching the hub PID lab; findings template.</p>
+            <ul class="check-list"><li><input type="checkbox" data-progress-id="proj-05" id="proj-05" /><label for="proj-05">Step + sine tuned</label></li></ul>
+          </div>
+          <div class="card proj-card">
+            <span class="tag">P6 · M7–9</span>
+            <h3>Host I/O War-Story Kit</h3>
+            <div class="path">projects/06-host-io-stories/</div>
+            <p>DMA stuck / IRQ storm / DT mismatch case studies + optional lock microbench.</p>
+            <ul class="check-list"><li><input type="checkbox" data-progress-id="proj-06" id="proj-06" /><label for="proj-06">3 stories practiced aloud</label></li></ul>
+          </div>
+          <div class="card proj-card" style="grid-column:1/-1">
+            <span class="tag">P7 · ongoing</span>
+            <h3>Interview Gym Tracker</h3>
+            <div class="path">projects/07-interview-gym/ · also hub page</div>
+            <p>NeetCode 150 C++ progress, weekly systems topics, no-AI rule.</p>
+            <ul class="check-list"><li><input type="checkbox" data-progress-id="proj-07" id="proj-07" /><label for="proj-07">Tracker in weekly use</label></li></ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- JOBS -->
+      <section class="view" id="view-jobs">
+        <div class="view-header">
+          <h2>Job target board</h2>
+          <p>Prioritize Tier 1. Add Optimus-compatible titles at Tesla <em>and</em> peers.</p>
+        </div>
+        <h3 style="color:var(--text-muted);font-size:.8rem;text-transform:uppercase;letter-spacing:.06em">Tier 1 — prioritize</h3>
+        <div class="grid grid-3" style="margin-bottom:1.25rem">
+          <div class="card job-card">
+            <h3>OpenAI — Host Systems SWE</h3>
+            <p>C/C++, Linux, drivers, PCIe/DMA/NIC, bring-up. Best fit among saved list; redeploys to robot compute.</p>
+          </div>
+          <div class="card job-card">
+            <h3>NVIDIA — Networking / host systems</h3>
+            <p>Customer + embedded networking; C/Linux device stack. More openings than pure CUDA driver.</p>
+          </div>
+          <div class="card job-card">
+            <h3>Broadcom — NOS / forwarding R&D</h3>
+            <p>Deep C/C++, silicon SDK. Stretch on L2/L3; valuable fabric skills.</p>
+          </div>
+        </div>
+        <h3 style="color:var(--text-muted);font-size:.8rem;text-transform:uppercase;letter-spacing:.06em">Jobs to ADD (Optimus-compatible)</h3>
+        <div class="grid grid-2">
+          <div class="card job-card add"><h3>Embedded SWE — Humanoid / Robotics</h3><p>Actuators, RTOS/Linux, motor interfaces.</p></div>
+          <div class="card job-card add"><h3>Robotics SWE — Perception on Edge</h3><p>Ambarella/Qualcomm CV SoC story is direct.</p></div>
+          <div class="card job-card add"><h3>Systems SWE — Robot Compute / Host</h3><p>OpenAI Host–shaped roles at robot cos.</p></div>
+          <div class="card job-card add"><h3>Firmware — Sensors / Cameras / ISP</h3><p>Poly + Lontium/NXP pipelines map well.</p></div>
+          <div class="card job-card add"><h3>Controls SWE — Real-time</h3><p>If you enjoy loops; pairs with power/thermal.</p></div>
+          <div class="card job-card add"><h3>Platform — Autonomy Compute / BSP</h3><p>Bring-up, Yocto/Buildroot, device trees.</p></div>
+        </div>
+        <p style="margin-top:1rem;color:var(--text-dim);font-size:.85rem">Deprioritize as primary: CUDA-only tracks, AI-platform pivots far from devices. Chase skill shape, not one frozen req.</p>
+      </section>
+
+      <!-- GYM -->
+      <section class="view" id="view-gym">
+        <div class="view-header">
+          <h2>Interview gym</h2>
+          <p>Timer on. No AI during the attempt. Review after. Prefer C++ for systems roles.</p>
+        </div>
+        <div class="card" style="margin-bottom:1rem;border-left:3px solid var(--accent-3)">
+          <strong>Session rules</strong>
+          <ol style="color:var(--text-muted);margin:.5rem 0 0;padding-left:1.2rem">
+            <li>45–60 minutes on the clock</li>
+            <li>No Copilot/ChatGPT/Claude during the solve</li>
+            <li>Speak complexity; list edge cases before coding</li>
+            <li>After: watch NeetCode / read editorial; rewrite cleanly</li>
+          </ol>
+        </div>
+        <div class="grid grid-2">
+          <div class="card">
+            <h3>NeetCode patterns (sample tracker)</h3>
+            <ul class="check-list">
+              <li><input type="checkbox" data-progress-id="nc-arrays" id="nc-arrays" /><label for="nc-arrays">Arrays / Hashing</label></li>
+              <li><input type="checkbox" data-progress-id="nc-two" id="nc-two" /><label for="nc-two">Two pointers / Sliding window</label></li>
+              <li><input type="checkbox" data-progress-id="nc-stack" id="nc-stack" /><label for="nc-stack">Stack / Linked list</label></li>
+              <li><input type="checkbox" data-progress-id="nc-tree" id="nc-tree" /><label for="nc-tree">Trees / BST</label></li>
+              <li><input type="checkbox" data-progress-id="nc-graph" id="nc-graph" /><label for="nc-graph">Graphs / BFS-DFS</label></li>
+              <li><input type="checkbox" data-progress-id="nc-dp" id="nc-dp" /><label for="nc-dp">1D / 2D DP basics</label></li>
+              <li><input type="checkbox" data-progress-id="nc-heap" id="nc-heap" /><label for="nc-heap">Heap / Intervals</label></li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Weekly systems topics</h3>
+            <ul class="check-list">
+              <li><input type="checkbox" data-progress-id="sys-ptr" id="sys-ptr" /><label for="sys-ptr">Pointers, RAII, rule of 0/3/5</label></li>
+              <li><input type="checkbox" data-progress-id="sys-mem" id="sys-mem" /><label for="sys-mem">Alignment, packing, endianness, volatile vs atomic</label></li>
+              <li><input type="checkbox" data-progress-id="sys-dma" id="sys-dma" /><label for="sys-dma">MMIO, DMA completion, ISR→thread, ring buffers</label></li>
+              <li><input type="checkbox" data-progress-id="sys-lock" id="sys-lock" /><label for="sys-lock">Mutex/CV vs lock-free; priority inversion</label></li>
+              <li><input type="checkbox" data-progress-id="sys-linux" id="sys-linux" /><label for="sys-linux">Processes/threads, VM, epoll, driver lifecycle</label></li>
+              <li><input type="checkbox" data-progress-id="sys-cross" id="sys-cross" /><label for="sys-cross">CMake/cross-compile bring-up story</label></li>
+            </ul>
+          </div>
+        </div>
+        <p style="margin-top:1rem;font-size:.88rem"><a href="https://neetcode.io/" target="_blank" rel="noopener">neetcode.io</a> ·
+          Full markdown tracker: <code>projects/07-interview-gym/</code></p>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/progress.js"></script>
+  <script src="js/resources.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/tutorials.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+/**
+ * Curated resources from career-resources-research.md
+ */
+window.HUB_RESOURCES = [
+  { p: 'P0', title: 'Bootlin — Kernel & Driver Development', url: 'https://bootlin.com/training/kernel/', free: true, note: 'Slides+labs free; NXP board option maps to Poly.' },
+  { p: 'P0', title: 'Bootlin docs (slides/labs)', url: 'https://bootlin.com/docs/', free: true, note: 'CC BY-SA kernel + driver materials.' },
+  { p: 'P0', title: 'LiveOverflow — How Linux Kernel Drivers Work', url: 'https://www.youtube.com/watch?v=juGNPLdjLH4', free: true, note: 'Hello/scull live demo; ~30–45 min.' },
+  { p: 'P0', title: 'Device Tree for Dummies (Petazzoni)', url: 'https://www.youtube.com/watch?v=m_NyYEBxfn8', free: true, note: 'DT bindings & driver probe — bring-up gold.' },
+  { p: 'P0', title: 'NeetCode', url: 'https://neetcode.io/', free: true, note: 'C++ track; then re-solve offline without AI.' },
+  { p: 'P0', title: 'Educative — Grokking Coding Patterns (C++)', url: 'https://www.educative.io/courses/grokking-coding-interview-in-cpp', gated: true, note: 'Interactive pattern drills.' },
+  { p: 'P0', title: 'Educative — Modern C++ Concurrency', url: 'https://www.educative.io/courses/modern-cpp-concurrency-in-practice-get-the-most-out-of-any-machine', gated: true, note: 'Threads, atomics, memory model.' },
+  { p: 'P0', title: 'Linux Foundation LFD435', url: 'https://training.linuxfoundation.org/training/developing-embedded-linux-device-drivers/', gated: true, note: 'Instructor-led driver course.' },
+  { p: 'P1', title: 'Branch Education — How SoCs Work', url: 'https://www.youtube.com/watch?v=NKfW8ijmRQ4', free: true, note: '3D ISP/NoC/DRAM/MIPI — Ambarella/QC mental model.' },
+  { p: 'P1', title: 'Branch Education — How CPUs Work', url: 'https://www.youtube.com/watch?v=16zrEPOsIcI', free: true, note: 'Pipeline intuition.' },
+  { p: 'P1', title: 'Ben Eater — 8-bit computer', url: 'https://eater.net/8bit', free: true, note: 'Breadboard datapath; living CPU.' },
+  { p: 'P1', title: 'Nand2Tetris', url: 'https://www.nand2tetris.org/', free: true, note: 'Build CPU→OS; interview vocabulary.' },
+  { p: 'P1', title: 'CS:APP (book + labs)', url: 'https://csapp.cs.cmu.edu/', free: true, note: 'Bomblab/cachelab/malloclab — systems gym.' },
+  { p: 'P1', title: 'Modern Robotics (Coursera)', url: 'https://www.coursera.org/specializations/modernrobotics', gated: true, note: 'Kinematics + control; company-agnostic.' },
+  { p: 'P1', title: 'Brian Douglas — PID Pt.1', url: 'https://www.youtube.com/watch?v=wkfEZmsQqiA', free: true, note: 'Cruise-control analogies for robot joints.' },
+  { p: 'P1', title: 'ROS 2 Interactive Tutorial (Albanna)', url: 'https://albanna-tutorials.com/ros2/index.html', free: true, note: '16-week visual ROS 2 path.' },
+  { p: 'P1', title: 'OpenAMR ROS 2 Complete Course', url: 'https://github.com/openAMRobot/openamr-platform-sw/blob/main/docs/ROS2_COMPLETE_COURSE.md', free: true, note: 'Python + C++ modules ~46 h.' },
+  { p: 'P1', title: 'Underactuated Robotics (MIT)', url: 'https://underactuated.csail.mit.edu/', free: true, note: 'Advanced; after PID + Modern Robotics.' },
+  { p: 'P2', title: 'Qualcomm Academy — AI for Robotics', url: 'https://www.academy.qualcomm.com/course-catalog/AI-for-Qualcomm-Robotics', free: true, note: 'RB5, GStreamer, ROS — Poly QC adjacency.' },
+  { p: 'P2', title: 'Embedded CV with ML (Coursera)', url: 'https://www.coursera.org/learn/computer-vision-with-embedded-machine-learning', gated: true, note: 'Edge/TinyML — not CUDA-primary.' },
+  { p: 'P2', title: 'OpenCV Bootcamp (free)', url: 'https://opencv.org/university/free-opencv-course/', free: true, note: '~3 h; perception pipeline basics.' },
+  { p: 'P2', title: 'Ambarella Developer Zone', url: 'https://www.ambarella.com/developer/', gated: true, note: 'CV7-class portal; SDK gated.' },
+  { p: 'P2', title: 'Ultralytics Ambarella CVflow', url: 'https://docs.ultralytics.com/integrations/ambarella', free: true, note: 'Public export docs for Ambarella path.' },
+  { p: 'P3', title: 'Marvell RDMA lightboard', url: 'https://videos.marvell.com/watch/SmjqmmPkNabjiLptfaEXYa', free: true, note: 'Optional networking adjacency.' },
+  { p: 'P3', title: 'RoCE explainer (YouTube)', url: 'https://www.youtube.com/watch?v=dLw5bA5ziwU', free: true, note: '2–5 min vocabulary.' },
+];

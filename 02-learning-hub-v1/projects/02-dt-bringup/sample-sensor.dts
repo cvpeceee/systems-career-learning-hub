@@ -1,0 +1,26 @@
+/dts-v1/;
+
+/ {
+  compatible = "acme,learn-board";
+
+  soc {
+    i2c0: i2c@40000000 {
+      compatible = "acme,i2c";
+      reg = <0x40000000 0x1000>;
+      #address-cells = <1>;
+      #size-cells = <0>;
+      clock-frequency = <400000>;
+
+      sensor@1a {
+        compatible = "acme,fake-i2c-sensor";
+        reg = <0x1a>;
+        interrupt-parent = <&gic>;
+        interrupts = <0 42 4>;
+        vdd-supply = <&vreg_sensor>;
+        clocks = <&clk_sensor>;
+        clock-names = "sensor_clk";
+        status = "okay";
+      };
+    };
+  };
+};
