@@ -49,7 +49,7 @@ def cpp_main(M,trace):
             L.append('  if(got==exp) pass++; else printf("FAIL case %d: got %%s expected %%s\\n",got.c_str(),exp.c_str());'%i)
         rt=sig['ret']
         for j,(n,t) in enumerate(sig['params']):
-            if t in('tree','list') and rt!=t: L.append('  util::free%s(a%d);'%('Tree' if t=='tree' else 'List',j))
+            if t in('tree','list') and (rt!=t or M.get('freshResult')): L.append('  util::free%s(a%d);'%('Tree' if t=='tree' else 'List',j))
         if rt in('tree','list'): L.append('  util::free%s(r);'%('Tree' if rt=='tree' else 'List'))
         L.append('}')
     L.append('  tr::dump(); return 0; }' if trace else '  printf("PASS %d/%d\\n",pass,total); return pass==total?0:1; }')
