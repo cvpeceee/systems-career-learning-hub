@@ -1,0 +1,10 @@
+node_modules/
+__pycache__/
+*.pyc
+out/
+prev_*/
+*.tar.gz
+.DS_Store
+*.log
+.env
+source/snippets/bin/
