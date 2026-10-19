@@ -5,7 +5,7 @@
 :root{--bg:#0b1220;--panel:#111a2e;--panel2:#16223b;--ink:#e2e8f0;--mut:#94a3b8;--acc:#38bdf8;--hl:#f59e0b;--ok:#22c55e;--bad:#ef4444;--vio:#a78bfa;--line:#26344f}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
 a{color:var(--acc)}header{position:sticky;top:0;z-index:5;background:#0b1220ee;border-bottom:1px solid var(--line);padding:8px 14px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
-header b{font-size:17px}nav a{margin-right:12px;text-decoration:none;font-weight:600}main{max-width:1100px;margin:0 auto;padding:14px}
+header b{font-size:17px}nav a{display:inline-block;white-space:nowrap;margin-right:12px;text-decoration:none;font-weight:600}main{max-width:1100px;margin:0 auto;padding:14px}.tag{display:inline-block;background:#1e293b;border-radius:10px;padding:2px 9px;margin:2px;font-size:13px}
 .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px;margin:12px 0}
 .plain{background:#172554;border:1px solid #3b82f6;border-radius:12px;padding:12px 14px;margin:10px 0}.plain h4{margin:0 0 4px;color:var(--acc)}
 .term{color:var(--mut);font-size:14px}.pill{display:inline-block;padding:1px 9px;border-radius:999px;background:var(--panel2);border:1px solid var(--line);font-size:13px;margin:2px}
@@ -35,7 +35,7 @@ svg text{fill:var(--ink);font:600 13px system-ui}.small{font-size:13px;color:var
 .arch rect{fill:#16223b;stroke:#475569;stroke-width:2;rx:10}.arch .on rect{stroke:var(--hl);fill:#3b2a08}.arch .dead rect{stroke:var(--bad);fill:#3f1111}.arch line{stroke:#475569;stroke-width:2}
 [data-a=cap],#arch,[data-a=frames]{scroll-margin-top:70px}
 </style></head><body>
-<header><b>🧩 Interview Prep</b><nav><a href="#home">Home</a><a href="#coding">Coding</a><a href="#design">Design</a><a href="#concepts">Concepts</a><a href="#mock">Mock interview</a><a href="#progress">Progress</a></nav></header>
+<header><b>🧩 Interview Prep</b><nav><a href="#home">Home</a><a href="#coding">Coding</a><a href="#design">Design</a><a href="#companies">Companies</a><a href="#concepts">Concepts</a><a href="#mock">Mock interview</a><a href="#progress">Progress</a></nav></header>
 <main id="app">Loading…</main>
 <script src="data.js"></script><script src="player.js"></script><script src="app.js"></script>
 </body></html>
