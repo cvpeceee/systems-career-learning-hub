@@ -2,23 +2,26 @@ import java.util.*;
 // Paged KV-cache allocator - free-list stack + per-sequence block tables.
 class KVAlloc {
     private final int blockSize;
+    private int[] owner;                                              // block -> seq or -1 (for the visualizer)
     private final Deque<Integer> free = new ArrayDeque<>();          // stack: push/pop at the head
     private final Map<Integer, List<Integer>> table = new HashMap<>();
     private final Map<Integer, Integer> len = new HashMap<>();
-    KVAlloc(int n, int bs) { blockSize = bs; for (int b = n - 1; b >= 0; b--) free.push(b); }   // 0 on top
+    KVAlloc(int n, int bs) { blockSize = bs; owner = new int[n]; Arrays.fill(owner, -1); for (int b = n - 1; b >= 0; b--) free.push(b); }   // 0 on top
     String append(int seq, int t) {
         int cur = len.getOrDefault(seq, 0);
         List<Integer> tab = table.computeIfAbsent(seq, k -> new ArrayList<>());
         int need = (cur + t + blockSize - 1) / blockSize - tab.size();   // ceil - owned
         if (need > free.size()) { if (tab.isEmpty() && cur == 0) table.remove(seq); return "oom"; }
-        for (int k = 0; k < need; k++) tab.add(free.pop());
+        for (int k = 0; k < need; k++) { int b = free.pop(); owner[b] = seq; tab.add(b); }
+        T.r("seq", seq, "t", t, "need", need, "owner", owner, "freeList", T.rev(free));
         len.put(seq, cur + t);
         return "ok:" + tab.size();
     }
     int release(int seq) {
         List<Integer> tab = table.remove(seq); len.remove(seq);
         if (tab == null) return 0;
-        for (int k = tab.size() - 1; k >= 0; k--) free.push(tab.get(k));   // first block on top
+        for (int k = tab.size() - 1; k >= 0; k--) { free.push(tab.get(k)); owner[tab.get(k)] = -1; }   // first block on top
+        T.r("seq", seq, "owner", owner, "freeList", T.rev(free));
         return tab.size();
     }
     String blocks(int seq) {

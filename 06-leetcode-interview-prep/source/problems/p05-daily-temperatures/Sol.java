@@ -11,6 +11,7 @@ class Solution {
                 ans[j] = i - j;                      // resolved: wait = distance
             }
             st.push(i);
+            T.r("t", t, "i", i, "st", T.rev(st), "ans", ans);
         }
         return ans;
     }

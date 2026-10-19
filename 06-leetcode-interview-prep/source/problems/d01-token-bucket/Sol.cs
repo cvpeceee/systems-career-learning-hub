@@ -6,6 +6,7 @@ public class TokenBucket {
     public bool Allow(long t) {
         tokens = Math.Min(capm, tokens + (t - last) * rate);   // lazy refill
         last = t;
+        T.R("tokens", tokens, "capm", capm, "t", t);
         if (tokens >= 1000) { tokens -= 1000; return true; }   // spend one token
         return false;
     }

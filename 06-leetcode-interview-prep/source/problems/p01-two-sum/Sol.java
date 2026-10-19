@@ -5,9 +5,10 @@ class Solution {
         Map<Integer, Integer> seen = new HashMap<>();   // value -> index (the "coat rack")
         for (int i = 0; i < nums.length; i++) {
             long need = (long) target - nums[i];         // partner we still need; long avoids overflow
+            T.r("nums", nums, "i", i, "need", need, "seen", seen);
             if (need >= Integer.MIN_VALUE && need <= Integer.MAX_VALUE) {
                 Integer j = seen.get((int) need);        // O(1) average lookup
-                if (j != null) return new int[]{j, i};   // earlier index first
+                if (j != null) { T.r("nums", nums, "i", i, "j", j, "seen", seen, "_note", "found partner!"); return new int[]{j, i}; }   // earlier index first
             }
             seen.put(nums[i], i);                        // insert AFTER the check
         }

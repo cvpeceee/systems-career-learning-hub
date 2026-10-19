@@ -10,6 +10,7 @@ public class Solution {
     private void Sink(int[][] g, int r, int c) {
         if (r < 0 || c < 0 || r >= g.Length || c >= g[0].Length || g[r][c] == 0) return;  // edge/water
         g[r][c] = 0;                                                  // mark visited
+        T.R("grid", g, "r", r, "c", c);
         Sink(g, r + 1, c); Sink(g, r - 1, c); Sink(g, r, c + 1); Sink(g, r, c - 1);
     }
 }

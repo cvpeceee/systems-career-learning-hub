@@ -32,6 +32,9 @@ def lit(v,t,lang):
     if t=='tree': return {'cpp':'util::parseTree(%s)','java':'Util.parseTree(%s)','cs':'Util.ParseTree(%s)'}[lang]%json.dumps(v)
     if t=='list':
         b=','.join(map(str,v)); return {'cpp':'util::parseList(vector<int>{%s})','java':'Util.parseList(new int[]{%s})','cs':'Util.ParseList(new int[]{%s})'}[lang]%b
+    if t=='list[]':
+        inner=[lit(x,'list',lang) for x in v]
+        return {'cpp':'vector<ListNode*>{%s}','java':'new ListNode[]{%s}','cs':'new ListNode[]{%s}'}[lang]%','.join(inner)
     raise Exception(t)
 def cpp_main(M,trace):
     sig=M['sig']; L=['#include "common.h"','#include "sol.cpp"','int main(){ int pass=0,total=0; (void)pass;']
@@ -55,7 +58,12 @@ def jc_main(M,lang):
     sig=M['sig']; fn=sig['fn'] if lang=='java' else sig['fn'][0].upper()+sig['fn'][1:]
     U='Util.s' if lang=='java' else 'Util.S'
     L=(['import java.util.*;','public class Main { public static void main(String[] argv){ int pass=0,total=0;'] if lang=='java'
-       else ['using System; using System.Collections.Generic;','public static class MainClass { public static int Main(){ int pass=0,total=0;'])
+       else ['using System; using System.Collections.Generic;','public static class MainClass { public static int Main(string[] argv){ int pass=0,total=0;'])
+    tc=M['tests'][M.get('traceCase',0)]
+    TJ='T.on' if lang=='java' else 'T.On'
+    L.append('if(argv.length>0){'.replace('length','length' if lang=='java' else 'Length')+TJ+'=true;')
+    for j,(n,t) in enumerate(sig['params']): L.append('  var t%d=%s;'%(j,lit(tc['args'][j],t,lang)))
+    L.append('  new Solution().%s(%s); %s(T.%s()); %s }'%(fn,','.join('t%d'%j for j in range(len(sig['params']))),'System.out.println' if lang=='java' else 'Console.WriteLine','dump' if lang=='java' else 'Dump','return;' if lang=='java' else 'return 0;'))
     for i,c in enumerate(M['tests']):
         L.append('{')
         for j,(n,t) in enumerate(sig['params']): L.append('  var a%d=%s;'%(j,lit(c['args'][j],t,lang)))
@@ -70,18 +78,18 @@ def jc_main(M,lang):
     return '\n'.join(L)
 def sh(cmd,cwd): 
     p=subprocess.run(cmd,cwd=cwd,shell=True,capture_output=True,text=True,timeout=300); return p.returncode,p.stdout+p.stderr
-def strip_trace(src):
-    """Remove TR(...)/FN(...) lines; return display code and map original line -> display line."""
+def strip_trace(src,pat='TR|FN'):
+    """Remove trace calls; return display code and map original line -> display line."""
     lines=src.split('\n'); disp=[]; mp={}
     for i,l in enumerate(lines,1):
-        if re.match(r'\s*(TR|FN)\(',l): mp[i]=-1; continue
-        l=re.sub(r'(TR|FN)\((?:"[^"]*"|[^;"])*\);\s*','',l)
+        if re.match(r'\s*(%s)\('%pat,l): mp[i]=-1; continue
+        l=re.sub(r'(%s)\((?:"[^"]*"|[^;"])*\);\s*'%pat,'',l)
         disp.append(l); mp[i]=len(disp)
     # a TR line maps to the closest previous real line (the statement it reports on)
     last=1; fixed={}
     for i in range(1,len(lines)+1):
         if mp[i]==-1: fixed[i]=last
-        else: fixed[i]=mp[i]; last=mp[i] if lines[i-1].strip() else last
+        else: fixed[i]=mp[i]; last=mp[i] if lines[i-1].strip() not in ('','{','}','};') else last
     return '\n'.join(disp),fixed
 def build(pid):
     M=load(pid); src=os.path.join(ROOT,'problems',pid); d=os.path.join(OUT,pid); shutil.rmtree(d,ignore_errors=True)
@@ -91,33 +99,50 @@ def build(pid):
     c=os.path.join(d,'cpp'); shutil.copy(os.path.join(src,'sol.cpp'),c)
     for f in('common.h','trace.h'): shutil.copy(os.path.join(COMMON,f),c)
     open(os.path.join(c,'main.cpp'),'w').write(cpp_main(M,False)); open(os.path.join(c,'trace.cpp'),'w').write(cpp_main(M,True))
-    rc,o=sh('g++ -std=c++17 -g -O1 -Wall -Wextra -fsanitize=address,undefined -fno-sanitize-recover=all main.cpp -o t && ./t','%s'%c); res['cpp']=(rc==0,o.strip()[-600:])
+    rc,o=sh('g++ -std=c++17 -g -O1 -Wall -Wextra -fsanitize=address,undefined -fno-sanitize-recover=all main.cpp -o t && ./t','%s'%c); res['cpp']=(rc==0,o.strip()[-4000:])
     rc2,o2=sh('g++ -std=c++17 -O0 -DTRACE -fsanitize=address,undefined trace.cpp -o tr && ./tr',c)
     if rc2!=0: res['trace']=(False,o2[-600:]); trace=None
     else: trace=json.loads(o2.strip().split('\n')[-1]); res['trace']=(True,'%d steps'%len(trace['steps']))
     # Java
     j=os.path.join(d,'java'); shutil.copy(os.path.join(src,'Sol.java'),j); shutil.copy(os.path.join(COMMON,'Util.java'),j)
     open(os.path.join(j,'Main.java'),'w').write(jc_main(M,'java'))
-    rc,o=sh('javac -Xlint:none -d . Util.java Sol.java Main.java && java -cp . Main',j); res['java']=(rc==0,o.strip()[-600:])
+    rc,o=sh('javac -Xlint:none -d . Util.java Sol.java Main.java && java -cp . Main',j); res['java']=(rc==0,o.strip()[-4000:])
+    jsrc=open(os.path.join(src,'Sol.java')).read(); traces={}
+    if 'T.r(' in jsrc:
+        rc,o=sh('java -cp . Main trace',j)
+        if rc==0: traces['java']=json.loads(o.strip().split('\n')[-1]); res['trace_java']=(True,'%d steps'%len(traces['java']['steps']))
+        else: res['trace_java']=(False,o[-600:])
     # C#
     s=os.path.join(d,'cs'); shutil.copy(os.path.join(src,'Sol.cs'),s); shutil.copy(os.path.join(COMMON,'Util.cs'),s)
     open(os.path.join(s,'Main.cs'),'w').write(jc_main(M,'cs'))
     P=os.path.join(ROOT,'csproj')
     for f in glob.glob(P+'/*.cs'): os.remove(f)
     for f in glob.glob(s+'/*.cs'): shutil.copy(f,P)
-    rc,o=sh('export DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 PATH=/opt/dotnet:$PATH; rm -f bin/Debug/net8.0/t.dll; dotnet build -v q -nologo 2>&1 | grep -E "error|rror\\(s\\)" ; dotnet bin/Debug/net8.0/t.dll',P); res['cs']=(rc==0,o.strip()[-600:])
+    rc,o=sh('export DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 PATH=/opt/dotnet:$PATH; rm -f bin/Debug/net8.0/t.dll; dotnet build -v q -nologo 2>&1 | grep -E "error|rror\\(s\\)" ; dotnet bin/Debug/net8.0/t.dll',P); res['cs']=(rc==0,o.strip()[-4000:])
+    csrc=open(os.path.join(src,'Sol.cs')).read()
+    if 'T.R(' in csrc:
+        rc,o=sh('export PATH=/opt/dotnet:$PATH; dotnet bin/Debug/net8.0/t.dll trace',P)
+        if rc==0: traces['cs']=json.loads(o.strip().split('\n')[-1]); res['trace_cs']=(True,'%d steps'%len(traces['cs']['steps']))
+        else: res['trace_cs']=(False,o[-600:])
+    if os.path.exists(os.path.join(src,'tsan.cpp')):
+        shutil.copy(os.path.join(src,'tsan.cpp'),c)
+        rc,o=sh('g++ -std=c++17 -O1 -g -fsanitize=thread tsan.cpp -o ts -lpthread && TSAN_OPTIONS=halt_on_error=1 ./ts',c); res['tsan']=(rc==0,o.strip()[-4000:])
     raw=open(os.path.join(src,'sol.cpp')).read(); disp,mp=strip_trace(raw)
     if trace:
         for st in trace['steps']: st['l']=mp.get(st['l'],st['l'])
-    code={'cpp':disp,'java':open(os.path.join(src,'Sol.java')).read(),'cs':open(os.path.join(src,'Sol.cs')).read()}
-    json.dump({'meta':M,'code':code,'trace':trace,'results':{k:{'ok':v[0],'log':v[1]} for k,v in res.items()}},open(os.path.join(d,'bundle.json'),'w'))
+    jd,jm=strip_trace(jsrc,r'T\.r'); cd,cm=strip_trace(csrc,r'T\.R')
+    for k,mp2 in (('java',jm),('cs',cm)):
+        if k in traces:
+            for st in traces[k]['steps']: st['l']=mp2.get(st['l'],st['l'])
+    code={'cpp':disp,'java':jd,'cs':cd}
+    json.dump({'meta':M,'code':code,'trace':trace,'traces':traces,'results':{k:{'ok':v[0],'log':v[1]} for k,v in res.items()}},open(os.path.join(d,'bundle.json'),'w'))
     return res
 if __name__=='__main__':
     ids=sys.argv[1:] or sorted(os.listdir(os.path.join(ROOT,'problems')))
     bad=0
     for pid in ids:
         r=build(pid); line=pid+': '+'  '.join('%s=%s'%(k,'OK' if v[0] else 'FAIL') for k,v in r.items())
-        tail={k:v[1].split('\n')[-1] for k,v in r.items() if k!='trace'}
+        tail={k:([x for x in v[1].split('\n') if x.startswith('PASS')] or [v[1].split('\n')[-1]])[-1] for k,v in r.items()}
         print(line,'|',tail)
         for k,v in r.items():
             if not v[0]: bad+=1; print('---',k,'\n',v[1])

@@ -7,6 +7,7 @@ public class Solution {
             cur.next = prev;           // flip
             prev = cur;                // grow reversed part
             cur = nxt;                 // advance
+            T.R("prev", prev, "cur", cur);
         }
         return prev;
     }

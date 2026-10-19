@@ -11,6 +11,7 @@ class Solution {
         for (int i = 0; i <= n; i++) parent[i] = i;
         for (int[] e : edges) {
             int ru = find(e[0]), rv = find(e[1]);
+            T.r("edges", edges, "n", n, "u", e[0], "v", e[1], "parent", parent);
             if (ru == rv) return e;                         // closes a cycle
             if (rank[ru] < rank[rv]) { int t = ru; ru = rv; rv = t; }
             parent[rv] = ru;                                // union by rank

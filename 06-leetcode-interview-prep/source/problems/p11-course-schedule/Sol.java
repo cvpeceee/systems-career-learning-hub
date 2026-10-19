@@ -12,6 +12,7 @@ class Solution {
         while (!q.isEmpty()) {
             int node = q.poll(); done++;
             for (int nxt : adj.get(node)) if (--indeg[nxt] == 0) q.add(nxt);
+            T.r("prereq", prereq, "n", n, "node", node, "indeg", indeg, "queue", q);
         }
         return done == n;                                                      // cycle if not all done
     }

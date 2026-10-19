@@ -7,11 +7,13 @@ class ABSlots {
     String install(String v) {
         if (pend) return "busy";
         ver[1 - act] = v; pend = true; tries = 3;          // inactive slot only
+        T.r("ver", ver, "act", act, "pend", pend, "tries", tries);
         return "ok";
     }
     String boot(String result) {
         if (!pend) return "booted:" + slot(act);
-        if (result.equals("good")) { act = 1 - act; pend = false; return "switched:" + slot(act); }   // commit
+        if (result.equals("good")) { act = 1 - act; pend = false; T.r("ver", ver, "act", act, "pend", pend, "tries", tries); return "switched:" + slot(act); }   // commit
+        T.r("ver", ver, "act", act, "pend", pend, "tries", tries - 1);
         if (--tries == 0) { pend = false; return "rollback:" + slot(act); }                            // give up
         return "retry:" + tries;
     }

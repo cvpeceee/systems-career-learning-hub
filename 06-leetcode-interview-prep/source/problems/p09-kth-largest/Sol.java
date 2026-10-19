@@ -3,9 +3,10 @@ import java.util.*;
 class Solution {
     public int findKthLargest(int[] nums, int k) {
         PriorityQueue<Integer> heap = new PriorityQueue<>();   // Java PQ is a min-heap by default
-        for (int x : nums) {
-            heap.offer(x);
+        for (int i = 0; i < nums.length; i++) {
+            heap.offer(nums[i]);
             if (heap.size() > k) heap.poll();                  // drop the smallest
+            T.r("nums", nums, "i", i, "heap", heap);
         }
         return heap.peek();
     }

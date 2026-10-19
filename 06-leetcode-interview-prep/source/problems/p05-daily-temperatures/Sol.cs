@@ -11,6 +11,7 @@ public class Solution {
                 ans[j] = i - j;
             }
             st.Push(i);
+            T.R("t", t, "i", i, "st", st, "ans", ans);
         }
         return ans;
     }

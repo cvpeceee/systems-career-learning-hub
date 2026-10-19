@@ -8,11 +8,13 @@ public class ABSlots {
     public string Install(string v) {
         if (pend) return "busy";
         ver[1 - act] = v; pend = true; tries = 3;          // inactive slot only
+        T.R("ver", ver, "act", act, "pend", pend, "tries", tries);
         return "ok";
     }
     public string Boot(string result) {
         if (!pend) return "booted:" + Slot(act);
-        if (result == "good") { act = 1 - act; pend = false; return "switched:" + Slot(act); }   // commit
+        if (result == "good") { act = 1 - act; pend = false; T.R("ver", ver, "act", act, "pend", pend, "tries", tries); return "switched:" + Slot(act); }   // commit
+        T.R("ver", ver, "act", act, "pend", pend, "tries", tries - 1);
         if (--tries == 0) { pend = false; return "rollback:" + Slot(act); }                      // give up
         return "retry:" + tries;
     }

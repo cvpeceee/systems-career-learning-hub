@@ -12,6 +12,7 @@ public class Solution {
         while (q.Count > 0) {
             int node = q.Dequeue(); done++;
             foreach (int nxt in adj[node]) if (--indeg[nxt] == 0) q.Enqueue(nxt);
+            T.R("prereq", prereq, "n", n, "node", node, "indeg", indeg, "queue", q);
         }
         return done == n;                                                      // cycle if not all done
     }

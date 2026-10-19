@@ -5,6 +5,7 @@ class TokenBucket {
     boolean allow(long t) {
         tokens = Math.min(capm, tokens + (t - last) * rate);   // lazy refill
         last = t;
+        T.r("tokens", tokens, "capm", capm, "t", t);
         if (tokens >= 1000) { tokens -= 1000; return true; }   // spend one token
         return false;
     }

@@ -12,6 +12,7 @@ public class Solution {
         heap.Enqueue(k, 0);
         while (heap.TryDequeue(out int node, out int d)) {
             if (d > dist[node]) continue;                 // stale
+            T.R("times", times, "n", n, "node", node, "dist", dist);
             foreach (var (v, w) in adj[node])
                 if (d + w < dist[v]) { dist[v] = d + w; heap.Enqueue(v, dist[v]); }
         }

@@ -2,23 +2,26 @@ using System.Collections.Generic;
 // Paged KV-cache allocator - free-list stack + per-sequence block tables.
 public class KVAlloc {
     private readonly int blockSize;
+    private readonly int[] owner;                                     // block -> seq or -1 (for the visualizer)
     private readonly Stack<int> free = new Stack<int>();
     private readonly Dictionary<int, List<int>> table = new Dictionary<int, List<int>>();
     private readonly Dictionary<int, int> len = new Dictionary<int, int>();
-    public KVAlloc(int n, int bs) { blockSize = bs; for (int b = n - 1; b >= 0; b--) free.Push(b); }   // 0 on top
+    public KVAlloc(int n, int bs) { blockSize = bs; owner = new int[n]; System.Array.Fill(owner, -1); for (int b = n - 1; b >= 0; b--) free.Push(b); }   // 0 on top
     public string Append(int seq, int t) {
         len.TryGetValue(seq, out int cur);
         if (!table.TryGetValue(seq, out var tab)) tab = new List<int>();
         int need = (cur + t + blockSize - 1) / blockSize - tab.Count;   // ceil - owned
         if (need > free.Count) return "oom";                            // all-or-nothing
-        for (int k = 0; k < need; k++) tab.Add(free.Pop());
+        for (int k = 0; k < need; k++) { int b = free.Pop(); owner[b] = seq; tab.Add(b); }
+        T.R("seq", seq, "t", t, "need", need, "owner", owner, "freeList", free);
         table[seq] = tab; len[seq] = cur + t;
         return "ok:" + tab.Count;
     }
     public int Release(int seq) {
         if (!table.Remove(seq, out var tab)) return 0;
         len.Remove(seq);
-        for (int k = tab.Count - 1; k >= 0; k--) free.Push(tab[k]);
+        for (int k = tab.Count - 1; k >= 0; k--) { free.Push(tab[k]); owner[tab[k]] = -1; }
+        T.R("seq", seq, "owner", owner, "freeList", free);
         return tab.Count;
     }
     public string Blocks(int seq) => table.TryGetValue(seq, out var tab) ? string.Join("|", tab) : "";

@@ -11,6 +11,7 @@ public class Solution {
         for (int i = 0; i <= n; i++) parent[i] = i;
         foreach (var e in edges) {
             int ru = Find(e[0]), rv = Find(e[1]);
+            T.R("edges", edges, "n", n, "u", e[0], "v", e[1], "parent", parent);
             if (ru == rv) return e;                         // closes a cycle
             if (rank[ru] < rank[rv]) (ru, rv) = (rv, ru);
             parent[rv] = ru;                                // union by rank

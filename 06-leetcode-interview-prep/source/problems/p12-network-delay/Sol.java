@@ -13,6 +13,7 @@ class Solution {
         while (!heap.isEmpty()) {
             int[] top = heap.poll(); int d = top[0], node = top[1];
             if (d > dist[node]) continue;                          // stale
+            T.r("times", times, "n", n, "node", node, "dist", dist);
             for (int[] e : adj.get(node))
                 if (d + e[1] < dist[e[0]]) { dist[e[0]] = d + e[1]; heap.add(new int[]{dist[e[0]], e[0]}); }
         }
