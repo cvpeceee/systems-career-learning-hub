@@ -49,6 +49,11 @@ Download this folder and open `index.html` in Chrome (phone or laptop). GitHub's
 
 Rebuild: `cd source/video && python3 render.py ../../videos va vb vc vd ve v11 vf vg vh` (needs Piper + the en_US-lessac-medium voice, ffmpeg, Pillow).
 
+## Related lessons in the main tutorial (added Oct 20)
+- Lesson 18 (networking) → main tutorial **38.2** VXLAN overlays, MTU math and MAC learning in C (video: `04-interactive-tutorial/videos/oct20/o20-vxlan-mtu.mp4`).
+- Lesson 7 (Yocto/BSP) → **38.1** package dependency resolution and kernel config fragments.
+- Lessons 16–17 (RTOS, debugging) → **41.2–41.3** MC/DC coverage, time partitioning and the MIL-STD-1553 bus; **37.1** memory tests for board bring-up.
+
 ## Udemy watch list (exact sections, ~30 h must-watch)
 
 Full details, optional sections and skip list: [`UDEMY_PICKS.md`](UDEMY_PICKS.md)

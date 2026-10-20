@@ -9,11 +9,12 @@ Everything built to grow from senior systems engineer (video devices, C++, C dri
 | `01-career-plan/` | 8-page PDF plan | Ranked saved jobs, 6–12 month plan |
 | `02-learning-hub-v1/` | First interactive hub | Tutorials, animations, 7 pet projects |
 | `03-skills-academy/` | Skills Academy v2 | Skills from job alerts, animated sims (Raft, CUDA, KV cache) |
-| `04-interactive-tutorial/` | **Main course** (36 chapters, 146 lessons) | Drivers, CUDA, distributed systems, inference, robotics, staff-level role playbooks, plus the Tesla track |
+| `04-interactive-tutorial/` | **Main course** (41 chapters, 161 lessons) | Drivers, CUDA, distributed systems, inference, robotics, staff-level role playbooks, Oct 20 roles (silicon diagnostics, Linux networking, fleet SRE, product backends/agents, avionics/maps), plus the Tesla track; 6 narrated videos in `videos/oct20/` |
 | `05-tesla-track/` | Tesla track on its own | FSD, AI, Optimus, motor control, ROS 2 |
-| `06-leetcode-interview-prep/` | **LeetCode-style interview prep** | 107 coding problems + 25 system design questions with timer/hints/rubrics, C#/Java/C++ solutions (all tested), animated walkthroughs, call-stack execution visualizer (C++, plus Java/C# for many), 31 narrated concept videos, 18 company pages, mock interviews |
+| `06-leetcode-interview-prep/` | **LeetCode-style interview prep** | 110 coding problems + 28 system design questions with timer/hints/rubrics, C#/Java/C++ solutions (all tested), animated walkthroughs, call-stack execution visualizer (C++, plus Java/C# for many), 31 narrated concept videos, 25 company pages, mock interviews |
 | `07-poly-embedded-firmware/` | **Poly on-the-job academy (Linux/Android + USB firmware)** | 20 lessons with animations/quizzes, 13 hands-on labs (kernel modules, configfs USB gadget, V4L2, USB descriptor parser, A/B updates; most verified in QEMU), 30/60/90 + 12-month growth plan |
-| `source/` | Build files for the main course | Rebuild instructions in its README |
+| `JOB_SKILL_MAP.md` | Role → skills → where in this repo | The 17 roles from the Oct 20 job alerts, with posting labels |
+| `source/` | Build files for the main course (`oct20-pack/` = ch37–41) | Rebuild instructions in its README |
 | `screenshots/` | Preview pictures | One or two per course |
 
 ## How to open
