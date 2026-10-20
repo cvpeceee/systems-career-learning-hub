@@ -1,0 +1,55 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:05.213
+This video explains how large fleets keep the important traces without storing everything.
+
+00:00:06.413 --> 00:00:08.329
+Think of a hospital triage desk.
+
+00:00:08.729 --> 00:00:12.885
+Head sampling decides at the door, before anyone knows what is wrong.
+
+00:00:13.285 --> 00:00:16.977
+Tail sampling waits until the whole visit is over, then decides.
+
+00:00:17.377 --> 00:00:21.266
+Serious cases, errors and slow requests, are always kept.
+
+00:00:21.666 --> 00:00:26.426
+A fixed share of healthy visits is kept too, so you know what normal looks like.
+
+00:00:27.626 --> 00:00:28.822
+Here's the pipeline.
+
+00:00:29.222 --> 00:00:32.926
+Applications emit spans through the OpenTelemetry SDK.
+
+00:00:33.326 --> 00:00:38.713
+A load balancer sends every span of one trace to the same collector, by hashing the trace ID.
+
+00:00:39.113 --> 00:00:43.432
+The gateway buffers spans until the root span ends or a timeout passes.
+
+00:00:43.832 --> 00:00:53.363
+Then it decides. Errors are kept. Slow traces are kept. Otherwise a hash of the trace ID picks a fixed percentage, so every collector makes the same choice.
+
+00:00:53.763 --> 00:00:55.470
+Kept traces go to storage.
+
+00:00:56.670 --> 00:00:57.193
+Recap.
+
+00:00:57.593 --> 00:01:01.377
+Tail sampling needs every span of a trace on one collector.
+
+00:01:01.777 --> 00:01:04.378
+Always keep errors and slow traces.
+
+00:01:04.778 --> 00:01:08.145
+Hash-based sampling gives the same decision everywhere.
+
+00:01:08.545 --> 00:01:12.748
+Cap label combinations per metric so one team can't explode your bill.
+
+00:01:13.148 --> 00:01:17.176
+Practice in lesson thirty nine point three and design sd twenty seven.

@@ -1,0 +1,70 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:10.310
+This video covers two avionics topics from the Raytheon and Garmin roles: MC/DC test coverage, and the MIL-STD-1553 data bus.
+
+00:00:11.510 --> 00:00:15.236
+Imagine proving each switch in a room really controls the light.
+
+00:00:15.636 --> 00:00:17.366
+Hold every other switch still.
+
+00:00:17.766 --> 00:00:18.916
+Flip just one.
+
+00:00:19.316 --> 00:00:20.790
+The bulb must change.
+
+00:00:21.190 --> 00:00:25.567
+Repeat for every switch. That's modified condition, decision coverage.
+
+00:00:26.767 --> 00:00:29.496
+Take the decision, A and B, or C.
+
+00:00:29.896 --> 00:00:36.908
+For A, compare true true false, which is true, with false true false, which is false. Only A changed.
+
+00:00:37.308 --> 00:00:40.919
+For B, compare true true false with true false false.
+
+00:00:41.319 --> 00:00:46.694
+For C, compare true false false, which is false, with true false true, which is true.
+
+00:00:47.094 --> 00:00:50.287
+So four tests cover three conditions: n plus one.
+
+00:00:50.687 --> 00:00:56.457
+DO-178C requires this for level A software, where failure could be catastrophic.
+
+00:00:57.657 --> 00:01:05.157
+The MIL-STD-1553 bus uses sixteen bit words, each sent with a sync pattern and a parity bit.
+
+00:01:05.557 --> 00:01:09.144
+Five bits pick the remote terminal, one of thirty one addresses.
+
+00:01:09.544 --> 00:01:12.284
+One bit says transmit or receive.
+
+00:01:12.684 --> 00:01:17.735
+Five bits are the subaddress. Zero or thirty one means a mode code instead of data.
+
+00:01:18.135 --> 00:01:21.502
+Five bits are the word count, where zero means thirty two.
+
+00:01:22.702 --> 00:01:23.224
+Recap.
+
+00:01:23.624 --> 00:01:27.746
+MC/DC shows each condition independently changes the outcome.
+
+00:01:28.146 --> 00:01:32.511
+Usually n plus one tests suffice, but masking can block pairs.
+
+00:01:32.911 --> 00:01:38.333
+A 1553 command word is five, one, five and five bits.
+
+00:01:38.733 --> 00:01:41.484
+Message schedules must fit each minor frame.
+
+00:01:41.884 --> 00:01:47.086
+Practice in lessons forty one point two and forty one point three, and problem p one ten.

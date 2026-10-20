@@ -1,0 +1,55 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:07.523
+This video covers how an endpoint security sensor tracks processes, and how to ship detection updates without crashing machines.
+
+00:00:08.723 --> 00:00:11.324
+Picture the security desk of a large building.
+
+00:00:11.724 --> 00:00:15.845
+Every visitor badge records who let them in. That is the parent process.
+
+00:00:16.245 --> 00:00:21.168
+The guard looks for suspicious chains, like a word processor launching a command shell.
+
+00:00:21.568 --> 00:00:28.197
+The visitor log has a fixed size. When it's full, the guard counts what was dropped instead of pretending nothing happened.
+
+00:00:28.597 --> 00:00:34.193
+And when head office sends new rule cards, they are tried at one desk before they go to every desk.
+
+00:00:35.393 --> 00:00:37.030
+Five design rules.
+
+00:00:37.430 --> 00:00:41.587
+Key each process by its pid and start time, because pids get reused.
+
+00:00:41.987 --> 00:00:46.503
+Bound every walk up the ancestry chain, because data can be missing or looped.
+
+00:00:46.903 --> 00:00:51.535
+Pass events from kernel to user space through a ring buffer, and count drops.
+
+00:00:51.935 --> 00:01:04.358
+Validate new content against the same parser the sensor runs. CrowdStrike's public root cause analysis of the July twenty twenty four outage describes a template expecting twenty one fields while the sensor supplied twenty.
+
+00:01:04.758 --> 00:01:09.797
+Roll out in rings, and fall back to the last known good content after repeated crashes.
+
+00:01:10.997 --> 00:01:11.519
+Recap.
+
+00:01:11.919 --> 00:01:14.671
+Process identity is pid plus start time.
+
+00:01:15.071 --> 00:01:16.847
+Keep walks and buffers bounded.
+
+00:01:17.247 --> 00:01:19.639
+The validator must match the real parser.
+
+00:01:20.039 --> 00:01:21.966
+Ship in rings with a local fallback.
+
+00:01:22.366 --> 00:01:26.290
+Practice in lesson thirty eight point three and design sd twenty eight.

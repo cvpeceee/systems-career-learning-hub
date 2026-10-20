@@ -1,0 +1,73 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:05.793
+This video explains how chip and board engineers find broken memory cells, using a march test.
+
+00:00:06.193 --> 00:00:11.685
+We start with an analogy, define the fault types, then step through March C minus.
+
+00:00:12.885 --> 00:00:16.763
+Picture a hallway of lockers, and you must prove every one works.
+
+00:00:17.163 --> 00:00:21.122
+The simple plan: put a note in every locker, then read every note back.
+
+00:00:21.522 --> 00:00:26.642
+A broken lock that is stuck always shows the same note. The simple plan catches that.
+
+00:00:27.042 --> 00:00:31.581
+But some lockers disturb their neighbour when you open them. That is a coupling fault.
+
+00:00:31.981 --> 00:00:39.528
+To catch a neighbour on either side, you must walk the hallway in both directions, writing and reading as you go. That is a march test.
+
+00:00:40.728 --> 00:00:42.040
+Four words to know.
+
+00:00:42.440 --> 00:00:45.992
+A stuck-at fault: the cell always reads the same value.
+
+00:00:46.392 --> 00:00:49.806
+A transition fault: the cell can't change in one direction.
+
+00:00:50.206 --> 00:00:55.302
+A coupling fault: writing one cell, the aggressor, flips another cell, the victim.
+
+00:00:55.702 --> 00:01:02.343
+A march element: one pass over every address, going up or down, with the same reads and writes at each cell.
+
+00:01:03.543 --> 00:01:06.225
+Here is March C minus, element by element.
+
+00:01:06.625 --> 00:01:09.586
+First, write zero everywhere, in any order.
+
+00:01:09.986 --> 00:01:14.572
+Going up, read zero then write one. A stuck-at-one cell fails its read here.
+
+00:01:14.972 --> 00:01:20.370
+Still going up, read one then write zero. A cell that can't fall from one to zero fails here.
+
+00:01:20.770 --> 00:01:26.819
+Now going down, read zero, write one. Writes from higher addresses reach victims below before they are read.
+
+00:01:27.219 --> 00:01:29.750
+Going down again, read one, write zero.
+
+00:01:30.150 --> 00:01:39.252
+Finally read zero everywhere. Ten operations per cell in total, and in the lesson's model a write-all, read-all test misses the coupling fault this catches.
+
+00:01:40.452 --> 00:01:41.416
+Let's recap.
+
+00:01:41.816 --> 00:01:45.160
+A simple write-all, read-all test misses some coupling faults.
+
+00:01:45.560 --> 00:01:49.101
+The direction of each pass decides which neighbour you can catch.
+
+00:01:49.501 --> 00:01:52.531
+March C minus costs ten operations per cell.
+
+00:01:52.931 --> 00:01:55.520
+Try it yourself in lesson thirty seven point one.

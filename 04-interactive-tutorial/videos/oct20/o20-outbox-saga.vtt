@@ -1,0 +1,58 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:06.641
+This video explains how backends avoid lost or duplicated orders when a database and a message queue must agree.
+
+00:00:07.841 --> 00:00:09.884
+Picture a restaurant ticket rail.
+
+00:00:10.284 --> 00:00:17.308
+The waiter writes the order and the kitchen ticket in one motion, so one can't exist without the other. That is the outbox.
+
+00:00:17.708 --> 00:00:23.084
+A runner carries tickets to the kitchen. If unsure whether a ticket arrived, they carry it again.
+
+00:00:23.484 --> 00:00:28.372
+The kitchen ignores any ticket number it already cooked. That is an idempotent consumer.
+
+00:00:28.772 --> 00:00:35.993
+And if the delivery can't happen, earlier steps are undone in reverse: refund the card, release the table. That is a saga.
+
+00:00:37.193 --> 00:00:38.470
+Let's walk a failure.
+
+00:00:38.870 --> 00:00:43.003
+The order and its outbox row are written in one database transaction.
+
+00:00:43.403 --> 00:00:46.259
+The relay publishes the event with a stable id.
+
+00:00:46.659 --> 00:00:48.621
+The acknowledgement gets lost.
+
+00:00:49.021 --> 00:00:53.619
+So the relay publishes the same event again. This is at-least-once delivery.
+
+00:00:54.019 --> 00:00:58.988
+The consumer has already seen that id, so it skips it. The effect happens once.
+
+00:00:59.388 --> 00:01:01.652
+Finally the relay marks the row as sent.
+
+00:01:02.852 --> 00:01:03.374
+Recap.
+
+00:01:03.774 --> 00:01:06.944
+Never write the database and the queue as two separate steps.
+
+00:01:07.344 --> 00:01:10.502
+Outbox plus relay gives at-least-once delivery.
+
+00:01:10.902 --> 00:01:13.119
+Consumers dedupe by event id.
+
+00:01:13.519 --> 00:01:16.410
+Sagas undo completed steps in reverse order.
+
+00:01:16.810 --> 00:01:20.340
+Practice in lesson forty point one and design sd twenty six.

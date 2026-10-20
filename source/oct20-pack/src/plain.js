@@ -1,0 +1,23 @@
+// "In plain words" panels: a = analogy, t = what to try. Keyed by sim id and "lab:<chapter id>".
+export const PLAIN_O20 = {
+  march: { a: "An usher checking every stadium seat, walking each row forwards and then backwards.", t: "Pick a defect and see which step finds it. Then switch to the one-direction test and find the defect it misses." },
+  warpsim: { a: "One chef stirring several pots while each simmers.", t: "Add thread groups until the chef is never idle. Then raise the memory wait and see how many more you need." },
+  tiling: { a: "Painters each owning one square of a mural but peeking at the neighbours' edges.", t: "Shrink the border below the reach of the operation and watch seams appear. Then fix it and see what the border costs." },
+  distro: { a: "A remote island pharmacy that stocks only checked medicines and receives sealed, signed crates.", t: "Turn on each safety step until the update is both installable and trustworthy." },
+  vxlan: { a: "A letter inside a bigger envelope that must still fit through the same mail slot.", t: "Lower the inner size or raise the outer limit until full-size packets get through." },
+  sensor: { a: "Airport security with a new rulebook every morning.", t: "Send a bad rule page and see what stops it. Then roll it out gate by gate." },
+  autoscale: { a: "A restaurant calling in cooks who take twenty minutes to arrive.", t: "Make it shrink slowly and keep a few cooks on standby so the morning rush is covered." },
+  k8supgrade: { a: "Renovating hospital wards without turning patients away.", t: "Respect the bed limits and wait for long-stay patients, and see how many wards you can do now." },
+  otel: { a: "A bank mailroom that keeps every complaint letter and samples the routine ones.", t: "Switch to deciding after seeing the whole letter, then cap the label combinations." },
+  outbox: { a: "Writing the order ticket and pinning it to the rail in one motion.", t: "Crash the service at different moments and turn on each safety step until no order is lost or doubled." },
+  privacy: { a: "A library that checks the permission slip before every loan.", t: "Withdraw consent and see whether the email still goes out. Then turn on checking at the moment of use." },
+  agentgate: { a: "A new assistant with a company card who must ask before spending.", t: "Let the agent try again and send, and turn on each gate until nothing risky happens twice or without a yes." },
+  mapsearch: { a: "Finding the nearest café block by block, spreading outward.", t: "Change the block size and see how many blocks a search checks, with the answer still exact." },
+  mcdc: { a: "Proving every cockpit switch matters by flipping just that switch.", t: "Add or remove tests until every condition has a pair, with as few tests as possible." },
+  bus1553: { a: "A teacher calling on students by number, with a timetable that must fit each period.", t: "Spread the slow questions across the week until no period runs over." },
+  "lab:silicon-systems-software": { a: "A plan for testing every new chip before it ships and explaining every failure." },
+  "lab:linux-platform-networking": { a: "A blueprint for computers in a building with no internet connection that must still stay safe and updated." },
+  "lab:fleet-reliability-observability": { a: "A plan for keeping a huge fleet of machines right-sized, up to date and visible." },
+  "lab:product-backends-agents": { a: "A design where orders never get lost, private data stays private, and the AI helper asks before acting." },
+  "lab:embedded-nav-avionics": { a: "A design for a flight-safe 'nearest airport' button, with the paperwork to prove it." },
+};

@@ -1,0 +1,70 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:06.560
+This video explains VXLAN, the overlay that lets cloud virtual networks span many physical hosts.
+
+00:00:06.960 --> 00:00:11.801
+We cover the packet wrapping, the M T U math, and how the forwarding table learns.
+
+00:00:13.001 --> 00:00:15.160
+Think of mailing a letter through a courier.
+
+00:00:15.560 --> 00:00:19.078
+Your letter is the original Ethernet frame from a virtual machine.
+
+00:00:19.478 --> 00:00:27.338
+The courier puts it inside a larger envelope with a label saying which customer network it belongs to. That label is the V N I.
+
+00:00:27.738 --> 00:00:33.253
+The courier's truck only takes packages up to a fixed size. That size is the M T U.
+
+00:00:33.653 --> 00:00:38.134
+Because the envelope adds size, your letter must be smaller to still fit.
+
+00:00:39.334 --> 00:00:40.217
+Four words.
+
+00:00:40.617 --> 00:00:44.193
+The V N I is a twenty four bit number naming the tenant network.
+
+00:00:44.593 --> 00:00:50.073
+A V TEP is the endpoint that wraps and unwraps frames, a host or a smart NIC.
+
+00:00:50.473 --> 00:00:55.024
+The M T U is the biggest packet a link carries, often fifteen hundred bytes.
+
+00:00:55.424 --> 00:00:59.789
+The F D B maps a MAC address to the remote V TEP that owns it.
+
+00:01:00.989 --> 00:01:02.394
+Let's add up the cost.
+
+00:01:02.794 --> 00:01:04.988
+Fourteen bytes of outer Ethernet header.
+
+00:01:05.388 --> 00:01:07.292
+Twenty bytes of outer IPv4.
+
+00:01:07.692 --> 00:01:10.827
+Eight bytes of UDP, on port forty seven eighty nine.
+
+00:01:11.227 --> 00:01:30.232
+Eight bytes of VXLAN header with the V N I. The outer Ethernet header doesn't count against the underlay's IP M T U, so the inner Ethernet header is charged instead, and the total is still fifty bytes: on a fifteen hundred byte underlay the inner IP M T U is fourteen fifty. Get this wrong and large packets silently vanish.
+
+00:01:31.432 --> 00:01:31.955
+Recap.
+
+00:01:32.355 --> 00:01:35.780
+VXLAN carries an Ethernet frame inside UDP.
+
+00:01:36.180 --> 00:01:38.142
+The V N I keeps tenants apart.
+
+00:01:38.542 --> 00:01:42.710
+Lower the inner M T U by fifty, or use jumbo frames underneath.
+
+00:01:43.110 --> 00:01:48.195
+The F D B learns which V TEP owns each MAC and forgets stale entries.
+
+00:01:48.595 --> 00:01:51.486
+Lesson thirty eight point two builds this in C.
