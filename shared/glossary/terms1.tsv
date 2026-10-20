@@ -1,0 +1,428 @@
+DMA	Direct Memory Access: a helper engine that copies data between devices and memory without the CPU touching each byte.	A conveyor belt that moves boxes while the manager (CPU) does other work.
+ISP	Image Signal Processor: the chip block that turns raw camera sensor data into a clean picture.	A photo lab that develops raw film into a finished print.
+GPU	Graphics Processing Unit: a chip with thousands of small cores that do the same math on lots of data at once.	A stadium of students each solving one simple sum at the same time.
+AI	Artificial Intelligence: software that learns patterns from data to make predictions or decisions.	A trainee who learns by looking at thousands of worked examples.
+CPU	Central Processing Unit: the main general-purpose processor that runs programs step by step.	The head chef who can cook anything, one dish at a time.
+DRAM	Dynamic RAM: the main working memory of a computer; fast but forgets everything when power is off.	A whiteboard: quick to write on, wiped when the lights go out.
+CUDA	NVIDIA's programming platform for writing code that runs on its GPUs.	The instruction manual for directing the stadium of students.
+RDMA	Remote Direct Memory Access: one machine writes straight into another machine's memory over the network, skipping the CPU.	Dropping a parcel straight into a neighbour's locker instead of handing it to their receptionist.
+PID	Proportional-Integral-Derivative controller: a feedback loop that nudges a motor or heater toward a target; also Process ID in Linux.	Steering a car: correct for how far off you are, how long you've been off, and how fast you're drifting.
+ROS	Robot Operating System: a toolkit of libraries and message passing for building robot software.	A shared intercom system so every robot part can talk to every other part.
+DT	Device Tree: a text file that describes the hardware on a board so the Linux kernel knows what is there.	A floor plan of the house handed to the electrician before they start.
+IOMMU	Input-Output Memory Management Unit: hardware that controls which memory a device is allowed to touch.	A building security guard who checks every delivery driver's badge before they enter a room.
+IRQ	Interrupt Request: a signal from hardware telling the CPU "stop and deal with me now".	A doorbell ringing while you are cooking.
+MIPI	Mobile Industry Processor Interface: a family of standard high-speed wires between chips, cameras (CSI) and displays (DSI).	A standard plug shape so any camera fits any phone board.
+OS	Operating System: the core software (like Linux or Android) that manages hardware and runs apps.	The building manager who hands out rooms, power and water to tenants.
+SDK	Software Development Kit: a bundle of libraries, tools and docs for building on a platform.	A toolbox that comes with a new piece of furniture.
+MMIO	Memory-Mapped I/O: controlling hardware by reading and writing special memory addresses.	Light switches that look like ordinary mailboxes: put a letter in and a light turns on.
+ISR	Interrupt Service Routine: the short function that runs when a hardware interrupt fires.	The person who jumps up to answer the doorbell.
+BSP	Board Support Package: the chip vendor's bundle of bootloader, kernel, drivers and configs for one board.	The starter kit that comes with a new house: keys, wiring diagram and fuse box labels.
+ML	Machine Learning: teaching a computer from example data instead of hand-written rules.	Learning to spot ripe fruit by looking at many examples, not reading a rulebook.
+LRU	Least Recently Used: a cache rule that throws out whatever was used longest ago.	Clearing the fridge by tossing what nobody has touched in the longest time.
+CI	Continuous Integration: every code change is automatically built and tested.	A quality inspector who checks every part as soon as it comes off the line.
+API	Application Programming Interface: the agreed set of functions or requests one piece of software offers another.	A restaurant menu: you order from it without knowing how the kitchen works.
+RTOS	Real-Time Operating System: a small OS that guarantees tasks run within strict time limits.	A train timetable that never lets a train leave late.
+BFS	Breadth-First Search: explore a graph level by level using a queue.	Ripples spreading out from a stone dropped in a pond.
+DFS	Depth-First Search: explore a graph by going as deep as possible before backing up.	Exploring a maze by always following one wall until a dead end, then backing up.
+VM	Virtual Machine: a whole computer simulated in software on top of a real one.	A flat inside an apartment block: feels like your own house, shares the building.
+RAII	Resource Acquisition Is Initialization: a C++ habit where an object frees its resource automatically when it goes out of scope.	A hotel key card that stops working the moment you check out.
+NIC	Network Interface Card: the hardware that connects a computer to a network.	The mailbox and postman's slot of a house.
+GPIO	General-Purpose Input/Output: a chip pin that software can switch on/off or read.	A simple light switch the software can flip or check.
+I2C	Inter-Integrated Circuit: a slow two-wire bus for chips on a board to talk (sensors, bridges, power chips).	A party line telephone where each chip answers only to its own name.
+SPI	Serial Peripheral Interface: a fast four-wire bus between a main chip and peripherals like flash or displays.	A private phone line per chip with a dedicated "you're up" wire.
+JSON	JavaScript Object Notation: a plain-text format for structured data.	A neatly labelled packing list.
+OTA	Over-The-Air update: sending new software to a device remotely.	A phone app update that arrives while you sleep.
+AWS	Amazon Web Services: Amazon's cloud computing platform.	Renting power and storage from a giant utility company.
+LLM	Large Language Model: an AI trained on huge amounts of text to predict and generate language.	An extremely well-read autocomplete.
+CAP	CAP theorem: in a network split, a distributed database must choose Consistency or Availability.	Two bank branches cut off by a storm: either both stop serving or they risk disagreeing.
+UI	User Interface: the screens and controls a person uses.	The dashboard of a car.
+ARM	A family of power-efficient processor designs used in phones and embedded chips.	A popular engine blueprint many car makers license.
+KV	Key-Value store: a database that maps a key to a value, like a dictionary.	A coat check: give a ticket, get your coat.
+TCP	Transmission Control Protocol: reliable, ordered delivery of bytes over a network.	Registered mail with receipts and re-sends if a letter is lost.
+UDP	User Datagram Protocol: fast, connectionless packets with no delivery guarantee.	Throwing postcards: fast, but some may get lost.
+SPSC	Single-Producer Single-Consumer queue: one writer, one reader, can be lock-free.	A one-lane drive-through: one cook passes, one customer takes.
+MPMC	Multi-Producer Multi-Consumer queue: many writers and many readers share it.	A busy buffet with many cooks and many diners.
+DP	Dynamic Programming: solve a problem by storing answers to smaller sub-problems and reusing them; also DisplayPort.	Writing intermediate sums in a notebook so you never redo them.
+QEMU	A free emulator that pretends to be a whole computer or board in software.	A flight simulator for computer hardware.
+GIC	Generic Interrupt Controller: ARM's chip block that routes interrupts to CPU cores.	A hotel switchboard routing doorbells to the right room.
+VFS	Virtual File System: the Linux layer that makes every file system look the same to programs.	A universal remote that works any TV brand.
+BMC	Baseboard Management Controller: a small separate computer on a server board for remote power and health control.	A building caretaker who can reboot the furnace even when the owner is away.
+SDN	Software-Defined Networking: network routing decided by central software, not each box.	Air traffic control directing all planes from one tower.
+OOM	Out Of Memory: the system ran out of RAM; Linux may kill a process to recover.	A full fridge: something must be thrown out before anything new goes in.
+GPS	Global Positioning System: satellites that let a receiver compute its location.	Working out where you are from how long several far-away shouts take to reach you.
+MTBF	Mean Time Between Failures: average running time before something breaks.	How many miles a car goes on average before a breakdown.
+NUMA	Non-Uniform Memory Access: on big servers, memory near a CPU is faster than memory near another CPU.	Your own kitchen cupboard is quicker than walking to the neighbour's.
+CLI	Command-Line Interface: controlling a program by typing commands.	Ordering by speaking exact words to the waiter instead of pointing at pictures.
+DNS	Domain Name System: turns names like google.com into IP addresses.	The phone book of the internet.
+NPU	Neural Processing Unit: a chip block built to run AI models efficiently.	A specialised calculator made just for neural-network math.
+RAM	Random Access Memory: fast working memory for running programs.	Your desk surface: fast to reach, limited space.
+TTL	Time To Live: how long a cached value or packet is allowed to exist.	A "best before" date on food.
+PACELC	Extension of CAP: if Partitioned choose Availability or Consistency, Else choose Latency or Consistency.	Even on a sunny day, a fast answer and a perfectly checked answer trade off.
+GC	Garbage Collection: automatic freeing of memory a program no longer uses.	A cleaner who clears away dishes nobody is using.
+SLO	Service Level Objective: a target like "99.9% of requests under 200 ms".	A pizza shop promising delivery in 30 minutes 999 times out of 1000.
+SLA	Service Level Agreement: a contract promising a level of service, with penalties if missed.	The written guarantee with a refund if the pizza is late.
+E2E	End-to-end: across the whole path from start to finish.	Timing the whole trip door to door, not just the train ride.
+OCI	Oracle Cloud Infrastructure: Oracle's cloud platform; also Open Container Initiative (container format standard).	Oracle's rentable data-centre city.
+ECC	Error-Correcting Code memory: memory that detects and fixes flipped bits.	A spell-checker built into the paper itself.
+SQL	Structured Query Language: the standard language for asking questions of relational databases.	A precise form you fill in to ask a librarian for books.
+NCCL	NVIDIA Collective Communications Library: fast routines for GPUs to share data during training.	A group chat protocol that lets GPUs pass notes as fast as possible.
+XDP	eXpress Data Path: run small programs on packets at the earliest point in the Linux network driver.	A bouncer at the front gate who turns people away before they enter the club.
+NMS	Non-Maximum Suppression: removing overlapping duplicate detection boxes, keeping the best one.	When five people point at the same bird, keep only the most confident pointer.
+V4L2	Video4Linux2: the Linux kernel framework and API for cameras and video capture.	The standard socket that every camera plugs into on Linux.
+FP32	32-bit floating-point number: standard precision for decimals.	A ruler with fine millimetre marks.
+FP16	16-bit floating-point: half precision, faster and smaller, less exact.	A ruler with only half-centimetre marks.
+HBM	High Bandwidth Memory: stacked memory placed right next to a GPU for huge data speed.	A pantry built right beside the stove.
+DB	Database: an organised store of data you can query.	A filing cabinet with an index.
+URL	Uniform Resource Locator: a web address.	A street address for a web page.
+CAS	Compare-And-Swap: an atomic CPU instruction that updates a value only if it still has the expected old value.	"Change the price to 6 only if the tag still says 5."
+CDN	Content Delivery Network: servers spread around the world that cache content close to users.	Local warehouses so parcels don't ship from one central depot.
+LSM	Log-Structured Merge tree: a storage design that writes sequentially and merges sorted files later; also Linux Security Module.	Dropping mail into a tray and sorting it in batches later.
+HTTP	HyperText Transfer Protocol: the request/response language of the web.	A standard way to ask a shop counter for an item and get it back.
+MCU	Microcontroller Unit: a small chip with CPU, memory and I/O on one die, running simple firmware.	A pocket calculator-sized computer inside a toaster.
+GDB	GNU Debugger: a tool to pause a program, inspect variables and step through code.	A pause button and magnifying glass for running code.
+DPDK	Data Plane Development Kit: libraries for processing packets in user space at very high speed, bypassing the kernel.	A private express lane that skips the toll booths.
+TFLOP	Tera floating-point operations: a trillion decimal math operations (per second when used as speed).	A trillion sums.
+SIMD	Single Instruction Multiple Data: one CPU instruction applied to many values at once.	A cookie cutter stamping eight cookies in one press.
+ID	Identifier: a unique name or number for a thing.	A name tag.
+DSP	Digital Signal Processor: a chip specialised for audio/radio/sensor math.	A sound engineer's mixing desk in silicon.
+SSD	Solid-State Drive: storage made of flash chips, no moving parts.	A fast filing drawer with no motor.
+TTFT	Time To First Token: how long an LLM takes before it starts answering.	How long before the waiter brings the first dish.
+MQTT	A lightweight publish/subscribe messaging protocol for small devices.	A community notice board: post to a topic, subscribers get it.
+UART	Universal Asynchronous Receiver-Transmitter: a simple two-wire serial port, often the debug console.	Two tin cans and a string: simple, slow, always works.
+HIL	Hardware-In-the-Loop: testing real controller hardware against a simulated world.	A pilot in a flight simulator using the real cockpit.
+QPS	Queries Per Second: how many requests a system handles each second.	Customers served per second at a till.
+PII	Personally Identifiable Information: data that can identify a person.	The contents of your wallet.
+CAN	Controller Area Network: a robust bus used in cars and robots for controllers to talk.	A shared walkie-talkie channel where the most urgent message always wins.
+HDR	High Dynamic Range: images that keep detail in both very bright and very dark parts.	Seeing both the sunny window and the dark room clearly at once.
+USB	Universal Serial Bus: the standard cable/protocol for connecting devices to a computer.	A universal power-and-data plug for gadgets.
+HDMI	High-Definition Multimedia Interface: cable standard for video and audio to displays.	The garden hose that carries picture and sound to a TV.
+ROM	Read-Only Memory: memory written once at the factory, like the chip's built-in first boot code.	A printed book: you can read it but not rewrite it.
+MPS	NVIDIA Multi-Process Service: lets several processes share one GPU at the same time.	Several families sharing one big kitchen at once.
+DGX	NVIDIA's packaged AI server with 8 GPUs.	A ready-built AI workstation in a box.
+STAR	Situation, Task, Action, Result: a structure for answering behavioural interview questions.	Telling a story with a beginning, your goal, what you did, and how it ended.
+DDS	Data Distribution Service: publish/subscribe middleware used by ROS 2 and robots.	A radio station network: tune in to the topic you need.
+CFS	Completely Fair Scheduler: Linux's classic scheduler that shares CPU time fairly.	A teacher giving every child equal turns on the swing.
+EC	Erasure Coding: storing data as pieces plus parity so lost pieces can be rebuilt; also Embedded Controller.	A puzzle where any 8 of 10 pieces are enough to rebuild the picture.
+FSD	Tesla Full Self-Driving: Tesla's driver-assistance and autonomy software and chip.	A chauffeur made of cameras and neural networks.
+GEMM	General Matrix Multiply: the big matrix multiplication at the heart of neural networks.	Filling a huge times-table grid.
+IPC	Inter-Process Communication: ways separate programs exchange data; also Instructions Per Cycle.	Passing notes between rooms.
+MIG	Multi-Instance GPU: splitting one NVIDIA GPU into isolated smaller GPUs.	Partitioning one big office into private cubicles.
+RPC	Remote Procedure Call: calling a function that actually runs on another machine.	Phoning a colleague to do a calculation for you.
+SRE	Site Reliability Engineering: engineering practice for keeping services up and fast.	The pit crew that keeps the race car running.
+IK	Inverse Kinematics: computing joint angles so a robot hand reaches a target point.	Working out how to bend your shoulder, elbow and wrist to touch your nose.
+FIFO	First In, First Out: things leave in the order they arrived.	A queue at a bus stop.
+LIFO	Last In, First Out: the newest item leaves first.	A stack of plates.
+BST	Binary Search Tree: a tree where left children are smaller and right children are bigger.	A guessing game: "higher or lower?" at every step.
+UTF	Unicode Transformation Format (e.g. UTF-8): a way to store any language's characters as bytes.	A universal alphabet code book.
+CMA	Contiguous Memory Allocator: Linux reserves big unbroken memory blocks for devices like cameras.	Reserving a whole row of seats so a group can sit together.
+TOPS	Tera Operations Per Second: trillions of (usually integer AI) operations each second.	How many trillion sums a chip can do per second.
+DTS	Device Tree Source: the human-readable text file of a device tree.	The floor plan before it is printed.
+DTB	Device Tree Blob: the compiled binary device tree the bootloader hands to the kernel.	The printed floor plan handed to the builder.
+NAPI	New API: Linux network-driver mode that switches from interrupts to polling under heavy load.	Stop answering the doorbell each time; just check the porch every few seconds when it's busy.
+TLB	Translation Lookaside Buffer: a small cache of recent virtual-to-physical address translations.	A sticky note of the addresses you visit most.
+MSI	Message-Signaled Interrupt: a device raises an interrupt by writing to a memory address instead of a wire.	Sending a text message instead of ringing a bell.
+NFS	Network File System: accessing files on another computer as if local.	A shared cupboard in the hallway everyone can open.
+MESI	Modified/Exclusive/Shared/Invalid: a protocol that keeps CPU caches agreeing about memory.	Roommates keeping their copies of a shopping list in sync.
+GMSL	Gigabit Multimedia Serial Link: a long-cable serial link for cameras in cars and robots.	A long, thick hose carrying camera video around a vehicle.
+KASAN	Kernel Address Sanitizer: a Linux debug tool that catches bad memory accesses in the kernel.	A smoke detector for memory mistakes.
+EL3	Exception Level 3: the most privileged ARM mode, used by secure firmware.	The master key level of the building.
+EL2	Exception Level 2: ARM mode for hypervisors.	The building manager level.
+EL1	Exception Level 1: ARM mode for the OS kernel.	The apartment owner level.
+EL0	Exception Level 0: ARM mode for ordinary apps.	The guest level.
+OIDC	OpenID Connect: a standard for logging in with another service's identity (like "Sign in with Google").	Showing your passport issued by a trusted country.
+INT8	8-bit integer numbers: used to run AI models faster with less precision.	Rounding prices to whole dollars to add them faster.
+KMD	Kernel-Mode Driver: the part of a driver that runs inside the OS kernel.	The engine-room crew.
+UMD	User-Mode Driver: the part of a driver that runs as a normal program.	The front-of-house staff.
+MTU	Maximum Transmission Unit: the largest packet size a network link carries.	The height limit of a tunnel.
+TLS	Transport Layer Security: encryption for network connections (the "S" in HTTPS).	A sealed, tamper-proof envelope.
+HTTPS	HTTP over TLS: encrypted web traffic.	Shopping at a counter behind bulletproof glass.
+SRAM	Static RAM: very fast on-chip memory, used for caches.	The pocket on your apron: tiny but instant.
+EKF	Extended Kalman Filter: a math filter that fuses noisy sensors into a best estimate for non-linear systems.	Combining a shaky compass and a guess of your speed to know where you are.
+ACPI	Advanced Configuration and Power Interface: tables firmware gives the OS describing hardware and power (PC/server equivalent of device tree).	The building's official spec sheet handed to the manager.
+CRDT	Conflict-free Replicated Data Type: data structures that merge edits from many copies without conflicts.	Shared shopping lists that always merge cleanly, whoever edits first.
+PHY	Physical layer chip: the part that turns digital bits into electrical signals on a wire.	The voice box that turns thoughts into sound.
+YAML	A human-friendly text format for configuration files.	A tidy, indented to-do list.
+MPI	Message Passing Interface: standard library for programs on many computers to exchange messages.	A walkie-talkie protocol for a team of computers.
+D2H	Device-to-Host: data copied from the GPU/device back to the CPU's memory.	Shipping finished goods back from the factory.
+H2D	Host-to-Device: data copied from CPU memory to the GPU/device.	Shipping raw materials to the factory.
+NAND	The type of flash memory used in SSDs, phones and eMMC.	Rows of tiny buckets that hold electric charge.
+THP	Transparent Huge Pages: Linux automatically using big memory pages to reduce translation overhead.	Using whole pallets instead of single boxes.
+RFC	Request For Comments: the documents that define internet standards.	The official rulebook of the internet.
+ACK	Acknowledgement: a reply saying "I got it".	A delivery signature.
+NN	Neural Network: layers of simple math units that learn from data.	A huge web of tiny adjustable knobs tuned by examples.
+PLL	Phase-Locked Loop: a circuit that generates a stable high-frequency clock from a slower one.	A drummer who listens to a slow beat and plays exactly four times faster.
+UKF	Unscented Kalman Filter: a Kalman filter variant that handles curvy (non-linear) systems by testing sample points.	Testing a few guesses around your estimate to see where they land.
+FSDP	Fully Sharded Data Parallel: splitting a model's weights across GPUs during training.	Each team member carries only part of the luggage.
+PTX	NVIDIA's intermediate GPU assembly language.	A recipe written in a chef's shorthand before final translation.
+MFA	Multi-Factor Authentication: logging in with two or more proofs (password plus phone).	A key plus a fingerprint to open the door.
+DDR	Double Data Rate memory: the common type of DRAM chips.	A conveyor belt that loads on both the up and down swing.
+PCI	Peripheral Component Interconnect (PCIe today): the high-speed bus for cards like GPUs and NICs.	A motorway between the CPU and big add-on cards.
+PCIe	PCI Express: the modern high-speed serial version of PCI.	A multi-lane motorway for expansion cards.
+RL	Reinforcement Learning: an AI learns by trial and error with rewards.	Training a dog with treats.
+JTAG	A debug port on chips for halting the CPU and reading memory directly.	A service hatch that lets the mechanic stop the engine mid-run.
+WAN	Wide Area Network: a network spanning cities or countries.	The national road network.
+LAN	Local Area Network: a network within a building.	The hallways inside one building.
+GRUB	The common Linux bootloader on PCs.	The receptionist who decides which OS gets to start.
+VLAN	Virtual LAN: splitting one physical network into isolated logical networks.	Coloured lanes painted on one road.
+VXLAN	Virtual Extensible LAN: wrapping network packets inside UDP to build virtual networks across data centres.	Putting a letter inside a bigger envelope to cross a border.
+IEEE	Institute of Electrical and Electronics Engineers: the body that publishes standards like Ethernet and Wi-Fi.	The rule committee for electrical things.
+OTLP	OpenTelemetry Protocol: the standard wire format for sending traces, metrics and logs.	A standard shipping box for monitoring data.
+TPU	Tensor Processing Unit: Google's custom AI chip.	Google's own specialised AI calculator.
+UEFI	Unified Extensible Firmware Interface: modern PC/server firmware that starts before the OS.	The building's power-on checklist before the tenants arrive.
+SMT	Simultaneous Multithreading (Hyper-Threading): one core runs two threads sharing its units.	One chef with two cutting boards working on two orders.
+IMU	Inertial Measurement Unit: a sensor with accelerometers and gyroscopes measuring motion.	Your inner ear for balance.
+RAID	Redundant Array of Independent Disks: combining disks for speed or safety.	Keeping copies of your notes in several notebooks.
+ACL	Access Control List: a list saying who may do what to a resource.	The guest list at a club door.
+ASIC	Application-Specific Integrated Circuit: a chip designed for one job.	A kitchen gadget that only makes waffles, but makes them perfectly.
+PSI	Pressure Stall Information: Linux metrics showing how long tasks wait for CPU, memory or I/O.	A gauge showing how long people wait in line.
+RTP	Real-time Transport Protocol: carries audio/video packets with timestamps for live calls.	Numbered, timestamped postcards for a live broadcast.
+NTP	Network Time Protocol: keeps computer clocks in sync over a network.	Everyone setting their watch from the town clock.
+PTP	Precision Time Protocol: sub-microsecond clock sync over a network.	Setting watches by laser from the town clock.
+ALU	Arithmetic Logic Unit: the part of a CPU that does maths and logic.	The calculator inside the chef's head.
+MMU	Memory Management Unit: hardware that translates virtual addresses to physical memory and enforces protection.	A post office that redirects mail from your nickname to your real address.
+RPMB	Replay Protected Memory Block: a tamper-proof area in eMMC/UFS storage.	A safe-deposit box inside the storage chip.
+PFC	Priority Flow Control: Ethernet pause frames per traffic class, used to make RDMA lossless.	Traffic lights that hold one lane only when it's jammed.
+DPU	Data Processing Unit: a smart network card with its own CPUs for networking and storage tasks.	A post-room with its own staff so the office workers aren't interrupted.
+ICMP	Internet Control Message Protocol: network error/diagnostic messages (like ping).	The road's "road closed" signs.
+EDF	Earliest Deadline First: a scheduler that always runs the task due soonest.	Doing homework due tomorrow before homework due next week.
+RTC	Real-Time Clock: a chip that keeps time even when the device is off.	A wristwatch with its own battery.
+APIC	Advanced Programmable Interrupt Controller: x86's interrupt router.	The PC's doorbell switchboard.
+DRM	Direct Rendering Manager: the Linux kernel subsystem for GPUs and displays; also Digital Rights Management.	The stage manager for everything shown on screen.
+BEV	Bird's-Eye View: a top-down map representation built from cameras, used in self-driving.	Looking at the street from a drone.
+SBOM	Software Bill Of Materials: a list of every component and version in a software product.	The ingredients label on food.
+VFIO	Linux framework to give a VM or user program direct, safe access to a device.	Handing a tenant their own private key to a room, with the guard still watching.
+RCU	Read-Copy-Update: a Linux synchronisation method where readers never block and writers publish a new copy.	Updating a menu by printing a new one and swapping it in, while diners still read the old one.
+CSI	Camera Serial Interface (MIPI CSI-2): the standard high-speed link from camera sensor to processor.	The dedicated pipe from the camera to the photo lab.
+DSI	Display Serial Interface (MIPI DSI): the link from processor to a display panel.	The pipe from the kitchen to the serving window.
+PTZ	Pan-Tilt-Zoom: a camera that can turn, tilt and zoom.	A camera on a neck that can look around.
+ASCII	A basic code mapping English letters and symbols to numbers.	The original alphabet code book.
+RTT	Round-Trip Time: time for a message to go and the reply to come back.	The echo delay across a canyon.
+BF16	Brain Float 16: 16-bit number format with FP32's range but less precision, used in AI.	A ruler with the same length but fewer markings.
+UUID	Universally Unique Identifier: a 128-bit random ID practically never repeated.	A lottery number so long no two people ever get the same one.
+HPC	High-Performance Computing: supercomputing on large clusters.	A whole factory working on one giant order.
+PMU	Performance Monitoring Unit: CPU counters for cycles, cache misses and so on; also Power Management Unit.	A fitness tracker built into the CPU.
+ECDSA	Elliptic-Curve Digital Signature Algorithm: a common way to sign firmware and certificates.	A wax seal only the owner's ring can make.
+TPM	Trusted Platform Module: a security chip that stores keys and measures boot.	A notary built into the motherboard.
+JIT	Just-In-Time compilation: turning code into machine code while the program runs.	A translator who translates each sentence as you speak.
+POSIX	A standard set of Unix system interfaces (files, threads, signals).	The common rulebook that all Unix-like systems follow.
+ONNX	Open Neural Network Exchange: a portable file format for AI models.	A universal shipping container for AI models.
+SHA256	A cryptographic hash producing a 256-bit fingerprint of data.	A fingerprint for a file: change one byte, totally different print.
+SHA	Secure Hash Algorithm family: cryptographic fingerprints of data.	A fingerprint for data.
+FD	File Descriptor: a small number a process uses to refer to an open file, socket or device.	A cloakroom ticket for an open file.
+PD	USB Power Delivery: negotiation over USB-C for higher voltage/power and roles.	Two devices haggling over how much power to send.
+ETW	Event Tracing for Windows: Windows' built-in high-speed event logging.	Windows' black-box flight recorder.
+SQS	Amazon Simple Queue Service: a managed message queue.	A managed mailbox where jobs wait to be picked up.
+CDC	USB Communications Device Class (e.g. serial over USB); also Change Data Capture in databases.	A standard way for a gadget to say "I'm a serial cable".
+MAC	Media Access Control address: a network card's hardware address; also Message Authentication Code.	The serial number stamped on the mailbox.
+SM	Streaming Multiprocessor: a cluster of cores inside an NVIDIA GPU.	One classroom in the GPU's school.
+LFU	Least Frequently Used: a cache rule that evicts what's used least often.	Giving away clothes you wear the least.
+CRC	Cyclic Redundancy Check: a checksum to detect corrupted data.	Counting the coins in a bag before and after the trip.
+FSM	Finite State Machine: a model with fixed states and rules to move between them.	A traffic light cycling green, yellow, red.
+RNG	Random Number Generator.	A dice roller.
+LSB	Least Significant Bit: the right-most bit, worth 1.	The pennies column of a number.
+MSB	Most Significant Bit: the left-most bit, worth the most.	The thousands column.
+RAG	Retrieval-Augmented Generation: an LLM looks up documents first, then answers using them.	An open-book exam.
+GDPR	EU General Data Protection Regulation: privacy law about personal data.	Europe's privacy rulebook.
+CCPA	California Consumer Privacy Act: California's privacy law.	California's privacy rulebook.
+RCA	Root Cause Analysis: digging to find the real underlying cause of a failure.	Asking "why?" five times until you find the leaking pipe.
+SoC	System on Chip: a single chip containing CPU, GPU, memory controllers and peripherals.	A whole kitchen packed into one appliance.
+FFT	Fast Fourier Transform: converts a signal into its frequencies.	Splitting a chord into its individual notes.
+HNSW	Hierarchical Navigable Small World: a fast approximate nearest-neighbour search graph for vectors.	Using highways first, then local streets, to find the nearest café.
+STL	C++ Standard Template Library (vectors, maps, algorithms).	The C++ built-in toolbox.
+FPS	Frames Per Second.	How many flip-book pages per second.
+GCP	Google Cloud Platform.	Google's rentable data-centre city.
+BIOS	Basic Input/Output System: older PC firmware that starts the computer.	The old-style power-on checklist.
+LB	Load Balancer: spreads incoming requests across many servers.	A host seating guests evenly across waiters.
+GPL	GNU General Public License: open-source licence requiring shared changes to be shared too.	A recipe you can use freely if you share your improvements.
+FEC	Forward Error Correction: send extra data so the receiver can fix losses without asking again.	Sending a spare puzzle piece with every box.
+SIMT	Single Instruction Multiple Threads: NVIDIA's model where a group of threads runs the same instruction.	A marching band all stepping on the same beat.
+BPF	(e)BPF: small safe programs you load into the Linux kernel for tracing, networking or security.	Plug-in sensors you can clip into the kernel without rebuilding it.
+eBPF	Extended Berkeley Packet Filter: safe mini-programs run inside the Linux kernel.	Plug-in sensors you can clip into the kernel without rebuilding it.
+RBAC	Role-Based Access Control: permissions given by role, not by person.	Staff badges: every "nurse" badge opens the same doors.
+DAG	Directed Acyclic Graph: a graph with arrows and no loops, e.g. task dependencies.	A recipe where steps depend on earlier steps but never loop back.
+HSM	Hardware Security Module: a tamper-resistant box that stores signing keys.	A bank vault for cryptographic keys.
+DVFS	Dynamic Voltage and Frequency Scaling: lowering clock speed and voltage to save power.	Easing off the accelerator when you don't need speed.
+DLQ	Dead-Letter Queue: where messages that keep failing are parked for inspection.	The lost-and-found box for undeliverable mail.
+BGP	Border Gateway Protocol: how networks on the internet announce routes to each other.	Countries announcing which roads lead to which cities.
+KPI	Key Performance Indicator: a key number used to judge success.	The scoreboard number that matters.
+NACK	Negative acknowledgement: "I didn't get that, resend".	"Sorry, say that again?"
+DWARF	A standard format for debug info (line numbers, variable names) inside binaries.	A map linking machine code back to your source lines.
+CRTP	Curiously Recurring Template Pattern: a C++ trick where a class inherits from a template of itself for static polymorphism.	A child teaching its parent its own name so the parent can call it directly.
+ABI	Application Binary Interface: the low-level rules (calling convention, layout) compiled code must follow to interoperate.	Agreeing which hand passes the plate and which receives.
+ABA	A concurrency bug where a value changes A→B→A and a compare-and-swap wrongly thinks nothing changed.	Your parking spot looks empty, but someone parked and left in between.
+NAT	Network Address Translation: a router rewrites private addresses to a shared public one.	One reception phone number for a whole office.
+HAL	Hardware Abstraction Layer: a fixed interface the OS calls that the device maker implements.	A universal wall socket: appliances don't care how the power plant works.
+MVCC	Multi-Version Concurrency Control: databases keep several versions so readers don't block writers.	Readers keep reading yesterday's newspaper while today's is printed.
+HID	Human Interface Device: USB class for keyboards, mice and buttons; no special driver needed.	The universal "I'm a button" language.
+TSDB	Time-Series Database: a database optimised for timestamped metrics.	A logbook ruled by time.
+QUIC	A fast, encrypted transport over UDP that HTTP/3 uses.	A courier that combines the handshake and the first delivery.
+P2P	Peer-to-peer: devices talk directly instead of through a central server; for GPUs, direct GPU-to-GPU copies.	Neighbours passing things over the fence.
+VRAM	Video RAM: the GPU's own memory.	The GPU's private pantry.
+RMW	Read-Modify-Write: read a value, change it, write it back (not atomic unless protected).	Taking a book off the shelf, correcting it, putting it back.
+SSO	Single Sign-On: one login gives access to many apps; also Small String Optimization in C++.	One wristband for every ride in the park.
+PMIC	Power Management IC: the chip that produces and sequences all the board's voltages.	The fuse box and switchboard for a board.
+IIO	Industrial I/O: Linux subsystem for sensors like ADCs, accelerometers and gyros.	The standard socket for sensors in Linux.
+GQA	Grouped-Query Attention: a transformer trick sharing key/value heads to save memory.	Several students sharing one textbook.
+SPL	Secondary Program Loader: a tiny first-stage bootloader that sets up RAM then loads U-Boot.	The small key that opens the bigger key box.
+KCSAN	Kernel Concurrency Sanitizer: finds data races in the Linux kernel.	A referee who spots two players grabbing the ball at once.
+AMBA	ARM's on-chip bus standards (AXI, AHB, APB).	The roads inside a chip.
+AXI	ARM's high-performance on-chip bus (part of AMBA).	The motorway inside a chip.
+RTL	Register-Transfer Level: hardware described in Verilog/VHDL before it becomes a chip.	The architectural drawing of a chip.
+NMI	Non-Maskable Interrupt: an interrupt that can't be ignored, used for watchdogs and crashes.	The fire alarm: you can't switch it off.
+ECU	Electronic Control Unit: a computer controlling one function in a car.	One of a car's many small brains.
+BVH	Bounding Volume Hierarchy: nested boxes used to speed up ray tracing and collision checks.	Boxes inside boxes so you only open the ones that matter.
+RGB	Red, Green, Blue colour values.	Mixing three paint colours to make any colour.
+CNN	Convolutional Neural Network: an AI model that scans images with small filters.	Sliding a magnifying glass over a photo looking for patterns.
+RNN	Recurrent Neural Network: an AI model that processes sequences step by step with memory.	Reading a sentence word by word while remembering the gist.
+MISRA	A coding standard for safe C/C++ in cars and safety systems.	The strict grammar rules for safety code.
+WCET	Worst-Case Execution Time: the longest a piece of code can ever take.	Planning for the slowest possible commute.
+ADC	Analog-to-Digital Converter: turns a voltage into a number.	A thermometer that writes down the reading.
+PWM	Pulse-Width Modulation: controlling power by switching on/off very fast with a varying on-time.	Flicking a light switch fast to dim it.
+FOC	Field-Oriented Control: an efficient way to drive brushless motors by controlling current vectors.	Pushing a merry-go-round exactly sideways at the right moment.
+TSN	Time-Sensitive Networking: Ethernet extensions with guaranteed timing.	Reserved train slots that always run on time.
+QNX	A commercial real-time OS used in cars.	A strict, reliable RTOS from BlackBerry.
+ASIL	Automotive Safety Integrity Level (A–D) from ISO 26262: how safety-critical a function is.	A danger rating: D is "brakes", A is "radio".
+AUTOSAR	A standard software architecture for car ECUs.	The common floor plan for car software.
+CXL	Compute Express Link: a PCIe-based link for sharing memory between CPUs and accelerators.	A shared pantry door between neighbouring kitchens.
+FPGA	Field-Programmable Gate Array: a chip whose hardware logic you can rewire with code.	LEGO for circuits.
+ISO	International Organization for Standardization; ISO 26262 is the car functional-safety standard.	The world's standards committee.
+UFS	Universal Flash Storage: fast phone storage replacing eMMC.	A fast built-in SSD for phones.
+DHCP	Dynamic Host Configuration Protocol: automatically gives devices an IP address on a network.	A receptionist handing out room numbers.
+SSH	Secure Shell: encrypted remote login.	A secure intercom into another computer.
+KVM	Kernel-based Virtual Machine: Linux's built-in hypervisor.	Linux acting as a landlord for virtual tenants.
+GUI	Graphical User Interface.	Windows and buttons instead of typed commands.
+XML	A markup text format with tags.	A labelled, nested packing list.
+MPU	Memory Protection Unit: simpler MMU on microcontrollers that guards memory regions.	Locked cupboards in a small kitchen.
+DIMM	A memory stick plugged into a motherboard.	A memory bookshelf you slot in.
+LUT	Look-Up Table: precomputed answers stored in a table.	A times-table chart.
+CMOS	The chip technology used in most image sensors and logic.	The silicon "film" of a digital camera.
+SVE	ARM Scalable Vector Extension: ARM's flexible-width SIMD instructions.	A cookie cutter that can grow to any tray size.
+NEON	ARM's SIMD instruction set.	ARM's cookie cutter for stamping many values at once.
+JWT	JSON Web Token: a signed token proving who you are to an API.	A signed hall pass.
+CSR	Control and Status Register: a hardware register you read/write to control a device.	A switch-and-light panel on the device.
+COW	Copy-On-Write: share data until someone writes, then copy.	Sharing a textbook until someone wants to scribble in it.
+ALSA	Advanced Linux Sound Architecture: the Linux kernel's audio framework.	The standard audio socket in Linux.
+UIO	Userspace I/O: a Linux framework for writing simple drivers in user space.	A service hatch letting a normal program poke hardware.
+RSA	A classic public-key encryption and signature algorithm.	A padlock anyone can close but only the owner can open.
+UVC	USB Video Class: the standard "I'm a webcam" USB language, so laptops need no special driver.	A universal webcam plug-and-play language.
+UAC	USB Audio Class (UAC2 = version 2): the standard USB language for microphones and speakers.	A universal "I'm a mic/speaker" language.
+UAC2	USB Audio Class 2: the standard USB language for microphones and speakers.	A universal "I'm a mic/speaker" language.
+UDC	USB Device Controller: the hardware block that lets a board act as a USB device to a laptop.	The front desk that answers when the laptop knocks.
+DWC3	Synopsys DesignWare USB3 controller: a ready-made USB controller design many Qualcomm/NXP chips include.	A front-desk model bought from a catalogue; many hotels have the same one.
+xHCI	eXtensible Host Controller Interface: the standard USB host controller in PCs.	The laptop's USB switchboard.
+DFU	Device Firmware Upgrade: a USB standard for flashing new firmware.	A standard service door for swapping the device's brain.
+eMMC	Embedded MultiMediaCard: soldered-on flash storage common in embedded boards.	A built-in SD card.
+VTT	WebVTT: a caption file with timestamps.	Subtitles with a stopwatch.
+K8s	Kubernetes: a system that runs and manages containers across many machines.	An orchestra conductor for containers.
+HTTP2	HTTP/2: faster web protocol multiplexing many requests over one connection.	Many conversations on one phone line.
+WAL	Write-Ahead Log: write the change to a log before applying it, for crash recovery.	Writing in your diary before you act, so you can replay it.
+LSN	Log Sequence Number: position in a database log.	The page number in the diary.
+OLTP	Online Transaction Processing: many small fast reads/writes (like orders).	A busy shop till.
+ACID	Atomicity, Consistency, Isolation, Durability: guarantees of reliable database transactions.	A bank transfer that either fully happens or doesn't at all.
+LCA	Lowest Common Ancestor: the deepest node that is an ancestor of two tree nodes.	The closest shared grandparent in a family tree.
+LIS	Longest Increasing Subsequence.	The longest staircase you can climb picking steps in order.
+LCS	Longest Common Subsequence.	The longest shared thread between two stories.
+DFA	Deterministic Finite Automaton: a state machine with exactly one next state per input.	A vending machine's internal logic.
+RPO	Recovery Point Objective: how much recent data you can afford to lose.	How many minutes of unsaved work you can tolerate losing.
+RTO	Recovery Time Objective: how quickly service must be restored; also TCP Retransmission Timeout.	How fast the lights must come back on.
+GPT	Generative Pre-trained Transformer: the LLM architecture family; also GUID Partition Table on disks.	A prediction engine for the next word.
+TSAN	ThreadSanitizer: a tool that detects data races in programs.	A referee for threads.
+ASAN	AddressSanitizer: a tool that catches memory errors like buffer overflows.	A smoke detector for memory bugs.
+UBSAN	UndefinedBehaviorSanitizer: catches undefined C/C++ behaviour like signed overflow.	A rule checker for forbidden C moves.
+SPOF	Single Point Of Failure.	The one bridge into town.
+WAF	Web Application Firewall: filters malicious web requests.	A bouncer reading every request at the door.
+CSRF	Cross-Site Request Forgery: tricking a logged-in browser into sending unwanted requests.	Someone forging your signature on a form while you're logged in.
+XSS	Cross-Site Scripting: injecting malicious scripts into web pages.	Slipping a fake note into the restaurant menu.
+OWASP	Open Worldwide Application Security Project: publishes common web security risks.	The web's most-wanted list of security bugs.
+SLI	Service Level Indicator: the measured number behind an SLO (e.g. latency).	The actual stopwatch reading.
+EWMA	Exponentially Weighted Moving Average: a running average where recent values count more.	Your mood, influenced most by today.
+AIMD	Additive Increase Multiplicative Decrease: TCP's congestion rule — speed up slowly, halve on loss.	Gently pressing the gas, slamming the brake at trouble.
+BBR	Google's congestion control that models bandwidth and RTT instead of reacting to loss.	Driving by watching traffic speed, not waiting for crashes.
+ECN	Explicit Congestion Notification: routers mark packets to signal congestion instead of dropping them.	A "slow down" sticker on the parcel.
+TEE	Trusted Execution Environment: an isolated secure area of the processor (e.g. TrustZone).	A locked back office inside the shop.
+SEV	AMD Secure Encrypted Virtualization: encrypts VM memory from the host.	A tenant's safe the landlord can't open.
+TDX	Intel Trust Domain Extensions: hardware-isolated confidential VMs.	Intel's version of the tenant's safe.
+ASLR	Address Space Layout Randomization: randomising memory positions to make attacks harder.	Moving the valuables to a different room every night.
+TOCTOU	Time-Of-Check to Time-Of-Use: a race where something changes between checking and using it.	Checking the seat is empty, turning away, and someone sits before you do.
+UAF	Use-After-Free: using memory after it was freed — a common security bug.	Using a hotel key after checking out, while a new guest is in.
+BTF	BPF Type Format: compact type info letting eBPF programs work across kernel versions.	A label on each kernel structure so plug-ins know its shape.
+ELF	Executable and Linkable Format: the standard file format for Linux programs and libraries.	The standard box shape for programs.
+IOCTL	ioctl: a catch-all Linux system call to send device-specific commands to a driver.	A "special requests" slot on the device's door.
+URB	USB Request Block: the Linux kernel object describing one USB transfer.	A delivery order form for one USB parcel.
+NVIC	Nested Vectored Interrupt Controller: the interrupt controller in ARM Cortex-M MCUs.	The MCU's doorbell switchboard.
+TCM	Tightly-Coupled Memory: tiny, fast memory wired directly to a core.	A drawer right under the chef's hands.
+ITM	Instrumentation Trace Macrocell: ARM Cortex-M block for fast printf-style tracing.	A tiny live ticker tape from the chip.
+SWD	Serial Wire Debug: ARM's two-wire debug port.	A two-wire service hatch.
+SWO	Serial Wire Output: one-wire trace output paired with SWD.	The ticker-tape output wire.
+EOF	End Of File.	The last page of the book.
+MLP	Multi-Layer Perceptron: the simplest fully-connected neural network.	Stacked layers of voting knobs.
+NHWC	Tensor layout: batch, height, width, channels (channels last).	Storing each pixel's colours together.
+NCHW	Tensor layout: batch, channels, height, width (channels first).	Storing all reds, then all greens, then all blues.
+MCTS	Monte Carlo Tree Search: plan by simulating many random futures.	Trying out many imaginary chess games before moving.
+MPC	Model Predictive Control: repeatedly plan the best control over a short future horizon.	Planning the next few steering moves, then replanning each moment.
+LQR	Linear Quadratic Regulator: optimal controller for linear systems balancing error and effort.	The smoothest way to balance a broom on your hand.
+ZMP	Zero Moment Point: the point a walking robot must keep inside its foot area to stay balanced.	Keeping your weight over your feet.
+DOF	Degrees Of Freedom: how many independent ways a robot/joint can move.	How many hinges your arm has.
+BLDC	Brushless DC motor.	A motor with magnets that switch electronically.
+PMSM	Permanent Magnet Synchronous Motor.	A smooth, efficient magnet motor used in robots and EVs.
+SVPWM	Space-Vector PWM: an efficient way to generate the three-phase voltages for a motor.	Choreographing three switches to point the motor's push precisely.
+MC/DC	Modified Condition/Decision Coverage: testing proves each condition in a decision independently changes the outcome.	Checking each light switch really controls the light on its own.
+DO-178C	The standard for safety-critical airborne software.	The aviation rulebook for code.
+ARINC	Aviation data bus standards (e.g. ARINC 429).	The aeroplane's wiring language.
+ANN	Approximate Nearest Neighbour search for vectors; also Artificial Neural Network.	Finding a café that's nearly the closest, very fast.
+IVF	Inverted File index: vector search by first picking the nearest clusters.	Looking only in the right neighbourhood before searching streets.
+BM25	A classic keyword-ranking formula for search engines.	Scoring documents by how often and how rarely words appear.
+POI	Point Of Interest on a map.	A pin on the map.
+OCSP	Online Certificate Status Protocol: check whether a certificate was revoked.	Phoning the bank to check a cheque hasn't been cancelled.
+PKI	Public Key Infrastructure: the system of certificates and authorities that vouch for keys.	The passport office of the internet.
+SPIFFE	A standard for giving workloads cryptographic identities.	Staff ID badges for software services.
+mTLS	Mutual TLS: both client and server prove identity with certificates.	Both people showing ID to each other.
+CNI	Container Network Interface: plugin standard for Kubernetes pod networking.	The plumbing plug for container networks.
+CRD	Custom Resource Definition: adding your own object types to Kubernetes.	Adding a new form type to the city office.
+GKE	Google Kubernetes Engine.	Google's managed Kubernetes.
+EKS	Amazon Elastic Kubernetes Service.	Amazon's managed Kubernetes.
+VPC	Virtual Private Cloud: your private, isolated network in a cloud.	Your fenced yard inside the cloud city.
+IOPS	Input/Output Operations Per Second: storage speed in operations.	How many drawers you can open per second.
+SAN	Storage Area Network; also Subject Alternative Name in certificates.	A shared storage warehouse on its own road.
+ECMP	Equal-Cost Multi-Path: spreading traffic over several equally good routes.	Using all open checkout lanes.
+VTEP	VXLAN Tunnel Endpoint: the device that wraps/unwraps VXLAN packets.	The border post that puts letters in the bigger envelope.
+VNI	VXLAN Network Identifier: the 24-bit ID of a virtual network.	The colour of the envelope.
+EVPN	Ethernet VPN: BGP-based control plane that tells VTEPs where MACs live.	A shared address book for all the border posts.
+PMTUD	Path MTU Discovery: finding the largest packet size that fits the whole route.	Finding the lowest bridge on your route before sending the truck.
+MSS	Maximum Segment Size: largest TCP payload per packet.	The biggest box that fits the truck after packing.
+DSCP	Differentiated Services Code Point: packet priority marking.	A "priority" sticker on parcels.
+RSS	Receive Side Scaling: spreading incoming packets across CPU cores; also Resident Set Size (memory used).	Several cashiers splitting the queue.
+GRO	Generic Receive Offload: merging small incoming packets into bigger ones to save CPU.	Batching letters before opening them.
+GSO	Generic Segmentation Offload: splitting big sends into packets as late as possible.	Packing one big shipment, splitting at the dock.
+TSO	TCP Segmentation Offload: the NIC splits large TCP sends into packets.	Letting the post office cut the long letter into pages.
+OTel	OpenTelemetry: open standard and tools for traces, metrics and logs.	A common language for monitoring.
+PDB	Pod Disruption Budget: how many Kubernetes pods may be down during maintenance.	"No more than two cashiers on break at once."
+HPA	Horizontal Pod Autoscaler: Kubernetes adds/removes pods based on load.	Opening more tills when the queue grows.
+EDR	Endpoint Detection and Response: security software on each computer that watches for attacks.	A security camera on every computer.
+CVE	Common Vulnerabilities and Exposures: a public ID for a known security bug.	A case number for a known break-in method.
+SIEM	Security Information and Event Management: central log collection for security analysis.	The security control room.
+WFP	Windows Filtering Platform: Windows API for network filtering by security products.	Windows' network checkpoint.
+ETM	Embedded Trace Macrocell: ARM hardware that records instruction flow.	A dash-cam for the CPU.
+SBSA	Server Base System Architecture: ARM's rules for standard servers.	ARM's checklist for "this is a proper server".
+PSCI	Power State Coordination Interface: ARM firmware calls to turn CPU cores on/off.	Asking the building manager to switch rooms on or off.
+ATF	Arm Trusted Firmware (TF-A): ARM's reference secure firmware (BL1/BL2/BL31).	The building's master security firmware.
+TF-A	Trusted Firmware-A: ARM's reference secure-world boot firmware.	The building's master security firmware.
+OP-TEE	An open-source TEE OS running in ARM TrustZone.	The OS of the locked back office.
+SMC	Secure Monitor Call: an ARM instruction to ask secure firmware for a service.	Knocking on the security office window.
+HVC	Hypervisor Call: ARM instruction to ask the hypervisor for a service.	Knocking on the building manager's door.
+MPIDR	ARM register giving a core's ID in the cluster.	A core's seat number.
+SMMU	System MMU: ARM's IOMMU.	ARM's delivery-badge checker.
+IORT	ACPI table describing ARM IOMMU and interrupt mapping.	The badge-checker map for ARM servers.
+MADT	ACPI table listing CPUs and interrupt controllers.	The roll-call of CPUs.
+GTDT	ACPI table describing ARM timers.	The clock list of the building.
+SPCR	ACPI table describing the serial console.	A note saying where the intercom is.
+EDK2	The open-source UEFI firmware codebase.	The reference kit for building UEFI.
+U-Boot	The common open-source bootloader for embedded Linux boards.	The stage hand who sets up the stage and calls the kernel on.
+Yocto	A build system for making custom embedded Linux images from recipes.	A recipe kitchen that bakes your own Linux distribution.
+BitBake	Yocto's task engine that runs recipes.	The head cook following recipes.
+SELinux	Security-Enhanced Linux: mandatory access rules for every process and file (used heavily in Android).	A strict rulebook saying which staff can enter which room, no exceptions.
+AIDL	Android Interface Definition Language: defines interfaces between Android processes/HALs.	A contract template for Android services.
+HIDL	Older Android HAL interface language (replaced by AIDL).	The old contract template.
+AOSP	Android Open Source Project: the open-source Android code base.	The public blueprint of Android.
+VTS	Vendor Test Suite: Android tests that check HALs meet the spec.	Android's inspection checklist for vendor parts.
+CTS	Compatibility Test Suite: Android tests a device must pass to be "Android".	Android's driving test.

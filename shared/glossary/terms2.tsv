@@ -1,0 +1,93 @@
+mutex	A lock that lets only one thread at a time into a section of code.	A single bathroom key on a hook.
+spinlock	A lock where a waiting CPU keeps looping ("spinning") until it's free; used in short kernel/interrupt paths.	Standing at the door rattling the handle instead of sitting down to wait.
+semaphore	A counter-based lock that lets up to N users in at once.	A car park with a counter of free spaces.
+deadlock	Two or more threads each waiting for a lock the other holds, so none can move.	Two cars facing each other on a one-lane bridge.
+race condition	A bug where the result depends on the unlucky timing of two threads.	Two people editing the same sentence at the same time.
+atomic	An operation that happens all at once; no other thread can see it half-done.	Flipping a light switch — it's either on or off, never half.
+memory barrier	An instruction that stops the CPU/compiler from reordering memory reads/writes across it.	A "no overtaking" line on the road.
+cache	A small fast store of recently used data so you don't fetch it from the slow place again.	Keeping the salt next to the stove instead of in the basement.
+latency	How long one operation takes from request to answer.	How long you wait for your coffee.
+throughput	How many operations get done per second.	How many coffees the café serves per hour.
+tail latency	The slowest requests (e.g. p99 = slower than 99% of requests).	The few customers who wait far longer than everyone else.
+p99	99th percentile: 99% of requests are faster than this value.	The wait time that only 1 in 100 customers exceeds.
+kernel	The core of the operating system that controls hardware, memory and processes.	The building's engine room.
+driver	Code that lets the OS talk to one kind of hardware.	An interpreter between the OS and a device.
+firmware	Software that runs close to the hardware, usually stored in flash on the device.	The instincts built into a device.
+bootloader	The small program that starts first, sets up hardware and loads the OS.	The stage crew who set up before the show.
+interrupt	A hardware signal that makes the CPU pause and handle an urgent event.	A doorbell ringing while you cook.
+scheduler	The OS part that decides which task runs on which CPU and when.	A teacher deciding whose turn it is.
+syscall	System call: how a program asks the kernel to do something privileged (open a file, send data).	Ringing the front desk to ask for something only staff can do.
+context switch	The CPU saves one task's state and loads another's.	A chef putting one dish aside to start another.
+page fault	The CPU touched memory that isn't currently mapped, so the kernel steps in to fix it up.	Opening a book to a missing page, so the librarian fetches it.
+userspace	Where normal programs run, without direct hardware access.	The guest floors of a hotel.
+kernel space	The privileged area where the kernel and drivers run.	The staff-only engine room.
+hypervisor	Software that runs virtual machines and shares real hardware among them.	A landlord dividing one building into flats.
+container	A packaged app with its dependencies, isolated but sharing the host kernel.	A shipping container: same box everywhere, shares the ship.
+ring buffer	A fixed-size circular queue where the writer wraps around to the start.	A rotating sushi belt.
+watchdog	A timer that resets the system if software stops checking in.	A dead-man's switch on a train.
+endianness	The byte order a CPU uses to store multi-byte numbers (little- or big-endian).	Writing a date as day-month or month-day.
+hash table	A structure that stores values by key using a hash function for near-instant lookup.	Coat-check hooks numbered by your ticket.
+heap	A tree-shaped structure that always gives you the smallest (or largest) item quickly; also the dynamic memory area.	A tournament where the champion is always on top.
+stack	Last-in-first-out structure; also the memory area holding function calls.	A stack of plates.
+queue	First-in-first-out structure.	A line at a bus stop.
+linked list	A chain of nodes, each pointing to the next.	A treasure hunt where each clue points to the next.
+trie	A prefix tree storing strings letter by letter.	A dictionary's thumb tabs: A → AP → APP.
+union-find	A structure that tracks which items belong to the same group, with near-instant merge and lookup.	Clubs merging: each member just remembers their club president.
+memoization	Caching a function's answers so repeated calls are instant.	Writing answers in the margin so you never redo the sum.
+recursion	A function that solves a problem by calling itself on smaller pieces.	Russian dolls: open one to find a smaller one.
+backtracking	Try a choice, explore, undo it if it fails, try the next.	Walking a maze and stepping back at dead ends.
+two pointers	A technique moving two indices through an array to avoid nested loops.	Two people walking toward each other from both ends of a hall.
+sliding window	Keep a moving range over an array, updating as it slides.	Looking through a train window as the view slides past.
+monotonic stack	A stack kept always increasing (or decreasing) to find next-greater elements fast.	A line of people where shorter people step out whenever a taller one arrives.
+binary search	Find an item in sorted data by halving the range each step.	Guessing a number with "higher or lower".
+Big-O	A way to describe how running time or memory grows as input grows.	How much longer a recipe takes when you cook for 100 instead of 10.
+amortized	Average cost per operation over a long sequence, even if a few are expensive.	Paying a yearly gym fee but thinking of it per visit.
+Fenwick tree	Binary Indexed Tree: a compact array that answers prefix sums and updates in log time.	A ledger where each page stores subtotals of a power-of-two run.
+prefix sum	An array where each entry is the total of everything before it.	Mile markers showing distance from the start.
+consistent hashing	Placing servers and keys on a ring so adding a server moves only a few keys.	Seats around a round table: a new guest only bumps their neighbours.
+Bloom filter	A tiny bit-array that says "definitely not here" or "probably here".	A bouncer who never forgets a face but sometimes confuses two.
+sharding	Splitting data across many machines by key.	Splitting a phone book into A–F, G–M, N–Z volumes.
+replication	Keeping copies of data on several machines.	Photocopying important documents for several offices.
+quorum	The minimum number of replicas that must agree for a read or write to count.	A committee needing a majority present to vote.
+consensus	Getting a group of machines to agree on one value even if some fail.	A jury reaching one verdict.
+Raft	A consensus algorithm with an elected leader replicating a log to followers.	A team captain who keeps everyone's notebook in sync.
+Paxos	A classic, harder-to-explain consensus algorithm.	The original, very formal committee voting procedure.
+leader election	Machines choosing one coordinator, and a new one if it fails.	Choosing a new team captain when the old one leaves.
+gossip	Machines spread information by randomly telling a few peers, who tell others.	Office rumours spreading.
+idempotent	Doing it twice has the same effect as doing it once.	Pressing an elevator button again doesn't call two elevators.
+backpressure	A slow consumer signals producers to slow down.	A full sink telling you to turn down the tap.
+circuit breaker	Stop calling a failing service for a while so it can recover.	A house fuse tripping to stop a fire.
+rate limiter	Caps how many requests a client may make per time window.	A turnstile letting one person through per second.
+token bucket	A rate limiter where tokens refill at a steady rate and each request spends one.	A sweets jar refilled every minute; no sweets, no entry.
+saga	A long transaction split into steps, each with an undo step if a later one fails.	Booking a trip: if the hotel fails, cancel the flight.
+outbox pattern	Write the event to a database "outbox" table in the same transaction, then publish it later.	Putting the letter in your out-tray with the receipt, then the courier collects it.
+warp	A group of 32 GPU threads that execute the same instruction together.	A rowing crew pulling oars in perfect sync.
+tensor	A multi-dimensional array of numbers used in AI.	A spreadsheet that can have many dimensions.
+transformer	The neural network design behind LLMs, built on attention.	A reader who looks at every word in relation to every other word.
+attention	The transformer mechanism that weighs how much each token should look at every other token.	Highlighting the words in a sentence that matter for the current word.
+KV cache	Stored attention keys/values from earlier tokens so an LLM doesn't recompute them.	Keeping notes of what's been said so far in a conversation.
+quantization	Storing numbers with fewer bits to make models smaller and faster.	Rounding prices to the nearest dollar.
+Kalman filter	A math filter that blends a prediction with noisy measurements into a best estimate.	Combining your guess of where the ball is with a blurry photo of it.
+SLAM	Simultaneous Localization And Mapping: build a map while tracking where you are in it.	Drawing a map of a dark house while feeling your way around.
+lidar	A laser sensor that measures distances by timing reflected light.	A bat's echolocation with lasers.
+odometry	Estimating motion by counting wheel turns or tracking camera motion.	Counting your steps to know how far you walked.
+debounce	Ignoring the rapid flicker of a button press so it counts once.	Waiting for a doorbell's jangle to stop before answering.
+device tree	A text description of a board's hardware that the Linux kernel reads at boot.	A floor plan handed to the electrician.
+gadget	Linux's name for the USB device side: the board pretends to be a webcam, mic or keyboard to a laptop.	An actor in costume playing "webcam".
+configfs	A special Linux folder tree used to build a USB gadget by creating folders and files.	Assembling furniture by labelling empty boxes.
+descriptor	A small data block a USB device sends to describe itself.	A business card the device hands to the laptop.
+enumeration	The process where a host discovers and configures a newly plugged USB device.	A receptionist checking in a new guest.
+endpoint	A numbered data channel on a USB device.	A numbered loading dock.
+isochronous	A USB transfer type with guaranteed timing but no retries, for audio/video.	A live broadcast: on time, no re-takes.
+bulk transfer	A USB transfer type for large data with retries but no timing guarantee.	Freight shipping: arrives eventually, intact.
+pinctrl	The Linux subsystem that sets which function each chip pin performs.	The switchboard deciding what each wall socket is wired to.
+regulator	A power supply component (and Linux subsystem) that provides a set voltage.	A water-pressure valve.
+probe	The driver function the kernel calls when it finds matching hardware.	A new employee's first-day setup.
+workqueue	A Linux mechanism to run deferred work in a kernel thread.	A "to do later" tray.
+tasklet	An older Linux mechanism for short deferred interrupt work.	A quick sticky-note reminder.
+softirq	A Linux deferred-interrupt context for high-rate work like networking.	The back-office team that finishes what the front desk started.
+threaded IRQ	An interrupt handler split so the heavy part runs in a kernel thread.	Answering the door quickly, then doing the paperwork later.
+secure boot	Each boot stage checks the next stage's signature before running it.	Each guard checks the next guard's ID badge.
+eFuse	One-time programmable bits inside a chip (e.g. storing key hashes).	Writing in permanent ink.
+TrustZone	ARM's hardware split between a normal world and a secure world.	A shop with a locked back office.
+coroutine	A function that can pause and later resume where it left off.	A bookmark in a story you come back to.

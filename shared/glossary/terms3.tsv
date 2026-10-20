@@ -1,0 +1,63 @@
+IP	Internet Protocol address (a network address); also Intellectual Property — a licensed chip design block.	A street address for a computer (or a licensed blueprint for a chip part).
+RoCE	RDMA over Converged Ethernet: running RDMA on normal Ethernet networks.	Express parcel lockers built on ordinary roads.
+InfiniBand	A very low-latency, high-bandwidth network used in supercomputers and AI clusters.	A private high-speed rail line between data-centre machines.
+NVLink	NVIDIA's direct high-speed link between GPUs.	A private corridor connecting two GPU rooms.
+NVSwitch	NVIDIA's switch chip that connects many GPUs with NVLink at full speed.	A central hallway junction linking every GPU room.
+vLLM	An open-source engine for serving LLMs fast, using paged KV-cache memory.	A restaurant system that packs tables tightly so more diners fit.
+OAuth	A standard that lets an app act for you without your password (delegated access tokens).	Giving a valet a key that only starts the car, not opens the boot.
+QoS	Quality of Service: giving some traffic or work priority over others.	A priority boarding lane at the airport.
+SerDes	Serializer/Deserializer: circuits that turn parallel data into a fast serial stream and back.	Turning a crowd into a single-file line to fit through a door, then back into a crowd.
+XID	NVIDIA GPU error code reported by the driver (e.g. XID 79 = GPU fell off the bus).	A car's dashboard fault code.
+SOF	Start Of Frame: a USB packet sent every 1 ms (or 125 µs) to mark time; also Sound Open Firmware.	A metronome tick that keeps everyone in time.
+FreeRTOS	A popular small open-source real-time OS for microcontrollers.	A tiny reliable timetable manager for small chips.
+EtherCAT	A real-time industrial Ethernet bus where one frame passes through every device on the fly.	A train passing every station, each passenger grabbing their mail without it stopping.
+BusyBox	A single small program providing many Unix commands, used in tiny Linux systems.	A Swiss-army knife of Linux tools.
+CIDR	Classless Inter-Domain Routing notation like 10.0.0.0/16: an address range.	A postcode that covers a whole neighbourhood.
+XOR	Exclusive OR: a bit operation that outputs 1 when the inputs differ.	A light that turns on only if exactly one of two switches is up.
+CSP	Cloud Service Provider (AWS, Azure, Google Cloud); also Content Security Policy for web pages.	A company that rents out data-centre space.
+SAE	Society of Automotive Engineers (e.g. SAE autonomy levels 0–5).	The car industry's standards committee.
+Nsight	NVIDIA's profiling tools (Nsight Systems / Compute) for GPU timelines and kernels.	A slow-motion camera for GPU work.
+TensorRT	NVIDIA's optimizer and runtime that makes trained models run fast on its GPUs.	A tuning shop that makes a car faster for one track.
+PyTorch	A popular Python library for building and training neural networks.	A LEGO set for AI models.
+KiB	Kibibyte: 1024 bytes (MiB = 1024 KiB).	A slightly bigger "thousand" that computers like.
+UB	Undefined Behavior in C/C++: code the language rules don't define, so anything can happen.	Breaking a game rule so the referee may do anything.
+HW	Hardware.	The physical parts.
+SW	Software.	The instructions.
+DC	Data Centre; also Direct Current.	A warehouse full of servers.
+BAR	Base Address Register: a PCIe register that tells the OS where a device's memory window is.	The house number where a device's control panel lives.
+RX	Receive (incoming data).	The inbox.
+TX	Transmit (outgoing data).	The outbox.
+CD	Continuous Delivery/Deployment: automatically releasing tested changes.	A conveyor belt from the test lab to the shop shelf.
+FLOP	Floating-point operation: one decimal math step (FLOPS = per second).	One sum on a calculator.
+RT	Real-time: must finish within a fixed deadline; also RT kernel (PREEMPT_RT).	A train that must leave exactly on time.
+PREEMPT_RT	The Linux real-time patch set that makes the kernel interruptible almost everywhere.	Letting an ambulance cut into any lane at any moment.
+PQ	Priority Queue (usually a heap); also Product Quantization for vector search.	An emergency room line ordered by urgency.
+RMS	Root Mean Square: a kind of average for signals; also Rate-Monotonic Scheduling.	The "effective" strength of a wobbling signal.
+EDA	Electronic Design Automation: software used to design chips; also Exploratory Data Analysis.	CAD tools for chips.
+LED	Light-Emitting Diode.	A tiny light bulb.
+CV	Computer Vision: software that understands images; CV7 is an Ambarella camera chip.	Teaching a computer to see.
+MTS	Member of Technical Staff: an engineering job title.	A job title meaning "engineer".
+OKR	Objectives and Key Results: a goal-setting method.	A goal plus the scoreboard to prove it.
+BOM	Bill Of Materials: the list of parts in a product.	A recipe's ingredient list.
+MCP	Model Context Protocol: a standard for connecting AI models to tools and data.	A universal adapter between an AI and its tools.
+node	One point in a graph or tree; also one machine in a cluster.	A city on a map, or one computer in a group.
+edge	A connection between two nodes in a graph; also "the edge" = servers close to users.	A road between two cities.
+graph	A set of nodes connected by edges.	A map of cities and roads.
+topological sort	An ordering of tasks so every task comes after the tasks it depends on.	Getting dressed: socks before shoes.
+in-degree	How many arrows point into a node.	How many prerequisites a task still waits for.
+idempotency key	A unique ID sent with a request so the server can recognise and ignore a retry.	A raffle ticket number: the same ticket can only win once.
+lease	Permission that automatically expires unless renewed.	A library loan with a due date.
+fencing token	An ever-increasing number given to each new leader so storage rejects writes from old leaders.	A newer ticket number that makes old tickets invalid.
+replica	A copy of data on another machine.	A photocopy kept in another office.
+partition	A network split where machines can't reach each other; also a slice of data (shard).	A storm cutting the phone line between two branches.
+eviction	Removing an item from a cache to make room.	Clearing a shelf to fit new stock.
+pointer	A variable holding the memory address of something else.	A note saying "the book is on shelf 4".
+array	Items stored side by side in memory, reached by index.	A row of numbered lockers.
+hash function	A function that turns any key into a fixed-size number.	A machine that turns a name into a locker number.
+inference	Running a trained model to get predictions (not training it).	Using a recipe you already perfected.
+kernel (GPU)	A function launched to run on many GPU threads at once.	One worksheet handed to every student in the stadium.
+occupancy	How many GPU threads/warps are active versus the maximum.	How full the classrooms are.
+bandwidth	How much data moves per second.	How wide the motorway is.
+telemetry	Measurements a device or service sends home for monitoring.	A car's dashboard readings sent to the mechanic.
+rollback	Going back to the previous working version.	Undoing to the last saved game.
+canary	Releasing a change to a small group first to catch problems.	The canary in the coal mine.
