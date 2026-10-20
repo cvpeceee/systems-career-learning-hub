@@ -1,0 +1,136 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:08.173
+This video covers how to debug USB problems, how a Type C connection decides who is host, and how firmware gets updated over USB.
+
+00:00:09.373 --> 00:00:12.555
+Debugging USB is like investigating a phone call.
+
+00:00:12.955 --> 00:00:15.892
+The kernel log is one person's notes after the call.
+
+00:00:16.292 --> 00:00:19.961
+Usbmon with Wireshark lets you hear the host's side of every request.
+
+00:00:20.361 --> 00:00:24.993
+A hardware analyzer is a wiretap on the cable itself, hearing both sides.
+
+00:00:25.393 --> 00:00:30.501
+And only the wiretap hears line noise: retries, chirps and power state changes.
+
+00:00:31.701 --> 00:00:32.386
+Words.
+
+00:00:32.786 --> 00:00:36.653
+X H C I is the standard USB three host controller.
+
+00:00:37.053 --> 00:00:40.582
+Usbmon captures USB traffic inside the host's kernel.
+
+00:00:40.982 --> 00:00:49.237
+Type C is the connector. Power delivery is a protocol on its C C wire that negotiates power, data roles and alternate modes.
+
+00:00:49.637 --> 00:00:54.443
+Dual role, or D R D, means one port can be either host or device.
+
+00:00:54.843 --> 00:00:58.315
+And D F U is the device firmware upgrade class.
+
+00:00:59.515 --> 00:01:01.233
+Load usbmon on the host.
+
+00:01:01.633 --> 00:01:03.607
+Find which bus your device is on.
+
+00:01:04.007 --> 00:01:07.048
+Capture on that bus with tshark or Wireshark.
+
+00:01:07.448 --> 00:01:09.399
+Filter on your device's address.
+
+00:01:09.799 --> 00:01:13.212
+Filter on get descriptor requests to study enumeration.
+
+00:01:13.612 --> 00:01:16.538
+Or on isochronous transfers to study video.
+
+00:01:16.938 --> 00:01:21.280
+On Windows use U S B pcap, and on a Mac use I O reg.
+
+00:01:22.480 --> 00:01:24.361
+A symptom table to memorize.
+
+00:01:24.761 --> 00:01:32.133
+Enumeration error minus seventy one: check PHY tuning, cable, V bus, and when D plus is pulled up.
+
+00:01:32.533 --> 00:01:41.252
+Works on Linux but not Windows: check total length, string descriptors, Microsoft O S descriptors, and b c d Device caching.
+
+00:01:41.652 --> 00:01:50.662
+Video stutters only on some laptops: other devices sharing the host controller, an alternate setting that's too big, or link power management.
+
+00:01:51.062 --> 00:01:55.497
+Disconnects after suspend: remote wake up and runtime power management.
+
+00:01:55.897 --> 00:02:02.212
+Charges but no data on Type C: the orientation mux, the dual role state, or the power contract.
+
+00:02:03.412 --> 00:02:05.885
+Now a Type C attach, step by step.
+
+00:02:06.285 --> 00:02:12.659
+The laptop presents a pull up resistor on the C C wire, which says: I'm a power source and a host.
+
+00:02:13.059 --> 00:02:20.153
+The PD controller sees which C C pin is connected, so it knows which way the plug is flipped, and sets the data mux.
+
+00:02:20.553 --> 00:02:24.837
+It negotiates a power contract, for example twenty volts at three amps.
+
+00:02:25.237 --> 00:02:27.977
+It tells the SoC: you are the device.
+
+00:02:28.377 --> 00:02:33.520
+The dual role driver switches the controller into gadget mode, and starts the U D C.
+
+00:02:33.920 --> 00:02:37.090
+D plus is pulled up, and enumeration begins.
+
+00:02:37.490 --> 00:02:43.074
+Optionally, the two sides enter DisplayPort alternate mode to share a display on the same cable.
+
+00:02:44.274 --> 00:02:47.107
+Finally, a D F U firmware update.
+
+00:02:47.507 --> 00:02:52.186
+The host asks the device to switch into D F U mode, and it re enumerates.
+
+00:02:52.586 --> 00:02:54.989
+The host downloads the image in blocks.
+
+00:02:55.389 --> 00:02:59.511
+After each block, it polls status while the device writes flash.
+
+00:02:59.911 --> 00:03:03.231
+A zero length download means: that's everything.
+
+00:03:03.631 --> 00:03:10.516
+In the manifest phase, the device verifies the signature and version, and rejects bad or old images.
+
+00:03:10.916 --> 00:03:16.547
+Then it resets into the new image, or falls back to the old one. Lab nine simulates that.
+
+00:03:17.747 --> 00:03:18.420
+Recap.
+
+00:03:18.820 --> 00:03:22.593
+Usbmon sees requests; an analyzer sees the wire.
+
+00:03:22.993 --> 00:03:28.461
+Use the symptom table: electrical, descriptors, bandwidth, power, roles.
+
+00:03:28.861 --> 00:03:33.726
+Type C goes: detect, negotiate, choose role, start the controller.
+
+00:03:34.126 --> 00:03:37.934
+And D F U is download, verify, reset, with a fallback.

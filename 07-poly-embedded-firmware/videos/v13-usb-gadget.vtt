@@ -1,0 +1,139 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:11.831
+This video shows how a Linux or Android board becomes a USB webcam, microphone and serial port, using the gadget framework and configfs. We'll build the gadget from lab six step by step.
+
+00:00:13.031 --> 00:00:14.865
+Configfs is a LEGO baseplate.
+
+00:00:15.265 --> 00:00:20.791
+Each USB function, camera, microphone, serial port or buttons, is a brick.
+
+00:00:21.191 --> 00:00:23.386
+You stack bricks into a configuration.
+
+00:00:23.786 --> 00:00:31.170
+And writing the controller's name into a file called U D C plugs the whole thing into the wall. Writing an empty string unplugs it.
+
+00:00:32.370 --> 00:00:33.055
+Words.
+
+00:00:33.455 --> 00:00:36.589
+Gadget is Linux's name for device mode USB.
+
+00:00:36.989 --> 00:00:42.016
+Lib composite is the kernel library that combines several functions into one device.
+
+00:00:42.416 --> 00:00:46.573
+Configfs is a filesystem where making a directory creates a kernel object.
+
+00:00:46.973 --> 00:00:53.114
+Function F S lets a user space program implement a USB function. Android's adb uses it.
+
+00:00:53.514 --> 00:00:59.853
+D W C 3 is the Synopsys USB three controller found in many Qualcomm and N X P chips.
+
+00:01:00.253 --> 00:01:06.082
+And dummy h c d is a software host and device pair, for testing a gadget on one PC.
+
+00:01:07.282 --> 00:01:09.093
+The stack, from the bottom.
+
+00:01:09.493 --> 00:01:12.477
+The controller driver, such as d w c three.
+
+00:01:12.877 --> 00:01:16.162
+U D C core, which binds a gadget to a controller.
+
+00:01:16.562 --> 00:01:20.916
+Lib composite, which builds descriptors and answers endpoint zero.
+
+00:01:21.316 --> 00:01:28.502
+Function drivers: U V C, U A C two, H I D, A C M, network, and function F S.
+
+00:01:28.902 --> 00:01:33.721
+User space: the U V C streaming app, adbd, and M T P.
+
+00:01:34.121 --> 00:01:39.043
+And on Android, the USB gadget HAL and init scripts that switch functions.
+
+00:01:40.243 --> 00:01:42.031
+Now the script from lab six.
+
+00:01:42.431 --> 00:01:46.680
+Make a directory under configfs. The kernel creates a gadget object.
+
+00:01:47.080 --> 00:01:54.697
+Write the vendor and product IDs. These demo values belong to the Linux Foundation; real products use the company's own.
+
+00:01:55.097 --> 00:02:01.877
+Set the device class to E F, two, one, meaning composite with interface association descriptors.
+
+00:02:02.277 --> 00:02:06.166
+Add English strings: manufacturer, product, serial.
+
+00:02:06.566 --> 00:02:10.397
+Create configuration one, and declare five hundred milliamps.
+
+00:02:10.797 --> 00:02:15.511
+Create function instances: audio, serial, buttons, and video.
+
+00:02:15.911 --> 00:02:20.706
+Describe the video format, for example six forty by four eighty uncompressed.
+
+00:02:21.106 --> 00:02:24.775
+Link the functions into the configuration. Linking is composing.
+
+00:02:25.175 --> 00:02:31.351
+Finally, write the controller name into U D C. The device pulls D plus up, and the host enumerates.
+
+00:02:32.551 --> 00:02:35.616
+Here's what actually happened when we ran it in QEMU.
+
+00:02:36.016 --> 00:02:40.347
+With serial and buttons, the host enumerated the Lab Conference Cam.
+
+00:02:40.747 --> 00:02:45.414
+The C D C A C M driver created dev tty A C M zero.
+
+00:02:45.814 --> 00:02:49.494
+And the generic H I D driver created a hid raw device.
+
+00:02:49.894 --> 00:02:54.167
+With video and audio included, binding failed with minus twenty two.
+
+00:02:54.567 --> 00:03:02.996
+Because dummy h c d has no isochronous support. That's a real lesson: test isochronous functions on a real controller, with an analyzer.
+
+00:03:04.196 --> 00:03:09.258
+On Android, the framework calls the USB gadget HAL to change functions.
+
+00:03:09.658 --> 00:03:16.647
+Vendor init scripts or the HAL rewrite configfs, and rebind the controller, which re enumerates the device.
+
+00:03:17.047 --> 00:03:22.608
+A D B and M T P are function F S functions, served by user space daemons.
+
+00:03:23.008 --> 00:03:25.725
+The Type C HAL reports port roles.
+
+00:03:26.125 --> 00:03:34.426
+And to debug d w c three, read its debugfs files, and enable its trace points to see every endpoint zero request.
+
+00:03:35.626 --> 00:03:36.299
+Recap.
+
+00:03:36.699 --> 00:03:41.529
+Make directory creates, link composes, and writing U D C plugs in.
+
+00:03:41.929 --> 00:03:45.087
+A U V C gadget needs a user space streaming app.
+
+00:03:45.487 --> 00:03:50.642
+Dummy h c d can't do isochronous, so use a real controller for video and audio.
+
+00:03:51.042 --> 00:03:54.908
+Android switches functions through the HAL and configfs.
+
+00:03:55.308 --> 00:03:59.012
+And d w c three trace points show every control request.

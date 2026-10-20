@@ -1,0 +1,196 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:08.487
+Welcome. In this video we follow a conference camera from the moment its USB cable is plugged in, to the moment the laptop shows a working camera.
+
+00:00:08.887 --> 00:00:13.682
+First a plain analogy, then the key words, then every packet, step by step.
+
+00:00:14.082 --> 00:00:17.263
+At the end, we read real error messages and recap.
+
+00:00:18.463 --> 00:00:22.213
+Think of enumeration as a new employee's first morning at a company.
+
+00:00:22.613 --> 00:00:25.806
+You walk up to the front desk. That's attaching the cable.
+
+00:00:26.206 --> 00:00:33.474
+Before you have an employee number, you wear a visitor badge. In USB, every new device starts at address zero.
+
+00:00:33.874 --> 00:00:40.445
+HR asks a few basic questions: who are you, and how big are your messages? That's the device descriptor.
+
+00:00:40.845 --> 00:00:45.442
+Then HR gives you a real employee number. That's the SET ADDRESS request.
+
+00:00:45.842 --> 00:00:51.020
+You hand over your full résumé, listing every skill. That's the configuration descriptor.
+
+00:00:51.420 --> 00:00:58.932
+Finally, you're assigned to a team, and work can start. That's SET CONFIGURATION. Now the drivers bind, and the camera appears.
+
+00:01:00.132 --> 00:01:02.187
+Let's define the words we'll use.
+
+00:01:02.587 --> 00:01:08.833
+The host is the computer side. It starts every single transfer. A device never speaks unless asked.
+
+00:01:09.233 --> 00:01:18.719
+A control transfer is a short conversation on endpoint zero, in up to three stages: a setup stage, an optional data stage, and a status stage.
+
+00:01:19.119 --> 00:01:27.513
+The setup packet is exactly eight bytes. It holds the request type, the request number, a value, an index, and the number of bytes wanted.
+
+00:01:27.913 --> 00:01:33.985
+A descriptor is a small table of facts the device keeps about itself, like its vendor ID or its endpoints.
+
+00:01:34.385 --> 00:01:46.099
+The U D C, or USB device controller, is the hardware and driver that let our board act as a USB device. On many Qualcomm and NXP chips this is the Synopsys D W C 3.
+
+00:01:46.499 --> 00:01:50.644
+And a stall is the device's way of saying: I can't do that request.
+
+00:01:51.844 --> 00:01:58.206
+The USB specification, in chapter nine, defines a short list of device states. Let's walk them.
+
+00:01:58.606 --> 00:02:00.568
+Attached: the cable is in.
+
+00:02:00.968 --> 00:02:04.416
+Powered: the device sees five volts on the V bus wire.
+
+00:02:04.816 --> 00:02:09.994
+Default: the host has reset the bus. The device answers only at address zero.
+
+00:02:10.394 --> 00:02:13.425
+Address: the device has been given its own number.
+
+00:02:13.825 --> 00:02:18.678
+Configured: the host picked a configuration, so the data endpoints are now live.
+
+00:02:19.078 --> 00:02:26.984
+And Suspended: if the bus goes idle for more than three milliseconds, the device must drop into low power, and can wake up again later.
+
+00:02:28.184 --> 00:02:31.388
+Now the main event: every step of enumeration.
+
+00:02:31.788 --> 00:02:40.089
+Step one. When the device is ready, it pulls the D plus data line high through a resistor. The hub notices and tells the host something arrived.
+
+00:02:40.489 --> 00:02:52.831
+Step two. The host resets the bus by holding both data lines low for at least ten milliseconds. During reset, a high speed device does a chirp handshake, so both sides agree to run at four hundred eighty megabits.
+
+00:02:53.231 --> 00:03:00.975
+Step three. The host sends a setup packet to address zero, asking for the device descriptor, and allows up to sixty four bytes.
+
+00:03:01.375 --> 00:03:11.812
+Step four. The device answers with its eighteen byte device descriptor. The most important field right now is b Max Packet Size zero, the largest packet endpoint zero can take.
+
+00:03:12.212 --> 00:03:18.667
+Step five. The host finishes the transfer with a status stage, a zero length packet in the other direction.
+
+00:03:19.067 --> 00:03:23.015
+Step six. The host sends SET ADDRESS, with the value seven.
+
+00:03:23.415 --> 00:03:35.025
+Step seven. Here is a subtle rule. The device must finish the status stage while still at address zero, and only then switch to address seven. Many firmware bugs are about changing the address too early.
+
+00:03:35.425 --> 00:03:40.661
+Step eight. Now the host talks to address seven and reads the full device descriptor again.
+
+00:03:41.061 --> 00:03:46.181
+Step nine. The host asks for only the first nine bytes of the configuration descriptor.
+
+00:03:46.581 --> 00:03:55.497
+Step ten. Why only nine? Because those nine bytes contain w Total Length: the size of the whole configuration, here one hundred seven bytes.
+
+00:03:55.897 --> 00:04:00.112
+Step eleven. Now the host asks for all one hundred seven bytes in one read.
+
+00:04:00.512 --> 00:04:11.529
+Step twelve. The device sends the configuration, followed by interface association descriptors, interfaces, class specific descriptors, and endpoints, all packed together.
+
+00:04:11.929 --> 00:04:20.149
+Step thirteen. The host reads string descriptors: the language list, the manufacturer, the product name, and the serial number.
+
+00:04:20.549 --> 00:04:25.193
+Step fourteen. The host chooses configuration one with SET CONFIGURATION.
+
+00:04:25.593 --> 00:04:31.886
+Step fifteen. The device enables its endpoints and finishes the status stage. It is now in the configured state.
+
+00:04:32.286 --> 00:04:46.740
+Step sixteen. Finally, the host matches the interfaces to drivers: u v c video for the camera, snd usb audio for the microphone and speaker, and u s b h i d for the buttons. The camera now shows up in Teams.
+
+00:04:47.940 --> 00:04:53.467
+Let's decode the eighteen byte device descriptor, the same one our lab gadget produced.
+
+00:04:53.867 --> 00:04:58.604
+The first two bytes are always the length and the type. Eighteen, and type one for device.
+
+00:04:59.004 --> 00:05:07.699
+b c d USB says which USB version the device follows. Note it's little endian, so zero zero, zero two means two point zero.
+
+00:05:08.099 --> 00:05:20.685
+Class E F, subclass two, protocol one means: look inside, this is a composite device grouped with interface association descriptors. That's how a camera, microphone and buttons share one cable.
+
+00:05:21.085 --> 00:05:24.428
+Sixty four is the maximum packet size for endpoint zero.
+
+00:05:24.828 --> 00:05:28.950
+Then the vendor ID and the product ID, again little endian.
+
+00:05:29.350 --> 00:05:38.348
+b c d Device is the device release number. Windows caches drivers by vendor, product and this number, so bump it whenever your descriptors change.
+
+00:05:38.748 --> 00:05:43.728
+And finally the string indexes, and the number of configurations, here just one.
+
+00:05:44.928 --> 00:05:50.675
+When enumeration fails, the host kernel log tells you which step failed. Let's read a typical one.
+
+00:05:51.075 --> 00:05:55.545
+First line: the hub saw a new high speed device and gave it number two.
+
+00:05:55.945 --> 00:06:04.235
+Second line: reading the first sixty four byte device descriptor failed with error minus seventy one. That's step three or four in our diagram.
+
+00:06:04.635 --> 00:06:09.418
+Third line: the device did not accept its address. That's step six or seven.
+
+00:06:09.818 --> 00:06:11.258
+And the host gives up.
+
+00:06:11.658 --> 00:06:23.639
+Minus seventy one means a protocol error. Suspect the electrical side first: the cable, the connector, V bus, PHY tuning, or firmware that pulled D plus up before the controller was ready.
+
+00:06:24.039 --> 00:06:27.835
+Minus one hundred ten is a timeout: the device stopped answering.
+
+00:06:28.235 --> 00:06:33.019
+Minus thirty two means the device stalled, usually because it doesn't support a request.
+
+00:06:33.419 --> 00:06:44.971
+To see the actual packets, load usbmon on the host and capture with Wireshark or tshark. For electrical problems, use a hardware analyzer, because usbmon can't see retries on the wire.
+
+00:06:46.171 --> 00:06:47.088
+Let's recap.
+
+00:06:47.488 --> 00:06:52.155
+The host asks and the device answers, and every device starts at address zero.
+
+00:06:52.555 --> 00:07:03.097
+The order is: device descriptor, set address, the first nine bytes of configuration to learn the total length, the full configuration, strings, then set configuration.
+
+00:07:03.497 --> 00:07:07.061
+The device switches to its new address only after the status stage.
+
+00:07:07.461 --> 00:07:13.231
+Bump b c d Device when descriptors change, so Windows doesn't apply a stale cached setup.
+
+00:07:13.631 --> 00:07:20.237
+Minus seventy one is usually electrical, minus one hundred ten is a timeout, and minus thirty two is a stall.
+
+00:07:20.637 --> 00:07:29.763
+Now try lab five, the enumeration simulator, and lab six, which builds a real gadget and watches the host enumerate it. Thanks for watching.

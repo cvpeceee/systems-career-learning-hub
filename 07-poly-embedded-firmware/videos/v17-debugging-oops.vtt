@@ -1,0 +1,124 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:07.558
+This video is about detective work: decoding a kernel oops line by line, then tracing and profiling with ftrace and perf.
+
+00:00:08.758 --> 00:00:10.558
+Debugging is detective work.
+
+00:00:10.958 --> 00:00:13.117
+The kernel log is the witness statement.
+
+00:00:13.517 --> 00:00:17.523
+An oops is the chalk outline. It shows exactly where it happened.
+
+00:00:17.923 --> 00:00:20.384
+Ftrace is the CCTV timeline.
+
+00:00:20.784 --> 00:00:23.756
+Perf is the traffic counter: where the time goes.
+
+00:00:24.156 --> 00:00:27.732
+And JTAG freezes time, so you can walk around the scene.
+
+00:00:28.932 --> 00:00:29.617
+Words.
+
+00:00:30.017 --> 00:00:36.054
+An oops is the kernel's error report, with registers and a call trace. It may or may not crash the system.
+
+00:00:36.454 --> 00:00:42.596
+P C is the program counter, where it failed. L R is the link register, where it would return to.
+
+00:00:42.996 --> 00:00:48.046
+Tainted flags tell you about the kernel's state. O means an out of tree module was loaded.
+
+00:00:48.446 --> 00:00:52.173
+F addr two line maps a function plus offset to a source line.
+
+00:00:52.573 --> 00:00:55.174
+And ftrace is the kernel's built in tracer.
+
+00:00:56.374 --> 00:00:59.520
+Let's decode lab twelve's oops, line by line.
+
+00:00:59.920 --> 00:01:08.836
+Line one: a null pointer dereference at address hex eighteen. That means code read a field at offset twenty four bytes inside a struct, through a null pointer.
+
+00:01:09.236 --> 00:01:15.378
+Line two: it's an oops, number one. The first oops is the one that matters; later ones are often fallout.
+
+00:01:15.778 --> 00:01:19.505
+The modules list shows our out of tree bridge driver was loaded.
+
+00:01:19.905 --> 00:01:25.733
+It happened on CPU two, in a kernel worker thread, and the kernel is tainted by an out of tree module.
+
+00:01:26.133 --> 00:01:30.394
+The workqueue line names the work function: polybridge h p d work.
+
+00:01:30.794 --> 00:01:34.730
+P C gives the exact place: sixty bytes into that function.
+
+00:01:35.130 --> 00:01:40.273
+The call trace shows it came straight from the workqueue machinery, not from probe or an interrupt.
+
+00:01:40.673 --> 00:01:52.399
+Now map it to a source line with f addr two line. In this scenario, the work ran after remove had freed the bridge state. The fix: cancel work sync in remove, and only schedule work after probe completes.
+
+00:01:53.599 --> 00:01:56.513
+Tracing recipes. Go to the tracing directory.
+
+00:01:56.913 --> 00:02:01.185
+Choose the function graph tracer, which shows call trees with timings.
+
+00:02:01.585 --> 00:02:05.382
+Limit it to d w c three functions, and turn tracing on.
+
+00:02:05.782 --> 00:02:09.544
+Or enable d w c three's trace events, and stream them.
+
+00:02:09.944 --> 00:02:12.753
+Trace c m d wraps all of this in one command.
+
+00:02:13.153 --> 00:02:19.899
+Perf record with call graphs, across all CPUs, finds CPU hogs, like a memcpy in a video path.
+
+00:02:20.299 --> 00:02:25.755
+And dynamic debug turns on a module's debug prints at run time, without rebuilding.
+
+00:02:26.955 --> 00:02:27.965
+More tools.
+
+00:02:28.365 --> 00:02:33.033
+Debug builds with memory, race and lock checkers, and a leak detector.
+
+00:02:33.433 --> 00:02:39.040
+P store and ram oops keep logs across a reboot, so you can read a crash that reset the board.
+
+00:02:39.440 --> 00:02:43.283
+JTAG for hangs before the console, and for multi core lockups.
+
+00:02:43.683 --> 00:02:50.301
+On Android: tombstones for native crashes, bug reports, simple perf, and Perfetto traces.
+
+00:02:50.701 --> 00:02:55.902
+And git bisect run, with an automated test, finds the commit that broke something.
+
+00:02:57.102 --> 00:02:57.775
+Recap.
+
+00:02:58.175 --> 00:03:01.031
+An oops tells you what, where, and how.
+
+00:03:01.431 --> 00:03:04.369
+The fault address offset points to the struct field.
+
+00:03:04.769 --> 00:03:07.335
+F addr two line gives the source line.
+
+00:03:07.735 --> 00:03:10.707
+Ftrace for timelines, perf for CPU time.
+
+00:03:11.107 --> 00:03:14.207
+And every fix gets a regression test and a short write up.

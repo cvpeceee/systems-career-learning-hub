@@ -1,0 +1,112 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:08.371
+This video covers power management, the networking and wireless basics a meeting device needs, and the security habits both postings ask for.
+
+00:00:09.571 --> 00:00:11.904
+Running a device is like running a building.
+
+00:00:12.304 --> 00:00:16.380
+Turn off the lights in empty rooms. That's runtime power management.
+
+00:00:16.780 --> 00:00:21.087
+But never plunge a busy room into darkness. That's what usage counts protect.
+
+00:00:21.487 --> 00:00:28.174
+Lock every door, including the side door the builders used. Those are JTAG, the UART console, and adb.
+
+00:00:28.574 --> 00:00:35.505
+And check every visitor's badge. That means validating every input from USB, HDMI and the network.
+
+00:00:36.705 --> 00:00:37.390
+Words.
+
+00:00:37.790 --> 00:00:42.040
+Runtime power management turns individual devices off when idle.
+
+00:00:42.440 --> 00:00:47.153
+Autosuspend waits a short delay first, so devices don't flap on and off.
+
+00:00:47.553 --> 00:00:54.624
+USB link power management uses U one and U two states. Their exit latency can glitch isochronous streams.
+
+00:00:55.024 --> 00:00:58.042
+The trusted execution environment protects keys.
+
+00:00:58.442 --> 00:01:04.201
+And c f g eight oh two eleven and Blue Z are Linux's Wi-Fi framework and Bluetooth stack.
+
+00:01:05.401 --> 00:01:09.174
+Runtime power management for a camera sensor, step by step.
+
+00:01:09.574 --> 00:01:11.792
+An app opens the video device.
+
+00:01:12.192 --> 00:01:16.371
+The driver calls p m runtime get sync. The usage count becomes one.
+
+00:01:16.771 --> 00:01:23.679
+The resume callback turns on regulators and clocks, and releases reset, in the order the datasheet requires.
+
+00:01:24.079 --> 00:01:26.842
+While streaming, the usage count keeps it on.
+
+00:01:27.242 --> 00:01:29.123
+The app closes the device.
+
+00:01:29.523 --> 00:01:32.495
+The driver puts its reference, with autosuspend.
+
+00:01:32.895 --> 00:01:43.553
+After the delay, the suspend callback turns clocks and regulators off. Unbalanced gets and puts are the classic bug: devices that never sleep, or that turn off mid stream.
+
+00:01:44.753 --> 00:01:47.342
+Networking basics for meeting devices.
+
+00:01:47.742 --> 00:01:54.813
+Know ip, ethtool and tcpdump, and mark real time media with D S C P so switches prioritize it.
+
+00:01:55.213 --> 00:01:59.950
+Enterprise networks use VLANs and eight oh two dot one X authentication.
+
+00:02:00.350 --> 00:02:06.271
+For Wi-Fi: i w, w p a supplicant, and where chip firmware is loaded from.
+
+00:02:06.671 --> 00:02:14.113
+For Bluetooth: capture the host controller interface with b t mon, and know the headset profiles, including L E audio.
+
+00:02:15.313 --> 00:02:16.543
+Security habits.
+
+00:02:16.943 --> 00:02:21.727
+Lock JTAG and the UART in production, and disable adb in user builds.
+
+00:02:22.127 --> 00:02:28.547
+Treat every USB descriptor, E D I D block and network packet as hostile, and fuzz the parsers.
+
+00:02:28.947 --> 00:02:32.070
+Keep keys in the trusted environment, never in files.
+
+00:02:32.470 --> 00:02:37.880
+Use signed updates, verified boot, d m verity, and enforcing SELinux.
+
+00:02:38.280 --> 00:02:43.191
+And keep a software bill of materials, with monthly security patch merges.
+
+00:02:44.391 --> 00:02:45.065
+Recap.
+
+00:02:45.465 --> 00:02:47.682
+Balance every runtime get with a put.
+
+00:02:48.082 --> 00:02:51.449
+Watch USB link power management when streams glitch.
+
+00:02:51.849 --> 00:02:54.171
+Mark media traffic for priority.
+
+00:02:54.571 --> 00:02:56.835
+Close the debug doors in production.
+
+00:02:57.235 --> 00:02:59.685
+And validate and fuzz every external input.

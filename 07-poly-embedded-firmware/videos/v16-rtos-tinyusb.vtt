@@ -1,0 +1,109 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:10.530
+This video covers the small microcontrollers inside conferencing accessories: real time operating systems, a classic bug called priority inversion, and the TinyUSB stack.
+
+00:00:11.730 --> 00:00:18.371
+An RTOS scheduler is an emergency room triage nurse. Every tick, the most urgent ready patient is seen.
+
+00:00:18.771 --> 00:00:21.871
+Now a heart attack patient needs the only stretcher.
+
+00:00:22.271 --> 00:00:32.256
+But a sprained ankle patient is holding it, and flu patients, more urgent than the ankle, keep getting seen first. The heart attack waits. That's priority inversion.
+
+00:00:32.656 --> 00:00:41.700
+The fix: while the ankle patient holds the stretcher, treat them as top priority, so they return it fast. That's priority inheritance.
+
+00:00:42.900 --> 00:00:43.585
+Words.
+
+00:00:43.985 --> 00:00:49.917
+An RTOS is a real time operating system, like Free R T O S, Zephyr or ThreadX.
+
+00:00:50.317 --> 00:00:53.859
+The tick is a periodic timer interrupt that drives scheduling.
+
+00:00:54.259 --> 00:01:00.644
+Priority inheritance temporarily raises a task holding a mutex to the priority of the task waiting for it.
+
+00:01:01.044 --> 00:01:04.771
+A watchdog resets the chip unless software kicks it regularly.
+
+00:01:05.171 --> 00:01:09.629
+And TinyUSB is an open source USB stack for microcontrollers.
+
+00:01:10.829 --> 00:01:13.766
+Here's lab ten's simulation, step by step.
+
+00:01:14.166 --> 00:01:17.661
+At tick zero, the low priority logger takes a mutex.
+
+00:01:18.061 --> 00:01:23.378
+At tick one, the high priority USB task wants the same mutex, and blocks.
+
+00:01:23.778 --> 00:01:32.602
+From tick two, the medium task becomes ready. It outranks low, so it runs for six ticks. Low can't finish, so it can't release the mutex.
+
+00:01:33.002 --> 00:01:38.319
+The high priority task is stuck behind a medium one, and finishes only at tick eleven.
+
+00:01:38.719 --> 00:01:43.804
+Now run it again with inheritance. When high blocks, low is boosted to high priority.
+
+00:01:44.204 --> 00:01:48.918
+Medium can't preempt it, so low finishes quickly and releases the mutex.
+
+00:01:49.318 --> 00:01:57.596
+High runs at once, and finishes at tick five instead of eleven. That's the bug that nearly sank the Mars Pathfinder mission in nineteen ninety seven.
+
+00:01:58.796 --> 00:02:02.790
+A TinyUSB device in a few lines. Initialize the stack.
+
+00:02:03.190 --> 00:02:12.292
+Call t u d task in the main loop or an RTOS task. The interrupt only records events; this function handles them. Same pattern as lesson two.
+
+00:02:12.692 --> 00:02:15.386
+The stack calls you back for the device descriptor.
+
+00:02:15.786 --> 00:02:17.957
+And for the configuration descriptor.
+
+00:02:18.357 --> 00:02:23.767
+Class callbacks deliver data, here an H I D output report that sets the mute LED.
+
+00:02:24.967 --> 00:02:26.325
+Bare metal essentials.
+
+00:02:26.725 --> 00:02:33.250
+At reset, startup code copies initialized data, zeroes the rest, sets clocks, and calls main.
+
+00:02:33.650 --> 00:02:36.750
+Size every task's stack, and check the high water mark.
+
+00:02:37.150 --> 00:02:40.192
+Kick the watchdog only when every task reports healthy.
+
+00:02:40.592 --> 00:02:47.813
+On a Cortex M hard fault, read the fault status register, the fault address registers, and the stacked program counter.
+
+00:02:48.213 --> 00:02:51.975
+And debug over S W D with Open O C D and gdb.
+
+00:02:53.175 --> 00:02:53.848
+Recap.
+
+00:02:54.248 --> 00:02:56.779
+The highest priority ready task runs.
+
+00:02:57.179 --> 00:02:59.931
+Use mutexes with priority inheritance.
+
+00:03:00.331 --> 00:03:02.862
+Interrupts record, tasks process.
+
+00:03:03.262 --> 00:03:05.572
+Use watchdogs and stack checks.
+
+00:03:05.972 --> 00:03:08.468
+And the fault registers point straight at the bug.

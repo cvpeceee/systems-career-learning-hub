@@ -1,0 +1,22 @@
+{
+"v01-roles-decoded": 266.9,
+"v02-embedded-cpp": 235.497007,
+"v03-driver-model": 225.29102,
+"v04-device-tree": 222.3,
+"v05-irq-dma": 229.7,
+"v06-boot-chain": 197.997007,
+"v07-yocto-bsp": 193.4,
+"v08-v4l2-alsa": 201.455011,
+"v09-codecs-hdmi": 203.2,
+"v10-usb-fundamentals": 200.893016,
+"v11-usb-enumeration": 450.962993,
+"v12-usb-classes": 214.484989,
+"v13-usb-gadget": 240.2,
+"v14-usb-debug-typec": 219.1,
+"v15-android-platform": 195.3,
+"v16-rtos-tinyusb": 189.667982,
+"v17-debugging-oops": 195.4,
+"v18-power-net-security": 180.884989,
+"v19-ota-testing": 182.68898,
+"v20-senior-staff": 161.7
+}
