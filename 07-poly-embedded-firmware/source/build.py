@@ -16,6 +16,12 @@ LABS=[
 ("11-android-hal-init-sepolicy","AIDL vendor HAL + init.rc + SELinux","# inside an AOSP tree (device/vendor dir):\nm vendor.poly.usbcam-update-api\nm vendor.poly.usbcam-V1-ndk\n# flash, then: adb shell service list | grep usbcam","Templates: IUsbCamControl.aidl, Android.bp, .rc fragment, .te policy, file_contexts.","(on device) vendor.poly.usbcam.IUsbCamControl/default: [...]","NOT VERIFIED: needs an AOSP checkout (~300 GB). Templates only; service implementation is an exercise"),
 ("12-oops-decoding","Decode a kernel oops","Read sample_oops.txt, then answer the lesson questions.\n./scripts/faddr2line yourmodule.ko func+0x3c   # on a real build","Annotated NULL-deref oops from a workqueue.","pc : polybridge_hpd_work+0x3c/0x120 [polybridge]","Exercise (sample oops is illustrative, written for this lab)"),
 ]
+VIDS=["v01-roles-decoded","v02-embedded-cpp","v03-driver-model","v04-device-tree","v05-irq-dma","v06-boot-chain","v07-yocto-bsp","v08-v4l2-alsa","v09-codecs-hdmi","v10-usb-fundamentals","v11-usb-enumeration","v12-usb-classes","v13-usb-gadget","v14-usb-debug-typec","v15-android-platform","v16-rtos-tinyusb","v17-debugging-oops","v18-power-net-security","v19-ota-testing","v20-senior-staff"]
+import json as _j
+DUR={}
+try: DUR=_j.load(open(os.path.join(H,"..","videos","durations.json")))
+except Exception: pass
+for l,v in zip(L,VIDS): l["video"]=v; l["vdur"]=DUR.get(v,0)
 data={"lessons":L,"labs":[dict(id=a,t=b,cmd=c,what=d,exp=e,status=f) for a,b,c,d,e,f in LABS]}
 html=open(os.path.join(H,'template.html')).read().replace('/*DATA*/',json.dumps(data).replace('</','<\\/'))
 open(os.path.join(H,'..','index.html'),'w').write(html)

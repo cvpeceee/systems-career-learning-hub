@@ -32,7 +32,18 @@ NOT VERIFIED / NOT RUN
   12 sample_oops.txt is illustrative (hand-written for the exercise, not from a real device)
   Yocto qemuarm64 build commands in lesson 7 (not run: disk/time)
   TinyUSB notes in lesson 16 (not built)
-  No narrated videos were made for this folder.
 
 HTML (headless Chrome)
   20/20 lessons render and their animation plays to completion (dump-dom check); screenshots desktop + 400px mobile.
+
+VIDEOS (added 2026-10-20)
+  20 MP4s, 854x480, H.264 CRF 30 @10 fps + AAC 48 kb/s mono; Piper TTS en_US-lessac-medium; total 73.5 min, 39 MB.
+  Sync method: each sentence's TTS duration drives BOTH the audio track and the frames (same timeline), so captions and
+  animation steps change on the same frame; no drift by construction (unlike 06/c31).
+  ffprobe: every file has h264 video + aac audio; video and audio durations match within 0.05 s.
+  volumedetect: mean volume -16.9 to -17.6 dB on all 20 (no silent tracks).
+  Visual spot checks: 2 frames per video (35%/70%) + 5 frames taken at a caption cue midpoint; highlighted code line /
+  revealed step matched the spoken sentence in all checked frames. Two highlight off-by-one bugs (v13, v17) and tab/heading
+  rendering issues were found in the first pass and fixed before the final render.
+  Durations: most are 3-4.5 min; v11 (enumeration) 7.5 min; v20 (career) 2.7 min, below the 3-min target.
+  Not verified: playback on a physical phone (the files are standard H.264/AAC with faststart).
