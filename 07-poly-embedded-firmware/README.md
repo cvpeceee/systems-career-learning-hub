@@ -48,3 +48,22 @@ Download this folder and open `index.html` in Chrome (phone or laptop). GitHub's
 | v20-senior-staff.mp4 | 2:42 |
 
 Rebuild: `cd source/video && python3 render.py ../../videos va vb vc vd ve v11 vf vg vh` (needs Piper + the en_US-lessac-medium voice, ffmpeg, Pillow).
+
+## Udemy watch list (exact sections, ~30 h must-watch)
+
+Full details, optional sections and skip list: [`UDEMY_PICKS.md`](UDEMY_PICKS.md)
+
+| Phase | Course | Watch these sections | Time |
+|---|---|---|---|
+| Days 1–30 | [Linux Device Driver Programming With Beaglebone Black](https://www.udemy.com/course/linux-device-driver-programming-using-beaglebone-black/) (FastBit) | Platform bus/devices/drivers; Device tree; Device tree nodes and platform driver; Linux device driver model | ~6.9 h |
+| Days 1–30 | [Embedded Linux Step by Step Using Beaglebone Black](https://www.udemy.com/course/embedded-linux-step-by-step-using-beaglebone/) (FastBit) | Beaglebone Linux booting Process | ~1.8 h |
+| Days 1–30 | [Embedded USB Programming on STM32](https://www.udemy.com/course/embedded-usb-programming-on-stm32/) (FastBit) | USB Protocol Concepts; Enumeration, Descriptors, and First Detection; USB Physical and Electrical Layer | ~4.9 h |
+| Days 31–60 | [USB Behind the Scenes: Hands-on HID Firmware Development](https://www.udemy.com/course/usb-behind-the-scenes-hands-on-hid-firmware-development/) | USB Device Framework | ~4.5 h |
+| Days 31–60 | [Interrupts and Bottom Halves in Linux Kernel](https://www.udemy.com/course/interrupts-and-bottom-halves-in-deep/) | Enabling and Disabling Interrupts; Threaded IRQs; Workqueues | ~1.5 h |
+| Days 31–60 | [Embedded Linux Using Yocto Part 2](https://www.udemy.com/course/embedded-linux-using-yocto-part-2/) | Operators; Layers; Writing Recipes; Recipes for git projects | ~2.5 h |
+| Days 61–90 | [Visual Embedded Android (AOSP)](https://www.udemy.com/course/embedded-android-training/) | Native C++ Service; Tour Through Android Source and Partitions; Going Forward | ~2.9 h |
+| Days 61–90 | [Android 14 Internals – Cuttlefish](https://www.udemy.com/course/android-internals/) | Images and partitions; Labs 1–4 (AIDL HAL, daemon, SELinux, registration); Security basics | ~0.8 h |
+| Days 61–90 | [Linux Debug Training (Part-2)](https://www.udemy.com/course/linux-debug-training-part-2/) | Module 7 Kernel Debugging; Module 5 Ftrace, trace-cmd, KernelShark, Perf lectures | ~3 h |
+| Days 61–90 | [Mastering RTOS: Hands on FreeRTOS and STM32Fx](https://www.udemy.com/course/mastering-rtos-hands-on-with-freertos-arduino-and-stm32fx/) (FastBit) | RTOS Introduction; FreeRTOS and ARM Cortex-M details; FreeRTOS Scheduler | ~1 h |
+
+Not covered well on Udemy (use kernel docs, Bootlin slides, USB-IF specs and this course's videos/labs): V4L2/ALSA, codecs/HDMI, UVC/UAC depth, Linux USB gadget/configfs, USB-C/PD.
