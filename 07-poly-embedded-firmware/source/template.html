@@ -22,12 +22,16 @@ button{background:var(--panel2);color:var(--ink);border:1px solid var(--line);bo
 .st{font-size:13px;padding:2px 8px;border-radius:8px;display:inline-block}.V{background:#14532d}.P{background:#713f12}.N{background:#7f1d1d}
 input[type=search]{background:var(--panel2);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:7px;width:100%;font-size:15px}
 @keyframes pop{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}.fade{animation:pop .35s ease}
+.chip{border-bottom:2px dotted var(--hl);color:#fde68a;cursor:pointer;font-weight:600}.chip:hover,.chip:focus{background:#422006;outline:none;border-radius:4px}
+.chipx{display:block;font-weight:400;margin:6px 0 8px;padding:8px 10px;background:#1c1917;border:1px solid #a16207;border-radius:8px;font-size:14px;color:#e7e5e4;animation:pop .25s ease}.chipx b{color:var(--hl)}.chipx i{color:#bbf7d0;font-style:normal}
+.wtk{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:8px}.wtk div{background:#1c1917;border:1px solid #57534e;border-radius:10px;padding:8px 10px;font-size:14px}.wtk b{color:var(--hl)}.wtk i{color:#bbf7d0;font-style:normal;display:block;margin-top:3px}
+details.wt{background:#1c1917;border:1px solid #a16207;border-radius:12px;padding:10px 14px;margin:10px 0}details.wt summary{cursor:pointer;font-weight:700;color:var(--hl)}
 </style></head><body>
-<header><b>🎥 Poly Firmware Academy</b><nav><a data-v="home">Home</a><a data-v="lessons">Lessons</a><a data-v="videos">Videos</a><a data-v="labs">Labs</a><a data-v="plan">Plan</a><a data-v="quiz">Quiz mix</a></nav></header>
+<header><b>🎥 Poly Firmware Academy</b><nav><a data-v="home">Home</a><a data-v="lessons">Lessons</a><a data-v="videos">Videos</a><a data-v="labs">Labs</a><a data-v="plan">Plan</a><a data-v="quiz">Quiz mix</a><a data-v="glossary">Glossary</a></nav></header>
 <main id="app"></main>
 <script>
 const D=/*DATA*/;
-const $=s=>document.querySelector(s);const app=$('#app');
+const $=s=>document.querySelector(s);const GL=Object.fromEntries(D.glossary.map(g=>[g.k,g]));const app=$('#app');
 const prog=JSON.parse(localStorage.getItem('polyprog')||'{}');const save=()=>localStorage.setItem('polyprog',JSON.stringify(prog));
 function esc(s){return s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]))}
 function bar(){const n=D.lessons.filter(l=>prog[l.id]).length;return `<div class="card"><b>Progress:</b> ${n}/${D.lessons.length} lessons done<div class="bar"><i style="width:${100*n/D.lessons.length}%"></i></div></div>`}
@@ -37,8 +41,8 @@ ${bar()}<div class="card"><h3>Built from your two Poly/HP postings (Austin)</h3>
 function lessons(){app.innerHTML=`<div class="fade">${bar()}<input type="search" id="s" placeholder="Search lessons (e.g. UVC, SELinux, DMA)"><div class="grid" id="g"></div></div>`;const r=()=>{const k=$('#s').value.toLowerCase();$('#g').innerHTML=D.lessons.map((l,i)=>[l,i]).filter(([l])=>!k||JSON.stringify(l).toLowerCase().includes(k)).map(([l,i])=>`<div class="card lcard" onclick="lesson(${i})"><span class="tag">${l.tag}</span> ${prog[l.id]?'<span class="done">✔ done</span>':''}<h3 style="margin:6px 0">${i+1}. ${l.t}</h3><div style="color:var(--mut);font-size:14px">${esc(l.an.slice(0,120))}…</div></div>`).join('')};$('#s').oninput=r;r()}
 function lesson(i){const l=D.lessons[i];const lab=l.lab?D.labs.find(x=>x.id==l.lab):null;scrollTo(0,0);
 app.innerHTML=`<div class="fade"><span class="tag">${l.tag}</span><h2>${i+1}. ${l.t}</h2>
+<details class="wt" open><summary>📖 Words to know in this lesson (${l.terms.length}) · tap any dotted word in the text to expand it</summary><div class="wtk" style="margin-top:8px">${l.terms.map(k=>{const g=GL[k];return `<div><b>${esc(g.t)}</b>: ${esc(g.m)}<i>Like: ${esc(g.a)}</i></div>`}).join('')}${l.j.map(([a,b])=>`<div><b>${a}</b>: ${b}</div>`).join('')}</div></details>
 <div class="plain"><h4>Plain analogy first</h4>${l.an}</div>
-<dl class="jar"><b>Words used here</b>${l.j.map(([a,b])=>`<dt>${a}</dt><dd>${b}</dd>`).join('')}</dl>
 <div class="card"><h3>🎬 Narrated video (${mmss(l.vdur)})</h3>${vtag(l)}</div>
 <div class="card anim"><h3>▶ Animated: ${l.anim[1]}</h3><div id="sv"></div><div class="cap" id="cap">Press Play or Step.</div><button class="pri" id="play">▶ Play</button><button id="step">Step</button><button id="rst">Reset</button></div>
 <div class="card">${l.d}</div>
@@ -71,7 +75,10 @@ function anim(a){clearInterval(timer);const sv=$('#sv'),cap=$('#cap');let k=-1;
   items.forEach((n,i)=>{const y=8+i*58;s+=`<g id="b${i}" opacity=".25"><rect x="20" y="${y}" width="${W-40}" height="44" rx="10" fill="#16223b" stroke="#38bdf8" stroke-width="2"/><text x="40" y="${y+20}" fill="#e2e8f0" font-weight="700">${i+1}. ${esc(n)}</text><text x="40" y="${y+37}" fill="#94a3b8" font-size="12">${esc(sub[i])}</text></g>`;if(i<items.length-1)s+=`<path d="M${W/2} ${y+44} v14" stroke="#475569" stroke-width="2"/>`});
   sv.innerHTML=s+'</svg>';var stepf=()=>{if(k>=items.length-1){clearInterval(timer);cap.textContent='Done. Reset to replay.';return}if(k>=0)$('#b'+k).querySelector('rect').setAttribute('stroke','#38bdf8');k++;const g=$('#b'+k);g.setAttribute('opacity','1');g.querySelector('rect').setAttribute('stroke','#f59e0b');cap.textContent=`${items[k]}: ${sub[k]}`}}
  $('#play').onclick=()=>{clearInterval(timer);stepf();timer=setInterval(stepf,1500)};$('#step').onclick=()=>{clearInterval(timer);stepf()};$('#rst').onclick=()=>anim(a)}
-function go(v){({home,lessons,labs,plan,quiz,videos})[v]();scrollTo(0,0)}
+function glossary(){app.innerHTML=`<div class="fade"><div class="plain"><h4>Glossary</h4>Every term used in the lessons and videos: a one-line meaning and an everyday picture. Tap a lesson number to open it.</div><input type="search" id="gs" placeholder="Search terms (e.g. UDC, configfs, HAL)"><div id="gl"></div></div>`;const r=()=>{const k=$('#gs').value.toLowerCase();$('#gl').innerHTML=D.glossary.filter(g=>g.ls.length&&(!k||(g.t+g.m+g.a).toLowerCase().includes(k))).sort((a,b)=>a.t.localeCompare(b.t)).map(g=>`<div class="card" style="margin:8px 0;padding:10px 14px"><b style="color:var(--hl)">${esc(g.t)}</b>: ${esc(g.m)}<div style="color:#bbf7d0">Like: ${esc(g.a)}</div><div class="small" style="font-size:13px;color:var(--mut)">Lessons: ${g.ls.map(i=>`<a onclick="lesson(${i})">${i+1}</a>`).join(' · ')}</div></div>`).join('')};$('#gs').oninput=r;r()}
+document.addEventListener('click',e=>{const c=e.target.closest('.chip');if(!c)return;const n=c.nextElementSibling;if(n&&n.classList.contains('chipx')){n.remove();return}const g=GL[c.dataset.k];c.insertAdjacentHTML('afterend',`<span class="chipx"><b>${esc(g.t)}</b>: ${esc(g.m)} <i>Like: ${esc(g.a)}</i></span>`)});
+document.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.classList&&e.target.classList.contains('chip'))e.target.click()});
+function go(v){({home,lessons,labs,plan,quiz,videos,glossary})[v]();scrollTo(0,0)}
 document.querySelectorAll('nav a').forEach(a=>a.onclick=()=>go(a.dataset.v));
-if(location.hash)document.head.insertAdjacentHTML("beforeend","<style>.fade{animation:none}</style>");const h=location.hash.match(/^#l(\d+)(?:s(\d+))?$/);if(h){lesson(+h[1]-1);for(let i=0;i<(+h[2]||0);i++)$('#step').click()}else if(location.hash==='#labs')labs();else if(location.hash==='#videos')videos();else home();
+if(location.hash)document.head.insertAdjacentHTML("beforeend","<style>.fade{animation:none}</style>");const h=location.hash.match(/^#l(\d+)(?:s(\d+))?$/);if(h){lesson(+h[1]-1);for(let i=0;i<(+h[2]||0);i++)$('#step').click()}else if(location.hash==='#labs')labs();else if(location.hash==='#videos')videos();else if(location.hash==='#glossary')glossary();else home();
 </script></body></html>

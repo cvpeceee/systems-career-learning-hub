@@ -26,3 +26,39 @@ data={"lessons":L,"labs":[dict(id=a,t=b,cmd=c,what=d,exp=e,status=f) for a,b,c,d
 html=open(os.path.join(H,'template.html')).read().replace('/*DATA*/',json.dumps(data).replace('</','<\\/'))
 open(os.path.join(H,'..','index.html'),'w').write(html)
 print(len(L),"lessons",len(LABS),"labs",len(html),"bytes")
+
+# ---- glossary: Words to know + tap-to-expand chips at first use + Glossary tab
+import re as _re
+from glossary import G as _G, BY as _BY
+def _chipify(html,seen,lesson_terms):
+    parts=_re.split(r'(<[^>]+>)',html); out=[]; skip=0
+    for part in parts:
+        if part.startswith('<'):
+            tg=_re.match(r'</?\s*(\w+)',part); n=tg.group(1).lower() if tg else ''
+            if n in('code','pre','a','button') : skip+= -1 if part.startswith('</') else 1
+            out.append(part); continue
+        if skip>0 or not part.strip(): out.append(part); continue
+        while True:
+            best=None
+            for g in _G:
+                if g['k'] in seen: continue
+                m=g['_rx'].search(part)
+                if m and (best is None or m.start()<best[0].start()): best=(m,g)
+            if not best: break
+            m,g=best; seen.add(g['k']); lesson_terms.append(g['k'])
+            out.append(part[:m.start()]+'<span class="chip" tabindex="0" data-k="%s">%s</span>'%(g['k'],m.group(0))); part=part[m.end():]
+        out.append(part)
+    return ''.join(out)
+for i,l in enumerate(L):
+    seen=set(); terms=[]
+    l['an']=_chipify(l['an'],seen,terms); l['d']=_chipify(l['d'],seen,terms)
+    rest=' '.join([a+' '+b for a,b in l['j']]+[a+' '+b for a,b in l['q']]+[str(l['anim'])])
+    for pos,k in sorted((g['_rx'].search(rest).start(),g['k']) for g in _G if g['k'] not in seen and g['_rx'].search(rest)): seen.add(k); terms.append(k)
+    l['terms']=terms
+    gl={_BY[k]['t'].split(' ')[0].lower() for k in terms}
+    l['j']=[[a,b] for a,b in l['j'] if a.split(' ')[0].lower() not in gl]
+data['lessons']=L
+data['glossary']=[dict(k=g['k'],t=g['t'],m=g['mean'],a=g['ana'],ls=[i for i,l in enumerate(L) if g['k'] in l['terms']]) for g in _G]
+html=open(os.path.join(H,'template.html')).read().replace('/*DATA*/',json.dumps(data).replace('</','<\\/'))
+open(os.path.join(H,'..','index.html'),'w').write(html)
+print(len(L),"lessons",len(LABS),"labs",len(html),"bytes", sum(len(l['terms']) for l in L),"term uses", len([g for g in data['glossary'] if g['ls']]),"glossary terms used")
