@@ -1,0 +1,10 @@
+/dts-v1/;
+/plugin/;
+/* Example DT overlay: an HDMI bridge (Lontium-style) on I2C with a reset GPIO. */
+&{/} {
+	polybridge {
+		compatible = "poly,hdmi-bridge-demo";
+		poly,lanes = <2>;
+		reset-gpios = <&gpio0 5 0>;
+	};
+};

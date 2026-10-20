@@ -1,0 +1,12 @@
+# SELinux type enforcement for the HAL. Analogy: a badge that only opens specific doors.
+type hal_poly_usbcam, domain;
+type hal_poly_usbcam_exec, exec_type, vendor_file_type, file_type;
+init_daemon_domain(hal_poly_usbcam)
+# let it write gadget configfs
+allow hal_poly_usbcam configfs:dir { search create add_name write remove_name rmdir };
+allow hal_poly_usbcam configfs:file { open write read getattr };
+allow hal_poly_usbcam configfs:lnk_file { create unlink };
+# register with servicemanager
+binder_call(hal_poly_usbcam, servicemanager)
+add_service(hal_poly_usbcam, hal_poly_usbcam_service)
+# Debug denials:  adb logcat | grep avc   ;  audit2allow -p policy < denials.txt  (then REVIEW, never blanket-allow)

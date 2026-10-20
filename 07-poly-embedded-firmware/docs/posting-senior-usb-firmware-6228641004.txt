@@ -1,0 +1,66 @@
+Senior Embedded USB Firmware Developer - Poly {'name': 'Austin'}
+
+About HP
+At HP, you’ll have a chance to create tools, technology, and solutions that reshape the way the world works in the future. If you’re looking to join a company that allows you to connect with a network of professionals eager to support you in doing your best work, we want to talk to you. Our legendary culture guides every employee toward success—fostering collaboration and driving innovation.
+Operating in over 170 countries, HP is always creating new services, products, and capabilities giving you more opportunities to advance your career. Here, innovation is the key to professional development and career mobility.
+When you join HP, you’re joining a company that believes every voice matters and that we all deserve a seat at the table. From the boardroom to factory floor, we create a culture where everyone is respected and where people can be themselves. You will be part of a global laboratory where different perspectives and experiences will help you solve problems in new ways. This is where you can build a long and wide-ranging career.
+About The Role
+At HP Inc., we believe technology should make life better for everyone, everywhere. That’s why we’re reinventing how people work, collaborate, and connect—through powerful devices, intelligent software, and services that span the entire technology lifecycle. As part of HP Solutions, you’ll help shape the future of work by building tools that empower millions of users around the globe.
+We’re looking for a&nbsp;
+Senior USB Firmware Developer
+&nbsp;who has extensive knowledge on USB driver, firmware, and software stack in 
+Android/Linux
+, to help us build the next generation of video conferencing devices. If you thrive in a collaborative, agile environment and love solving complex problems, we’d love to meet you.
+&nbsp;
+What you’ll do
+Design and develop innovative firmware for Android-based video conferencing devices.
+In depth, hands-on, and extensive experience and knowledge on the full USB software stack is must-have
+.
+Build and enhance Android platform capabilities below the framework layer.
+Lead the development of secure, scalable, and high-performance embedded C/C++ applications.
+Collaborate with cross-functional teams to define architecture, standards, and best practices.
+Troubleshoot and resolve complex system-level issues in embedded environments.
+Contribute to project planning, documentation, and testing strategies.
+Mentor junior engineers and share your expertise across the team.
+Drive continuous improvement through agile and lean development practices.
+&nbsp;
+What you bring
+Bachelor’s or Master’s degree in Computer Science, Software Engineering, or equivalent experience.
+10+ years of experience in software development, with a strong focus on embedded systems.
+Proficiency in embedded C/C++.
+Experience with firmware development and debugging in embedded environments.
+Knowledge in following areas is a plus:
+Network and security protocols
+USB stack development
+Bluetooth
+Wi-Fi
+Video encoding/decoding (H.264, H.265, SVC)
+Strong communication skills and a collaborative mindset.
+A passion for learning, innovation, and delivering high-quality solutions.
+Understanding of Android internals and Linux is preferred.
+&nbsp;
+&nbsp;
+Salary: $116,000- $182,000
+Compensation &amp; Benefits (Full-Time Employees)
+The salary range for this role is listed above. Final salary offered is based upon multiple factors including individual job-related qualifications, education, experience, knowledge and skills.
+At HP, we offer a competitive and comprehensive benefits package, including:
+Health insurance
+Dental insurance
+Vision insurance
+Long term/short term disability insurance
+Employee assistance program
+Flexible spending account
+Life insurance
+Generous time off policies, including;&nbsp;
+4-12 weeks fully paid parental leave based on tenure
+11 paid holidays
+Additional flexible paid vacation and sick leave (
+US benefits overview
+)
+Why join HP?
+When you join HP, you’re investing in your future—and so are we. You have priorities beyond work. That’s why we offer flexibility, support, and benefits that help you shape the life you want.
+&nbsp;
+Equal Opportunity Employer (EEO) Statement
+HP, Inc. provides equal employment opportunity to all employees and prospective employees, without regard to race, color, religion, sex, national origin, ancestry, citizenship, sexual orientation, age, disability, or status as a protected veteran, marital status, familial status, physical or mental disability, medical condition, pregnancy, genetic predisposition or carrier status, uniformed service status, political affiliation or any other characteristic protected by applicable national, federal, state, and local law(s).
+Please be assured that you will not be subject to any adverse treatment if you choose to disclose the information requested. This information is provided voluntarily. The information obtained will be kept in strict confidence.
+

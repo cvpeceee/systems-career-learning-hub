@@ -1,0 +1,38 @@
+TEST RESULTS — 07-poly-embedded-firmware            (run 2026-10-20, America/Chicago, on the build box)
+Environment: Debian 13 (trixie), gcc (Debian), linux-headers-6.12.113+deb13-amd64, QEMU x86_64 (TCG; KVM hung on this box),
+             aarch64-linux-gnu-gcc for cross-compile checks, headless Chrome.
+
+POSTINGS
+  Both fetched from boards-api.greenhouse.io/v1/boards/hp/jobs/{6228640004,6228641004}: OK (saved in docs/)
+
+KERNEL MODULES (built against 6.12.113+deb13-amd64, -Werror not set but 0 warnings)
+  01 polychar.ko   build OK | QEMU: write "hello-poly" -> read back "hello-poly"; sysfs writes=1      VERIFIED
+  02 polyplat.ko   build OK | QEMU: insmod OK; dtc compiled overlay OK; probe() NOT exercised (no DT on x86)   PARTIAL
+  03 polyirq.ko    build OK | QEMU: 3 bottom-half runs logged, clean rmmod                          VERIFIED
+
+USERSPACE (gcc -Wall -Wextra -Werror -fsanitize=address,undefined)
+  04 usbdesc       sample 99-byte UVC+UAC+HID config parsed, isoc mult=3 decoded                     VERIFIED
+                   QEMU: parsed REAL sysfs descriptors of the Lab 06 gadget (125 bytes, VID:PID 1d6b:0104)  VERIFIED
+                   aarch64 cross-compile OK
+  05 enumsim       normal + fail-address paths reach CONFIGURED                                      VERIFIED
+  07 v4l2cap       QEMU + vivid: 640x480 YUYV, 5 frames DQBUF'd, OK; aarch64 cross-compile OK         VERIFIED
+  08 ring          2,000,000 items in order; ThreadSanitizer clean                                   VERIFIED
+  09 fwimg         CRC32 check value 0xCBF43926; corrupt/rollback rejected; fallback to A            VERIFIED
+  10 sched         HIGH-task finish tick 11 -> 5 with priority inheritance                           VERIFIED
+
+USB GADGET (06, QEMU, dummy_hcd)
+  FUNCS="acm.0 hid.0": host enumerated "Lab Conference Cam"; cdc_acm -> ttyACM0; hid-generic -> hidraw0   VERIFIED
+  Full set uvc.0+uac2.0+acm.0: bind fails -EINVAL (dummy_hcd has no isochronous support)            NOT VERIFIED (needs real UDC)
+  teardown.sh: bash -n syntax check only                                                            NOT RUN
+
+00 QEMU HARNESS  run_all_in_qemu.sh executed end-to-end from a clean temp dir: rc=0; log in labs/00-qemu-harness/sample_run.log
+
+NOT VERIFIED / NOT RUN
+  11 Android AIDL HAL, init.rc, sepolicy, Android.bp: templates only (needs AOSP tree + device)
+  12 sample_oops.txt is illustrative (hand-written for the exercise, not from a real device)
+  Yocto qemuarm64 build commands in lesson 7 (not run: disk/time)
+  TinyUSB notes in lesson 16 (not built)
+  No narrated videos were made for this folder.
+
+HTML (headless Chrome)
+  20/20 lessons render and their animation plays to completion (dump-dom check); screenshots desktop + 400px mobile.

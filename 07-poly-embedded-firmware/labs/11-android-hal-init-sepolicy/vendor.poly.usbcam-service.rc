@@ -1,0 +1,17 @@
+# init.rc fragment (vendor partition). Analogy: init is the stage manager reading the run sheet.
+service vendor.poly.usbcam /vendor/bin/hw/vendor.poly.usbcam-service
+    class hal
+    user system
+    group system usb
+    capabilities SYS_ADMIN
+    # restart policy: if the HAL crashes, init restarts it
+
+# When the framework sets sys.usb.config, re-run our gadget script via a oneshot service.
+on property:sys.usb.config=uvc,uac2
+    start vendor.poly.usbgadget
+
+service vendor.poly.usbgadget /vendor/bin/poly_usb_gadget.sh ${sys.usb.config}
+    class main
+    user root
+    oneshot
+    disabled
