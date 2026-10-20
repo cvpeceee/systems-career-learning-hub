@@ -4,6 +4,8 @@
 
 Course: open `index.html` in Chrome. Lesson numbers below refer to it.
 
+Udemy companion (exact sections per phase): see `UDEMY_PICKS.md`.
+
 ## Weekly cadence (about 5–6 focused hours outside tickets)
 | Day | Block | What |
 |---|---|---|

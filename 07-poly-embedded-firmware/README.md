@@ -11,6 +11,7 @@ Download this folder and open `index.html` in Chrome (phone or laptop). GitHub's
 | Path | What |
 |---|---|
 | `index.html` | 20 lessons: plain analogy first, jargon defined, full depth, animated diagram, tap-to-reveal quiz, linked lab; plus Labs, Plan and a random quiz mix. Progress is saved in the browser. |
+| `UDEMY_PICKS.md` | Exact Udemy sections (~30 h must-watch) mapped to lessons and the 30/60/90 phases |
 | `LEARNING_PLAN.md` | 30/60/90 days + months 4–12 toward staff, weekly cadence, milestones, how to show impact |
 | `docs/SKILL_MAP.md` | Both postings decoded into skills, mapped to lessons/labs |
 | `docs/posting-*.txt` | Posting text as fetched 2026-10-20 |
