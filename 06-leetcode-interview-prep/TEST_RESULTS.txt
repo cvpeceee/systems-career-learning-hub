@@ -21,7 +21,10 @@ p104-bus-routes: cpp=OK  trace=OK  java=OK  trace_java=OK  cs=OK  trace_cs=OK | 
 p105-currency-conversion: cpp=OK  trace=OK  java=OK  trace_java=OK  cs=OK  trace_cs=OK | {'cpp': 'PASS 6/6', 'trace': '5 steps', 'java': 'PASS 6/6', 'trace_java': '3 steps', 'cs': 'PASS 6/6', 'trace_cs': '3 steps'}
 p106-cidr-firewall: cpp=OK  trace=OK  java=OK  trace_java=OK  cs=OK  trace_cs=OK | {'cpp': 'PASS 4/4', 'trace': '5 steps', 'java': 'PASS 4/4', 'trace_java': '3 steps', 'cs': 'PASS 4/4', 'trace_cs': '3 steps'}
 p107-cache-simulator: cpp=OK  trace=OK  java=OK  trace_java=OK  cs=OK  trace_cs=OK | {'cpp': 'PASS 4/4', 'trace': '8 steps', 'java': 'PASS 4/4', 'trace_java': '6 steps', 'cs': 'PASS 4/4', 'trace_cs': '6 steps'}
+p108-rectangle-area-ii: cpp=OK  trace=OK  java=OK  trace_java=OK  cs=OK  trace_cs=OK | {'cpp': 'PASS 6/6', 'trace': '5 steps', 'java': 'PASS 6/6', 'trace_java': '3 steps', 'cs': 'PASS 6/6', 'trace_cs': '3 steps'}
+p109-nearest-poi-grid: cpp=OK  trace=OK  java=OK  trace_java=OK  cs=OK  trace_cs=OK | {'cpp': 'PASS 5/5', 'trace': '29 steps', 'java': 'PASS 5/5', 'trace_java': '27 steps', 'cs': 'PASS 5/5', 'trace_cs': '27 steps'}
 p11-course-schedule: cpp=OK  trace=OK  java=OK  trace_java=OK  cs=OK  trace_cs=OK | {'cpp': 'PASS 6/6', 'trace': '7 steps', 'java': 'PASS 6/6', 'trace_java': '4 steps', 'cs': 'PASS 6/6', 'trace_cs': '4 steps'}
+p110-mcdc-coverage: cpp=OK  trace=OK  java=OK  trace_java=OK  cs=OK  trace_cs=OK | {'cpp': 'PASS 6/6', 'trace': '5 steps', 'java': 'PASS 6/6', 'trace_java': '3 steps', 'cs': 'PASS 6/6', 'trace_cs': '3 steps'}
 p12-network-delay: cpp=OK  trace=OK  java=OK  trace_java=OK  cs=OK  trace_cs=OK | {'cpp': 'PASS 5/5', 'trace': '11 steps', 'java': 'PASS 5/5', 'trace_java': '4 steps', 'cs': 'PASS 5/5', 'trace_cs': '4 steps'}
 p13-redundant-connection: cpp=OK  trace=OK  java=OK  trace_java=OK  cs=OK  trace_cs=OK | {'cpp': 'PASS 4/4', 'trace': '43 steps', 'java': 'PASS 4/4', 'trace_java': '4 steps', 'cs': 'PASS 4/4', 'trace_cs': '4 steps'}
 p14-trie: cpp=OK  trace=OK  java=OK  cs=OK | {'cpp': 'PASS 3/3', 'trace': '14 steps', 'java': 'PASS 3/3', 'cs': 'PASS 3/3'}

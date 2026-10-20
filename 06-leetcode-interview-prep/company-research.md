@@ -579,3 +579,7 @@ Cloudflare sits in front of a big part of the internet, so its questions look li
 - [Uber senior SWE interviews](https://www.glassdoor.com.hk/Interview/Uber-Senior-Software-Engineer-Interview-Questions-EI_IE575263.0,4_KO5,29.htm) (glassdoor)
 
 Also read (not modified): cvpeceee/interview-mastery-courses company courses for Amazon, Anthropic, Apple, Google, Meta, Microsoft, NVIDIA and OpenAI.
+
+
+## Oct 20 job-alert companies
+CrowdStrike, Garmin, Wing, Raytheon (RTX), Genesys, Truist and Osano were added from the Oct 20 LinkedIn job alerts. No interview reports were checked for them, so every problem and design link on those pages is **INFERRED** from the job posting (sources and POSTED/MIRROR/INFERRED labels: `../04-interactive-tutorial/docs/new-jobs-oct20-research.md`). The new links on the NVIDIA, Google, Oracle and Anthropic pages are also INFERRED and name the posting they come from.
