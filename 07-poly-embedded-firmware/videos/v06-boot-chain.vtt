@@ -1,0 +1,118 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:06.966
+This video follows the boot chain from the chip's first instruction to Linux init, and shows how secure boot checks every handoff.
+
+00:00:08.166 --> 00:00:09.722
+Booting is a relay race.
+
+00:00:10.122 --> 00:00:15.671
+Each runner is one boot stage, and passing the baton means loading and jumping to the next stage.
+
+00:00:16.071 --> 00:00:22.608
+In secure boot, every runner checks the next runner's ID badge before handing over. That's a signature check.
+
+00:00:23.008 --> 00:00:28.290
+And the list of valid badges is burned into the track itself, in one time programmable fuses.
+
+00:00:29.490 --> 00:00:30.175
+Words.
+
+00:00:30.575 --> 00:00:35.904
+The boot ROM is code fixed inside the chip when it's manufactured. It can never change.
+
+00:00:36.304 --> 00:00:43.212
+The S P L, or on Qualcomm the X B L, is a small first stage loader. Its main job is setting up DRAM.
+
+00:00:43.612 --> 00:00:48.233
+U-Boot, or Qualcomm's A B L, is the full bootloader that loads the kernel.
+
+00:00:48.633 --> 00:00:54.275
+T F A is ARM's trusted firmware, and the T E E is a secure world that keeps keys.
+
+00:00:54.675 --> 00:01:01.374
+A V B is Android verified boot. It checks Android partitions using a signed table called v b meta.
+
+00:01:02.574 --> 00:01:04.026
+Let's run the race.
+
+00:01:04.426 --> 00:01:12.564
+The boot ROM reads fuses to find the boot device, loads the first stage, and checks its signature against the key hash burned in fuses.
+
+00:01:12.964 --> 00:01:19.315
+The first stage sets up clocks, the power chip, and trains DRAM. Then it verifies the next images.
+
+00:01:19.715 --> 00:01:25.404
+Trusted firmware starts the secure monitor, and optionally a trusted OS that holds keys.
+
+00:01:25.804 --> 00:01:33.826
+U-Boot or A B L reads its environment, picks the A or B slot, loads the kernel and device tree, and verifies them.
+
+00:01:34.226 --> 00:01:38.197
+The kernel starts, prints to an early console, and probes drivers.
+
+00:01:38.597 --> 00:01:43.636
+Init starts: systemd or busybox on Linux, Android's init on Android.
+
+00:01:44.036 --> 00:01:52.035
+And on Android, d m verity keeps checking every block of the system partition as it's read, so tampering is caught even after boot.
+
+00:01:53.235 --> 00:01:55.812
+A few U-Boot commands worth knowing by heart.
+
+00:01:56.212 --> 00:01:57.989
+Print the kernel command line.
+
+00:01:58.389 --> 00:02:02.800
+Set it, adding earlycon so the kernel prints before its real console driver loads.
+
+00:02:03.200 --> 00:02:06.126
+Select the eMMC and list its partitions.
+
+00:02:06.526 --> 00:02:08.384
+Load the kernel image into memory.
+
+00:02:08.784 --> 00:02:10.281
+Load the device tree.
+
+00:02:10.681 --> 00:02:15.244
+Inspect the device tree right from the bootloader, for example to check an I two C node.
+
+00:02:15.644 --> 00:02:18.721
+And boot it. The dash means no separate initramfs.
+
+00:02:19.921 --> 00:02:22.742
+When boot goes silent, narrow it down.
+
+00:02:23.142 --> 00:02:28.030
+No output at all? Check UART wiring and baud rate, and the boot mode pins.
+
+00:02:28.430 --> 00:02:35.640
+If you see starting kernel and then nothing, it's usually a wrong device tree, a wrong load address, or the console not enabled.
+
+00:02:36.040 --> 00:02:41.055
+Add earlycon, keep boot con, and initcall debug to see how far the kernel gets.
+
+00:02:41.455 --> 00:02:46.482
+If it hangs before any console, attach JTAG and read the program counter.
+
+00:02:46.882 --> 00:02:53.790
+And for security: never ship debug keys, and do signing in a controlled CI step, never on a laptop.
+
+00:02:54.990 --> 00:02:55.663
+Recap.
+
+00:02:56.063 --> 00:03:01.578
+The chain is ROM, first stage, trusted firmware, bootloader, kernel, then init.
+
+00:03:01.978 --> 00:03:05.310
+Each stage verifies the next, anchored in fuses.
+
+00:03:05.710 --> 00:03:09.460
+Anti rollback counters stop old but validly signed images.
+
+00:03:09.860 --> 00:03:12.066
+Earlycon is your first debugging tool.
+
+00:03:12.466 --> 00:03:16.797
+And lab nine simulates image verification and automatic A B fallback.

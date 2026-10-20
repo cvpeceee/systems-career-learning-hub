@@ -1,0 +1,133 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:10.577
+This video covers interrupts: the fast part, the slow part, and how data moves with DMA. We'll follow an HDMI hot plug interrupt on an I two C bridge, step by step.
+
+00:00:11.777 --> 00:00:13.367
+An interrupt is a doorbell.
+
+00:00:13.767 --> 00:00:20.350
+The top half is answering the door and signing for the package. It must take seconds, because other visitors may be waiting.
+
+00:00:20.750 --> 00:00:25.998
+The bottom half is unpacking later in the kitchen, where you can take your time and even make phone calls.
+
+00:00:26.398 --> 00:00:31.332
+And DMA is a conveyor belt that loads the shelves by itself, while you do other work.
+
+00:00:32.532 --> 00:00:33.217
+Words.
+
+00:00:33.617 --> 00:00:40.711
+The top half is the hard interrupt handler. It runs with that interrupt masked, must be very short, and cannot sleep.
+
+00:00:41.111 --> 00:00:47.763
+A threaded interrupt moves the slow part into a kernel thread, which may sleep, for example to talk over I two C.
+
+00:00:48.163 --> 00:00:52.169
+A workqueue runs deferred functions later, in normal process context.
+
+00:00:52.569 --> 00:00:58.072
+DMA, direct memory access, lets hardware copy data into memory without the CPU.
+
+00:00:58.472 --> 00:01:04.161
+A spinlock is a lock that busy waits instead of sleeping, so it's safe in interrupt context.
+
+00:01:05.361 --> 00:01:08.031
+Let's follow a hot plug, step by step.
+
+00:01:08.431 --> 00:01:12.564
+A monitor is connected. The bridge chip pulls its interrupt line low.
+
+00:01:12.964 --> 00:01:17.074
+The interrupt controller masks that line, and calls the hard handler.
+
+00:01:17.474 --> 00:01:25.613
+Because the bridge sits on I two C, the hard handler can't read it. Reading I two C sleeps. So it simply returns I R Q WAKE THREAD.
+
+00:01:26.013 --> 00:01:28.102
+The core wakes the interrupt thread.
+
+00:01:28.502 --> 00:01:34.424
+The thread reads the bridge's status register over I two C. This sleeps, and that's fine here.
+
+00:01:34.824 --> 00:01:39.084
+It writes to clear the status, so the chip releases the interrupt line.
+
+00:01:39.484 --> 00:01:44.941
+It tells the display core that a monitor arrived, so the EDID can be read and a mode chosen.
+
+00:01:45.341 --> 00:01:56.626
+Finally it returns handled, and only now is the line unmasked. That's what the oneshot flag guarantees. Without it, a level interrupt would fire again and again before the thread could clear it.
+
+00:01:57.826 --> 00:01:59.637
+Here's what that looks like in code.
+
+00:02:00.037 --> 00:02:03.822
+The thread function reads the status through regmap. It may sleep.
+
+00:02:04.222 --> 00:02:06.091
+Then it clears the status.
+
+00:02:06.491 --> 00:02:10.381
+If the hot plug bit changed, it notifies the display core.
+
+00:02:10.781 --> 00:02:20.370
+Notice the request call passes null for the hard handler. The kernel supplies a default one that just wakes the thread, and oneshot keeps the line masked until the thread returns.
+
+00:02:21.570 --> 00:02:22.952
+Which lock to use?
+
+00:02:23.352 --> 00:02:27.566
+Data shared with a hard interrupt handler needs spin lock irq save.
+
+00:02:27.966 --> 00:02:31.554
+Data touched only from process context can use a mutex.
+
+00:02:31.954 --> 00:02:34.485
+Single counters and flags can be atomics.
+
+00:02:34.885 --> 00:02:40.121
+And turn on lockdep in debug builds. It reports deadlock risks before they ever happen.
+
+00:02:41.321 --> 00:02:43.376
+Now DMA, step by step.
+
+00:02:43.776 --> 00:02:50.765
+The driver maps a buffer for the device. On ARM, this cleans or invalidates the CPU caches for that memory.
+
+00:02:51.165 --> 00:02:55.345
+It hands the bus address to the hardware, usually through a descriptor ring.
+
+00:02:55.745 --> 00:02:59.181
+The hardware writes the frame into memory, without the CPU.
+
+00:02:59.581 --> 00:03:01.392
+A completion interrupt arrives.
+
+00:03:01.792 --> 00:03:07.737
+Before reading, the driver syncs the buffer for the CPU, which throws away any stale cache lines.
+
+00:03:08.137 --> 00:03:10.505
+Now the CPU sees the correct data.
+
+00:03:10.905 --> 00:03:21.923
+Then it syncs back for the device, and reuses the buffer. Skip these syncs, and on ARM you'll see green stripes or stale lines in video, even though it works perfectly on x86.
+
+00:03:23.123 --> 00:03:23.796
+Recap.
+
+00:03:24.196 --> 00:03:27.749
+The top half acknowledges and defers. It never sleeps.
+
+00:03:28.149 --> 00:03:32.062
+Devices on I two C or SPI need a threaded interrupt with oneshot.
+
+00:03:32.462 --> 00:03:35.550
+Choose the lock by the context that touches the data.
+
+00:03:35.950 --> 00:03:39.816
+Always use the DMA API, and sync caches on ARM.
+
+00:03:40.216 --> 00:03:48.529
+And tear down in order: disable the source, free the interrupt, cancel work, then free memory. Lab three practices exactly that.

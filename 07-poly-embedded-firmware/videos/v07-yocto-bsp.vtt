@@ -1,0 +1,115 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:07.512
+This video explains how a product image is assembled with Yocto, and how to live with chip vendor BSPs without drowning in patches.
+
+00:00:08.712 --> 00:00:15.341
+A vendor BSP is like a meal kit: everything in the box, pre measured, but designed for the vendor's kitchen.
+
+00:00:15.741 --> 00:00:21.674
+Yocto is your recipe book, organized in layers. Each layer adds or changes recipes.
+
+00:00:22.074 --> 00:00:28.947
+A b b append file says: use the vendor's recipe, but add our spices. You never edit the kit itself.
+
+00:00:29.347 --> 00:00:34.478
+And pinning every layer revision means you can cook exactly the same meal again next year.
+
+00:00:35.678 --> 00:00:36.363
+Words.
+
+00:00:36.763 --> 00:00:41.152
+BitBake is Yocto's engine. It reads recipes and runs their tasks.
+
+00:00:41.552 --> 00:00:47.113
+A recipe describes how to fetch, patch, configure, build and package one component.
+
+00:00:47.513 --> 00:00:55.002
+A layer is a folder of recipes, like meta qcom from Qualcomm, meta freescale for N X P, and your company's own layer.
+
+00:00:55.402 --> 00:00:59.953
+The shared state cache stores build outputs so unchanged parts are never rebuilt.
+
+00:01:00.353 --> 00:01:05.600
+Upstream means the main open source project. Downstream means a vendor or company fork of it.
+
+00:01:06.800 --> 00:01:09.064
+Here's how an image comes together.
+
+00:01:09.464 --> 00:01:13.493
+You start with poky, the Yocto reference, plus the vendor's layers.
+
+00:01:13.893 --> 00:01:19.036
+On top, your company layer adds b b append files and kernel config fragments.
+
+00:01:19.436 --> 00:01:23.384
+BitBake parses every recipe and builds a dependency graph.
+
+00:01:23.784 --> 00:01:32.514
+For each recipe, it fetches source, applies patches, configures and compiles. Anything unchanged comes from the shared state cache.
+
+00:01:32.914 --> 00:01:35.051
+Outputs are split into packages.
+
+00:01:35.451 --> 00:01:40.431
+Then the root filesystem, kernel and device tree are combined into a flashable image.
+
+00:01:40.831 --> 00:01:44.152
+And you flash it, or run it in QEMU with run qemu.
+
+00:01:45.352 --> 00:01:47.047
+Set up the build environment.
+
+00:01:47.447 --> 00:01:48.538
+Build an image.
+
+00:01:48.938 --> 00:01:53.814
+Open a shell inside the kernel recipe's work directory, with the cross compiler ready.
+
+00:01:54.214 --> 00:01:58.255
+Change kernel options interactively. Then save them as a fragment.
+
+00:01:58.655 --> 00:02:05.028
+Dev tool modify checks out the source for editing, and dev tool finish turns your commits into patches in your layer.
+
+00:02:05.428 --> 00:02:11.651
+Bitbake dash e shows the final value of any variable, which answers most where did this come from questions.
+
+00:02:12.051 --> 00:02:20.248
+And this line builds and boots an ARM sixty four image in QEMU, with no hardware. Expect a long first build and a lot of disk space.
+
+00:02:21.448 --> 00:02:24.350
+Now a senior strategy for vendor BSPs.
+
+00:02:24.750 --> 00:02:28.361
+Always know exactly which vendor release each product is on.
+
+00:02:28.761 --> 00:02:35.251
+Keep your changes as a numbered patch series on top. Moving to the next vendor release becomes a mechanical rebase.
+
+00:02:35.651 --> 00:02:43.662
+Before patching a vendor driver, search upstream. The fix often exists. Backport it, with its fixes tag, instead of inventing your own.
+
+00:02:44.062 --> 00:02:50.320
+File vendor tickets with a minimal reproduction, versions, logs, and a clear ask. That saves weeks.
+
+00:02:50.720 --> 00:02:56.142
+And keep a BSP delta document: what changed, why, and whether it can go upstream.
+
+00:02:57.342 --> 00:02:58.015
+Recap.
+
+00:02:58.415 --> 00:03:00.563
+Never edit vendor layers in place.
+
+00:03:00.963 --> 00:03:05.026
+Put changes in your own layer, as b b appends and config fragments.
+
+00:03:05.426 --> 00:03:06.901
+Pin every layer revision.
+
+00:03:07.301 --> 00:03:10.006
+Prefer upstream backports to custom fixes.
+
+00:03:10.406 --> 00:03:12.217
+And document every delta.

@@ -1,0 +1,121 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:09.265
+This video lays the foundation of USB: speeds, endpoints, the four transfer types, descriptors, and the bandwidth math that decides your camera formats.
+
+00:00:10.465 --> 00:00:12.613
+USB is a strict classroom.
+
+00:00:13.013 --> 00:00:16.565
+The host is the teacher. No student speaks unless asked.
+
+00:00:16.965 --> 00:00:20.379
+Each device has numbered mailboxes, called endpoints.
+
+00:00:20.779 --> 00:00:24.053
+Control transfers are paperwork, like registration.
+
+00:00:24.453 --> 00:00:27.181
+Bulk transfers are big parcels that can wait.
+
+00:00:27.581 --> 00:00:31.877
+Interrupt transfers are small urgent notes, checked on a fixed schedule.
+
+00:00:32.277 --> 00:00:38.987
+And isochronous transfers are a live radio broadcast: if a piece arrives late, it's as useless as lost.
+
+00:00:40.187 --> 00:00:40.872
+Words.
+
+00:00:41.272 --> 00:00:49.121
+An endpoint is a numbered pipe, either IN toward the host, or OUT from it. Endpoint zero is always the control endpoint.
+
+00:00:49.521 --> 00:00:53.166
+An interface is one function of the device, like video streaming.
+
+00:00:53.566 --> 00:01:00.126
+An alternate setting is a variant of an interface. Alt zero reserves no bandwidth; higher alts reserve more.
+
+00:01:00.526 --> 00:01:07.190
+A microframe is a one hundred twenty five microsecond time slot in high speed USB. There are eight per millisecond.
+
+00:01:07.590 --> 00:01:14.846
+And w Max Packet Size encodes the bytes per transaction, plus how many extra transactions fit in each microframe.
+
+00:01:16.046 --> 00:01:16.708
+Speeds.
+
+00:01:17.108 --> 00:01:20.986
+Low speed is one and a half megabits, full speed is twelve.
+
+00:01:21.386 --> 00:01:25.008
+High speed, the fastest USB two, is four hundred eighty.
+
+00:01:25.408 --> 00:01:28.612
+SuperSpeed, USB three, is five gigabits.
+
+00:01:29.012 --> 00:01:31.450
+SuperSpeed plus is ten or twenty.
+
+00:01:31.850 --> 00:01:36.494
+USB three adds separate wires, and companion descriptors for bursts.
+
+00:01:37.694 --> 00:01:39.540
+Let's watch one microframe.
+
+00:01:39.940 --> 00:01:45.084
+The host asks the video endpoint for data, and receives up to ten twenty four bytes.
+
+00:01:45.484 --> 00:01:50.778
+Because this endpoint declared a multiplier, the host asks again in the same microframe.
+
+00:01:51.178 --> 00:01:55.380
+And a third time. That's three transactions, reserved every microframe.
+
+00:01:55.780 --> 00:02:02.793
+Next, the button endpoint's polling interval is due. The device sends a report, or says NAK: nothing new.
+
+00:02:03.193 --> 00:02:07.802
+Bulk gets whatever time is left, which is why bulk has no timing guarantee.
+
+00:02:08.202 --> 00:02:10.071
+And the next microframe starts.
+
+00:02:11.271 --> 00:02:13.849
+Now the math that decides your camera's formats.
+
+00:02:14.249 --> 00:02:21.029
+This endpoint's packet size field is hex fourteen hundred. The low eleven bits are hex four hundred: ten twenty four bytes.
+
+00:02:21.429 --> 00:02:25.876
+Bits eleven and twelve are two, meaning three transactions per microframe.
+
+00:02:26.276 --> 00:02:36.945
+Ten twenty four, times three, times eight thousand microframes per second, is about twenty four and a half megabytes per second. That's the maximum for one high speed isochronous endpoint.
+
+00:02:37.345 --> 00:02:43.603
+Uncompressed ten eighty p thirty in YUY2 needs one hundred twenty four megabytes per second. It doesn't fit.
+
+00:02:44.003 --> 00:02:51.410
+Compressed M J P E G does fit. That's why USB two webcams send M J P E G at ten eighty p.
+
+00:02:51.810 --> 00:02:55.340
+And even seven twenty p uncompressed needs USB three.
+
+00:02:56.540 --> 00:02:57.213
+Recap.
+
+00:02:57.613 --> 00:02:59.970
+The host asks, the device answers.
+
+00:03:00.370 --> 00:03:05.153
+Four transfer types: control, bulk, interrupt, isochronous.
+
+00:03:05.553 --> 00:03:09.361
+Alt zero reserves no bandwidth; higher alts reserve it.
+
+00:03:09.761 --> 00:03:15.229
+One high speed isochronous endpoint tops out near twenty four and a half megabytes per second.
+
+00:03:15.629 --> 00:03:19.693
+And lab four parses these descriptors, including the multiplier bits.

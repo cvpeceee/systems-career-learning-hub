@@ -1,0 +1,115 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:09.346
+This video explains the device tree: how we describe hardware the kernel can't discover by itself, using an HDMI bridge on I two C as the example.
+
+00:00:10.546 --> 00:00:13.774
+Think of the kernel as an electrician arriving at a new house.
+
+00:00:14.174 --> 00:00:25.818
+USB devices announce themselves, but chips on I two C or SPI can't. So the electrician needs a blueprint showing which room has which socket, and which breaker feeds it. That's the device tree.
+
+00:00:26.218 --> 00:00:33.092
+Each socket on the blueprint has a name tag that tells the electrician which tool to use. That's the compatible string.
+
+00:00:33.492 --> 00:00:39.842
+And when you add a room later, you hand over a renovation sheet that patches the blueprint. That's an overlay.
+
+00:00:41.042 --> 00:00:41.843
+Key words.
+
+00:00:42.243 --> 00:00:50.614
+A d t s file is device tree source text. The d t c compiler turns it into a d t b binary that the bootloader passes to the kernel.
+
+00:00:51.014 --> 00:00:56.622
+Compatible is the string that selects the driver, for example lontium comma l t ninety six eleven.
+
+00:00:57.022 --> 00:01:02.269
+Reg is the address of the node on its bus. For an I two C chip, that's its seven bit address.
+
+00:01:02.669 --> 00:01:10.286
+Regmap is a kernel helper that wraps register reads and writes over I two C or SPI, with caching and locking built in.
+
+00:01:10.686 --> 00:01:16.119
+Pin control decides what each physical pin does: GPIO, I two C, or UART.
+
+00:01:17.319 --> 00:01:20.094
+Here is a typical node for an HDMI bridge.
+
+00:01:20.494 --> 00:01:24.313
+It lives under the third I two C controller, at address three B.
+
+00:01:24.713 --> 00:01:27.001
+The compatible string picks the driver.
+
+00:01:27.401 --> 00:01:29.769
+Reg repeats the I two C address.
+
+00:01:30.169 --> 00:01:37.692
+The interrupt comes from pin fifty of the SoC's GPIO controller, and fires on a falling edge. That's the hot plug signal.
+
+00:01:38.092 --> 00:01:42.144
+The reset line is pin fifty two. The flag says active high.
+
+00:01:42.544 --> 00:01:48.790
+Vdd supply names the regulator that powers the chip. The driver asks for it by the name vdd.
+
+00:01:49.190 --> 00:01:58.385
+And the ports section is a graph: it says the bridge's input is connected to the SoC's D S I display output. That's how the display pipeline is wired together.
+
+00:01:59.585 --> 00:02:02.140
+Now the whole path from blueprint to running driver.
+
+00:02:02.540 --> 00:02:04.688
+You write the board's d t s file.
+
+00:02:05.088 --> 00:02:08.129
+The d t c compiler turns it into a d t b.
+
+00:02:08.529 --> 00:02:13.313
+The bootloader loads the d t b next to the kernel, and passes its address at boot.
+
+00:02:13.713 --> 00:02:17.544
+Early in boot, the kernel unflattens the blob into a tree of nodes.
+
+00:02:17.944 --> 00:02:24.620
+For each enabled node, it creates a device on the right bus. Our bridge becomes an I two C device at address three B.
+
+00:02:25.020 --> 00:02:28.120
+The bus matches it to the driver by compatible string.
+
+00:02:28.520 --> 00:02:37.877
+And probe gets its resources from the properties: devm regulator get for vdd, devm g p i o d get for reset, and a regmap for registers.
+
+00:02:39.077 --> 00:02:40.563
+A quick bus cheat sheet.
+
+00:02:40.963 --> 00:02:52.980
+I two C has two wires, addressed devices, and runs from one hundred kilohertz to one megahertz. Use i two c detect and i two c get, and on a logic analyzer look for NACKs and weak pull ups.
+
+00:02:53.380 --> 00:02:59.893
+SPI uses four wires and is faster and full duplex. You'll find flash and some audio codecs there.
+
+00:03:00.293 --> 00:03:10.869
+GPIOs drive resets and enables, and carry interrupts. The g p i o d API uses logical values, so an active low flag in the device tree is handled for you.
+
+00:03:11.269 --> 00:03:17.887
+And as a senior habit: document every binding you add in YAML, and run make d t b s check in CI.
+
+00:03:19.087 --> 00:03:19.761
+Recap.
+
+00:03:20.161 --> 00:03:23.481
+The device tree describes hardware that can't be discovered.
+
+00:03:23.881 --> 00:03:27.329
+Compatible picks the driver, and reg is the address on the bus.
+
+00:03:27.729 --> 00:03:31.862
+GPIOs, regulators and interrupts come from properties.
+
+00:03:32.262 --> 00:03:36.384
+Keep board specific values in the device tree, not in if defs.
+
+00:03:36.784 --> 00:03:41.149
+And in lab two, you compile an overlay and a matching platform driver.

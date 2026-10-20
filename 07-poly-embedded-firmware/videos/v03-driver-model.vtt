@@ -1,0 +1,124 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:08.800
+In this video we see how Linux pairs each piece of hardware with the right driver, what probe really does, and how a driver shows itself to user space.
+
+00:00:10.000 --> 00:00:11.986
+Think of a wedding with a seating plan.
+
+00:00:12.386 --> 00:00:17.297
+Guests arrive wearing name tags. Those are devices, each with an identifier.
+
+00:00:17.697 --> 00:00:24.930
+Ushers read each tag. Those are the buses: platform, I two C, SPI, USB, PCI.
+
+00:00:25.330 --> 00:00:28.081
+Each table has a host. Those are drivers.
+
+00:00:28.481 --> 00:00:34.031
+When an usher brings a guest to the right table, the host greets them. That greeting is the probe function.
+
+00:00:34.431 --> 00:00:40.956
+And if the host isn't ready yet, they say: come back later. In Linux, that's minus E PROBE DEFER.
+
+00:00:42.156 --> 00:00:43.026
+Some words.
+
+00:00:43.426 --> 00:00:48.337
+A module is a dot k o file you load into the running kernel with insmod or modprobe.
+
+00:00:48.737 --> 00:00:55.820
+Probe is the driver function the kernel calls when a device matches. It turns the device on and registers its interfaces.
+
+00:00:56.220 --> 00:01:05.043
+Device managed, or devm, functions allocate resources that are freed automatically when the device is unbound. They remove whole classes of cleanup bugs.
+
+00:01:05.443 --> 00:01:10.517
+Sysfs is the slash sys filesystem, where kernel objects appear as small files.
+
+00:01:10.917 --> 00:01:15.781
+A character device is a node in slash dev that you read and write as a stream of bytes.
+
+00:01:16.981 --> 00:01:19.640
+Now the binding sequence, step by step.
+
+00:01:20.040 --> 00:01:29.618
+First, a device is registered. On ARM boards it usually comes from the device tree, with a compatible string, here poly comma h d m i bridge demo.
+
+00:01:30.018 --> 00:01:34.337
+Second, a driver registers, with a table of compatible strings it supports.
+
+00:01:34.737 --> 00:01:40.182
+Third, the bus core runs its match function. The strings are equal, so we have a pair.
+
+00:01:40.582 --> 00:01:44.123
+Fourth, the core calls the driver's probe function with the device.
+
+00:01:44.523 --> 00:01:53.033
+Fifth, probe asks for its reset GPIO, but the GPIO controller driver hasn't loaded yet. So probe returns minus E PROBE DEFER.
+
+00:01:53.433 --> 00:01:58.008
+Sixth, the core parks the device on the deferred list. That's not an error yet.
+
+00:01:58.408 --> 00:02:04.921
+Seventh, when the GPIO provider shows up, the core retries probe, and this time it returns zero.
+
+00:02:05.321 --> 00:02:10.859
+Eighth, the driver now creates its user facing interfaces: a dev node and sysfs attributes.
+
+00:02:11.259 --> 00:02:15.717
+Ninth, user space can open, read, write and send ioctls.
+
+00:02:16.917 --> 00:02:21.143
+Here's lab one. The write handler receives a pointer into user memory.
+
+00:02:21.543 --> 00:02:25.340
+We clamp the length, because user space can pass anything.
+
+00:02:25.740 --> 00:02:30.407
+A mutex protects the buffer, because two processes can write at the same time.
+
+00:02:30.807 --> 00:02:36.147
+Copy from user can fault and sleep, which is why we use a mutex here and never a spinlock.
+
+00:02:36.547 --> 00:02:41.342
+A read only sysfs attribute exposes the write counter, using sysfs emit.
+
+00:02:41.742 --> 00:02:51.007
+And a misc device gives us a dev node with almost no boilerplate. In the QEMU test, writing hello poly and reading it back worked, and the counter showed one.
+
+00:02:52.207 --> 00:02:57.281
+A very common bring up bug: the device simply never appears. Check five things.
+
+00:02:57.681 --> 00:03:00.897
+Is the device tree node enabled, with status okay?
+
+00:03:01.297 --> 00:03:06.080
+Does the compatible string match the driver's table exactly, character by character?
+
+00:03:06.480 --> 00:03:11.588
+Read devices deferred in debugfs. It lists every device waiting on a dependency.
+
+00:03:11.988 --> 00:03:17.967
+Search the kernel log for probe errors. Using dev err probe in your driver makes deferrals visible but quiet.
+
+00:03:18.367 --> 00:03:21.583
+And confirm the driver is actually built and loaded.
+
+00:03:22.783 --> 00:03:23.457
+Recap.
+
+00:03:23.857 --> 00:03:27.897
+A bus matches devices to drivers, and probe sets the device up.
+
+00:03:28.297 --> 00:03:32.221
+Minus E PROBE DEFER means wait for a dependency, not failure.
+
+00:03:32.621 --> 00:03:34.630
+Prefer device managed resources.
+
+00:03:35.030 --> 00:03:40.231
+Use existing frameworks like V four L two and ALSA before inventing custom ioctls.
+
+00:03:40.631 --> 00:03:44.091
+And never copy to or from user space while holding a spinlock.

@@ -1,0 +1,124 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:08.603
+Welcome to the Poly Firmware Academy. This first video decodes the two job descriptions for your team, so every later lesson has a place on the map.
+
+00:00:09.003 --> 00:00:16.329
+We start with an analogy, define the key words, walk the stack from top to bottom, and finish with what success looks like.
+
+00:00:17.529 --> 00:00:20.304
+Picture a conference room camera bar as a restaurant.
+
+00:00:20.704 --> 00:00:26.114
+The diners are the apps, like Microsoft Teams or Zoom. They only ever see the dining room.
+
+00:00:26.514 --> 00:00:31.100
+The dining room is the Android framework: the system services the apps call.
+
+00:00:31.500 --> 00:00:37.142
+The kitchen is the hardware abstraction layer and the native daemons. That's where the real cooking happens.
+
+00:00:37.542 --> 00:00:40.700
+The basement wiring is the Linux kernel and its drivers.
+
+00:00:41.100 --> 00:00:44.014
+The front door lock is the bootloader and secure boot.
+
+00:00:44.414 --> 00:00:52.704
+And the delivery door is USB: how the camera, microphone and speaker reach a laptop. Both job postings say your work is below the dining room.
+
+00:00:53.904 --> 00:00:55.355
+A few words first.
+
+00:00:55.755 --> 00:01:01.618
+Firmware is software that runs close to the hardware, usually stored in flash memory on the device.
+
+00:01:02.018 --> 00:01:09.112
+The framework layer is Android's set of Java system services, like the camera service and the USB service, that apps talk to.
+
+00:01:09.512 --> 00:01:16.629
+A HAL, or hardware abstraction layer, is a fixed interface that Android calls, and that the device maker implements.
+
+00:01:17.029 --> 00:01:29.695
+A BSP, or board support package, is the chip vendor's bundle: bootloader, kernel, drivers and configuration for one chip or board. You already work with these from N X P, Qualcomm and Ambarella.
+
+00:01:30.095 --> 00:01:38.791
+And S V C, scalable video coding, is a video stream sent in layers, so a slow receiver can drop layers instead of the whole picture.
+
+00:01:39.991 --> 00:01:41.988
+Now the stack, top to bottom.
+
+00:01:42.388 --> 00:01:47.380
+At the top are apps, like the Teams or Zoom room software. That's not your layer.
+
+00:01:47.780 --> 00:01:52.448
+Below that, Android framework services, which call down into your code.
+
+00:01:52.848 --> 00:02:00.603
+Then the HALs and native daemons: camera, audio and USB services written in C plus plus. This is yours.
+
+00:02:01.003 --> 00:02:12.009
+Then the Linux kernel drivers: video for Linux, ALSA audio, the USB gadget stack, and I two C bridge drivers, like the Lontium HDMI bridges. Also yours.
+
+00:02:12.409 --> 00:02:15.753
+Then the bootloader and secure boot chain. Also yours.
+
+00:02:16.153 --> 00:02:21.203
+And at the bottom, the silicon from Qualcomm, N X P, Ambarella and Lontium.
+
+00:02:22.403 --> 00:02:31.308
+The USB posting calls one thing a must have: deep, hands on knowledge of the full USB software stack. Here's what that means on a conferencing device.
+
+00:02:31.708 --> 00:02:48.902
+Device side: the board plugs into a laptop and appears as a webcam, microphone, speaker and buttons. That path runs from the D W C 3 controller, through the Linux gadget framework, to the U V C and U A C functions, a streaming app, and Android's USB HAL.
+
+00:02:49.302 --> 00:02:58.974
+Host side: the device also hosts peripherals, like extension microphones, so you need the x H C I host controller, hubs and class drivers.
+
+00:02:59.374 --> 00:03:07.129
+Type C and power delivery: who is host, who is device, which way the cable is flipped, and DisplayPort over the same connector.
+
+00:03:07.529 --> 00:03:12.951
+Firmware updates over USB, including the small microcontrollers inside accessories.
+
+00:03:13.351 --> 00:03:20.340
+And the debugging tools: usbmon, Wireshark and hardware analyzers. Lessons ten to fourteen cover all of this.
+
+00:03:21.540 --> 00:03:25.592
+Both postings also repeat the same senior responsibilities.
+
+00:03:25.992 --> 00:03:30.114
+Lead secure, scalable, high performance C and C plus plus.
+
+00:03:30.514 --> 00:03:34.786
+Define architecture, standards and best practices with other teams.
+
+00:03:35.186 --> 00:03:41.351
+Troubleshoot complex system level issues, the bugs that cross hardware, kernel and Android.
+
+00:03:41.751 --> 00:03:44.839
+Own planning, documentation and testing strategy.
+
+00:03:45.239 --> 00:03:47.108
+Mentor junior engineers.
+
+00:03:47.508 --> 00:03:52.303
+And drive continuous improvement. Lesson twenty turns these into weekly habits.
+
+00:03:53.503 --> 00:03:54.409
+To recap.
+
+00:03:54.809 --> 00:03:59.836
+Your layer is everything below the Android framework: HALs, kernel, bootloader.
+
+00:04:00.236 --> 00:04:05.507
+The USB role covers device mode, host mode, Type C, updates and debugging.
+
+00:04:05.907 --> 00:04:14.545
+The nice to have skills are Wi-Fi, Bluetooth, security, H two sixty four, H two sixty five, S V C, and HDMI.
+
+00:04:14.945 --> 00:04:19.775
+And senior means leading, setting standards, mentoring, and measuring impact.
+
+00:04:20.175 --> 00:04:25.747
+Next up: the C and C plus plus habits that firmware reviewers look for. See you there.
