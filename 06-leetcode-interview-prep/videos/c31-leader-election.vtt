@@ -15,80 +15,86 @@ What does a fencing token protect against?
 00:00:15.345 --> 00:00:22.659
 Hold your answer; we will check it at the end. And whenever a new word comes up, we stop for a moment and explain it.
 
-00:00:23.859 --> 00:00:31.278
+00:00:23.859 --> 00:00:31.255
 Many systems need exactly one node in charge. Leader election picks it, and leases make sure an old leader steps down.
 
-00:00:31.359 --> 00:00:41.645
+00:00:31.259 --> 00:00:41.545
 New word: leader election. Machines choosing one coordinator, and a new one if it fails. Picture it like this: Choosing a new team captain when the old one leaves.
 
-00:00:42.045 --> 00:00:51.693
+00:00:41.945 --> 00:00:51.593
 New word: node. One point in a graph or tree; also one machine in a cluster. Picture it like this: A city on a map, or one computer in a group.
 
-00:00:52.093 --> 00:01:00.267
+00:00:51.993 --> 00:01:00.167
 New word: lease. Permission that automatically expires unless renewed. Picture it like this: A library loan with a due date.
 
-00:01:02.809 --> 00:01:07.116
+00:01:02.559 --> 00:01:06.877
 Think of a group project where one person holds the only marker for the whiteboard.
 
-00:01:07.566 --> 00:01:10.898
+00:01:07.277 --> 00:01:10.679
 Whoever holds the marker writes; everyone else reads.
 
-00:01:11.348 --> 00:01:16.816
+00:01:11.079 --> 00:01:16.617
 If that person leaves the room for too long, the group votes and gives a new marker to someone else.
 
-00:01:17.266 --> 00:01:22.503
+00:01:17.017 --> 00:01:22.207
 The old person must know their marker has expired, or two people would write over each other.
 
-00:01:23.853 --> 00:01:26.047
-Here is a Raft style election.
+00:01:23.407 --> 00:01:26.925
+Here is a Raft style election. The leader sends heartbeats.
 
-00:01:26.209 --> 00:01:36.600
+00:01:26.959 --> 00:01:37.350
 New word: Raft. A consensus algorithm with an elected leader replicating a log to followers. Picture it like this: A team captain who keeps everyone's notebook in sync.
 
-00:01:38.250 --> 00:01:41.698
-The leader sends heartbeats. Followers reset their timers.
+00:01:38.950 --> 00:01:40.772
+Followers reset their timers.
 
-00:01:42.148 --> 00:01:47.314
-The leader crashes, heartbeats stop, and one follower's random timer fires first.
+00:01:41.172 --> 00:01:43.460
+The leader crashes, and heartbeats stop.
 
-00:01:47.764 --> 00:01:53.268
-It becomes a candidate for term two, asks for votes, and wins with a majority of three.
+00:01:43.860 --> 00:01:48.747
+One follower's random timer fires first. It becomes a candidate for term two.
 
-00:01:54.618 --> 00:01:57.311
+00:01:49.147 --> 00:01:50.436
+It asks for votes,
+
+00:01:50.836 --> 00:01:52.984
+and wins with a majority of three.
+
+00:01:54.184 --> 00:01:56.750
 Avoiding two leaders, called split brain.
 
-00:01:57.761 --> 00:02:01.256
+00:01:57.150 --> 00:02:00.459
 Require a majority, so two groups can never both win.
 
-00:02:01.706 --> 00:02:07.186
+00:02:00.859 --> 00:02:06.257
 Use a term or epoch number, a fencing token, and reject writes from older terms.
 
-00:02:07.299 --> 00:02:19.176
+00:02:06.350 --> 00:02:18.227
 New word: fencing token. An ever-increasing number given to each new leader so storage rejects writes from old leaders. Picture it like this: A newer ticket number that makes old tickets invalid.
 
-00:02:20.826 --> 00:02:26.213
+00:02:19.827 --> 00:02:25.179
 Leases give the leader a time limited right to act; it must stop before the lease ends.
 
-00:02:27.563 --> 00:02:35.980
+00:02:26.379 --> 00:02:34.239
 Majority votes pick one leader, terms and fencing tokens reject old leaders, and leases bound how long anyone can act alone.
 
-00:02:35.934 --> 00:02:37.188
+00:02:35.477 --> 00:02:36.731
 Back to the question.
 
-00:02:37.588 --> 00:02:40.119
+00:02:37.131 --> 00:02:39.662
 What does a fencing token protect against?
 
-00:02:40.519 --> 00:02:44.373
+00:02:40.062 --> 00:02:43.916
 A paused old leader waking up and writing after a new leader was chosen.
 
-00:02:45.573 --> 00:02:46.444
+00:02:45.116 --> 00:02:45.987
 Quick recap.
 
-00:02:46.844 --> 00:02:48.992
+00:02:46.387 --> 00:02:48.535
 Exactly one leader at a time.
 
-00:02:49.392 --> 00:02:50.553
+00:02:48.935 --> 00:02:50.096
 Leases expire.
 
-00:02:50.953 --> 00:02:53.345
+00:02:50.496 --> 00:02:52.888
 Fencing tokens reject stale leaders.
