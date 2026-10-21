@@ -1,73 +1,109 @@
 WEBVTT
 
-00:00:00.000 --> 00:00:05.793
+00:00:00.000 --> 00:00:02.136
+Before anything else, picture this.
+
+00:00:02.536 --> 00:00:11.406
+A board passes every software test but crashes randomly in the field. The culprit is one bad memory cell. March tests are how factories catch it.
+
+00:00:12.606 --> 00:00:13.535
+Pause and think.
+
+00:00:13.935 --> 00:00:17.070
+Why does a march test go both up and down through memory?
+
+00:00:17.470 --> 00:00:24.784
+Hold your answer; we will check it at the end. And whenever a new word comes up, we stop for a moment and explain it.
+
+00:00:25.984 --> 00:00:31.777
 This video explains how chip and board engineers find broken memory cells, using a march test.
 
-00:00:06.193 --> 00:00:11.685
+00:00:32.177 --> 00:00:37.669
 We start with an analogy, define the fault types, then step through March C minus.
 
-00:00:12.885 --> 00:00:16.763
+00:00:38.869 --> 00:00:42.747
 Picture a hallway of lockers, and you must prove every one works.
 
-00:00:17.163 --> 00:00:21.122
+00:00:43.147 --> 00:00:47.106
 The simple plan: put a note in every locker, then read every note back.
 
-00:00:21.522 --> 00:00:26.642
+00:00:47.506 --> 00:00:52.626
 A broken lock that is stuck always shows the same note. The simple plan catches that.
 
-00:00:27.042 --> 00:00:31.581
+00:00:53.026 --> 00:00:57.565
 But some lockers disturb their neighbour when you open them. That is a coupling fault.
 
-00:00:31.981 --> 00:00:39.528
+00:00:57.965 --> 00:01:05.512
 To catch a neighbour on either side, you must walk the hallway in both directions, writing and reading as you go. That is a march test.
 
-00:00:40.728 --> 00:00:42.040
+00:01:06.712 --> 00:01:08.024
 Four words to know.
 
-00:00:42.440 --> 00:00:45.992
+00:01:08.424 --> 00:01:11.976
 A stuck-at fault: the cell always reads the same value.
 
-00:00:46.392 --> 00:00:49.806
+00:01:12.376 --> 00:01:15.790
 A transition fault: the cell can't change in one direction.
 
-00:00:50.206 --> 00:00:55.302
+00:01:16.190 --> 00:01:21.286
 A coupling fault: writing one cell, the aggressor, flips another cell, the victim.
 
-00:00:55.702 --> 00:01:02.343
+00:01:21.686 --> 00:01:28.327
 A march element: one pass over every address, going up or down, with the same reads and writes at each cell.
 
-00:01:03.543 --> 00:01:06.225
+00:01:29.527 --> 00:01:32.209
 Here is March C minus, element by element.
 
-00:01:06.625 --> 00:01:09.586
+00:01:32.609 --> 00:01:35.570
 First, write zero everywhere, in any order.
 
-00:01:09.986 --> 00:01:14.572
+00:01:35.970 --> 00:01:40.556
 Going up, read zero then write one. A stuck-at-one cell fails its read here.
 
-00:01:14.972 --> 00:01:20.370
+00:01:40.956 --> 00:01:46.354
 Still going up, read one then write zero. A cell that can't fall from one to zero fails here.
 
-00:01:20.770 --> 00:01:26.819
+00:01:46.754 --> 00:01:52.803
 Now going down, read zero, write one. Writes from higher addresses reach victims below before they are read.
 
-00:01:27.219 --> 00:01:29.750
+00:01:53.203 --> 00:01:55.734
 Going down again, read one, write zero.
 
-00:01:30.150 --> 00:01:39.252
+00:01:56.134 --> 00:02:05.236
 Finally read zero everywhere. Ten operations per cell in total, and in the lesson's model a write-all, read-all test misses the coupling fault this catches.
 
-00:01:40.452 --> 00:01:41.416
+00:02:06.436 --> 00:02:07.400
 Let's recap.
 
-00:01:41.816 --> 00:01:45.160
+00:02:07.800 --> 00:02:11.144
 A simple write-all, read-all test misses some coupling faults.
 
-00:01:45.560 --> 00:01:49.101
+00:02:11.544 --> 00:02:15.085
 The direction of each pass decides which neighbour you can catch.
 
-00:01:49.501 --> 00:01:52.531
+00:02:15.485 --> 00:02:18.515
 March C minus costs ten operations per cell.
 
-00:01:52.931 --> 00:01:55.520
+00:02:18.915 --> 00:02:21.504
 Try it yourself in lesson thirty seven point one.
+
+00:02:22.684 --> 00:02:23.938
+Back to the question.
+
+00:02:24.338 --> 00:02:27.473
+Why does a march test go both up and down through memory?
+
+00:02:27.873 --> 00:02:30.880
+Some coupling faults only appear in one address order.
+
+00:02:32.080 --> 00:02:32.950
+Quick recap.
+
+00:02:33.350 --> 00:02:35.405
+Write and read patterns in order.
+
+00:02:35.805 --> 00:02:37.814
+Cover stuck-at and coupling faults.
+
+00:02:38.214 --> 00:02:40.234
+March C minus is the classic.

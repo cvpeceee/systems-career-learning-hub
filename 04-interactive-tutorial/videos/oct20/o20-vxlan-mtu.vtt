@@ -1,70 +1,127 @@
 WEBVTT
 
-00:00:00.000 --> 00:00:06.560
+00:00:00.000 --> 00:00:02.136
+Before anything else, picture this.
+
+00:00:02.536 --> 00:00:09.769
+Pings work across the cloud, but big file transfers hang. The cause is a 50 byte VXLAN header and an MTU mismatch.
+
+00:00:10.969 --> 00:00:11.898
+Pause and think.
+
+00:00:12.298 --> 00:00:15.317
+How many bytes does VXLAN over IPv4 add?
+
+00:00:15.717 --> 00:00:23.031
+Hold your answer; we will check it at the end. And whenever a new word comes up, we stop for a moment and explain it.
+
+00:00:24.200 --> 00:00:30.760
 This video explains VXLAN, the overlay that lets cloud virtual networks span many physical hosts.
 
-00:00:06.960 --> 00:00:11.801
+00:00:30.800 --> 00:00:44.627
+New word: V X L A N. Virtual Extensible LAN: wrapping network packets inside UDP to build virtual networks across data centres. Picture it like this: Putting a letter inside a bigger envelope to cross a border.
+
+00:00:46.200 --> 00:00:51.041
 We cover the packet wrapping, the M T U math, and how the forwarding table learns.
 
-00:00:13.001 --> 00:00:15.160
+00:00:51.100 --> 00:01:00.887
+New word: M T U. Maximum Transmission Unit: the largest packet size a network link carries. Picture it like this: The height limit of a tunnel.
+
+00:01:03.287 --> 00:01:05.446
 Think of mailing a letter through a courier.
 
-00:00:15.560 --> 00:00:19.078
+00:01:05.846 --> 00:01:09.364
 Your letter is the original Ethernet frame from a virtual machine.
 
-00:00:19.478 --> 00:00:27.338
+00:01:09.764 --> 00:01:17.624
 The courier puts it inside a larger envelope with a label saying which customer network it belongs to. That label is the V N I.
 
-00:00:27.738 --> 00:00:33.253
+00:01:17.787 --> 00:01:27.505
+New word: V N I. VXLAN Network Identifier: the 24-bit ID of a virtual network. Picture it like this: The colour of the envelope.
+
+00:01:29.087 --> 00:01:34.602
 The courier's truck only takes packages up to a fixed size. That size is the M T U.
 
-00:00:33.653 --> 00:00:38.134
+00:01:35.002 --> 00:01:39.483
 Because the envelope adds size, your letter must be smaller to still fit.
 
-00:00:39.334 --> 00:00:40.217
+00:01:40.683 --> 00:01:41.566
 Four words.
 
-00:00:40.617 --> 00:00:44.193
+00:01:41.966 --> 00:01:45.542
 The V N I is a twenty four bit number naming the tenant network.
 
-00:00:44.593 --> 00:00:50.073
+00:01:45.942 --> 00:01:51.422
 A V TEP is the endpoint that wraps and unwraps frames, a host or a smart NIC.
 
-00:00:50.473 --> 00:00:55.024
+00:01:51.587 --> 00:02:02.048
+New word: N I C. Network Interface Card: the hardware that connects a computer to a network. Picture it like this: The mailbox and postman's slot of a house.
+
+00:02:03.648 --> 00:02:08.199
 The M T U is the biggest packet a link carries, often fifteen hundred bytes.
 
-00:00:55.424 --> 00:00:59.789
+00:02:08.599 --> 00:02:12.964
 The F D B maps a MAC address to the remote V TEP that owns it.
 
-00:01:00.989 --> 00:01:02.394
+00:02:13.048 --> 00:02:25.680
+New word: M A C. Media Access Control address: a network card's hardware address; also Message Authentication Code. Picture it like this: The serial number stamped on the mailbox.
+
+00:02:28.048 --> 00:02:29.453
 Let's add up the cost.
 
-00:01:02.794 --> 00:01:04.988
+00:02:29.853 --> 00:02:32.047
 Fourteen bytes of outer Ethernet header.
 
-00:01:05.388 --> 00:01:07.292
+00:02:32.447 --> 00:02:34.351
 Twenty bytes of outer IPv4.
 
-00:01:07.692 --> 00:01:10.827
+00:02:34.751 --> 00:02:37.886
 Eight bytes of UDP, on port forty seven eighty nine.
 
-00:01:11.227 --> 00:01:30.232
+00:02:37.948 --> 00:02:49.941
+New word: U D P. User Datagram Protocol: fast, connectionless packets with no delivery guarantee. Picture it like this: Throwing postcards: fast, but some may get lost.
+
+00:02:51.541 --> 00:03:10.546
 Eight bytes of VXLAN header with the V N I. The outer Ethernet header doesn't count against the underlay's IP M T U, so the inner Ethernet header is charged instead, and the total is still fifty bytes: on a fifteen hundred byte underlay the inner IP M T U is fourteen fifty. Get this wrong and large packets silently vanish.
 
-00:01:31.432 --> 00:01:31.955
+00:03:10.741 --> 00:03:24.185
+New word: I P. Internet Protocol address (a network address); also Intellectual Property — a licensed chip design block. Picture it like this: A street address for a computer (or a licensed blueprint for a chip part).
+
+00:03:26.541 --> 00:03:27.064
 Recap.
 
-00:01:32.355 --> 00:01:35.780
+00:03:27.464 --> 00:03:30.889
 VXLAN carries an Ethernet frame inside UDP.
 
-00:01:36.180 --> 00:01:38.142
+00:03:31.289 --> 00:03:33.251
 The V N I keeps tenants apart.
 
-00:01:38.542 --> 00:01:42.710
+00:03:33.651 --> 00:03:37.819
 Lower the inner M T U by fifty, or use jumbo frames underneath.
 
-00:01:43.110 --> 00:01:48.195
+00:03:38.219 --> 00:03:43.304
 The F D B learns which V TEP owns each MAC and forgets stale entries.
 
-00:01:48.595 --> 00:01:51.486
+00:03:43.704 --> 00:03:46.595
 Lesson thirty eight point two builds this in C.
+
+00:03:47.819 --> 00:03:49.073
+Back to the question.
+
+00:03:49.473 --> 00:03:52.491
+How many bytes does VXLAN over IPv4 add?
+
+00:03:52.891 --> 00:03:54.180
+About 50 bytes.
+
+00:03:55.380 --> 00:03:56.251
+Quick recap.
+
+00:03:56.651 --> 00:03:59.704
+VXLAN wraps Ethernet inside UDP.
+
+00:04:00.104 --> 00:04:02.066
+Leave MTU room for the header.
+
+00:04:02.466 --> 00:04:05.392
+The forwarding table learns where MACs live.

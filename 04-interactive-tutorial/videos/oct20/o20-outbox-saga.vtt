@@ -1,58 +1,103 @@
 WEBVTT
 
-00:00:00.000 --> 00:00:06.641
+00:00:00.000 --> 00:00:02.136
+Before anything else, picture this.
+
+00:00:02.536 --> 00:00:09.107
+An order is saved, but the confirmation message never reaches the warehouse. The outbox pattern makes that impossible.
+
+00:00:10.307 --> 00:00:11.236
+Pause and think.
+
+00:00:11.636 --> 00:00:15.293
+Why not write to the database and then publish to the queue separately?
+
+00:00:15.693 --> 00:00:23.008
+Hold your answer; we will check it at the end. And whenever a new word comes up, we stop for a moment and explain it.
+
+00:00:24.200 --> 00:00:30.841
 This video explains how backends avoid lost or duplicated orders when a database and a message queue must agree.
 
-00:00:07.841 --> 00:00:09.884
+00:00:30.900 --> 00:00:37.204
+New word: queue. First-in-first-out structure. Picture it like this: A line at a bus stop.
+
+00:00:39.600 --> 00:00:41.643
 Picture a restaurant ticket rail.
 
-00:00:10.284 --> 00:00:17.308
+00:00:42.043 --> 00:00:49.067
 The waiter writes the order and the kitchen ticket in one motion, so one can't exist without the other. That is the outbox.
 
-00:00:17.708 --> 00:00:23.084
+00:00:49.467 --> 00:00:54.843
 A runner carries tickets to the kitchen. If unsure whether a ticket arrived, they carry it again.
 
-00:00:23.484 --> 00:00:28.372
+00:00:55.243 --> 00:01:00.131
 The kitchen ignores any ticket number it already cooked. That is an idempotent consumer.
 
-00:00:28.772 --> 00:00:35.993
+00:01:00.300 --> 00:01:10.285
+New word: idempotent. Doing it twice has the same effect as doing it once. Picture it like this: Pressing an elevator button again doesn't call two elevators.
+
+00:01:11.885 --> 00:01:19.106
 And if the delivery can't happen, earlier steps are undone in reverse: refund the card, release the table. That is a saga.
 
-00:00:37.193 --> 00:00:38.470
+00:01:19.185 --> 00:01:31.550
+New word: saga. A long transaction split into steps, each with an undo step if a later one fails. Picture it like this: Booking a trip: if the hotel fails, cancel the flight.
+
+00:01:33.950 --> 00:01:35.227
 Let's walk a failure.
 
-00:00:38.870 --> 00:00:43.003
+00:01:35.627 --> 00:01:39.760
 The order and its outbox row are written in one database transaction.
 
-00:00:43.403 --> 00:00:46.259
+00:01:40.160 --> 00:01:43.016
 The relay publishes the event with a stable id.
 
-00:00:46.659 --> 00:00:48.621
+00:01:43.416 --> 00:01:45.378
 The acknowledgement gets lost.
 
-00:00:49.021 --> 00:00:53.619
+00:01:45.778 --> 00:01:50.376
 So the relay publishes the same event again. This is at-least-once delivery.
 
-00:00:54.019 --> 00:00:58.988
+00:01:50.776 --> 00:01:55.745
 The consumer has already seen that id, so it skips it. The effect happens once.
 
-00:00:59.388 --> 00:01:01.652
+00:01:56.145 --> 00:01:58.409
 Finally the relay marks the row as sent.
 
-00:01:02.852 --> 00:01:03.374
+00:01:59.609 --> 00:02:00.131
 Recap.
 
-00:01:03.774 --> 00:01:06.944
+00:02:00.531 --> 00:02:03.701
 Never write the database and the queue as two separate steps.
 
-00:01:07.344 --> 00:01:10.502
+00:02:04.101 --> 00:02:07.259
 Outbox plus relay gives at-least-once delivery.
 
-00:01:10.902 --> 00:01:13.119
+00:02:07.659 --> 00:02:09.876
 Consumers dedupe by event id.
 
-00:01:13.519 --> 00:01:16.410
+00:02:10.276 --> 00:02:13.167
 Sagas undo completed steps in reverse order.
 
-00:01:16.810 --> 00:01:20.340
+00:02:13.567 --> 00:02:17.097
 Practice in lesson forty point one and design sd twenty six.
+
+00:02:18.250 --> 00:02:19.504
+Back to the question.
+
+00:02:19.904 --> 00:02:23.561
+Why not write to the database and then publish to the queue separately?
+
+00:02:23.961 --> 00:02:26.515
+A crash between the two leaves them disagreeing.
+
+00:02:27.715 --> 00:02:28.586
+Quick recap.
+
+00:02:28.986 --> 00:02:31.505
+Write data and event in one transaction.
+
+00:02:31.905 --> 00:02:34.123
+A relay publishes the outbox.
+
+00:02:34.523 --> 00:02:37.356
+Sagas undo steps when later ones fail.

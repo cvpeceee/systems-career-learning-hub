@@ -1,55 +1,100 @@
 WEBVTT
 
-00:00:00.000 --> 00:00:05.213
+00:00:00.000 --> 00:00:02.136
+Before anything else, picture this.
+
+00:00:02.536 --> 00:00:09.676
+Your fleet makes a billion traces a day, but you can only store one percent. How do you keep the ones with errors? Tail sampling.
+
+00:00:10.876 --> 00:00:11.805
+Pause and think.
+
+00:00:12.205 --> 00:00:14.817
+Why can't head sampling keep all error traces?
+
+00:00:15.217 --> 00:00:22.532
+Hold your answer; we will check it at the end. And whenever a new word comes up, we stop for a moment and explain it.
+
+00:00:23.700 --> 00:00:28.913
 This video explains how large fleets keep the important traces without storing everything.
 
-00:00:06.413 --> 00:00:08.329
+00:00:30.113 --> 00:00:32.029
 Think of a hospital triage desk.
 
-00:00:08.729 --> 00:00:12.885
+00:00:32.429 --> 00:00:36.585
 Head sampling decides at the door, before anyone knows what is wrong.
 
-00:00:13.285 --> 00:00:16.977
+00:00:36.985 --> 00:00:40.677
 Tail sampling waits until the whole visit is over, then decides.
 
-00:00:17.377 --> 00:00:21.266
+00:00:41.077 --> 00:00:44.966
 Serious cases, errors and slow requests, are always kept.
 
-00:00:21.666 --> 00:00:26.426
+00:00:45.366 --> 00:00:50.126
 A fixed share of healthy visits is kept too, so you know what normal looks like.
 
-00:00:27.626 --> 00:00:28.822
+00:00:51.326 --> 00:00:52.522
 Here's the pipeline.
 
-00:00:29.222 --> 00:00:32.926
+00:00:52.922 --> 00:00:56.626
 Applications emit spans through the OpenTelemetry SDK.
 
-00:00:33.326 --> 00:00:38.713
+00:00:56.700 --> 00:01:09.308
+New word: S D K. Software Development Kit: a bundle of libraries, tools and docs for building on a platform. Picture it like this: A toolbox that comes with a new piece of furniture.
+
+00:01:09.708 --> 00:01:18.950
+New word: OpenTelemetry. The open standard and tools for traces, metrics and logs. Picture it like this: A common language for monitoring.
+
+00:01:20.500 --> 00:01:25.887
 A load balancer sends every span of one trace to the same collector, by hashing the trace ID.
 
-00:00:39.113 --> 00:00:43.432
+00:01:26.000 --> 00:01:33.256
+New word: I D. Identifier: a unique name or number for a thing. Picture it like this: A name tag.
+
+00:01:34.856 --> 00:01:39.175
 The gateway buffers spans until the root span ends or a timeout passes.
 
-00:00:43.832 --> 00:00:53.363
+00:01:39.575 --> 00:01:49.106
 Then it decides. Errors are kept. Slow traces are kept. Otherwise a hash of the trace ID picks a fixed percentage, so every collector makes the same choice.
 
-00:00:53.763 --> 00:00:55.470
+00:01:49.506 --> 00:01:51.213
 Kept traces go to storage.
 
-00:00:56.670 --> 00:00:57.193
+00:01:52.413 --> 00:01:52.936
 Recap.
 
-00:00:57.593 --> 00:01:01.377
+00:01:53.336 --> 00:01:57.120
 Tail sampling needs every span of a trace on one collector.
 
-00:01:01.777 --> 00:01:04.378
+00:01:57.520 --> 00:02:00.121
 Always keep errors and slow traces.
 
-00:01:04.778 --> 00:01:08.145
+00:02:00.521 --> 00:02:03.888
 Hash-based sampling gives the same decision everywhere.
 
-00:01:08.545 --> 00:01:12.748
+00:02:04.288 --> 00:02:08.491
 Cap label combinations per metric so one team can't explode your bill.
 
-00:01:13.148 --> 00:01:17.176
+00:02:08.891 --> 00:02:12.919
 Practice in lesson thirty nine point three and design sd twenty seven.
+
+00:02:14.133 --> 00:02:15.387
+Back to the question.
+
+00:02:15.787 --> 00:02:18.399
+Why can't head sampling keep all error traces?
+
+00:02:18.799 --> 00:02:22.770
+It decides at the start, before anyone knows the request will fail.
+
+00:02:23.970 --> 00:02:24.840
+Quick recap.
+
+00:02:25.240 --> 00:02:27.098
+Head sampling decides early.
+
+00:02:27.498 --> 00:02:30.308
+Tail sampling decides after the trace ends.
+
+00:02:30.708 --> 00:02:32.739
+Keep errors and slow traces.

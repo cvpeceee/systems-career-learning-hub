@@ -1,55 +1,94 @@
 WEBVTT
 
-00:00:00.000 --> 00:00:07.523
+00:00:00.000 --> 00:00:02.136
+Before anything else, picture this.
+
+00:00:02.536 --> 00:00:10.048
+One bad security content update can crash millions of computers at once. This video is about shipping detection updates safely.
+
+00:00:11.248 --> 00:00:12.177
+Pause and think.
+
+00:00:12.577 --> 00:00:15.909
+What is the safest way to roll out a new content file?
+
+00:00:16.309 --> 00:00:23.623
+Hold your answer; we will check it at the end. And whenever a new word comes up, we stop for a moment and explain it.
+
+00:00:24.800 --> 00:00:32.323
 This video covers how an endpoint security sensor tracks processes, and how to ship detection updates without crashing machines.
 
-00:00:08.723 --> 00:00:11.324
+00:00:33.523 --> 00:00:36.124
 Picture the security desk of a large building.
 
-00:00:11.724 --> 00:00:15.845
+00:00:36.524 --> 00:00:40.645
 Every visitor badge records who let them in. That is the parent process.
 
-00:00:16.245 --> 00:00:21.168
+00:00:41.045 --> 00:00:45.968
 The guard looks for suspicious chains, like a word processor launching a command shell.
 
-00:00:21.568 --> 00:00:28.197
+00:00:46.368 --> 00:00:52.997
 The visitor log has a fixed size. When it's full, the guard counts what was dropped instead of pretending nothing happened.
 
-00:00:28.597 --> 00:00:34.193
+00:00:53.397 --> 00:00:58.993
 And when head office sends new rule cards, they are tried at one desk before they go to every desk.
 
-00:00:35.393 --> 00:00:37.030
+00:01:00.193 --> 00:01:01.830
 Five design rules.
 
-00:00:37.430 --> 00:00:41.587
+00:01:02.230 --> 00:01:06.387
 Key each process by its pid and start time, because pids get reused.
 
-00:00:41.987 --> 00:00:46.503
+00:01:06.787 --> 00:01:11.303
 Bound every walk up the ancestry chain, because data can be missing or looped.
 
-00:00:46.903 --> 00:00:51.535
+00:01:11.703 --> 00:01:16.335
 Pass events from kernel to user space through a ring buffer, and count drops.
 
-00:00:51.935 --> 00:01:04.358
+00:01:16.400 --> 00:01:24.829
+New word: ring buffer. A fixed-size circular queue where the writer wraps around to the start. Picture it like this: A rotating sushi belt.
+
+00:01:26.400 --> 00:01:38.823
 Validate new content against the same parser the sensor runs. CrowdStrike's public root cause analysis of the July twenty twenty four outage describes a template expecting twenty one fields while the sensor supplied twenty.
 
-00:01:04.758 --> 00:01:09.797
+00:01:39.223 --> 00:01:44.262
 Roll out in rings, and fall back to the last known good content after repeated crashes.
 
-00:01:10.997 --> 00:01:11.519
+00:01:45.462 --> 00:01:45.984
 Recap.
 
-00:01:11.919 --> 00:01:14.671
+00:01:46.384 --> 00:01:49.136
 Process identity is pid plus start time.
 
-00:01:15.071 --> 00:01:16.847
+00:01:49.536 --> 00:01:51.312
 Keep walks and buffers bounded.
 
-00:01:17.247 --> 00:01:19.639
+00:01:51.712 --> 00:01:54.104
 The validator must match the real parser.
 
-00:01:20.039 --> 00:01:21.966
+00:01:54.504 --> 00:01:56.431
 Ship in rings with a local fallback.
 
-00:01:22.366 --> 00:01:26.290
+00:01:56.831 --> 00:02:00.755
 Practice in lesson thirty eight point three and design sd twenty eight.
+
+00:02:01.958 --> 00:02:03.212
+Back to the question.
+
+00:02:03.612 --> 00:02:06.944
+What is the safest way to roll out a new content file?
+
+00:02:07.344 --> 00:02:11.721
+Validate it, then ship to a small ring first and widen only if healthy.
+
+00:02:12.921 --> 00:02:13.792
+Quick recap.
+
+00:02:14.192 --> 00:02:16.200
+Track process parent and child.
+
+00:02:16.600 --> 00:02:18.655
+Validate content before loading.
+
+00:02:19.055 --> 00:02:20.425
+Roll out in rings.
