@@ -1,58 +1,115 @@
 WEBVTT
 
-00:00:00.000 --> 00:00:08.858
+00:00:00.000 --> 00:00:02.136
+Before anything else, picture this.
+
+00:00:02.536 --> 00:00:11.522
+A network cable is cut between two data centres. Does your bank app refuse writes or risk disagreeing balances? That choice is the CAP theorem.
+
+00:00:12.722 --> 00:00:13.651
+Pause and think.
+
+00:00:14.051 --> 00:00:19.241
+With three replicas, what write and read quorum sizes guarantee you read the latest write?
+
+00:00:19.641 --> 00:00:26.955
+Hold your answer; we will check it at the end. And whenever a new word comes up, we stop for a moment and explain it.
+
+00:00:28.155 --> 00:00:37.013
 This lesson covers the CAP theorem, consistency levels, and quorums: the vocabulary behind every distributed storage interview question.
 
-00:00:10.208 --> 00:00:14.469
+00:00:37.072 --> 00:00:52.548
+New word: C A P. CAP theorem: in a network split, a distributed database must choose Consistency or Availability. Picture it like this: Two bank branches cut off by a storm: either both stop serving or they risk disagreeing.
+
+00:00:52.948 --> 00:01:02.317
+New word: quorum. The minimum number of replicas that must agree for a read or write to count. Picture it like this: A committee needing a majority present to vote.
+
+00:01:04.822 --> 00:01:09.083
 Picture two bank branches that share account balances over a phone line.
 
-00:00:14.919 --> 00:00:19.296
+00:01:09.533 --> 00:01:13.910
 One day the line is cut. A customer at branch one wants to withdraw money.
 
-00:00:19.746 --> 00:00:24.669
+00:01:14.360 --> 00:01:19.283
 Branch one can refuse until the line is back, which is consistent but not available.
 
-00:00:25.119 --> 00:00:30.715
+00:01:19.733 --> 00:01:25.329
 Or it can allow it and risk the other branch allowing it too, which is available but not consistent.
 
-00:00:32.065 --> 00:00:36.709
+00:01:26.679 --> 00:01:31.323
 CAP stands for consistency, availability and partition tolerance.
 
-00:00:37.159 --> 00:00:42.337
+00:01:31.471 --> 00:01:42.814
+New word: partition. A network split where machines can't reach each other; also a slice of data (shard). Picture it like this: A storm cutting the phone line between two branches.
+
+00:01:44.421 --> 00:01:49.599
 Consistency here means every read sees the latest write, as if there were one copy.
 
-00:00:42.787 --> 00:00:47.129
+00:01:50.049 --> 00:01:54.391
 Availability means every request to a working node gets an answer.
 
-00:00:47.579 --> 00:00:54.859
+00:01:54.471 --> 00:02:04.119
+New word: node. One point in a graph or tree; also one machine in a cluster. Picture it like this: A city on a map, or one computer in a group.
+
+00:02:05.721 --> 00:02:13.001
 A partition is a network split. Partitions will happen, so the real choice during one is consistency or availability.
 
-00:00:56.209 --> 00:00:58.194
+00:02:14.351 --> 00:02:16.336
 Quorums make the trade off adjustable.
 
-00:00:58.644 --> 00:01:03.683
+00:02:16.786 --> 00:02:21.825
 With N copies, a write waits for W acks, and a read asks R replicas.
 
-00:01:04.133 --> 00:01:12.167
+00:02:21.855 --> 00:02:29.413
+New word: replica. A copy of data on another machine. Picture it like this: A photocopy kept in another office.
+
+00:02:31.063 --> 00:02:39.097
 If R plus W is greater than N, every read set overlaps every write set, so a read always reaches at least one fresh copy.
 
-00:01:12.617 --> 00:01:19.490
+00:02:39.547 --> 00:02:46.420
 With N equals three, W equals two and R equals two, you can lose one node and still read your writes.
 
-00:01:20.840 --> 00:01:23.487
+00:02:47.770 --> 00:02:50.417
 Consistency levels from strongest to weakest.
 
-00:01:23.937 --> 00:01:27.397
+00:02:50.867 --> 00:02:54.327
 Linearizable: behaves like one copy with one clock.
 
-00:01:27.847 --> 00:01:30.749
+00:02:54.777 --> 00:02:57.679
 Read your writes: you always see your own updates.
 
-00:01:31.199 --> 00:01:36.447
+00:02:58.129 --> 00:03:03.377
 Eventual: replicas converge if writes stop, but reads can be stale for a while.
 
-00:01:36.897 --> 00:01:41.564
+00:03:03.827 --> 00:03:08.494
 PACELC adds: even without a partition, you trade latency for consistency.
 
-00:01:42.914 --> 00:01:52.620
+00:03:08.612 --> 00:03:23.786
+New word: PACELC. Extension of CAP: if Partitioned choose Availability or Consistency, Else choose Latency or Consistency. Picture it like this: Even on a sunny day, a fast answer and a perfectly checked answer trade off.
+
+00:03:24.186 --> 00:03:32.650
+New word: latency. How long one operation takes from request to answer. Picture it like this: How long you wait for your coffee.
+
+00:03:35.162 --> 00:03:44.868
 During a partition, pick consistency or availability; quorums with R plus W greater than N give overlap. Use this language in every storage design.
+
+00:03:44.865 --> 00:03:46.119
+Back to the question.
+
+00:03:46.519 --> 00:03:51.709
+With three replicas, what write and read quorum sizes guarantee you read the latest write?
+
+00:03:52.109 --> 00:03:56.799
+Two and two, because two plus two is more than three, so they always overlap.
+
+00:03:57.999 --> 00:03:58.870
+Quick recap.
+
+00:03:59.270 --> 00:04:02.567
+In a partition, choose consistency or availability.
+
+00:04:02.967 --> 00:04:06.206
+Quorums: reads plus writes greater than replicas.
+
+00:04:06.606 --> 00:04:08.278
+Know your consistency level.

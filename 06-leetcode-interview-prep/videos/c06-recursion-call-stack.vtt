@@ -1,73 +1,124 @@
 WEBVTT
 
-00:00:00.000 --> 00:00:05.213
+00:00:00.000 --> 00:00:02.136
+Before anything else, picture this.
+
+00:00:02.536 --> 00:00:09.700
+A crash dump shows the same function name two thousand times in a row. That is a recursion with no base case eating the call stack.
+
+00:00:10.900 --> 00:00:11.828
+Pause and think.
+
+00:00:12.228 --> 00:00:14.841
+What two things must every recursive function have?
+
+00:00:15.241 --> 00:00:22.555
+Hold your answer; we will check it at the end. And whenever a new word comes up, we stop for a moment and explain it.
+
+00:00:23.755 --> 00:00:28.968
 This is one of the most important lessons. Recursion, and the call stack that makes it work.
 
-00:00:06.563 --> 00:00:08.676
+00:00:29.005 --> 00:00:38.072
+New word: stack. Last-in-first-out structure; also the memory area holding function calls. Picture it like this: A stack of plates.
+
+00:00:38.472 --> 00:00:48.225
+New word: recursion. A function that solves a problem by calling itself on smaller pieces. Picture it like this: Russian dolls: open one to find a smaller one.
+
+00:00:50.755 --> 00:00:52.868
 Imagine Russian nesting dolls.
 
-00:00:09.126 --> 00:00:14.316
+00:00:53.318 --> 00:00:58.508
 To find the smallest doll, you open one, and inside is a smaller version of the same problem.
 
-00:00:14.766 --> 00:00:19.026
+00:00:58.958 --> 00:01:03.218
 You keep opening until you hit the tiny solid doll. That is the base case.
 
-00:00:19.476 --> 00:00:23.981
+00:01:03.668 --> 00:01:08.173
 Then you close the dolls back up in reverse order. That is the function returning.
 
-00:00:25.331 --> 00:00:31.438
+00:01:09.523 --> 00:01:15.630
 Every function call gets a frame on the call stack, holding its local variables and where to return.
 
-00:00:31.888 --> 00:00:34.291
+00:01:16.080 --> 00:01:18.483
 Let us compute factorial of three.
 
-00:00:34.741 --> 00:00:39.873
+00:01:18.933 --> 00:01:24.065
 Factorial of three calls factorial of two. A new frame is pushed on top.
 
-00:00:40.323 --> 00:00:44.108
+00:01:24.515 --> 00:01:28.300
 Factorial of two calls factorial of one. Another frame.
 
-00:00:44.558 --> 00:00:48.401
+00:01:28.750 --> 00:01:32.593
 Factorial of one is the base case. It returns one.
 
-00:00:48.851 --> 00:00:53.495
+00:01:33.043 --> 00:01:37.687
 Now frames pop off: two times one is two, then three times two is six.
 
-00:00:54.845 --> 00:00:57.782
+00:01:39.037 --> 00:01:41.974
 On a tree, recursion follows the branches.
 
-00:00:58.232 --> 00:01:02.899
+00:01:42.424 --> 00:01:47.091
 To validate a binary search tree, each call receives an allowed range.
 
-00:01:03.349 --> 00:01:09.026
+00:01:47.155 --> 00:01:56.048
+New word: binary search. Find an item in sorted data by halving the range each step. Picture it like this: Guessing a number with "higher or lower".
+
+00:01:57.698 --> 00:02:03.375
 Going left, the upper limit shrinks to the parent value. Going right, the lower limit rises.
 
-00:01:09.476 --> 00:01:13.459
+00:02:03.825 --> 00:02:07.808
 Watch the stack grow as we go down, and shrink as calls return.
 
-00:01:13.909 --> 00:01:19.458
+00:02:08.258 --> 00:02:13.807
 At node three, the range is five to six, and three is outside it. So the answer is false.
 
-00:01:20.808 --> 00:01:27.658
+00:02:13.831 --> 00:02:23.479
+New word: node. One point in a graph or tree; also one machine in a cluster. Picture it like this: A city on a map, or one computer in a group.
+
+00:02:25.981 --> 00:02:32.831
 Every recursive function needs two parts: a base case that stops, and a step that makes the problem smaller.
 
-00:01:28.108 --> 00:01:34.018
+00:02:33.281 --> 00:02:39.191
 The call stack has limited size. A recursion depth of a million can crash with a stack overflow.
 
-00:01:34.468 --> 00:01:39.773
+00:02:39.641 --> 00:02:44.946
 In kernel code the stack is only a few kilobytes, so recursion is usually avoided there.
 
-00:01:40.223 --> 00:01:44.240
+00:02:45.396 --> 00:02:49.413
 You can always convert recursion into a loop with your own explicit stack.
 
-00:01:45.590 --> 00:01:49.039
+00:02:50.763 --> 00:02:54.212
 Backtracking is recursion that undoes its last choice.
 
-00:01:49.489 --> 00:01:53.865
+00:02:54.298 --> 00:03:04.108
+New word: backtracking. Try a choice, explore, undo it if it fails, try the next. Picture it like this: Walking a maze and stepping back at dead ends.
+
+00:03:05.748 --> 00:03:10.124
 Choose an option, explore deeper, then un-choose it before trying the next one.
 
-00:01:54.315 --> 00:01:58.681
+00:03:10.574 --> 00:03:14.940
 Subsets, permutations, and N queens all follow this template.
 
-00:02:00.031 --> 00:02:06.718
+00:03:16.290 --> 00:03:22.977
 In this course every recursive problem has an execution visualizer. Press step and watch frames push and pop.
+
+00:03:22.947 --> 00:03:24.201
+Back to the question.
+
+00:03:24.601 --> 00:03:27.213
+What two things must every recursive function have?
+
+00:03:27.613 --> 00:03:31.317
+A base case that stops, and a step that makes the problem smaller.
+
+00:03:32.517 --> 00:03:33.387
+Quick recap.
+
+00:03:33.787 --> 00:03:36.109
+Each call gets its own stack frame.
+
+00:03:36.509 --> 00:03:38.379
+The base case stops the descent.
+
+00:03:38.779 --> 00:03:41.008
+Deep recursion can overflow the stack.

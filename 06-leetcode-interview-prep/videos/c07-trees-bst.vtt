@@ -1,79 +1,145 @@
 WEBVTT
 
-00:00:00.000 --> 00:00:07.256
+00:00:00.000 --> 00:00:02.136
+Before anything else, picture this.
+
+00:00:02.536 --> 00:00:12.532
+The Linux device tree, your file system and a company org chart are all trees. Interviewers love them because one idea, recursion, solves most tree problems.
+
+00:00:13.732 --> 00:00:14.661
+Pause and think.
+
+00:00:15.061 --> 00:00:19.369
+In a binary search tree, which traversal prints keys in sorted order?
+
+00:00:19.769 --> 00:00:27.083
+Hold your answer; we will check it at the end. And whenever a new word comes up, we stop for a moment and explain it.
+
+00:00:28.283 --> 00:00:35.539
 Trees are everywhere: file systems, device trees, PCIe topologies, and the DOM in a browser.
 
-00:00:08.606 --> 00:00:10.673
+00:00:35.616 --> 00:00:46.657
+New word: PCIe. PCI Express: the modern high-speed serial version of PCI. Picture it like this: A multi-lane motorway for expansion cards.
+
+00:00:49.166 --> 00:00:51.233
 A tree is like a company org chart.
 
-00:00:11.123 --> 00:00:17.462
+00:00:51.683 --> 00:00:58.022
 There is one root at the top, the CEO. Each person can have reports below them, called children.
 
-00:00:17.912 --> 00:00:19.874
+00:00:58.472 --> 00:01:00.434
 People with no reports are leaves.
 
-00:00:20.324 --> 00:00:25.014
+00:01:00.884 --> 00:01:05.574
 A binary tree means every person has at most two reports: a left and a right.
 
-00:00:26.364 --> 00:00:28.791
+00:01:06.924 --> 00:01:09.351
 A binary search tree adds one rule.
 
-00:00:29.241 --> 00:00:33.513
+00:01:09.483 --> 00:01:18.376
+New word: binary search. Find an item in sorted data by halving the range each step. Picture it like this: Guessing a number with "higher or lower".
+
+00:01:20.026 --> 00:01:24.298
 Everything on the left of a node is smaller, and everything on the right is larger.
 
-00:00:33.963 --> 00:00:38.491
+00:01:24.409 --> 00:01:34.057
+New word: node. One point in a graph or tree; also one machine in a cluster. Picture it like this: A city on a map, or one computer in a group.
+
+00:01:35.659 --> 00:01:40.187
 So to find six, start at the root eight. Six is smaller, go left to four.
 
-00:00:38.941 --> 00:00:42.842
+00:01:40.637 --> 00:01:44.538
 Six is larger than four, go right. Found it in three steps.
 
-00:00:43.292 --> 00:00:47.228
+00:01:44.988 --> 00:01:48.924
 If the tree is balanced, a search takes about log n steps.
 
-00:00:48.578 --> 00:00:50.714
+00:01:50.274 --> 00:01:52.410
 There are classic ways to walk a tree.
 
-00:00:51.164 --> 00:00:58.386
+00:01:52.860 --> 00:02:00.082
 Depth first goes all the way down one branch before backing up. In-order depth first on a BST visits values in sorted order.
 
-00:00:58.836 --> 00:01:05.012
+00:02:00.208 --> 00:02:12.248
+New word: B S T. Binary Search Tree: a tree where left children are smaller and right children are bigger. Picture it like this: A guessing game: "higher or lower?" at every step.
+
+00:02:13.858 --> 00:02:20.034
 Breadth first visits level by level using a queue: eight, then four and twelve, then the bottom row.
 
-00:01:06.362 --> 00:01:08.011
+00:02:20.075 --> 00:02:26.379
+New word: queue. First-in-first-out structure. Picture it like this: A line at a bus stop.
+
+00:02:28.925 --> 00:02:30.574
 Keep these costs in mind.
 
-00:01:08.461 --> 00:01:16.239
+00:02:31.024 --> 00:02:38.802
 Balanced trees, like red black trees, give O of log n search, insert, and delete. std map and Java TreeMap use them.
 
-00:01:16.689 --> 00:01:21.217
+00:02:39.252 --> 00:02:43.780
 An unbalanced tree can degrade into a linked list, with O of n operations.
 
-00:01:21.667 --> 00:01:25.150
+00:02:43.908 --> 00:02:52.523
+New word: linked list. A chain of nodes, each pointing to the next. Picture it like this: A treasure hunt where each clue points to the next.
+
+00:02:54.158 --> 00:02:57.641
 Tree recursion uses stack memory equal to the height of the tree.
 
-00:01:26.500 --> 00:01:30.947
+00:02:57.708 --> 00:03:06.775
+New word: stack. Last-in-first-out structure; also the memory area holding function calls. Picture it like this: A stack of plates.
+
+00:03:07.175 --> 00:03:16.928
+New word: recursion. A function that solves a problem by calling itself on smaller pieces. Picture it like this: Russian dolls: open one to find a smaller one.
+
+00:03:19.458 --> 00:03:23.905
 A very common interview bug: checking only a node against its own children.
 
-00:01:31.397 --> 00:01:35.426
+00:03:24.355 --> 00:03:28.384
 In this tree, three is less than six, so it looks fine locally.
 
-00:01:35.876 --> 00:01:42.482
+00:03:28.834 --> 00:03:35.440
 But three sits in the right subtree of five, so it must be greater than five. The tree is not a valid BST.
 
-00:01:42.932 --> 00:01:45.881
+00:03:35.890 --> 00:03:38.839
 The fix is to pass the allowed range down the recursion.
 
-00:01:47.231 --> 00:01:52.827
+00:03:40.189 --> 00:03:45.785
 A trie is a special tree for strings. Each edge is a letter, and paths spell words.
 
-00:01:53.277 --> 00:01:58.385
+00:03:45.858 --> 00:03:55.483
+New word: trie. A prefix tree storing strings letter by letter. Picture it like this: A dictionary's thumb tabs: A → AP → APP.
+
+00:03:55.883 --> 00:04:06.262
+New word: edge. A connection between two nodes in a graph; also "the edge" = servers close to users. Picture it like this: A road between two cities.
+
+00:04:07.908 --> 00:04:13.016
 Words that share a prefix share the same nodes, like car and cat sharing c and a.
 
-00:01:58.835 --> 00:02:03.920
+00:04:13.466 --> 00:04:18.551
 Search and prefix checks cost O of the word length, no matter how many words are stored.
 
-00:02:04.370 --> 00:02:08.085
+00:04:19.001 --> 00:04:22.716
 Tries power autocomplete and symbol lookup in code search tools.
 
-00:02:09.435 --> 00:02:15.519
+00:04:24.066 --> 00:04:30.150
 Practice Validate BST and Level Order Traversal next, and watch the tree light up step by step.
+
+00:04:30.143 --> 00:04:31.397
+Back to the question.
+
+00:04:31.797 --> 00:04:36.104
+In a binary search tree, which traversal prints keys in sorted order?
+
+00:04:36.504 --> 00:04:39.105
+In-order: left, node, right.
+
+00:04:40.305 --> 00:04:41.176
+Quick recap.
+
+00:04:41.576 --> 00:04:43.874
+A tree has one root and no loops.
+
+00:04:44.274 --> 00:04:46.933
+BST: smaller left, bigger right.
+
+00:04:47.333 --> 00:04:49.725
+Most tree answers are a short recursion.

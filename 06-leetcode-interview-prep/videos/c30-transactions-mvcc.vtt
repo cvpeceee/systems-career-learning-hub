@@ -1,58 +1,103 @@
 WEBVTT
 
-00:00:00.000 --> 00:00:05.979
+00:00:00.000 --> 00:00:02.136
+Before anything else, picture this.
+
+00:00:02.536 --> 00:00:09.943
+Power fails halfway through a money transfer. After reboot, did the money vanish? Transactions and the write-ahead log say no.
+
+00:00:11.143 --> 00:00:12.072
+Pause and think.
+
+00:00:12.472 --> 00:00:15.781
+How does MVCC let readers avoid blocking writers?
+
+00:00:16.181 --> 00:00:23.495
+Hold your answer; we will check it at the end. And whenever a new word comes up, we stop for a moment and explain it.
+
+00:00:24.695 --> 00:00:30.674
 A transaction groups changes so they all happen or none happen, even if the machine crashes halfway.
 
-00:00:07.329 --> 00:00:10.174
+00:00:32.024 --> 00:00:34.869
 Think of moving money between two jars at home.
 
-00:00:10.624 --> 00:00:14.629
+00:00:35.319 --> 00:00:39.324
 You first write in a notebook: move ten dollars from jar A to jar B.
 
-00:00:15.079 --> 00:00:21.128
+00:00:39.774 --> 00:00:45.823
 Then you move the money. If you are interrupted, the notebook tells you exactly what to finish or undo.
 
-00:00:21.578 --> 00:00:25.525
+00:00:46.273 --> 00:00:50.220
 That notebook is the write ahead log, written before the real change.
 
-00:00:26.875 --> 00:00:28.977
+00:00:51.570 --> 00:00:53.672
 A C I D in plain words.
 
-00:00:29.427 --> 00:00:31.122
+00:00:53.695 --> 00:01:07.801
+New word: A C I D. Atomicity, Consistency, Isolation, Durability: guarantees of reliable database transactions. Picture it like this: A bank transfer that either fully happens or doesn't at all.
+
+00:01:09.445 --> 00:01:11.140
 Atomic: all or nothing.
 
-00:00:31.572 --> 00:00:35.647
+00:01:11.162 --> 00:01:22.784
+New word: atomic. An operation that happens all at once; no other thread can see it half-done. Picture it like this: Flipping a light switch — it's either on or off, never half.
+
+00:01:24.412 --> 00:01:28.487
 Consistent: rules like balances never going negative still hold.
 
-00:00:36.097 --> 00:00:40.741
+00:01:28.937 --> 00:01:33.581
 Isolated: concurrent transactions do not see each other's half finished work.
 
-00:00:41.191 --> 00:00:47.100
+00:01:34.031 --> 00:01:39.940
 Durable: once committed, it survives a crash, because the log was flushed to disk first.
 
-00:00:48.450 --> 00:00:52.723
+00:01:41.290 --> 00:01:45.563
 Multi version concurrency control keeps several versions of each row.
 
-00:00:53.173 --> 00:00:57.445
+00:01:46.013 --> 00:01:50.285
 A writer adds a new version with its transaction time instead of overwriting.
 
-00:00:57.895 --> 00:01:01.994
+00:01:50.735 --> 00:01:54.834
 A reader that started at time five keeps seeing the version from time three.
 
-00:01:02.444 --> 00:01:06.577
+00:01:55.284 --> 00:01:59.417
 So readers never block writers, and old versions are cleaned up later.
 
-00:01:07.927 --> 00:01:11.537
+00:02:00.767 --> 00:02:04.377
 How nested transactions work in the practical interview store.
 
-00:01:11.987 --> 00:01:13.903
+00:02:04.827 --> 00:02:06.743
 Begin pushes an undo log.
 
-00:01:14.353 --> 00:01:17.813
+00:02:07.193 --> 00:02:10.653
 Each set records the old value in the top undo log.
 
-00:01:18.263 --> 00:01:24.416
+00:02:11.103 --> 00:02:17.256
 Rollback replays it in reverse; commit merges it into the parent, or discards it at the top level.
 
-00:01:25.766 --> 00:01:32.999
+00:02:17.378 --> 00:02:24.692
+New word: rollback. Going back to the previous working version. Picture it like this: Undoing to the last saved game.
+
+00:02:27.228 --> 00:02:34.461
 Log first, then change. Keep versions so readers see a stable snapshot. Undo logs make rollback simple.
+
+00:02:34.435 --> 00:02:35.689
+Back to the question.
+
+00:02:36.089 --> 00:02:39.398
+How does MVCC let readers avoid blocking writers?
+
+00:02:39.798 --> 00:02:43.908
+Readers see an older committed version while writers create a new one.
+
+00:02:45.108 --> 00:02:45.978
+Quick recap.
+
+00:02:46.378 --> 00:02:47.447
+All or nothing.
+
+00:02:47.847 --> 00:02:49.379
+Log before you change.
+
+00:02:49.779 --> 00:02:52.206
+Versions let reads and writes overlap.

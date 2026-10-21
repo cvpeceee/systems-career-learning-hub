@@ -1,55 +1,94 @@
 WEBVTT
 
-00:00:00.000 --> 00:00:06.525
+00:00:00.000 --> 00:00:02.136
+Before anything else, picture this.
+
+00:00:02.536 --> 00:00:12.138
+A robot can only move right or down across a floor map with obstacles. How many routes reach the far corner? Grid dynamic programming fills the answer cell by cell.
+
+00:00:13.338 --> 00:00:14.266
+Pause and think.
+
+00:00:14.666 --> 00:00:18.544
+Which cells does each grid cell depend on for right-or-down paths?
+
+00:00:18.944 --> 00:00:26.259
+Hold your answer; we will check it at the end. And whenever a new word comes up, we stop for a moment and explain it.
+
+00:00:27.458 --> 00:00:33.983
 Grid dynamic programming fills a table cell by cell, where each cell only looks at neighbors already filled in.
 
-00:00:07.875 --> 00:00:11.962
+00:00:35.333 --> 00:00:39.420
 Picture a city with streets in a grid, and you may only walk right or down.
 
-00:00:12.412 --> 00:00:18.925
+00:00:39.870 --> 00:00:46.383
 How many ways reach a corner? Exactly the ways to reach the corner above plus the ways to reach the corner to the left.
 
-00:00:19.375 --> 00:00:23.183
+00:00:46.833 --> 00:00:50.641
 You never recount a route: you write the number on each corner and reuse it.
 
-00:00:23.633 --> 00:00:25.839
+00:00:51.091 --> 00:00:53.297
 That written number is the D P table.
 
-00:00:27.189 --> 00:00:30.451
+00:00:53.375 --> 00:01:07.678
+New word: D P. Dynamic Programming: solve a problem by storing answers to smaller sub-problems and reusing them; also DisplayPort. Picture it like this: Writing intermediate sums in a notebook so you never redo them.
+
+00:01:10.225 --> 00:01:13.487
 Here is the unique paths table for a three by four grid.
 
-00:00:30.901 --> 00:00:34.001
+00:01:13.937 --> 00:01:17.037
 The top row and left column have only one way each.
 
-00:00:34.451 --> 00:00:36.831
+00:01:17.487 --> 00:01:19.867
 Every other cell is up plus left.
 
-00:00:37.281 --> 00:00:40.381
+00:01:20.317 --> 00:01:23.417
 The bottom right corner holds ten, the number of routes.
 
-00:00:41.731 --> 00:00:44.784
+00:01:24.767 --> 00:01:27.820
 Maximal square uses the same idea with a minimum.
 
-00:00:45.234 --> 00:00:53.059
+00:01:28.270 --> 00:01:36.095
 A cell can be the bottom right corner of a square of side k only if its up, left and diagonal neighbors all allow side k minus one.
 
-00:00:53.509 --> 00:00:56.795
+00:01:36.545 --> 00:01:39.831
 So dp equals one plus the minimum of those three.
 
-00:00:57.245 --> 00:01:01.459
+00:01:40.281 --> 00:01:44.495
 The biggest value in the table is the side of the biggest square of ones.
 
-00:01:02.809 --> 00:01:04.876
+00:01:45.845 --> 00:01:47.912
 A memory trick interviewers like.
 
-00:01:05.326 --> 00:01:09.749
+00:01:48.362 --> 00:01:52.785
 Each row only needs the row above, so keep one row and a saved diagonal.
 
-00:01:10.199 --> 00:01:13.648
+00:01:53.235 --> 00:01:56.684
 Memory drops from rows times columns to just columns.
 
-00:01:14.098 --> 00:01:18.347
+00:01:57.134 --> 00:02:01.383
 Always say the recurrence, the base cases and the fill order before coding.
 
-00:01:19.697 --> 00:01:26.489
+00:02:02.733 --> 00:02:09.525
 Define the cell, write the recurrence from finished neighbors, fill row by row, and shrink to one row if asked.
+
+00:02:09.507 --> 00:02:10.761
+Back to the question.
+
+00:02:11.161 --> 00:02:15.039
+Which cells does each grid cell depend on for right-or-down paths?
+
+00:02:15.439 --> 00:02:17.563
+The cell above and the cell to the left.
+
+00:02:18.763 --> 00:02:19.634
+Quick recap.
+
+00:02:20.034 --> 00:02:22.484
+Each cell uses already-filled neighbours.
+
+00:02:22.884 --> 00:02:23.708
+Fill in order.
+
+00:02:24.108 --> 00:02:26.151
+Often one row of memory is enough.

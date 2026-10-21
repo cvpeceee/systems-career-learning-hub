@@ -1,82 +1,157 @@
 WEBVTT
 
-00:00:00.000 --> 00:00:07.349
+00:00:00.000 --> 00:00:02.136
+Before anything else, picture this.
+
+00:00:02.536 --> 00:00:11.337
+A robot must find the shortest path across a warehouse grid, avoiding shelves. That grid is a graph, and breadth-first search finds the shortest route.
+
+00:00:12.537 --> 00:00:13.465
+Pause and think.
+
+00:00:13.865 --> 00:00:17.546
+Which search finds the fewest-steps path in an unweighted graph?
+
+00:00:17.946 --> 00:00:25.260
+Hold your answer; we will check it at the end. And whenever a new word comes up, we stop for a moment and explain it.
+
+00:00:26.460 --> 00:00:33.809
 Graphs model networks: servers and switches, build dependencies, road maps, and robot occupancy grids.
 
-00:00:08.699 --> 00:00:10.708
+00:00:33.877 --> 00:00:41.006
+New word: graph. A set of nodes connected by edges. Picture it like this: A map of cities and roads.
+
+00:00:41.406 --> 00:00:50.067
+New word: occupancy. How many GPU threads/warps are active versus the maximum. Picture it like this: How full the classrooms are.
+
+00:00:52.617 --> 00:00:54.626
 A graph is just dots and lines.
 
-00:00:11.158 --> 00:00:15.326
+00:00:55.076 --> 00:00:59.244
 The dots are nodes, like cities. The lines are edges, like roads.
 
-00:00:15.776 --> 00:00:23.252
+00:00:59.350 --> 00:01:08.998
+New word: node. One point in a graph or tree; also one machine in a cluster. Picture it like this: A city on a map, or one computer in a group.
+
+00:01:09.398 --> 00:01:19.777
+New word: edge. A connection between two nodes in a graph; also "the edge" = servers close to users. Picture it like this: A road between two cities.
+
+00:01:21.400 --> 00:01:28.876
 Roads can be one way, which makes a directed graph, or carry a cost, like travel time, which makes a weighted graph.
 
-00:00:24.602 --> 00:00:27.714
+00:01:30.226 --> 00:01:33.338
 Breadth first search explores like ripples in a pond.
 
-00:00:28.164 --> 00:00:32.297
+00:01:33.788 --> 00:01:37.921
 Start at A. First visit every neighbor one step away: B and C.
 
-00:00:32.747 --> 00:00:35.893
+00:01:38.371 --> 00:01:41.517
 Then everything two steps away: D and E.
 
-00:00:36.343 --> 00:00:42.729
+00:01:41.967 --> 00:01:48.353
 Because it goes level by level, BFS finds the shortest path when every edge has the same cost.
 
-00:00:44.079 --> 00:00:48.003
+00:01:48.366 --> 00:01:59.024
+New word: B F S. Breadth-First Search: explore a graph level by level using a queue. Picture it like this: Ripples spreading out from a stone dropped in a pond.
+
+00:02:01.574 --> 00:02:05.498
 Depth first search is like exploring a maze with one hand on the wall.
 
-00:00:48.453 --> 00:00:52.342
+00:02:05.948 --> 00:02:09.837
 Go as deep as possible: A, then B, then D, then F.
 
-00:00:52.792 --> 00:00:56.693
+00:02:10.287 --> 00:02:14.188
 When you hit a dead end, back up and try the next unexplored path.
 
-00:00:57.143 --> 00:01:03.598
+00:02:14.638 --> 00:02:21.093
 DFS uses recursion or an explicit stack, and it is perfect for flood fill and cycle detection.
 
-00:01:04.948 --> 00:01:11.996
+00:02:21.141 --> 00:02:34.295
+New word: D F S. Depth-First Search: explore a graph by going as deep as possible before backing up. Picture it like this: Exploring a maze by always following one wall until a dead end, then backing up.
+
+00:02:34.695 --> 00:02:43.762
+New word: stack. Last-in-first-out structure; also the memory area holding function calls. Picture it like this: A stack of plates.
+
+00:02:44.162 --> 00:02:53.915
+New word: recursion. A function that solves a problem by calling itself on smaller pieces. Picture it like this: Russian dolls: open one to find a smaller one.
+
+00:02:56.465 --> 00:03:03.513
 Topological sort orders tasks so every dependency comes first, like building drivers before the app that uses them.
 
-00:01:12.446 --> 00:01:16.683
+00:03:03.615 --> 00:03:14.180
+New word: topological sort. An ordering of tasks so every task comes after the tasks it depends on. Picture it like this: Getting dressed: socks before shoes.
+
+00:03:15.830 --> 00:03:20.067
 Count how many arrows point into each node. Start with nodes that have zero.
 
-00:01:17.133 --> 00:01:21.673
+00:03:20.517 --> 00:03:25.057
 Each time you finish a node, remove its arrows. New zeros become ready.
 
-00:01:22.123 --> 00:01:25.710
+00:03:25.507 --> 00:03:29.094
 If nodes are left over and none are ready, there is a cycle.
 
-00:01:27.060 --> 00:01:27.920
+00:03:30.444 --> 00:03:31.304
 Quick guide.
 
-00:01:28.370 --> 00:01:31.040
+00:03:31.754 --> 00:03:34.424
 Unweighted shortest path: BFS.
 
-00:01:31.490 --> 00:01:35.379
+00:03:34.874 --> 00:03:38.763
 Weighted, non negative shortest path: Dijkstra with a heap.
 
-00:01:35.829 --> 00:01:41.030
+00:03:38.796 --> 00:03:51.172
+New word: heap. A tree-shaped structure that always gives you the smallest (or largest) item quickly; also the dynamic memory area. Picture it like this: A tournament where the champion is always on top.
+
+00:03:52.822 --> 00:03:58.023
 Connected groups or flood fill: DFS, BFS, or union find.
 
-00:01:41.480 --> 00:01:44.580
+00:03:58.473 --> 00:04:01.573
 Dependencies and ordering: topological sort.
 
-00:01:45.030 --> 00:01:48.223
+00:04:02.023 --> 00:04:05.216
 Always track visited nodes, or you will loop forever.
 
-00:01:49.573 --> 00:01:50.676
+00:04:06.566 --> 00:04:07.669
 Graphs in your world.
 
-00:01:51.126 --> 00:01:54.969
+00:04:08.119 --> 00:04:11.962
 A PCIe topology is a tree you walk with depth first search.
 
-00:01:55.419 --> 00:01:58.368
+00:04:12.039 --> 00:04:23.080
+New word: PCIe. PCI Express: the modern high-speed serial version of PCI. Picture it like this: A multi-lane motorway for expansion cards.
+
+00:04:24.689 --> 00:04:27.638
 Device driver probe order is a topological sort.
 
-00:01:58.818 --> 00:02:03.682
+00:04:27.656 --> 00:04:40.206
+New word: probe. The driver function the kernel calls when it finds a device that matches the driver. Picture it like this: The first handshake when a translator is introduced to the person they will translate for.
+
+00:04:41.856 --> 00:04:46.720
 A GPU cluster fabric is a weighted graph where shortest paths matter for collectives.
 
-00:02:05.032 --> 00:02:10.768
+00:04:46.822 --> 00:05:00.336
+New word: G P U. Graphics Processing Unit: a chip with thousands of small cores that do the same math on lots of data at once. Picture it like this: A stadium of students each solving one simple sum at the same time.
+
+00:05:02.872 --> 00:05:08.608
 Graphs look scary, but most graph problems are BFS or DFS with a visited set.
+
+00:05:08.568 --> 00:05:09.822
+Back to the question.
+
+00:05:10.222 --> 00:05:13.902
+Which search finds the fewest-steps path in an unweighted graph?
+
+00:05:14.302 --> 00:05:17.971
+Breadth-first search, because it explores level by level.
+
+00:05:19.171 --> 00:05:20.042
+Quick recap.
+
+00:05:20.442 --> 00:05:22.079
+Graphs are nodes and edges.
+
+00:05:22.479 --> 00:05:25.544
+BFS uses a queue and finds shortest hops.
+
+00:05:25.944 --> 00:05:29.369
+DFS uses a stack or recursion and explores deep.

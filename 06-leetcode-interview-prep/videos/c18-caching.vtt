@@ -1,70 +1,133 @@
 WEBVTT
 
-00:00:00.000 --> 00:00:05.584
+00:00:00.000 --> 00:00:02.136
+Before anything else, picture this.
+
+00:00:02.536 --> 00:00:11.673
+A dashboard that took two seconds now loads in twenty milliseconds after one change: a cache. But stale data and eviction rules are where interviews dig in.
+
+00:00:12.873 --> 00:00:13.802
+Pause and think.
+
+00:00:14.202 --> 00:00:17.499
+Which data structures give O of 1 for an LRU cache?
+
+00:00:17.899 --> 00:00:25.214
+Hold your answer; we will check it at the end. And whenever a new word comes up, we stop for a moment and explain it.
+
+00:00:26.400 --> 00:00:31.984
 This lesson is about caches: keeping hot data close, and deciding what to throw away.
 
-00:00:06.934 --> 00:00:09.849
+00:00:32.067 --> 00:00:43.213
+New word: cache. A small fast store of recently used data so you don't fetch it from the slow place again. Picture it like this: Keeping the salt next to the stove instead of in the basement.
+
+00:00:45.717 --> 00:00:48.632
 Imagine a small desk next to a huge library.
 
-00:00:10.299 --> 00:00:16.684
+00:00:49.082 --> 00:00:55.467
 Books you are using right now sit on the desk, so grabbing them is instant. Fetching from the library takes minutes.
 
-00:00:17.134 --> 00:00:21.999
+00:00:55.917 --> 00:01:00.782
 The desk only holds five books. When a sixth arrives, one has to go back.
 
-00:00:22.449 --> 00:00:25.653
+00:01:01.232 --> 00:01:04.436
 The eviction policy is the rule for which book goes back.
 
-00:00:27.003 --> 00:00:31.531
+00:01:04.533 --> 00:01:12.706
+New word: eviction. Removing an item from a cache to make room. Picture it like this: Clearing a shelf to fit new stock.
+
+00:01:15.256 --> 00:01:19.784
 LRU means least recently used. Throw out the book you have not touched for the longest.
 
-00:00:31.981 --> 00:00:36.497
+00:01:19.823 --> 00:01:32.582
+New word: L R U. Least Recently Used: a cache rule that throws out whatever was used longest ago. Picture it like this: Clearing the fridge by tossing what nobody has touched in the longest time.
+
+00:01:34.232 --> 00:01:38.748
 Keep a doubly linked list in use order, plus a hash map from key to node.
 
-00:00:36.947 --> 00:00:42.241
+00:01:38.865 --> 00:01:47.480
+New word: linked list. A chain of nodes, each pointing to the next. Picture it like this: A treasure hunt where each clue points to the next.
+
+00:01:47.880 --> 00:01:57.527
+New word: node. One point in a graph or tree; also one machine in a cluster. Picture it like this: A city on a map, or one computer in a group.
+
+00:01:59.177 --> 00:02:04.471
 On every access, unlink the node and move it to the front. Both steps are constant time.
 
-00:00:42.691 --> 00:00:44.700
+00:02:04.921 --> 00:02:06.930
 When full, evict from the back.
 
-00:00:46.050 --> 00:00:51.228
+00:02:08.280 --> 00:02:13.458
 LFU means least frequently used. Throw out the book you used the fewest times.
 
-00:00:51.678 --> 00:00:56.693
+00:02:13.477 --> 00:02:23.926
+New word: L F U. Least Frequently Used: a cache rule that evicts what's used least often. Picture it like this: Giving away clothes you wear the least.
+
+00:02:25.527 --> 00:02:30.542
 The constant time version keeps one list per use count, plus the current minimum count.
 
-00:00:57.143 --> 00:01:01.195
+00:02:30.992 --> 00:02:35.044
 A get moves a key from the count k list to the count k plus one list.
 
-00:01:01.645 --> 00:01:07.311
+00:02:35.494 --> 00:02:41.160
 LFU protects popular items from a one time scan, which would flush an LRU cache.
 
-00:01:08.661 --> 00:01:10.089
+00:02:42.510 --> 00:02:43.938
 More words you will hear.
 
-00:01:10.539 --> 00:01:13.894
+00:02:44.388 --> 00:02:47.743
 Hit rate is the fraction of lookups served from the cache.
 
-00:01:14.344 --> 00:01:21.182
+00:02:48.193 --> 00:02:55.031
 TTL, time to live, expires an entry after a fixed time, so stale data cannot live forever.
 
-00:01:21.632 --> 00:01:30.688
+00:02:55.077 --> 00:03:04.423
+New word: T T L. Time To Live: how long a cached value or packet is allowed to exist. Picture it like this: A "best before" date on food.
+
+00:03:06.027 --> 00:03:15.083
 Write through updates the cache and database together. Write back updates the cache first and flushes later: faster, but you can lose data in a crash.
 
-00:01:31.138 --> 00:01:38.058
+00:03:15.533 --> 00:03:22.453
 Cache aside means the application checks the cache, and on a miss, loads from the database and fills the cache.
 
-00:01:39.408 --> 00:01:40.824
+00:03:23.803 --> 00:03:25.219
 Systems examples.
 
-00:01:41.274 --> 00:01:47.195
+00:03:25.669 --> 00:03:31.590
 CPU caches use pseudo LRU in hardware because true LRU is too expensive per set.
 
-00:01:47.645 --> 00:01:53.311
+00:03:31.743 --> 00:03:44.967
+New word: C P U. Central Processing Unit: the main general-purpose processor that runs programs step by step. Picture it like this: The head chef who can cook anything, one dish at a time.
+
+00:03:46.593 --> 00:03:52.259
 A CI build cache keys outputs by a hash of the inputs, so a hit is always correct.
 
-00:01:53.761 --> 00:02:02.573
+00:03:52.393 --> 00:04:04.514
+New word: C I. Continuous Integration: every code change is automatically built and tested. Picture it like this: A quality inspector who checks every part as soon as it comes off the line.
+
+00:04:06.143 --> 00:04:14.955
 And watch for the stampede: when a hot key expires, thousands of requests miss at once. Fix it with a lock per key or early random refresh.
 
-00:02:03.923 --> 00:02:09.577
+00:04:16.305 --> 00:04:21.959
 A cache is a fast desk with an eviction rule. Practice LRU Cache, then LFU Cache.
+
+00:04:21.949 --> 00:04:23.203
+Back to the question.
+
+00:04:23.603 --> 00:04:26.900
+Which data structures give O of 1 for an LRU cache?
+
+00:04:27.300 --> 00:04:29.610
+A hash map plus a doubly linked list.
+
+00:04:30.810 --> 00:04:31.681
+Quick recap.
+
+00:04:32.081 --> 00:04:33.637
+Keep hot data close.
+
+00:04:34.037 --> 00:04:35.686
+Eviction picks what to drop.
+
+00:04:36.086 --> 00:04:38.222
+Invalidation keeps data fresh.

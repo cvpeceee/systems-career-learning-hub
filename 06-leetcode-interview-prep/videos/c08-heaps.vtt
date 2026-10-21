@@ -1,76 +1,133 @@
 WEBVTT
 
-00:00:00.000 --> 00:00:06.560
+00:00:00.000 --> 00:00:02.136
+Before anything else, picture this.
+
+00:00:02.536 --> 00:00:12.869
+Your scheduler must always run the most urgent task next, even as new tasks arrive every millisecond. Sorting everything each time is too slow. A heap is the answer.
+
+00:00:14.069 --> 00:00:14.998
+Pause and think.
+
+00:00:15.398 --> 00:00:20.344
+To keep the k largest items from a stream, do you use a min-heap or a max-heap?
+
+00:00:20.744 --> 00:00:28.058
+Hold your answer; we will check it at the end. And whenever a new word comes up, we stop for a moment and explain it.
+
+00:00:29.258 --> 00:00:35.818
 A heap gives you the smallest, or the largest, item instantly. It powers schedulers and top k problems.
 
-00:00:07.910 --> 00:00:10.011
+00:00:35.841 --> 00:00:46.139
+New word: scheduler. The OS part that decides which task runs on which CPU and when. Picture it like this: A teacher deciding whose turn it is.
+
+00:00:46.539 --> 00:00:58.915
+New word: heap. A tree-shaped structure that always gives you the smallest (or largest) item quickly; also the dynamic memory area. Picture it like this: A tournament where the champion is always on top.
+
+00:01:01.465 --> 00:01:03.566
 Think of a hospital emergency room.
 
-00:00:10.461 --> 00:00:15.233
+00:01:04.016 --> 00:01:08.788
 Patients do not wait in arrival order. The most urgent patient is always seen next.
 
-00:00:15.683 --> 00:00:20.977
+00:01:09.238 --> 00:01:14.532
 The triage nurse does not fully sort everyone, they just make sure the most urgent person is at the front.
 
-00:00:21.427 --> 00:00:25.804
+00:01:14.982 --> 00:01:19.359
 That partial order is cheap to maintain, and that is the idea of a heap.
 
-00:00:27.154 --> 00:00:30.022
+00:01:20.709 --> 00:01:23.577
 A min heap is a tree stored inside an array.
 
-00:00:30.472 --> 00:00:37.379
+00:01:23.615 --> 00:01:32.055
+New word: array. Items stored side by side in memory, reached by index. Picture it like this: A row of numbered lockers.
+
+00:01:33.665 --> 00:01:40.572
 The rule: every parent is smaller than or equal to its children. So the smallest is always at index zero, the root.
 
-00:00:37.829 --> 00:00:43.727
+00:01:41.022 --> 00:01:46.920
 The children of index i live at two i plus one and two i plus two. No pointers needed.
 
-00:00:45.077 --> 00:00:47.817
+00:01:47.048 --> 00:01:55.407
+New word: pointer. A variable holding the memory address of something else. Picture it like this: A note saying "the book is on shelf 4".
+
+00:01:57.957 --> 00:02:00.697
 To insert zero, place it at the end of the array.
 
-00:00:48.267 --> 00:00:52.087
+00:02:01.147 --> 00:02:04.967
 Then sift it up: while it is smaller than its parent, swap them.
 
-00:00:52.537 --> 00:00:56.241
+00:02:05.417 --> 00:02:09.121
 It swaps with two, then with one, and becomes the new root.
 
-00:00:56.691 --> 00:01:00.301
+00:02:09.571 --> 00:02:13.181
 At most log n swaps, because the tree is balanced.
 
-00:01:01.651 --> 00:01:03.184
+00:02:14.531 --> 00:02:16.064
 Here is a top k trick.
 
-00:01:03.634 --> 00:01:07.453
+00:02:16.514 --> 00:02:20.333
 To find the second largest number, keep a min heap of size two.
 
-00:01:07.903 --> 00:01:12.756
+00:02:20.783 --> 00:02:25.636
 Every new number goes in. If the heap grows past two, pop the smallest.
 
-00:01:13.206 --> 00:01:20.207
+00:02:26.086 --> 00:02:33.087
 At the end, the top of the heap is the answer. This costs n log k, great for streams of latency samples.
 
-00:01:21.557 --> 00:01:27.815
+00:02:33.107 --> 00:02:41.571
+New word: latency. How long one operation takes from request to answer. Picture it like this: How long you wait for your coffee.
+
+00:02:44.121 --> 00:02:50.379
 In C plus plus, priority queue is a max heap by default. Pass greater to make it a min heap.
 
-00:01:28.265 --> 00:01:31.794
+00:02:50.521 --> 00:02:56.825
+New word: queue. First-in-first-out structure. Picture it like this: A line at a bus stop.
+
+00:02:58.471 --> 00:03:02.000
 In Java, PriorityQueue is a min heap by default.
 
-00:01:32.244 --> 00:01:38.734
+00:03:02.450 --> 00:03:08.940
 In C sharp, PriorityQueue takes an element and a priority, and dequeues the lowest priority first.
 
-00:01:39.184 --> 00:01:43.852
+00:03:09.390 --> 00:03:14.058
 Dijkstra's shortest path algorithm and OS schedulers both rely on heaps.
 
-00:01:45.202 --> 00:01:46.873
+00:03:14.104 --> 00:03:27.200
+New word: O S. Operating System: the core software (like Linux or Android) that manages hardware and runs apps. Picture it like this: The building manager who hands out rooms, power and water to tenants.
+
+00:03:29.750 --> 00:03:31.421
 Interview tips for heaps.
 
-00:01:47.323 --> 00:01:54.150
+00:03:31.871 --> 00:03:38.698
 Say which way the heap points and why. For the k largest, you want a min heap, so you can evict the smallest.
 
-00:01:54.600 --> 00:01:59.070
+00:03:39.148 --> 00:03:43.618
 Know that building a heap from an array takes only O of n, not n log n.
 
-00:01:59.520 --> 00:02:04.141
+00:03:44.068 --> 00:03:48.689
 And mention quickselect as an alternative for one-off kth element queries.
 
-00:02:05.491 --> 00:02:10.506
+00:03:50.039 --> 00:03:55.054
 Whenever you hear top k, smallest so far, or next event, think heap.
+
+00:03:55.044 --> 00:03:56.298
+Back to the question.
+
+00:03:56.698 --> 00:04:01.644
+To keep the k largest items from a stream, do you use a min-heap or a max-heap?
+
+00:04:02.044 --> 00:04:07.489
+A min-heap of size k: the smallest of the top k sits on top, ready to be kicked out.
+
+00:04:08.689 --> 00:04:09.560
+Quick recap.
+
+00:04:09.960 --> 00:04:12.723
+A heap always exposes the min or max.
+
+00:04:13.123 --> 00:04:15.282
+Push and pop are O of log n.
+
+00:04:15.682 --> 00:04:18.225
+Top k uses a heap of size k.

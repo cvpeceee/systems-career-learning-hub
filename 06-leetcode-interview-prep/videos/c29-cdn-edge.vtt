@@ -1,43 +1,88 @@
 WEBVTT
 
-00:00:00.000 --> 00:00:05.190
+00:00:00.000 --> 00:00:02.136
+Before anything else, picture this.
+
+00:00:02.536 --> 00:00:09.166
+A live stream starts and five million viewers hit play at once. Without a CDN the origin server collapses.
+
+00:00:10.366 --> 00:00:11.294
+Pause and think.
+
+00:00:11.694 --> 00:00:14.005
+What is request collapsing at the edge?
+
+00:00:14.405 --> 00:00:21.719
+Hold your answer; we will check it at the end. And whenever a new word comes up, we stop for a moment and explain it.
+
+00:00:22.900 --> 00:00:28.090
 A content delivery network keeps copies of popular files close to the people who watch them.
 
-00:00:06.540 --> 00:00:08.003
+00:00:29.440 --> 00:00:30.903
 Think of a bakery chain.
 
-00:00:08.453 --> 00:00:12.597
+00:00:31.353 --> 00:00:35.497
 Baking everything in one central factory means long delivery trips.
 
-00:00:13.047 --> 00:00:20.454
+00:00:35.947 --> 00:00:43.354
 So each neighborhood shop keeps the most popular bread on its shelves, and only orders from the factory when it runs out.
 
-00:00:20.904 --> 00:00:24.527
+00:00:43.804 --> 00:00:47.427
 The shops are edge caches, and the factory is the origin.
 
-00:00:25.877 --> 00:00:27.386
+00:00:47.483 --> 00:00:58.629
+New word: cache. A small fast store of recently used data so you don't fetch it from the slow place again. Picture it like this: Keeping the salt next to the stove instead of in the basement.
+
+00:00:59.029 --> 00:01:09.408
+New word: edge. A connection between two nodes in a graph; also "the edge" = servers close to users. Picture it like this: A road between two cities.
+
+00:01:11.933 --> 00:01:13.442
 Here is a request path.
 
-00:00:27.836 --> 00:00:30.936
+00:01:13.892 --> 00:01:16.992
 A viewer asks the nearest edge for a video chunk.
 
-00:00:31.386 --> 00:00:33.894
+00:01:17.442 --> 00:01:19.950
 On a hit the edge answers immediately.
 
-00:00:34.344 --> 00:00:39.858
+00:01:20.400 --> 00:01:25.914
 On a miss it asks a regional shield cache, and only then the origin, then keeps a copy.
 
-00:00:41.208 --> 00:00:43.577
+00:01:27.264 --> 00:01:29.633
 Words to use in a design interview.
 
-00:00:44.027 --> 00:00:49.449
+00:01:30.083 --> 00:01:35.505
 Hit ratio, the share of requests served from cache, drives cost and latency.
 
-00:00:49.899 --> 00:00:53.347
+00:01:35.666 --> 00:01:44.130
+New word: latency. How long one operation takes from request to answer. Picture it like this: How long you wait for your coffee.
+
+00:01:45.780 --> 00:01:49.228
 Time to live and versioned file names decide freshness.
 
-00:00:53.797 --> 00:00:59.997
+00:01:49.678 --> 00:01:55.878
 Netflix pre-positions popular titles on its Open Connect appliances overnight, before people press play.
 
-00:01:01.347 --> 00:01:07.918
+00:01:57.228 --> 00:02:03.799
 Cache popular content at the edge, shield the origin, and plan freshness with TTLs and versioned names.
+
+00:02:03.830 --> 00:02:05.084
+Back to the question.
+
+00:02:05.484 --> 00:02:07.794
+What is request collapsing at the edge?
+
+00:02:08.194 --> 00:02:11.817
+Many identical cache misses wait on a single fetch from origin.
+
+00:02:13.017 --> 00:02:13.887
+Quick recap.
+
+00:02:14.287 --> 00:02:15.994
+Copies live near users.
+
+00:02:16.394 --> 00:02:18.356
+TTL controls freshness.
+
+00:02:18.756 --> 00:02:21.856
+Shield and collapse requests to protect origin.

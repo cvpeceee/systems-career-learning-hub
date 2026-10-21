@@ -1,58 +1,118 @@
 WEBVTT
 
-00:00:00.000 --> 00:00:09.404
+00:00:00.000 --> 00:00:02.136
+Before anything else, picture this.
+
+00:00:02.536 --> 00:00:10.489
+Your camera produces frames faster than the encoder can handle, and memory grows until the device dies. Backpressure is how you stop that.
+
+00:00:11.689 --> 00:00:12.618
+Pause and think.
+
+00:00:13.018 --> 00:00:18.335
+In a single-producer single-consumer ring, who updates the head and who updates the tail?
+
+00:00:18.735 --> 00:00:26.050
+Hold your answer; we will check it at the end. And whenever a new word comes up, we stop for a moment and explain it.
+
+00:00:27.200 --> 00:00:36.604
 This lesson covers queues between threads, what happens when the consumer is slower than the producer, and the lock free single producer, single consumer ring.
 
-00:00:10.754 --> 00:00:13.680
+00:00:36.617 --> 00:00:42.921
+New word: queue. First-in-first-out structure. Picture it like this: A line at a bus stop.
+
+00:00:45.467 --> 00:00:48.393
 Picture a conveyor belt between a baker and a packer.
 
-00:00:14.130 --> 00:00:17.729
+00:00:48.843 --> 00:00:52.442
 The baker puts loaves on the belt; the packer takes them off.
 
-00:00:18.179 --> 00:00:23.995
+00:00:52.892 --> 00:00:58.708
 If the packer is slow, the belt fills up. Now the baker must wait, or loaves fall on the floor.
 
-00:00:24.445 --> 00:00:27.360
+00:00:59.158 --> 00:01:02.073
 Telling the baker to slow down is called backpressure.
 
-00:00:28.710 --> 00:00:33.481
+00:01:02.117 --> 00:01:11.300
+New word: backpressure. A slow consumer signals producers to slow down. Picture it like this: A full sink telling you to turn down the tap.
+
+00:01:13.850 --> 00:01:18.621
 The single producer, single consumer queue is a ring buffer with two counters.
 
-00:00:33.931 --> 00:00:40.793
+00:01:18.749 --> 00:01:27.178
+New word: ring buffer. A fixed-size circular queue where the writer wraps around to the start. Picture it like this: A rotating sushi belt.
+
+00:01:28.799 --> 00:01:35.661
 The producer only writes the tail. The consumer only writes the head. Nobody shares a write, so no lock is needed.
 
-00:00:41.243 --> 00:00:47.036
+00:01:36.111 --> 00:01:41.904
 The queue is empty when head equals tail, and full when tail minus head equals the capacity.
 
-00:00:47.486 --> 00:00:52.490
+00:01:42.354 --> 00:01:47.358
 Atomics with release and acquire ordering make sure the data is visible before the counter moves.
 
-00:00:53.840 --> 00:00:54.966
+00:01:47.433 --> 00:01:59.055
+New word: atomic. An operation that happens all at once; no other thread can see it half-done. Picture it like this: Flipping a light switch — it's either on or off, never half.
+
+00:02:01.583 --> 00:02:02.709
 Words to know.
 
-00:00:55.416 --> 00:01:01.848
+00:02:03.159 --> 00:02:09.591
 Release ordering on a store says: every write before me is visible to anyone who acquires this value.
 
-00:01:02.298 --> 00:01:07.511
+00:02:10.041 --> 00:02:15.254
 Acquire ordering on a load says: I see everything the releasing thread wrote before.
 
-00:01:07.961 --> 00:01:16.285
+00:02:15.704 --> 00:02:24.028
 False sharing happens when head and tail sit on the same cache line, so two cores fight over it. Pad them onto separate sixty four byte lines.
 
-00:01:16.735 --> 00:01:24.549
+00:02:24.066 --> 00:02:35.212
+New word: cache. A small fast store of recently used data so you don't fetch it from the slow place again. Picture it like this: Keeping the salt next to the stove instead of in the basement.
+
+00:02:36.816 --> 00:02:44.630
 Thread sanitizer, or TSan, is a tool that detects data races at run time. Our SPSC tests run clean under it.
 
-00:01:25.899 --> 00:01:34.606
+00:02:44.782 --> 00:02:57.762
+New word: S P S C. Single-Producer Single-Consumer queue: one writer, one reader, can be lock-free. Picture it like this: A one-lane drive-through: one cook passes, one customer takes.
+
+00:03:00.312 --> 00:03:09.019
 With several producers or consumers, use a bounded blocking queue: a mutex plus two condition variables, not full and not empty.
 
-00:01:35.056 --> 00:01:39.073
+00:03:09.046 --> 00:03:17.614
+New word: mutex. A lock that lets only one thread at a time into a section of code. Picture it like this: A single bathroom key on a hook.
+
+00:03:19.264 --> 00:03:23.281
 Always wait in a while loop, because wakeups can be spurious.
 
-00:01:39.523 --> 00:01:47.000
+00:03:23.731 --> 00:03:31.208
 The choices under overload are: block the producer, drop new items, drop old items, or fail fast with an error.
 
-00:01:47.450 --> 00:01:54.149
+00:03:31.658 --> 00:03:38.357
 Checkpoint writers in training jobs use exactly this, so a slow disk does not stall the GPUs forever.
 
-00:01:55.499 --> 00:02:02.755
+00:03:38.480 --> 00:03:51.994
+New word: G P U. Graphics Processing Unit: a chip with thousands of small cores that do the same math on lots of data at once. Picture it like this: A stadium of students each solving one simple sum at the same time.
+
+00:03:54.530 --> 00:04:01.786
 Bounded queues and backpressure keep systems alive under load. Try the SPSC queue and the bounded blocking queue problems.
+
+00:04:01.772 --> 00:04:03.026
+Back to the question.
+
+00:04:03.426 --> 00:04:08.743
+In a single-producer single-consumer ring, who updates the head and who updates the tail?
+
+00:04:09.143 --> 00:04:15.935
+The producer moves only the head (write index), the consumer moves only the tail (read index), so no lock is needed.
+
+00:04:17.135 --> 00:04:18.006
+Quick recap.
+
+00:04:18.406 --> 00:04:20.647
+Queues decouple fast and slow parts.
+
+00:04:21.047 --> 00:04:23.206
+Bound them, or memory explodes.
+
+00:04:23.606 --> 00:04:25.615
+Backpressure slows the producer.

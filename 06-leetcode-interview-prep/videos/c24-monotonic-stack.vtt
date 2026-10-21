@@ -1,55 +1,97 @@
 WEBVTT
 
-00:00:00.000 --> 00:00:06.571
+00:00:00.000 --> 00:00:02.136
+Before anything else, picture this.
+
+00:00:02.536 --> 00:00:10.721
+For every day of temperatures, find how long until a warmer day. Checking every pair is slow. A monotonic stack does it in one pass.
+
+00:00:11.921 --> 00:00:12.850
+Pause and think.
+
+00:00:13.250 --> 00:00:17.581
+When a new taller item arrives, what happens to shorter items on the stack?
+
+00:00:17.981 --> 00:00:25.295
+Hold your answer; we will check it at the end. And whenever a new word comes up, we stop for a moment and explain it.
+
+00:00:26.495 --> 00:00:33.066
 A monotonic stack finds, for every item, the next item that is bigger or smaller, in one pass.
 
-00:00:07.921 --> 00:00:11.439
+00:00:33.078 --> 00:00:42.145
+New word: stack. Last-in-first-out structure; also the memory area holding function calls. Picture it like this: A stack of plates.
+
+00:00:42.545 --> 00:00:54.991
+New word: monotonic stack. A stack kept always increasing (or decreasing) to find next-greater elements fast. Picture it like this: A line of people where shorter people step out whenever a taller one arrives.
+
+00:00:57.528 --> 00:01:01.046
 Picture people standing in a line at a parade, looking right.
 
-00:00:11.889 --> 00:00:16.103
+00:01:01.496 --> 00:01:05.710
 Short people behind a tall person can never be seen past that tall person.
 
-00:00:16.553 --> 00:00:22.010
+00:01:06.160 --> 00:01:11.617
 So when a tall person arrives, every shorter person waiting has found their answer, and they leave.
 
-00:00:22.460 --> 00:00:27.069
+00:01:12.067 --> 00:01:16.676
 The waiting people always stand from tallest to shortest. That is the monotonic stack.
 
-00:00:28.419 --> 00:00:31.740
+00:01:18.026 --> 00:01:21.347
 Daily temperatures: how many days until a warmer day?
 
-00:00:32.190 --> 00:00:37.252
+00:01:21.797 --> 00:01:26.859
 We push day indexes. The stack keeps temperatures decreasing from bottom to top.
 
-00:00:37.702 --> 00:00:44.006
+00:01:27.309 --> 00:01:33.613
 When seventy five arrives, it is warmer than seventy one and seventy three, so both pop and get their answers.
 
-00:00:44.456 --> 00:00:48.473
+00:01:34.063 --> 00:01:38.080
 Each day is pushed once and popped once, so the whole thing is linear.
 
-00:00:49.823 --> 00:00:51.437
+00:01:39.430 --> 00:01:41.044
 How to choose the direction.
 
-00:00:51.887 --> 00:00:57.100
+00:01:41.494 --> 00:01:46.707
 Want next greater? Keep the stack decreasing, and pop while the new item is bigger.
 
-00:00:57.550 --> 00:01:02.182
+00:01:47.157 --> 00:01:51.789
 Want next smaller? Keep it increasing, and pop while the new item is smaller.
 
-00:01:02.632 --> 00:01:07.276
+00:01:52.239 --> 00:01:56.883
 Store indexes, not values, so you can compute distances and widths.
 
-00:01:08.626 --> 00:01:10.623
+00:01:58.233 --> 00:02:00.230
 Where it shows up in interviews.
 
-00:01:11.073 --> 00:01:15.253
+00:02:00.680 --> 00:02:04.860
 Largest rectangle in a histogram and maximal rectangle in a matrix.
 
-00:01:15.703 --> 00:01:19.998
+00:02:05.310 --> 00:02:09.605
 Trapping rain water, where a pop finds a basin between two walls.
 
-00:01:20.448 --> 00:01:23.954
+00:02:10.055 --> 00:02:13.561
 Stock span and removing digits to make the smallest number.
 
-00:01:25.304 --> 00:01:31.098
+00:02:14.911 --> 00:02:20.705
 Keep a stack sorted, pop when the new item breaks the order, and the popped item has found its answer.
+
+00:02:20.676 --> 00:02:21.930
+Back to the question.
+
+00:02:22.330 --> 00:02:26.660
+When a new taller item arrives, what happens to shorter items on the stack?
+
+00:02:27.060 --> 00:02:29.812
+They are popped, and the new item is their answer.
+
+00:02:31.012 --> 00:02:31.883
+Quick recap.
+
+00:02:32.283 --> 00:02:33.513
+Keep the stack sorted.
+
+00:02:33.913 --> 00:02:35.283
+Pop when the rule breaks.
+
+00:02:35.683 --> 00:02:37.820
+Each item pushed and popped once.

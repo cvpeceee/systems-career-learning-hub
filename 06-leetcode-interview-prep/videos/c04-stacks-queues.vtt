@@ -1,79 +1,136 @@
 WEBVTT
 
-00:00:00.000 --> 00:00:05.039
+00:00:00.000 --> 00:00:02.136
+Before anything else, picture this.
+
+00:00:02.536 --> 00:00:11.012
+Your editor's undo button and a printer's job line look unrelated. One is a stack, the other is a queue, and interviews use both every day.
+
+00:00:12.212 --> 00:00:13.140
+Pause and think.
+
+00:00:13.540 --> 00:00:16.594
+Checking balanced brackets: stack or queue?
+
+00:00:16.994 --> 00:00:24.308
+Hold your answer; we will check it at the end. And whenever a new word comes up, we stop for a moment and explain it.
+
+00:00:25.500 --> 00:00:30.539
 Stacks and queues are two simple ways to line things up. Interviews use them constantly.
 
-00:00:06.389 --> 00:00:12.496
+00:00:30.583 --> 00:00:39.650
+New word: stack. Last-in-first-out structure; also the memory area holding function calls. Picture it like this: A stack of plates.
+
+00:00:40.050 --> 00:00:46.355
+New word: queue. First-in-first-out structure. Picture it like this: A line at a bus stop.
+
+00:00:48.905 --> 00:00:55.012
 A stack is a pile of plates. You add to the top and take from the top. Last in, first out.
 
-00:00:12.946 --> 00:00:19.517
+00:00:55.462 --> 00:01:02.033
 A queue is the line at a coffee shop. You join at the back and get served at the front. First in, first out.
 
-00:00:20.867 --> 00:00:22.736
+00:01:03.383 --> 00:01:05.252
 Watch a stack check brackets.
 
-00:00:23.186 --> 00:00:26.344
+00:01:05.702 --> 00:01:08.860
 We see an opening curly brace, so we push it.
 
-00:00:26.794 --> 00:00:29.093
+00:01:09.310 --> 00:01:11.609
 Then an opening square bracket, push.
 
-00:00:29.543 --> 00:00:34.396
+00:01:12.059 --> 00:01:16.912
 A closing square bracket must match the top plate. It does, so we pop.
 
-00:00:34.846 --> 00:00:40.349
+00:01:17.362 --> 00:01:22.865
 The closing curly brace matches the new top. Pop. The pile is empty, so the string is valid.
 
-00:00:41.699 --> 00:00:46.203
+00:01:24.215 --> 00:01:28.719
 A special trick is the monotonic stack: a stack kept in sorted order.
 
-00:00:46.653 --> 00:00:51.019
+00:01:28.805 --> 00:01:41.251
+New word: monotonic stack. A stack kept always increasing (or decreasing) to find next-greater elements fast. Picture it like this: A line of people where shorter people step out whenever a taller one arrives.
+
+00:01:42.855 --> 00:01:47.221
 For daily temperatures, the stack holds days still waiting for a warmer day.
 
-00:00:51.469 --> 00:00:56.554
+00:01:47.671 --> 00:01:52.756
 When a hotter day arrives, it pops every colder waiting day and gives them their answer.
 
-00:00:57.004 --> 00:01:01.021
+00:01:53.206 --> 00:01:57.223
 Each day is pushed once and popped once, so the whole thing is linear.
 
-00:01:02.371 --> 00:01:03.300
+00:01:58.573 --> 00:01:59.502
 Now a queue.
 
-00:01:03.750 --> 00:01:05.340
+00:01:59.952 --> 00:02:01.542
 Tasks join at the back.
 
-00:01:05.790 --> 00:01:07.950
+00:02:01.992 --> 00:02:04.152
 The front task is served and leaves.
 
-00:01:08.400 --> 00:01:14.623
+00:02:04.602 --> 00:02:10.825
 Breadth first search uses a queue so that nodes are processed in the order they were discovered, level by level.
 
-00:01:15.973 --> 00:01:19.920
+00:02:10.988 --> 00:02:20.636
+New word: node. One point in a graph or tree; also one machine in a cluster. Picture it like this: A city on a map, or one computer in a group.
+
+00:02:23.138 --> 00:02:27.085
 In driver code you use queues all the time, as ring buffers.
 
-00:01:20.370 --> 00:01:25.606
+00:02:27.204 --> 00:02:35.633
+New word: ring buffer. A fixed-size circular queue where the writer wraps around to the start. Picture it like this: A rotating sushi belt.
+
+00:02:37.254 --> 00:02:42.490
 A ring buffer is a fixed array where the head and tail indexes wrap around using modulo.
 
-00:01:26.056 --> 00:01:29.980
+00:02:42.637 --> 00:02:51.077
+New word: array. Items stored side by side in memory, reached by index. Picture it like this: A row of numbered lockers.
+
+00:02:52.687 --> 00:02:56.611
 Nothing is ever copied or shifted, so every operation is O of one.
 
-00:01:30.430 --> 00:01:36.990
+00:02:57.061 --> 00:03:03.621
 With one producer and one consumer, it can even be made lock free using atomic head and tail indexes.
 
-00:01:38.340 --> 00:01:41.045
+00:03:03.737 --> 00:03:15.359
+New word: atomic. An operation that happens all at once; no other thread can see it half-done. Picture it like this: Flipping a light switch — it's either on or off, never half.
+
+00:03:17.887 --> 00:03:20.592
 Common interview mistakes with stacks and queues.
 
-00:01:41.495 --> 00:01:44.502
+00:03:21.042 --> 00:03:24.049
 Popping from an empty stack. Always check first.
 
-00:01:44.952 --> 00:01:49.120
+00:03:24.499 --> 00:03:28.667
 Forgetting to check that the stack is empty at the very end of a bracket check.
 
-00:01:49.570 --> 00:01:54.516
+00:03:29.117 --> 00:03:34.063
 Using a Java Stack class instead of ArrayDeque, which is faster and the modern choice.
 
-00:01:54.966 --> 00:02:02.048
+00:03:34.513 --> 00:03:41.595
 And for ring buffers, mixing up full and empty when head equals tail. Keep a count, or leave one slot unused.
 
-00:02:03.398 --> 00:02:07.415
+00:03:42.945 --> 00:03:46.962
 Stacks for "most recent unfinished thing", queues for "oldest first".
+
+00:03:46.932 --> 00:03:48.186
+Back to the question.
+
+00:03:48.586 --> 00:03:51.639
+Checking balanced brackets: stack or queue?
+
+00:03:52.039 --> 00:03:56.265
+A stack, because the most recently opened bracket must close first.
+
+00:03:57.465 --> 00:03:58.336
+Quick recap.
+
+00:03:58.736 --> 00:04:01.105
+Stack: last in, first out.
+
+00:04:01.505 --> 00:04:03.954
+Queue: first in, first out.
+
+00:04:04.354 --> 00:04:08.708
+Brackets and undo use stacks; BFS and job lines use queues.

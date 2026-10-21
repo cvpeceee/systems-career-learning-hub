@@ -1,43 +1,82 @@
 WEBVTT
 
-00:00:00.000 --> 00:00:04.679
+00:00:00.000 --> 00:00:02.136
+Before anything else, picture this.
+
+00:00:02.536 --> 00:00:10.025
+You search a gigabyte log for one error string. Restarting after every mismatch is slow. KMP remembers what already matched.
+
+00:00:11.225 --> 00:00:12.153
+Pause and think.
+
+00:00:12.553 --> 00:00:15.061
+What does the KMP failure table store?
+
+00:00:15.461 --> 00:00:22.776
+Hold your answer; we will check it at the end. And whenever a new word comes up, we stop for a moment and explain it.
+
+00:00:23.975 --> 00:00:28.654
 How do you find a pattern inside a long text without starting over after every mismatch?
 
-00:00:06.029 --> 00:00:08.850
+00:00:30.004 --> 00:00:32.825
 Imagine reading a song lyric and humming along.
 
-00:00:09.300 --> 00:00:14.316
+00:00:33.275 --> 00:00:38.291
 If you sang la la la and then made a mistake, you do not restart the whole song.
 
-00:00:14.766 --> 00:00:19.804
+00:00:38.741 --> 00:00:43.779
 You remember that the last la la is still the start of the chorus, and continue from there.
 
-00:00:20.254 --> 00:00:24.678
+00:00:44.229 --> 00:00:48.653
 KMP remembers that overlap in a small table called the failure function.
 
-00:00:26.028 --> 00:00:29.267
+00:00:50.003 --> 00:00:53.242
 Here is the failure table for the pattern A B A B C.
 
-00:00:29.717 --> 00:00:35.336
+00:00:53.692 --> 00:00:59.311
 Each entry is the length of the longest proper prefix that is also a suffix of the pattern up to that point.
 
-00:00:35.786 --> 00:00:41.719
+00:00:59.761 --> 00:01:05.694
 At index three, A B A B ends with A B, which is also its start, so the value is two.
 
-00:00:42.169 --> 00:00:46.337
+00:01:06.144 --> 00:01:10.312
 On a mismatch, jump the pattern pointer to that value instead of zero.
 
-00:00:47.687 --> 00:00:51.623
+00:01:10.392 --> 00:01:18.751
+New word: pointer. A variable holding the memory address of something else. Picture it like this: A note saying "the book is on shelf 4".
+
+00:01:21.301 --> 00:01:25.237
 Rolling hash, used by Rabin Karp, is the other classic.
 
-00:00:52.073 --> 00:00:55.114
+00:01:25.687 --> 00:01:28.728
 Turn each window into a number, like reading digits.
 
-00:00:55.564 --> 00:01:00.650
+00:01:29.178 --> 00:01:34.264
 Sliding by one removes the leftmost digit and adds a new one, in constant time.
 
-00:01:01.100 --> 00:01:04.838
+00:01:34.714 --> 00:01:38.452
 If hashes match, compare characters to rule out a rare collision.
 
-00:01:06.188 --> 00:01:14.419
+00:01:39.802 --> 00:01:48.033
 KMP never re-reads text thanks to the failure table; rolling hash compares windows as numbers. Both run in linear time.
+
+00:01:48.034 --> 00:01:49.288
+Back to the question.
+
+00:01:49.688 --> 00:01:52.196
+What does the KMP failure table store?
+
+00:01:52.596 --> 00:01:56.868
+For each position, the length of the longest prefix that is also a suffix.
+
+00:01:58.068 --> 00:01:58.939
+Quick recap.
+
+00:01:59.339 --> 00:02:01.208
+Never re-read matched text.
+
+00:02:01.608 --> 00:02:03.442
+Build the prefix table first.
+
+00:02:03.842 --> 00:02:05.212
+Linear time overall.

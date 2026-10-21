@@ -1,58 +1,109 @@
 WEBVTT
 
-00:00:00.000 --> 00:00:06.838
+00:00:00.000 --> 00:00:02.136
+Before anything else, picture this.
+
+00:00:02.536 --> 00:00:11.023
+A server dies at 2 AM, yet no customer data is lost. Replication made that possible, and the interview question is how fresh the copies are.
+
+00:00:12.223 --> 00:00:13.152
+Pause and think.
+
+00:00:13.552 --> 00:00:16.245
+What is the main risk of asynchronous replication?
+
+00:00:16.645 --> 00:00:23.960
+Hold your answer; we will check it at the end. And whenever a new word comes up, we stop for a moment and explain it.
+
+00:00:25.160 --> 00:00:31.998
 This lesson covers replication: keeping copies of data on several machines so a failure does not lose anything.
 
-00:00:08.188 --> 00:00:12.925
+00:00:32.077 --> 00:00:41.597
+New word: replication. Keeping copies of data on several machines. Picture it like this: Photocopying important documents for several offices.
+
+00:00:44.127 --> 00:00:48.864
 Imagine one student takes the class notes, and two friends keep photocopies.
 
-00:00:13.375 --> 00:00:16.475
+00:00:49.314 --> 00:00:52.414
 If the note taker is sick, a friend can share the notes.
 
-00:00:16.925 --> 00:00:20.849
+00:00:52.864 --> 00:00:56.788
 But if the friends copy only once a week, their copies may be out of date.
 
-00:00:21.299 --> 00:00:28.288
+00:00:57.238 --> 00:01:04.227
 The big question in replication is: when do we tell the teacher the notes are saved? After one copy, or after all of them?
 
-00:00:29.638 --> 00:00:31.717
+00:01:05.577 --> 00:01:07.656
 Here is leader based replication.
 
-00:00:32.167 --> 00:00:34.256
+00:01:08.106 --> 00:01:10.195
 A client sends a write to the leader.
 
-00:00:34.706 --> 00:00:37.853
+00:01:10.645 --> 00:01:13.792
 The leader appends it to its log and sends it to the followers.
 
-00:00:38.303 --> 00:00:42.378
+00:01:14.242 --> 00:01:18.317
 Once enough followers confirm, the leader replies OK to the client.
 
-00:00:43.728 --> 00:00:44.726
+00:01:19.667 --> 00:01:20.665
 Vocabulary.
 
-00:00:45.176 --> 00:00:49.994
+00:01:21.115 --> 00:01:25.933
 Synchronous replication waits for followers before replying: safe, but slower.
 
-00:00:50.444 --> 00:00:56.145
+00:01:26.383 --> 00:01:32.084
 Asynchronous replication replies immediately: fast, but a crash can lose the latest writes.
 
-00:00:56.595 --> 00:01:02.748
+00:01:32.534 --> 00:01:38.687
 Replication lag is how far behind a follower is. Reading from a lagging follower can show you old data.
 
-00:01:03.198 --> 00:01:06.693
+00:01:39.137 --> 00:01:42.632
 Failover is promoting a follower to leader when the leader dies.
 
-00:01:08.043 --> 00:01:14.231
+00:01:43.982 --> 00:01:50.170
 Consensus is how replicas agree on one leader and one log order, even when machines crash.
 
-00:01:14.681 --> 00:01:19.824
+00:01:50.276 --> 00:01:59.425
+New word: consensus. Getting a group of machines to agree on one value even if some fail. Picture it like this: A jury reaching one verdict.
+
+00:01:59.825 --> 00:02:07.383
+New word: replica. A copy of data on another machine. Picture it like this: A photocopy kept in another office.
+
+00:02:09.026 --> 00:02:14.169
 Raft does this with terms, which are numbered election rounds, and a majority vote.
 
-00:01:20.274 --> 00:01:27.507
+00:02:14.243 --> 00:02:24.634
+New word: Raft. A consensus algorithm with an elected leader replicating a log to followers. Picture it like this: A team captain who keeps everyone's notebook in sync.
+
+00:02:26.284 --> 00:02:33.517
 A write is committed once a majority of nodes has it in their log. With five nodes, two can fail and the system still works.
 
-00:01:27.957 --> 00:01:33.878
+00:02:33.584 --> 00:02:43.232
+New word: node. One point in a graph or tree; also one machine in a cluster. Picture it like this: A city on a map, or one computer in a group.
+
+00:02:44.834 --> 00:02:50.755
 Split brain, two leaders at once, is prevented because two majorities always overlap.
 
-00:01:35.228 --> 00:01:44.725
+00:02:52.105 --> 00:03:01.602
 Copies protect data; acks decide safety versus speed; majorities prevent split brain. See the object store and Kafka log designs.
+
+00:03:01.599 --> 00:03:02.853
+Back to the question.
+
+00:03:03.253 --> 00:03:05.946
+What is the main risk of asynchronous replication?
+
+00:03:06.346 --> 00:03:10.073
+Losing the latest writes if the leader dies before followers copy them.
+
+00:03:11.273 --> 00:03:12.144
+Quick recap.
+
+00:03:12.544 --> 00:03:14.402
+Copies protect against failure.
+
+00:03:14.802 --> 00:03:18.575
+Sync is safe but slow; async is fast but may lose data.
+
+00:03:18.975 --> 00:03:20.763
+Followers can serve reads.

@@ -1,82 +1,133 @@
 WEBVTT
 
-00:00:00.000 --> 00:00:06.211
+00:00:00.000 --> 00:00:02.136
+Before anything else, picture this.
+
+00:00:02.536 --> 00:00:10.953
+A kernel driver keeps a list of open camera sessions with list head. Removing one from the middle must not shuffle the rest. That is a linked list's superpower.
+
+00:00:12.153 --> 00:00:13.082
+Pause and think.
+
+00:00:13.482 --> 00:00:17.128
+To find the middle node in one pass, what trick do you use?
+
+00:00:17.528 --> 00:00:24.842
+Hold your answer; we will check it at the end. And whenever a new word comes up, we stop for a moment and explain it.
+
+00:00:26.000 --> 00:00:32.211
 Linked lists are chains of nodes connected by pointers. You have seen them in kernel code as list head.
 
-00:00:07.561 --> 00:00:11.845
+00:00:32.250 --> 00:00:40.749
+New word: linked list. A chain of nodes, each pointing to the next. Picture it like this: A treasure hunt where each clue points to the next.
+
+00:00:41.149 --> 00:00:50.796
+New word: node. One point in a graph or tree; also one machine in a cluster. Picture it like this: A city on a map, or one computer in a group.
+
+00:00:51.196 --> 00:00:59.556
+New word: pointer. A variable holding the memory address of something else. Picture it like this: A note saying "the book is on shelf 4".
+
+00:01:02.100 --> 00:01:06.384
 Picture a conga line. Each dancer holds the shoulder of the next person.
 
-00:00:12.295 --> 00:00:17.079
+00:01:06.834 --> 00:01:11.618
 To find the fifth dancer, you must start at the front and walk. There is no locker number.
 
-00:00:17.529 --> 00:00:21.871
+00:01:12.068 --> 00:01:16.410
 But adding a dancer in the middle is easy: two people just change who they hold.
 
-00:00:23.221 --> 00:00:25.659
+00:01:17.760 --> 00:01:20.198
 Here is a list one, two, three, four.
 
-00:00:26.109 --> 00:00:29.604
+00:01:20.648 --> 00:01:24.143
 Each box stores a value and a pointer to the next box.
 
-00:00:30.054 --> 00:00:33.339
+00:01:24.593 --> 00:01:27.878
 The last pointer is null, shown as an empty set symbol.
 
-00:00:33.789 --> 00:00:36.750
+00:01:28.328 --> 00:01:31.289
 To reach node four, you follow three arrows.
 
-00:00:38.100 --> 00:00:42.047
+00:01:32.639 --> 00:01:36.586
 Now let us reverse it in place, the classic interview question.
 
-00:00:42.497 --> 00:00:46.108
+00:01:37.036 --> 00:01:40.647
 We use three pointers: previous, current, and next.
 
-00:00:46.558 --> 00:00:49.646
+00:01:41.097 --> 00:01:44.185
 Save next, so we do not lose the rest of the line.
 
-00:00:50.096 --> 00:00:52.174
+00:01:44.635 --> 00:01:46.713
 Point current backwards at previous.
 
-00:00:52.624 --> 00:00:55.492
+00:01:47.163 --> 00:01:50.031
 Then move previous and current one step forward.
 
-00:00:55.942 --> 00:00:59.773
+00:01:50.481 --> 00:01:54.312
 Repeat until current falls off the end. Previous is the new head.
 
-00:01:01.123 --> 00:01:06.580
+00:01:55.662 --> 00:02:01.119
 A doubly linked list adds a previous pointer, so you can unlink any node in O of one if you hold it.
 
-00:01:07.030 --> 00:01:10.617
+00:02:01.569 --> 00:02:05.156
 That is exactly how an LRU cache moves an item to the front.
 
-00:01:11.067 --> 00:01:15.154
+00:02:05.167 --> 00:02:17.926
+New word: L R U. Least Recently Used: a cache rule that throws out whatever was used longest ago. Picture it like this: Clearing the fridge by tossing what nobody has touched in the longest time.
+
+00:02:18.326 --> 00:02:29.472
+New word: cache. A small fast store of recently used data so you don't fetch it from the slow place again. Picture it like this: Keeping the salt next to the stove instead of in the basement.
+
+00:02:31.117 --> 00:02:35.204
 Sentinel, or dummy, nodes at both ends remove most null checks.
 
-00:01:15.604 --> 00:01:20.202
+00:02:35.654 --> 00:02:40.252
 The cost: poor cache locality, because nodes are scattered in memory.
 
-00:01:21.552 --> 00:01:26.695
+00:02:41.602 --> 00:02:46.745
 A classic trick is the fast and slow pointer, sometimes called the tortoise and the hare.
 
-00:01:27.145 --> 00:01:31.081
+00:02:47.195 --> 00:02:51.131
 The slow pointer moves one step, the fast pointer moves two.
 
-00:01:31.531 --> 00:01:35.060
+00:02:51.581 --> 00:02:55.110
 When fast reaches the end, slow is exactly in the middle.
 
-00:01:35.510 --> 00:01:43.103
+00:02:55.560 --> 00:03:03.153
 If the list has a cycle, fast will eventually lap slow and they will meet. That is how you detect a loop in a corrupted descriptor chain.
 
-00:01:44.453 --> 00:01:46.612
+00:03:04.503 --> 00:03:06.662
 Interview tips for linked lists.
 
-00:01:47.062 --> 00:01:51.962
+00:03:07.112 --> 00:03:12.012
 Use a dummy head node when the head itself might change, like when deleting or merging.
 
-00:01:52.412 --> 00:01:57.776
+00:03:12.462 --> 00:03:17.826
 Draw three or four boxes on the whiteboard and update the arrows by hand before writing code.
 
-00:01:58.226 --> 00:02:04.797
+00:03:18.276 --> 00:03:24.847
 And in C plus plus, think about who owns each node, so you do not leak memory or free a node twice.
 
-00:02:06.147 --> 00:02:11.429
+00:03:26.197 --> 00:03:31.479
 Draw the boxes and arrows before you code. Most linked list bugs are lost pointers.
+
+00:03:31.475 --> 00:03:32.729
+Back to the question.
+
+00:03:33.129 --> 00:03:36.774
+To find the middle node in one pass, what trick do you use?
+
+00:03:37.174 --> 00:03:45.824
+Fast and slow pointers: the fast one moves two steps, the slow one moves one; when fast reaches the end, slow is in the middle.
+
+00:03:47.024 --> 00:03:47.895
+Quick recap.
+
+00:03:48.295 --> 00:03:50.036
+Nodes point to the next node.
+
+00:03:50.436 --> 00:03:53.002
+Insert and delete are cheap once you are there.
+
+00:03:53.402 --> 00:03:56.432
+Fast and slow pointers find middles and cycles.

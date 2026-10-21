@@ -1,82 +1,127 @@
 WEBVTT
 
-00:00:00.000 --> 00:00:06.095
+00:00:00.000 --> 00:00:02.136
+Before anything else, picture this.
+
+00:00:02.536 --> 00:00:11.162
+Your driver works on a test board with ten frames, then the customer streams ten thousand and it falls over. Big O is how you predict that before shipping.
+
+00:00:12.362 --> 00:00:13.291
+Pause and think.
+
+00:00:13.691 --> 00:00:19.578
+If one loop is O of n and you nest a second loop inside it, what happens to the time when n doubles?
+
+00:00:19.978 --> 00:00:27.292
+Hold your answer; we will check it at the end. And whenever a new word comes up, we stop for a moment and explain it.
+
+00:00:28.492 --> 00:00:34.587
 Welcome, Chandra. This lesson is about Big O, the language interviewers use to talk about speed.
 
-00:00:06.545 --> 00:00:10.411
+00:00:35.037 --> 00:00:38.903
 No math degree needed. We will use everyday pictures first.
 
-00:00:11.761 --> 00:00:14.780
+00:00:40.253 --> 00:00:43.272
 Imagine you are handing out name badges at a conference.
 
-00:00:15.230 --> 00:00:23.485
+00:00:43.722 --> 00:00:51.977
 If you just hand each guest the top badge from a pile, every guest takes the same tiny effort. That is constant time, written O of one.
 
-00:00:23.935 --> 00:00:31.191
+00:00:52.427 --> 00:00:59.683
 If you must search the whole pile for each guest's name, the effort grows with the number of guests. That is linear, O of n.
 
-00:00:31.641 --> 00:00:37.597
+00:01:00.133 --> 00:01:06.089
 And if every guest must shake hands with every other guest, the work explodes. That is O of n squared.
 
-00:00:38.947 --> 00:00:40.897
+00:01:07.439 --> 00:01:09.389
 Here is the picture that matters.
 
-00:00:41.347 --> 00:00:45.504
+00:01:09.839 --> 00:01:13.996
 The green line is constant: it does not care how big the input is.
 
-00:00:45.954 --> 00:00:53.129
+00:01:14.446 --> 00:01:21.621
 Log n grows very slowly. Doubling the input adds just one more step, like guessing a page in a book by halving.
 
-00:00:53.579 --> 00:00:55.715
+00:01:22.071 --> 00:01:24.207
 Linear grows in a straight line.
 
-00:00:56.165 --> 00:00:58.510
+00:01:24.657 --> 00:01:27.002
 n log n is what good sorting costs.
 
-00:00:58.960 --> 00:01:04.556
+00:01:27.452 --> 00:01:33.048
 And n squared shoots off the chart. With a hundred thousand items, that is ten billion steps.
 
-00:01:05.906 --> 00:01:09.784
+00:01:34.398 --> 00:01:38.276
 Big O describes the shape of the growth, not the exact seconds.
 
-00:01:10.234 --> 00:01:15.296
+00:01:38.726 --> 00:01:43.788
 We drop constants. Two n and n are both O of n, because the shape is the same.
 
-00:01:15.746 --> 00:01:20.007
+00:01:44.238 --> 00:01:48.499
 We keep only the biggest term. n squared plus n is just O of n squared.
 
-00:01:20.457 --> 00:01:23.673
+00:01:48.949 --> 00:01:52.165
 Space complexity uses the same language for memory.
 
-00:01:24.123 --> 00:01:31.669
+00:01:52.615 --> 00:02:00.161
 For your systems work, also remember that constants still matter in the real world: cache misses, allocations, and locks.
 
-00:01:33.019 --> 00:01:35.051
+00:02:00.242 --> 00:02:11.388
+New word: cache. A small fast store of recently used data so you don't fetch it from the slow place again. Picture it like this: Keeping the salt next to the stove instead of in the basement.
+
+00:02:13.892 --> 00:02:15.924
 Let us count the work in a real loop.
 
-00:01:35.501 --> 00:01:41.410
+00:02:16.374 --> 00:02:22.283
 Scanning an array once touches each cell once. Eight items, eight steps. That is O of n.
 
-00:01:41.860 --> 00:01:48.873
+00:02:22.375 --> 00:02:30.815
+New word: array. Items stored side by side in memory, reached by index. Picture it like this: A row of numbered lockers.
+
+00:02:32.425 --> 00:02:39.438
 A nested loop that compares every pair touches about n squared over two pairs. Eight items, twenty eight pairs.
 
-00:01:49.323 --> 00:01:55.151
+00:02:39.888 --> 00:02:45.716
 Binary search on sorted data cuts the range in half each step. Eight items, only three steps.
 
-00:01:56.501 --> 00:01:58.985
+00:02:45.725 --> 00:02:54.618
+New word: binary search. Find an item in sorted data by halving the range each step. Picture it like this: Guessing a number with "higher or lower".
+
+00:02:57.168 --> 00:02:59.652
 Here is a handy cheat sheet for interviews.
 
-00:01:59.435 --> 00:02:03.348
+00:03:00.102 --> 00:03:04.015
 If n is up to about ten thousand, n squared might pass.
 
-00:02:03.798 --> 00:02:08.245
+00:03:04.465 --> 00:03:08.912
 If n is a hundred thousand or a million, aim for n log n or n.
 
-00:02:08.695 --> 00:02:14.221
+00:03:09.362 --> 00:03:14.888
 If n is tiny, like twenty, even two to the n, exponential search, can work.
 
-00:02:14.671 --> 00:02:20.371
+00:03:15.338 --> 00:03:21.038
 Always say the complexity out loud after you code. It is one of the easiest points to earn.
 
-00:02:21.721 --> 00:02:28.815
+00:03:22.388 --> 00:03:29.482
 That is Big O. Next, open any problem in this course and you will see its brute force and optimal cost side by side.
+
+00:03:29.460 --> 00:03:30.714
+Back to the question.
+
+00:03:31.114 --> 00:03:37.000
+If one loop is O of n and you nest a second loop inside it, what happens to the time when n doubles?
+
+00:03:37.400 --> 00:03:42.033
+It roughly quadruples: n squared grows four times when n doubles.
+
+00:03:43.233 --> 00:03:44.103
+Quick recap.
+
+00:03:44.503 --> 00:03:47.429
+Big O describes growth, not exact seconds.
+
+00:03:47.829 --> 00:03:50.418
+Drop constants; keep the biggest term.
+
+00:03:50.818 --> 00:03:53.860
+Nested loops multiply; sequential loops add.

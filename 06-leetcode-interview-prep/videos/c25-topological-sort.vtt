@@ -1,43 +1,91 @@
 WEBVTT
 
-00:00:00.000 --> 00:00:05.689
+00:00:00.000 --> 00:00:02.136
+Before anything else, picture this.
+
+00:00:02.536 --> 00:00:10.605
+Your build system must compile libraries before the programs that use them. Topological sort gives a valid order, or tells you there is a cycle.
+
+00:00:11.805 --> 00:00:12.734
+Pause and think.
+
+00:00:13.134 --> 00:00:15.746
+How does Kahn's algorithm detect a cycle?
+
+00:00:16.146 --> 00:00:23.460
+Hold your answer; we will check it at the end. And whenever a new word comes up, we stop for a moment and explain it.
+
+00:00:24.660 --> 00:00:30.349
 Topological sort puts tasks in an order where every task comes after the tasks it depends on.
 
-00:00:07.039 --> 00:00:08.606
+00:00:30.410 --> 00:00:40.975
+New word: topological sort. An ordering of tasks so every task comes after the tasks it depends on. Picture it like this: Getting dressed: socks before shoes.
+
+00:00:43.525 --> 00:00:45.092
 Think about getting dressed.
 
-00:00:09.056 --> 00:00:13.677
+00:00:45.542 --> 00:00:50.163
 Socks before shoes, underwear before trousers, shirt before tie.
 
-00:00:14.127 --> 00:00:17.401
+00:00:50.613 --> 00:00:53.887
 Any order that respects all of these arrows is fine.
 
-00:00:17.851 --> 00:00:24.341
+00:00:54.337 --> 00:01:00.827
 If the rules were shoes before socks and socks before shoes, there would be no valid order. That is a cycle.
 
-00:00:25.691 --> 00:00:30.683
+00:01:02.177 --> 00:01:07.169
 Kahn's algorithm counts incoming arrows for each node. That count is the in degree.
 
-00:00:31.133 --> 00:00:34.779
+00:01:07.258 --> 00:01:16.906
+New word: node. One point in a graph or tree; also one machine in a cluster. Picture it like this: A city on a map, or one computer in a group.
+
+00:01:18.508 --> 00:01:22.154
 Every node with in degree zero is ready, so put it in a queue.
 
-00:00:35.229 --> 00:00:39.490
+00:01:22.308 --> 00:01:28.612
+New word: queue. First-in-first-out structure. Picture it like this: A line at a bus stop.
+
+00:01:30.258 --> 00:01:34.519
 Take one out, add it to the order, and remove its outgoing arrows.
 
-00:00:39.940 --> 00:00:42.796
+00:01:34.969 --> 00:01:37.825
 Any neighbor whose count drops to zero becomes ready.
 
-00:00:44.146 --> 00:00:45.562
+00:01:39.175 --> 00:01:40.591
 How to detect a cycle.
 
-00:00:46.012 --> 00:00:51.399
+00:01:41.041 --> 00:01:46.428
 If the output order has fewer nodes than the graph, some nodes never reached zero.
 
-00:00:51.849 --> 00:00:53.846
+00:01:46.557 --> 00:01:53.686
+New word: graph. A set of nodes connected by edges. Picture it like this: A map of cities and roads.
+
+00:01:55.307 --> 00:01:57.304
 Those nodes are stuck in a cycle.
 
-00:00:54.296 --> 00:00:58.685
+00:01:57.754 --> 00:02:02.143
 This is exactly the course schedule problem: can you finish all courses?
 
-00:01:00.035 --> 00:01:06.513
+00:02:03.493 --> 00:02:09.971
 Count in degrees, start from zeros, peel layer by layer. Fewer outputs than nodes means a cycle.
+
+00:02:09.960 --> 00:02:11.214
+Back to the question.
+
+00:02:11.614 --> 00:02:14.226
+How does Kahn's algorithm detect a cycle?
+
+00:02:14.626 --> 00:02:18.643
+If it finishes with fewer nodes output than exist, a cycle remains.
+
+00:02:19.843 --> 00:02:20.714
+Quick recap.
+
+00:02:21.114 --> 00:02:23.552
+Edges point from prerequisite to dependent.
+
+00:02:23.952 --> 00:02:26.413
+Start with nodes that have no prerequisites.
+
+00:02:26.813 --> 00:02:28.497
+Leftovers mean a cycle.

@@ -1,82 +1,145 @@
 WEBVTT
 
-00:00:00.000 --> 00:00:05.735
+00:00:00.000 --> 00:00:02.136
+Before anything else, picture this.
+
+00:00:02.536 --> 00:00:11.894
+An interviewer asks: find two prices in a sorted list that add to a gift-card balance. The slow way checks every pair. Two pointers does it in one walk.
+
+00:00:13.094 --> 00:00:14.023
+Pause and think.
+
+00:00:14.423 --> 00:00:19.229
+In a sorted array, if the two pointers sum to too little, which pointer moves?
+
+00:00:19.629 --> 00:00:26.943
+Hold your answer; we will check it at the end. And whenever a new word comes up, we stop for a moment and explain it.
+
+00:00:28.100 --> 00:00:33.835
 This lesson covers arrays and two of the most common interview patterns: two pointers and sliding windows.
 
-00:00:07.085 --> 00:00:09.860
+00:00:33.850 --> 00:00:44.438
+New word: two pointers. A technique moving two indices through an array to avoid nested loops. Picture it like this: Two people walking toward each other from both ends of a hall.
+
+00:00:44.838 --> 00:00:54.893
+New word: sliding window. Keep a moving range over an array, updating as it slides. Picture it like this: Looking through a train window as the view slides past.
+
+00:00:55.293 --> 00:01:03.652
+New word: pointer. A variable holding the memory address of something else. Picture it like this: A note saying "the book is on shelf 4".
+
+00:01:04.052 --> 00:01:12.492
+New word: array. Items stored side by side in memory, reached by index. Picture it like this: A row of numbered lockers.
+
+00:01:15.000 --> 00:01:17.775
 An array is a row of numbered lockers in a hallway.
 
-00:00:10.310 --> 00:00:17.323
+00:01:18.225 --> 00:01:25.238
 Because the lockers are numbered and side by side in memory, you can walk straight to locker number five without opening the others.
 
-00:00:17.773 --> 00:00:20.396
+00:01:25.688 --> 00:01:28.311
 That is why reading any index is O of one.
 
-00:00:20.846 --> 00:00:25.711
+00:01:28.761 --> 00:01:33.626
 But inserting a locker in the middle means shifting every locker after it, which is O of n.
 
-00:00:27.061 --> 00:00:28.419
+00:01:34.976 --> 00:01:36.334
 Here is an array in memory.
 
-00:00:28.869 --> 00:00:33.061
+00:01:36.784 --> 00:01:40.976
 Index zero holds three, index one holds eight, and so on.
 
-00:00:33.511 --> 00:00:39.014
+00:01:41.426 --> 00:01:46.929
 Reading index four is a single step: start address plus four times the element size.
 
-00:00:39.464 --> 00:00:45.594
+00:01:47.379 --> 00:01:53.509
 This is also why arrays are cache friendly, something you already know from driver code with DMA buffers.
 
-00:00:46.944 --> 00:00:48.418
+00:01:53.567 --> 00:02:07.127
+New word: D M A. Direct memory access: a hardware helper that copies data to memory without the processor doing each byte. Picture it like this: A conveyor belt that moves boxes while the worker does something else.
+
+00:02:07.527 --> 00:02:18.673
+New word: cache. A small fast store of recently used data so you don't fetch it from the slow place again. Picture it like this: Keeping the salt next to the stove instead of in the basement.
+
+00:02:21.217 --> 00:02:22.691
 Now, two pointers.
 
-00:00:48.868 --> 00:00:51.759
+00:02:23.141 --> 00:02:26.032
 Put one finger at the left end and one at the right end.
 
-00:00:52.209 --> 00:00:55.843
+00:02:26.482 --> 00:02:30.116
 At every step, move one finger inward based on a rule.
 
-00:00:56.293 --> 00:01:00.600
+00:02:30.566 --> 00:02:34.873
 Because each finger only moves in one direction, the total work is linear.
 
-00:01:01.050 --> 00:01:06.461
+00:02:35.323 --> 00:02:40.734
 Container With Most Water uses exactly this: always move the finger at the shorter wall.
 
-00:01:07.811 --> 00:01:12.455
+00:02:40.866 --> 00:02:52.244
+New word: container. A packaged app with its dependencies, isolated but sharing the host kernel. Picture it like this: A shipping container: same box everywhere, shares the ship.
+
+00:02:54.794 --> 00:02:59.438
 A sliding window is two pointers that both move to the right, like a caterpillar.
 
-00:01:12.905 --> 00:01:17.688
+00:02:59.888 --> 00:03:04.671
 The right end grows the window. The left end shrinks it when a rule breaks.
 
-00:01:18.138 --> 00:01:25.533
+00:03:05.121 --> 00:03:12.516
 For the longest substring without repeats, when the head finds a letter already in the body, the tail jumps past the old copy.
 
-00:01:25.983 --> 00:01:30.326
+00:03:12.966 --> 00:03:17.309
 Each letter enters and leaves the window at most once, so it is O of n.
 
-00:01:31.676 --> 00:01:33.452
+00:03:18.659 --> 00:03:20.435
 How do you spot these patterns?
 
-00:01:33.902 --> 00:01:38.105
+00:03:20.885 --> 00:03:25.088
 If the input is sorted, or you need a pair, think two pointers.
 
-00:01:38.555 --> 00:01:44.232
+00:03:25.538 --> 00:03:31.215
 If the question says longest, shortest, or contiguous subarray, think sliding window.
 
-00:01:44.682 --> 00:01:50.092
+00:03:31.665 --> 00:03:37.075
 Watch the pitfalls: off by one on window length, and pointers that move backwards.
 
-00:01:51.442 --> 00:01:57.294
+00:03:38.425 --> 00:03:44.277
 One more classic: binary search on a rotated array, like a log ring buffer that wrapped around.
 
-00:01:57.744 --> 00:02:01.076
+00:03:44.278 --> 00:03:52.707
+New word: ring buffer. A fixed-size circular queue where the writer wraps around to the start. Picture it like this: A rotating sushi belt.
+
+00:03:53.107 --> 00:04:02.000
+New word: binary search. Find an item in sorted data by halving the range each step. Picture it like this: Guessing a number with "higher or lower".
+
+00:04:03.628 --> 00:04:06.960
 Pick the middle. At least one half is still in sorted order.
 
-00:02:01.526 --> 00:02:06.855
+00:04:07.410 --> 00:04:12.739
 If the target falls inside the sorted half, keep that half. Otherwise keep the other one.
 
-00:02:07.305 --> 00:02:11.716
+00:04:13.189 --> 00:04:17.600
 Each step throws away half the array, so it costs log n steps.
 
-00:02:13.066 --> 00:02:20.984
+00:04:18.950 --> 00:04:26.868
 Try Two Sum, Longest Substring, and Container With Most Water in the practice tab, and watch the pointers move in the visualizer.
+
+00:04:26.829 --> 00:04:28.083
+Back to the question.
+
+00:04:28.483 --> 00:04:33.289
+In a sorted array, if the two pointers sum to too little, which pointer moves?
+
+00:04:33.689 --> 00:04:38.171
+The left pointer moves right, because that is the only way to make the sum bigger.
+
+00:04:39.371 --> 00:04:40.242
+Quick recap.
+
+00:04:40.642 --> 00:04:43.184
+Arrays give instant access by index.
+
+00:04:43.584 --> 00:04:46.568
+Two pointers squeeze from both ends of sorted data.
+
+00:04:46.968 --> 00:04:50.184
+A sliding window grows and shrinks to keep a rule true.

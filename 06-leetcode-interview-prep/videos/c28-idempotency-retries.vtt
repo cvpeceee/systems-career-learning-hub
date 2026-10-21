@@ -1,43 +1,85 @@
 WEBVTT
 
-00:00:00.000 --> 00:00:05.143
+00:00:00.000 --> 00:00:02.136
+Before anything else, picture this.
+
+00:00:02.536 --> 00:00:10.721
+A customer taps Pay, the network drops, the app retries, and the card is charged twice. Idempotency keys prevent exactly that.
+
+00:00:11.921 --> 00:00:12.850
+Pause and think.
+
+00:00:13.250 --> 00:00:15.630
+Where must the idempotency key be checked?
+
+00:00:16.030 --> 00:00:23.344
+Hold your answer; we will check it at the end. And whenever a new word comes up, we stop for a moment and explain it.
+
+00:00:24.500 --> 00:00:29.643
 Networks fail in the middle of requests. Idempotency makes it safe to try again.
 
-00:00:06.493 --> 00:00:08.362
+00:00:30.993 --> 00:00:32.862
 Think about an elevator call button.
 
-00:00:08.812 --> 00:00:15.268
+00:00:33.312 --> 00:00:39.768
 Pressing it five times does not call five elevators. The result of one press and five presses is the same.
 
-00:00:15.718 --> 00:00:18.852
+00:00:40.218 --> 00:00:43.352
 A payment API should behave like that button.
 
-00:00:19.302 --> 00:00:25.932
+00:00:43.417 --> 00:00:57.558
+New word: A P I. Application Programming Interface: the agreed set of functions or requests one piece of software offers another. Picture it like this: A restaurant menu: you order from it without knowing how the kitchen works.
+
+00:00:59.167 --> 00:01:05.797
 The client attaches an idempotency key, a unique ticket number, and the server remembers the result for that ticket.
 
-00:00:27.282 --> 00:00:29.081
+00:01:05.883 --> 00:01:17.702
+New word: idempotency key. A unique ID sent with a request so the server can recognise and ignore a retry. Picture it like this: A raffle ticket number: the same ticket can only win once.
+
+00:01:20.233 --> 00:01:22.032
 Here is the dangerous case.
 
-00:00:29.531 --> 00:00:33.653
+00:01:22.482 --> 00:01:26.604
 The client sends charge, with key k1. The server charges the card.
 
-00:00:34.103 --> 00:00:39.269
+00:01:27.054 --> 00:01:32.220
 The reply is lost on the way back, so the client times out and retries with the same key.
 
-00:00:39.719 --> 00:00:45.280
+00:01:32.670 --> 00:01:38.231
 The server sees k1 already done and returns the saved result. No second charge.
 
-00:00:46.630 --> 00:00:49.045
+00:01:39.581 --> 00:01:41.996
 Retry rules that interviewers check.
 
-00:00:49.495 --> 00:00:55.254
+00:01:42.446 --> 00:01:48.205
 Reuse the same key for every retry of one logical request. A new key means a new charge.
 
-00:00:55.704 --> 00:01:03.982
+00:01:48.655 --> 00:01:56.933
 Retry only on timeouts, connection errors, too many requests and five hundred errors, never on four hundred errors like bad input.
 
-00:01:04.432 --> 00:01:08.019
+00:01:57.383 --> 00:02:00.970
 Back off exponentially with jitter, and cap the attempts.
 
-00:01:09.369 --> 00:01:15.023
+00:02:02.320 --> 00:02:07.974
 Make writes idempotent with a key, retry only safe failures, and back off with jitter.
+
+00:02:07.966 --> 00:02:09.220
+Back to the question.
+
+00:02:09.620 --> 00:02:12.000
+Where must the idempotency key be checked?
+
+00:02:12.400 --> 00:02:15.337
+On the server, atomically, before doing the work.
+
+00:02:16.537 --> 00:02:17.408
+Quick recap.
+
+00:02:17.808 --> 00:02:19.004
+Retries are normal.
+
+00:02:19.404 --> 00:02:22.004
+Idempotent means twice equals once.
+
+00:02:22.404 --> 00:02:24.541
+Use keys and backoff with jitter.

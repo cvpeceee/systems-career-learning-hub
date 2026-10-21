@@ -1,55 +1,109 @@
 WEBVTT
 
-00:00:00.000 --> 00:00:07.163
+00:00:00.000 --> 00:00:02.136
+Before anything else, picture this.
+
+00:00:02.536 --> 00:00:10.048
+You add one cache server and suddenly every key moves, so the database melts. Consistent hashing makes only a small slice move.
+
+00:00:11.248 --> 00:00:12.177
+Pause and think.
+
+00:00:12.577 --> 00:00:15.119
+When a server joins the ring, which keys move?
+
+00:00:15.519 --> 00:00:22.834
+Hold your answer; we will check it at the end. And whenever a new word comes up, we stop for a moment and explain it.
+
+00:00:24.000 --> 00:00:31.163
 This lesson covers consistent hashing, the trick that lets caches and databases add servers without reshuffling everything.
 
-00:00:08.513 --> 00:00:11.729
+00:00:31.167 --> 00:00:42.313
+New word: cache. A small fast store of recently used data so you don't fetch it from the slow place again. Picture it like this: Keeping the salt next to the stove instead of in the basement.
+
+00:00:42.713 --> 00:00:54.473
+New word: consistent hashing. Placing servers and keys on a ring so adding a server moves only a few keys. Picture it like this: Seats around a round table: a new guest only bumps their neighbours.
+
+00:00:57.017 --> 00:01:00.233
 Picture a round table with servers sitting at a few seats.
 
-00:00:12.179 --> 00:00:16.661
+00:01:00.683 --> 00:01:05.165
 Each key also gets a spot on the edge of the table, using a hash.
 
-00:00:17.111 --> 00:00:21.000
+00:01:05.167 --> 00:01:15.546
+New word: edge. A connection between two nodes in a graph; also "the edge" = servers close to users. Picture it like this: A road between two cities.
+
+00:01:17.196 --> 00:01:21.085
 A key walks clockwise and belongs to the first server it meets.
 
-00:00:21.450 --> 00:00:27.545
+00:01:21.535 --> 00:01:27.630
 If a new server sits down, only the keys just before its seat move to it. Everyone else stays put.
 
-00:00:28.895 --> 00:00:32.355
+00:01:28.980 --> 00:01:32.440
 First, why not just use hash of key modulo n?
 
-00:00:32.805 --> 00:00:39.562
+00:01:32.890 --> 00:01:39.647
 With modulo, changing n from four servers to five changes the answer for about eighty percent of keys.
 
-00:00:40.012 --> 00:00:46.003
+00:01:40.097 --> 00:01:46.088
 For a cache, that means almost every lookup misses at once, and the database behind it gets crushed.
 
-00:00:46.453 --> 00:00:49.924
+00:01:46.538 --> 00:01:50.009
 Consistent hashing moves only about one over n of the keys.
 
-00:00:51.274 --> 00:00:54.548
+00:01:51.359 --> 00:01:54.633
 Here is the ring with three servers, A, B and C.
 
-00:00:54.998 --> 00:00:59.050
+00:01:55.083 --> 00:01:59.135
 Key k one hashes to here, walks clockwise and lands on B.
 
-00:00:59.500 --> 00:01:02.461
+00:01:59.585 --> 00:02:02.546
 Now server D joins between A and B.
 
-00:01:02.911 --> 00:01:07.984
+00:02:02.996 --> 00:02:08.069
 Only key k one moves from B to D. Keys owned by A and C do not move at all.
 
-00:01:09.334 --> 00:01:10.333
+00:02:09.419 --> 00:02:10.418
 Vocabulary.
 
-00:01:10.783 --> 00:01:20.036
+00:02:10.868 --> 00:02:20.121
 Virtual nodes: each real server sits at many seats, like a hundred, so load spreads evenly and a failed server's keys scatter across many others.
 
-00:01:20.486 --> 00:01:25.652
+00:02:20.162 --> 00:02:29.810
+New word: node. One point in a graph or tree; also one machine in a cluster. Picture it like this: A city on a map, or one computer in a group.
+
+00:02:31.412 --> 00:02:36.578
 The lookup is a binary search over sorted seat positions, so log of the number of seats.
 
-00:01:26.102 --> 00:01:30.677
+00:02:36.712 --> 00:02:45.605
+New word: binary search. Find an item in sorted data by halving the range each step. Picture it like this: Guessing a number with "higher or lower".
+
+00:02:47.255 --> 00:02:51.830
 Replication: store a key on the first R distinct servers clockwise.
 
-00:01:32.027 --> 00:01:41.175
+00:02:51.888 --> 00:03:01.408
+New word: replication. Keeping copies of data on several machines. Picture it like this: Photocopying important documents for several offices.
+
+00:03:03.938 --> 00:03:13.086
 Remember: a ring, a clockwise walk, virtual nodes for balance, and only one over n of keys move. Open the hash ring component to trace it.
+
+00:03:13.057 --> 00:03:14.311
+Back to the question.
+
+00:03:14.711 --> 00:03:17.253
+When a server joins the ring, which keys move?
+
+00:03:17.653 --> 00:03:20.858
+Only the keys between it and the server before it on the ring.
+
+00:03:22.058 --> 00:03:22.929
+Quick recap.
+
+00:03:23.329 --> 00:03:25.349
+Servers and keys sit on a ring.
+
+00:03:25.749 --> 00:03:28.175
+A key goes to the next server clockwise.
+
+00:03:28.575 --> 00:03:30.421
+Virtual nodes even out the load.

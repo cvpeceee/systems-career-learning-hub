@@ -1,70 +1,112 @@
 WEBVTT
 
-00:00:00.000 --> 00:00:05.306
+00:00:00.000 --> 00:00:02.136
+Before anything else, picture this.
+
+00:00:02.536 --> 00:00:10.791
+Sudoku, permutations and seating plans all ask you to try a choice, see if it works, and undo it if not. That is backtracking.
+
+00:00:11.991 --> 00:00:12.920
+Pause and think.
+
+00:00:13.320 --> 00:00:16.954
+What makes backtracking faster than trying every full combination?
+
+00:00:17.354 --> 00:00:24.668
+Hold your answer; we will check it at the end. And whenever a new word comes up, we stop for a moment and explain it.
+
+00:00:25.868 --> 00:00:31.174
 This lesson covers backtracking: trying choices, and undoing them when they do not work.
 
-00:00:06.656 --> 00:00:09.512
+00:00:31.201 --> 00:00:41.011
+New word: backtracking. Try a choice, explore, undo it if it fails, try the next. Picture it like this: Walking a maze and stepping back at dead ends.
+
+00:00:43.551 --> 00:00:46.407
 Picture walking through a maze with a ball of string.
 
-00:00:09.962 --> 00:00:13.340
+00:00:46.857 --> 00:00:50.235
 At each fork you pick a path and unroll string behind you.
 
-00:00:13.790 --> 00:00:18.725
+00:00:50.685 --> 00:00:55.620
 If you hit a dead end, you walk back along the string to the last fork and try the next path.
 
-00:00:19.175 --> 00:00:22.739
+00:00:56.070 --> 00:00:59.634
 Rolling the string back up is the undo step. That is backtracking.
 
-00:00:24.089 --> 00:00:28.001
+00:01:00.984 --> 00:01:04.896
 Here is permutations of one, two, three as a call stack.
 
-00:00:28.451 --> 00:00:34.941
+00:01:04.951 --> 00:01:14.018
+New word: stack. Last-in-first-out structure; also the memory area holding function calls. Picture it like this: A stack of plates.
+
+00:01:15.668 --> 00:01:22.158
 The first call chooses one. It calls deeper, which chooses two, then three. A full row is recorded.
 
-00:00:35.391 --> 00:00:40.581
+00:01:22.608 --> 00:01:27.798
 Then the deepest frame returns, and two is un-chosen so three can be tried in its place.
 
-00:00:41.031 --> 00:00:46.163
+00:01:28.248 --> 00:01:33.380
 Each frame on the stack is one decision. The depth of the stack is the length of the path.
 
-00:00:47.513 --> 00:00:50.125
+00:01:34.730 --> 00:01:37.342
 The template is always the same three lines.
 
-00:00:50.575 --> 00:00:54.209
+00:01:37.792 --> 00:01:41.426
 Choose: add an option to the current path and mark it used.
 
-00:00:54.659 --> 00:00:57.526
+00:01:41.876 --> 00:01:44.743
 Explore: recurse to make the next decision.
 
-00:00:57.976 --> 00:01:02.435
+00:01:45.193 --> 00:01:49.652
 Un-choose: remove it again, so the path is clean for the next option.
 
-00:01:02.885 --> 00:01:07.180
+00:01:50.102 --> 00:01:54.397
 And when the path is complete, save a COPY of it, not the path itself.
 
-00:01:08.530 --> 00:01:11.108
+00:01:55.747 --> 00:01:58.325
 Pruning is what makes backtracking fast enough.
 
-00:01:11.558 --> 00:01:15.087
+00:01:58.775 --> 00:02:02.304
 Pruning means refusing to go down a path that cannot succeed.
 
-00:01:15.537 --> 00:01:22.190
+00:02:02.754 --> 00:02:09.407
 N Queens prunes any square already attacked. Word Search Two prunes any letters that are not a prefix of a word.
 
-00:01:22.640 --> 00:01:27.922
+00:02:09.857 --> 00:02:15.139
 Good pruning can turn hours into milliseconds, even though the worst case stays exponential.
 
-00:01:29.272 --> 00:01:30.352
+00:02:16.489 --> 00:02:17.569
 Interview tips.
 
-00:01:30.802 --> 00:01:34.064
+00:02:18.019 --> 00:02:21.281
 Draw the decision tree for a tiny input before coding.
 
-00:01:34.514 --> 00:01:40.308
+00:02:21.731 --> 00:02:27.525
 State the complexity honestly: subsets is two to the n, permutations is n factorial.
 
-00:01:40.758 --> 00:01:45.553
+00:02:27.975 --> 00:02:32.770
 For duplicates in the input, sort first and skip equal neighbors at the same depth.
 
-00:01:46.903 --> 00:01:53.056
+00:02:34.120 --> 00:02:40.273
 Choose, explore, un-choose, and prune early. Try Subsets, Permutations and N Queens.
+
+00:02:40.252 --> 00:02:41.506
+Back to the question.
+
+00:02:41.906 --> 00:02:45.540
+What makes backtracking faster than trying every full combination?
+
+00:02:45.940 --> 00:02:49.806
+Pruning: you stop exploring a branch as soon as it breaks a rule.
+
+00:02:51.006 --> 00:02:51.877
+Quick recap.
+
+00:02:52.277 --> 00:02:54.285
+Choose, explore, un-choose.
+
+00:02:54.685 --> 00:02:55.475
+Prune early.
+
+00:02:55.875 --> 00:02:57.547
+Build the answer in a path.

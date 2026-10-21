@@ -1,64 +1,121 @@
 WEBVTT
 
-00:00:00.000 --> 00:00:05.712
+00:00:00.000 --> 00:00:02.136
+Before anything else, picture this.
+
+00:00:02.536 --> 00:00:10.268
+You type three letters into a search box and suggestions appear instantly. Under the hood, a trie walks those letters in three steps.
+
+00:00:11.468 --> 00:00:12.397
+Pause and think.
+
+00:00:12.797 --> 00:00:16.187
+How long does it take to check a prefix of length m in a trie?
+
+00:00:16.587 --> 00:00:23.902
+Hold your answer; we will check it at the end. And whenever a new word comes up, we stop for a moment and explain it.
+
+00:00:25.100 --> 00:00:30.812
 This lesson covers tries, the tree built for words and prefixes. It powers autocomplete.
 
-00:00:07.062 --> 00:00:09.825
+00:00:30.850 --> 00:00:40.475
+New word: trie. A prefix tree storing strings letter by letter. Picture it like this: A dictionary's thumb tabs: A → AP → APP.
+
+00:00:43.000 --> 00:00:45.763
 Think of a giant filing cabinet for words.
 
-00:00:10.275 --> 00:00:15.860
+00:00:46.213 --> 00:00:51.798
 The first drawer is chosen by the first letter, the folder inside by the second letter, and so on.
 
-00:00:16.310 --> 00:00:21.824
+00:00:52.248 --> 00:00:57.762
 Words that start the same way share the same drawers. Car and cat share the drawers c and a.
 
-00:00:22.274 --> 00:00:25.966
+00:00:58.212 --> 00:01:01.904
 A small flag on a folder says: a complete word ends here.
 
-00:00:27.316 --> 00:00:32.761
+00:01:03.254 --> 00:01:08.699
 Here is a trie holding the words a, at, and to, drawn as a tree of letter codes.
 
-00:00:33.211 --> 00:00:39.365
+00:01:09.149 --> 00:01:15.303
 Searching for at means: from the root, take the a edge, then the t edge, then check the end flag.
 
-00:00:39.815 --> 00:00:44.645
+00:01:15.317 --> 00:01:25.696
+New word: edge. A connection between two nodes in a graph; also "the edge" = servers close to users. Picture it like this: A road between two cities.
+
+00:01:27.346 --> 00:01:32.176
 If an edge is missing, the word is not there, and we stop immediately.
 
-00:00:45.095 --> 00:00:49.680
+00:01:32.626 --> 00:01:37.211
 The cost depends only on the length of the word, not on how many words are stored.
 
-00:00:51.030 --> 00:00:52.250
+00:01:38.561 --> 00:01:39.781
 Some vocabulary.
 
-00:00:52.700 --> 00:01:00.606
+00:01:40.231 --> 00:01:48.137
 A node usually stores up to twenty six child pointers, one per letter, or a small hash map when the alphabet is large.
 
-00:01:01.056 --> 00:01:06.722
+00:01:48.229 --> 00:01:57.877
+New word: node. One point in a graph or tree; also one machine in a cluster. Picture it like this: A city on a map, or one computer in a group.
+
+00:01:58.277 --> 00:02:06.636
+New word: pointer. A variable holding the memory address of something else. Picture it like this: A note saying "the book is on shelf 4".
+
+00:02:08.279 --> 00:02:13.945
 Search asks whether a full word exists. StartsWith asks whether any word begins with a prefix.
 
-00:01:07.172 --> 00:01:14.706
+00:02:14.395 --> 00:02:21.929
 For autocomplete, each node can also cache its top suggestions, so typing a prefix returns results instantly.
 
-00:01:16.056 --> 00:01:18.971
+00:02:22.078 --> 00:02:33.224
+New word: cache. A small fast store of recently used data so you don't fetch it from the slow place again. Picture it like this: Keeping the salt next to the stove instead of in the basement.
+
+00:02:35.728 --> 00:02:38.643
 Word Search Two combines a trie with a grid search.
 
-00:01:19.421 --> 00:01:25.342
+00:02:39.093 --> 00:02:45.014
 Instead of searching for each word separately, we walk the grid once and follow trie edges as we go.
 
-00:01:25.792 --> 00:01:31.748
+00:02:45.464 --> 00:02:51.420
 The moment the trie says no word starts like this, we turn back. That pruning is the whole speed up.
 
-00:01:33.098 --> 00:01:34.955
+00:02:52.770 --> 00:02:54.627
 Interview tips for tries.
 
-00:01:35.405 --> 00:01:40.502
+00:02:55.077 --> 00:03:00.174
 Say why a hash set is not enough: it cannot answer prefix questions cheaply.
 
-00:01:40.952 --> 00:01:47.546
+00:03:00.624 --> 00:03:07.218
 Mention memory: twenty six pointers per node adds up, so compressed tries or sorted arrays are used in production.
 
-00:01:47.996 --> 00:01:53.291
+00:03:07.378 --> 00:03:15.818
+New word: array. Items stored side by side in memory, reached by index. Picture it like this: A row of numbered lockers.
+
+00:03:17.428 --> 00:03:22.723
 And for systems: IP routing tables use a binary trie for longest prefix match.
 
-00:01:54.641 --> 00:02:00.457
+00:03:22.728 --> 00:03:36.172
+New word: I P. Internet Protocol address (a network address); also Intellectual Property — a licensed chip design block. Picture it like this: A street address for a computer (or a licensed blueprint for a chip part).
+
+00:03:38.678 --> 00:03:44.494
 Tries trade memory for fast prefix lookups. Practice Implement Trie, then Word Search Two.
+
+00:03:44.456 --> 00:03:45.710
+Back to the question.
+
+00:03:46.110 --> 00:03:49.500
+How long does it take to check a prefix of length m in a trie?
+
+00:03:49.900 --> 00:03:53.174
+O of m, no matter how many words are stored.
+
+00:03:54.374 --> 00:03:55.245
+Quick recap.
+
+00:03:55.645 --> 00:03:57.154
+Each edge is one letter.
+
+00:03:57.554 --> 00:03:59.412
+Shared prefixes share nodes.
+
+00:03:59.812 --> 00:04:02.087
+Great for autocomplete and word search.
