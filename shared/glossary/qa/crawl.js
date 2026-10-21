@@ -2,7 +2,7 @@
 const { chromium } = require('/workspace/tutorial-review/tools/node_modules/playwright-core');
 const fs=require('fs'); const R='/workspace/chandra-learning-repo/'; const out=[]; const errs=[]; const ONLY=process.argv[2]||'';
 const grab=async(p,file,unit,sel)=>{ await p.waitForTimeout(450); const r=await p.evaluate((sel)=>{ const roots=[...document.querySelectorAll(sel)].filter(e=>e.offsetParent!==null||e===document.body);
-  return roots.map(r=>{ const w=r.querySelector(':scope > .jg-words'); let t=r.innerText||''; if(w) t=t.replace(w.innerText,''); return {text:t, chips:w?[...w.querySelectorAll('li b')].map(b=>b.textContent):[]}; }); },sel);
+  return roots.map(r=>{ const ST=r.querySelectorAll('.jg-steps').length; const LP=[...r.querySelectorAll('p,li,div')].filter(e=>e.offsetParent!==null&&!e.querySelector('p,li,div,pre')&&!e.closest('.jg-words,pre')&&e.innerText.length>450).map(e=>e.innerText); const PRE=[...r.querySelectorAll('pre')].map(e=>({wt:e.classList.contains('wt-code'),code:e.innerText.slice(0,3000)})); const w=r.querySelector(':scope > .jg-words'); let t=r.innerText||''; if(w) t=t.replace(w.innerText,''); return {steps:ST,lp:LP,pre:PRE,text:t, chips:w?[...w.querySelectorAll('li b')].map(b=>b.textContent):[]}; }); },sel);
   r.forEach((x,i)=>out.push({file,unit:unit+(r.length>1?' #'+i:''),...x})); };
 (async()=>{
   const b=await chromium.launch({executablePath:'/usr/bin/google-chrome',args:['--no-sandbox']});

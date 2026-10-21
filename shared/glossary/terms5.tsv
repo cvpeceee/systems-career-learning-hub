@@ -1,0 +1,342 @@
+MC	Memory Controller or Monte Carlo, depending on context (MC/DC is a test-coverage rule).	The traffic warden in front of the memory chips.
+cuVS	NVIDIA's GPU library for vector search (nearest-neighbour lookups).	A GPU-powered librarian for "find the most similar".
+TF	TensorFlow (Google's ML library); also TF-A (Trusted Firmware-A) in boot chains.	A LEGO set for AI models, from Google.
+TV	Television; in ML papers sometimes "train/validation".	The screen in the living room.
+CX	Customer Experience; also NVIDIA ConnectX network cards (CX-7).	How it feels to be the customer.
+PC	Personal Computer; also Program Counter (the CPU register holding the next instruction address).	A desktop computer — or a bookmark for "next line to run".
+PI	Proportional-Integral controller (a PID without the D); also the number pi.	Steering using how far off you are and how long you've been off.
+AV	Autonomous Vehicle; also audio/video.	A car that drives itself.
+LINEAR11	A PMBus number format: 11-bit mantissa plus 5-bit exponent for voltages/currents.	Writing a price as "digits × a power of two" in a small box.
+AER	PCIe Advanced Error Reporting: logs and reports link errors.	A black-box recorder for PCIe links.
+ACS	PCIe Access Control Services: stops devices talking to each other behind the IOMMU's back.	A rule that delivery drivers can't swap parcels in the lift.
+SystemC	A C++ library for modelling hardware before it's built.	A cardboard mock-up of a chip, written in C++.
+QML	Qt's declarative language for user interfaces.	A recipe card describing how a screen looks.
+FDE	Full-Disk Encryption.	Locking the whole filing cabinet, not just one drawer.
+NC	Network Controller; also "no connect" on schematics.	The network card.
+GDCH	Google Distributed Cloud Hosted: Google cloud that runs in a customer's own data centre, even air-gapped.	A Google cloud branch built inside your own building.
+TTF	Time To Failure; in march tests also a fault-pattern label.	How long until it breaks.
+MIL	Military (MIL-STD = US military standard, e.g. MIL-STD-1553 data bus).	The army's rulebook.
+MIL-STD-1553	A military command/response data bus used in aircraft.	A strict radio net where only the controller may start a conversation.
+RAW12	Raw sensor data with 12 bits per pixel.	Undeveloped film with finer shading.
+QC	Qualcomm; also Quality Control.	The chip company; or the inspection step.
+RM	Resource Manager; also NVIDIA's GPU resource manager in the driver.	The person who hands out rooms and equipment.
+MNT	Mount (Linux mount namespace).	Which folders a container is allowed to see.
+ReAct	An AI-agent pattern: Reason, then Act (call a tool), observe, repeat.	Thinking aloud, trying something, checking, repeating.
+ITL	Inter-Token Latency: time between generated tokens in an LLM.	The pause between words while someone speaks.
+GEM	Graphics Execution Manager: Linux DRM's GPU buffer manager.	The GPU's storeroom clerk.
+FPD	Flat Panel Display link (TI FPD-Link) for cameras/displays over long cables.	A long video cable standard for cars.
+RGB888	8 bits each of red, green, blue per pixel (24-bit colour).	Three 256-step paint pots per dot.
+LP	Low Power; also Linear Programming.	Power-saving mode.
+NVMe	Non-Volatile Memory Express: the fast protocol SSDs use over PCIe.	An express checkout lane designed for SSDs.
+BAR0	The first PCIe Base Address Register window of a device (usually its control registers).	Door number 0 of the device's control panel.
+ASPM	PCIe Active State Power Management: links nap when idle.	Lights that switch off in empty corridors.
+MiB	Mebibyte: 1024 × 1024 bytes.	A computer-sized "million bytes".
+SPE	ARM Statistical Profiling Extension: hardware samples of instructions.	Random spot checks of what the CPU is doing.
+perf	Linux's built-in performance profiler.	A stopwatch and X-ray for programs.
+VIP	Virtual IP: an address that can move between machines for failover.	A shared phone number that rings whichever receptionist is on duty.
+MRU	Most Recently Used.	Whatever you just touched.
+kNN	k-Nearest Neighbours: find the k most similar items.	Asking your k closest neighbours for advice.
+LanceDB	An open-source vector database.	A filing cabinet sorted by "similar meaning".
+NvSci	NVIDIA's DRIVE/Jetson libraries for sharing buffers and syncs between engines and processes (NvSciBuf, NvSciSync, NvSciStream, NvSciIpc).	A shared loading dock between camera, GPU and display.
+LCM	Lightweight Communications and Marshalling: a robotics message bus; also Least Common Multiple.	A walkie-talkie network for robot parts.
+GStreamer	A pipeline framework for audio/video on Linux.	LEGO pipes for media: source → filter → sink.
+QM	Quality Managed: the lowest automotive safety class (not safety-rated).	Normal car parts, not the brakes.
+FNV	Fowler–Noll–Vo: a simple, fast non-cryptographic hash.	A quick way to turn a name into a locker number.
+PostgreSQL	A popular open-source relational database.	A dependable filing cabinet with a SQL librarian.
+IGT	Intel GPU Tools: Linux graphics driver test suite.	The GPU driver's exam paper.
+TDP	Thermal Design Power: heat a chip is designed to dissipate.	How hot the stove may run continuously.
+PMBus	Power Management Bus: commands over SMBus to read/control power supplies.	A phone line to the power supply.
+SMBus	System Management Bus: a stricter I2C used for board management.	I2C with stricter manners.
+MHz	Megahertz: a million cycles per second.	A million ticks per second.
+GHz	Gigahertz: a billion cycles per second.	A billion ticks per second.
+DOCA	NVIDIA's SDK for programming BlueField DPUs.	The toolbox for the smart mailroom.
+MAD	InfiniBand Management Datagram; also Median Absolute Deviation.	A management memo on the InfiniBand network.
+LLC	Last-Level Cache: the biggest, shared CPU cache.	The shared pantry before the basement.
+SKU	Stock Keeping Unit: one specific product variant.	One exact model on the shelf.
+VHE	ARM Virtualization Host Extensions: lets the host kernel run at EL2.	Letting the landlord live in the manager's office.
+ERET	ARM "exception return" instruction.	Walking back out of the office to where you were.
+MIDR	ARM Main ID Register: which CPU model you are.	The CPU's name tag.
+XSDT	ACPI Extended System Description Table: the index of all ACPI tables.	The table of contents for firmware's spec sheets.
+RSDP	ACPI Root System Description Pointer: where the OS finds ACPI tables.	The signpost to the table of contents.
+SystemReady	ARM's certification that a board boots standard OSes via UEFI/ACPI.	A "fits standard sockets" sticker.
+TLM	Transaction-Level Modelling: simulating hardware at message level (SystemC).	Modelling deliveries, not every pedal of the bike.
+AddressSanitizer	ASan: finds memory errors like overflows and use-after-free.	A smoke detector for memory bugs.
+Rust	A systems language with compile-time memory-safety checks.	C with seatbelts the compiler checks.
+HashSet	A set backed by a hash table (fast "have I seen this?").	A guest list you can check instantly.
+RefCell	Rust type allowing checked mutation behind a shared reference at runtime.	A shared notebook with a sign-out sheet.
+SSTable	Sorted String Table: an immutable sorted file used by LSM-tree stores.	A printed, sorted phone book page that's never edited.
+CitC	Google's cloud-backed client workspaces for its monorepo.	A virtual desk with the whole company codebase on tap.
+MTBI	Mean Time Between Interventions (e.g. how often a driver must take over).	How many miles before someone must grab the wheel.
+PR	Pull Request: a proposed code change for review.	A draft handed to a colleague to check.
+DeepMind	Google's AI research lab.	Google's AI research team.
+TS	TypeScript; also Transport Stream (video) or timestamp.	JavaScript with type labels.
+FDB	Forwarding Database: switch table mapping MAC addresses to ports.	The switch's address book.
+VCN	Virtual Cloud Network: Oracle Cloud's private network (like a VPC).	Your fenced yard in Oracle's cloud.
+IPv4	Internet Protocol version 4: 32-bit addresses like 10.0.0.1.	The classic street-address format.
+IPv6	Internet Protocol version 6: 128-bit addresses.	A much longer address format so we never run out.
+MP	Multiprocessor; also megapixel.	Several CPUs working together.
+RGGB	Bayer colour-filter pattern on camera sensors: red, green, green, blue.	A mosaic of tiny coloured windows over the sensor.
+Bayer	Colour filter mosaic over a sensor; the ISP "demosaics" it into full colour.	A stained-glass grid over the camera's eye.
+RegNet	A family of efficient CNN backbones used in vision (e.g. Tesla).	A well-tuned standard engine for image models.
+BiFPN	Bidirectional Feature Pyramid Network: mixes image features across scales.	Zooming in and out repeatedly to combine detail and context.
+TMAC	Tera multiply-accumulates per second (AI chip throughput).	Trillions of "multiply then add" steps per second.
+IPM	Inverse Perspective Mapping: warping a camera image to a top-down view.	Turning a road photo into a map view.
+QA	Quality Assurance: testing.	The inspection team.
+INT32	32-bit integer.	A whole number in a 32-switch box.
+SQNR	Signal-to-Quantization-Noise Ratio: how much accuracy you lose when you round to fewer bits.	How much blurrier a photo gets when you shrink its colours.
+CVflow	Ambarella's computer-vision accelerator engine.	Ambarella's built-in vision calculator.
+NaN	Not a Number: the floating-point result of invalid maths like 0/0.	A calculator showing "Error".
+FK	Forward Kinematics: joint angles → hand position.	Bending your arm and seeing where your hand ends up.
+CoM	Centre of Mass.	The balance point.
+CoP	Centre of Pressure: where ground force acts under a foot.	The spot on your sole carrying your weight.
+MFU	Model FLOPs Utilization: fraction of peak GPU maths actually used in training.	How busy the stadium of students really is.
+DSU	Disjoint Set Union (union-find).	Clubs that merge, each member remembering their president.
+KMP	Knuth–Morris–Pratt: linear-time string search using a prefix table.	Humming along a song without restarting after a slip.
+NOS	Network Operating System (switch OS).	The operating system of a network switch.
+AP	Access Point; also Application Processor (main SoC CPU, vs a small MCU).	The main brain of the board.
+DisplayPort	A digital video interface; can run over USB-C as "alt mode".	A video hose, like HDMI's cousin.
+AppendEntries	The Raft message a leader sends to replicate log entries (also heartbeat).	The captain reading out new lines for everyone's notebook.
+ReplicaSet	Kubernetes object keeping N copies of a pod running.	A manager making sure exactly N cashiers are on shift.
+UTS	UTS namespace: lets a container have its own hostname.	A name badge only that container wears.
+UID	User ID.	Your staff number.
+BSS	Program memory section for zero-initialised globals.	A shelf of empty jars set out at startup.
+IRQL	Windows Interrupt Request Level: priority level the CPU is running at.	A rank: higher ranks can't be interrupted by lower ones.
+RPS	Receive Packet Steering (Linux spreads packets across CPUs); also requests per second.	A clerk dealing mail to several sorters.
+RFS	Receive Flow Steering: send packets to the CPU running the app that wants them.	Delivering mail to the desk where its owner sits.
+DDoS	Distributed Denial of Service: flooding a service from many machines.	A thousand prank callers jamming the phone line.
+LangGraph	A library for building multi-step AI agents as graphs.	A flowchart that an AI follows.
+CrewAI	A framework for multi-agent AI teams.	A team of AI helpers with roles.
+AutoGen	Microsoft's multi-agent conversation framework.	AI helpers that talk to each other to solve tasks.
+LangChain	A popular library for chaining LLM calls and tools.	Plumbing between an AI and its tools.
+ROCm	AMD's GPU computing platform (AMD's answer to CUDA).	AMD's instruction manual for its stadium of students.
+HIP	AMD's CUDA-like GPU programming language.	CUDA-style code that also runs on AMD.
+BLAS	Basic Linear Algebra Subprograms: standard fast vector/matrix routines.	A standard set of times-table machines.
+cuBLAS	NVIDIA's GPU BLAS library.	NVIDIA's times-table machines.
+MIOpen	AMD's deep-learning kernel library.	AMD's AI building blocks.
+RCCL	AMD's version of NCCL for GPU group communication.	AMD's GPU group chat.
+IPMI	Intelligent Platform Management Interface: older protocol to talk to a BMC.	The caretaker's old intercom.
+Redfish	Modern REST/JSON API for server management (replaces IPMI).	The caretaker's new web app.
+NVTX	NVIDIA Tools Extension: markers you put in code so profilers show named ranges.	Sticky notes on the timeline.
+NPI	New Product Introduction: bringing a product from design to production.	Taking a recipe from test kitchen to the factory line.
+OPA	Open Policy Agent: a general policy engine ("is this allowed?").	A rulebook clerk every service can ask.
+PDF	Portable Document Format; in maths, probability density function.	A printable document.
+SCIM	System for Cross-domain Identity Management: standard for syncing user accounts.	One HR list that updates every app's staff list.
+FIDO2	Passwordless login standard using security keys or phones.	A physical key instead of a password.
+WebAuthn	The browser API for FIDO2 passwordless login.	The browser's keyhole for security keys.
+HR	Human Resources.	The people team.
+CTAD	C++ Class Template Argument Deduction: the compiler infers template types from constructor arguments.	The compiler guessing the box size from what you put in.
+UAPI	User-space API headers of the Linux kernel (the stable kernel–user contract).	The public menu the kernel promises not to change.
+mmap	Map a file or device memory into a process's address space.	Opening a window straight into the file instead of copying it.
+TLV	Type-Length-Value: a simple encoding where each field says its type and length.	Labelled envelopes saying what's inside and how big.
+IOVA	I/O Virtual Address: the address a device uses, translated by the IOMMU.	A device's nickname address, translated by the security guard.
+QBUF	V4L2 ioctl that queues an empty buffer for the camera to fill (DQBUF takes it back).	Handing the camera an empty tray.
+DQBUF	V4L2 ioctl that takes back a filled buffer from the driver.	Taking back a full tray.
+HS	High-Speed (USB 2.0 480 Mb/s; also MIPI HS mode).	The fast lane.
+IPA	Intermediate Physical Address (stage-2 translation in VMs); also Image Processing Algorithms (libcamera).	The VM's idea of a physical address, translated again by the hypervisor.
+TLP	Transaction Layer Packet: the unit of data on PCIe.	One parcel on the PCIe motorway.
+BDF	Bus:Device.Function — a PCIe device's address (e.g. 01:00.0).	A device's street, house and flat number.
+INTx	Legacy PCI wire-style interrupts (INTA–INTD).	Old-fashioned doorbell wires.
+AoS	Array of Structures: each element holds all fields together.	Each lunchbox holds a sandwich, apple and drink.
+SoA	Structure of Arrays: one array per field (better for SIMD/GPU).	All sandwiches in one box, all apples in another.
+UBWC	Qualcomm Universal Bandwidth Compression: compressed image buffers between engines.	Vacuum-packing images between kitchen stations.
+VTune	Intel's CPU profiler.	Intel's X-ray for programs.
+CMN	ARM Coherent Mesh Network: on-chip network linking cores and caches.	The road grid inside a big ARM chip.
+FlameGraph	A visualization of profiled call stacks; wide bars = where time goes.	A skyline where the widest buildings eat the most time.
+SVG	Scalable Vector Graphics: an image format made of shapes.	A drawing made from instructions, not dots.
+GDDR	Graphics DDR memory used on GPU cards.	Fast memory built for graphics cards.
+GL	OpenGL: a graphics API.	A standard way to ask the GPU to draw.
+OpenGL	Cross-platform graphics API.	A standard way to ask the GPU to draw.
+OpenCL	Cross-vendor GPU/accelerator compute API.	A vendor-neutral version of CUDA.
+OpenMP	Compiler directives for parallel loops on CPUs.	A note telling the compiler "split this loop among workers".
+SASS	NVIDIA GPU's final machine code (below PTX).	The GPU's native instruction set.
+GSP	NVIDIA GPU System Processor: a RISC-V core on the GPU running firmware.	A small manager chip living inside the GPU.
+VA	Virtual Address.	The nickname address a program uses.
+KF	Kalman Filter.	Blending a guess with a blurry measurement.
+AR	Augmented Reality; also Auto-Regressive models.	Digital stickers on the real world.
+VR	Virtual Reality.	A fully computer-made world.
+QoS profile	ROS 2/DDS delivery settings (reliable vs best-effort, history depth).	Choosing registered mail or postcards for each topic.
+SharedPtr	C++/ROS shared_ptr: reference-counted smart pointer; freed when the last owner lets go.	A library book returned when the last borrower is done.
+SMI	System Management Interrupt (x86 firmware stealing CPU time); nvidia-smi is NVIDIA's GPU status tool.	An invisible boss pulling the CPU into a back room.
+PCA	Principal Component Analysis: reduce dimensions keeping the most variance.	Photographing a 3D object from the most informative angle.
+SVD	Singular Value Decomposition: factor a matrix into rotations and scales.	Breaking a stretch into turn, stretch, turn.
+UMAP	A method to squash high-dimensional data into 2D/3D for viewing.	Drawing a flat map of a globe of points.
+t-SNE	A method to visualise high-dimensional data in 2D.	Arranging similar people close together at a party.
+OPQ	Optimized Product Quantization: rotate vectors before compressing them.	Turning a box before packing so it fits better.
+DLPack	A standard for sharing tensors between libraries without copying.	A universal tray that fits every kitchen's oven.
+CuPy	NumPy-compatible arrays on NVIDIA GPUs.	NumPy that runs on the GPU.
+JNI	Java Native Interface: calling C/C++ from Java.	An interpreter between Java and C.
+RMM	RAPIDS Memory Manager: fast GPU memory pools.	A pre-booked block of GPU parking spaces.
+RAPIDS	NVIDIA's GPU data-science libraries (cuDF, cuML, cuVS).	Pandas and scikit-learn on a GPU.
+cuML	RAPIDS machine-learning library on GPUs.	GPU-powered scikit-learn.
+RAUC	A robust A/B OTA update framework for embedded Linux.	Two engines: update the spare, switch only if it starts.
+SWUpdate	Another embedded Linux update framework.	A careful software-swap service for devices.
+LTS	Long-Term Support release.	A version that gets fixes for years.
+iceoryx	Zero-copy shared-memory middleware (RouDi is its daemon).	A shared fridge where everyone grabs the same carton instead of copies.
+EGLStream	A Khronos API to pass image frames between producers and consumers (camera → GPU → display).	A conveyor belt of video frames between engines.
+fuzzing	Feeding random/mutated inputs to find crashes.	Shaking a vending machine every way to see if it breaks.
+AFL	American Fuzzy Lop: a classic fuzzer.	A tireless monkey pressing random buttons, smartly.
+HARA	Hazard Analysis and Risk Assessment (ISO 26262 safety analysis).	Listing everything that could hurt someone, and how badly.
+FCC	US Federal Communications Commission (radio emissions rules).	The radio-noise police.
+BlackBerry	Company owning QNX.	The company behind QNX.
+SIL	Software-In-the-Loop testing; also Safety Integrity Level (IEC 61508).	Testing the code against a simulated world on a PC.
+DBT	data build tool: SQL-based data transformation framework.	Recipe cards for transforming data tables.
+BigQuery	Google's serverless data warehouse.	A giant searchable spreadsheet in Google's cloud.
+DuckDB	A small embedded analytics database.	A pocket calculator for big tables.
+ClickHouse	A very fast column-oriented analytics database.	A filing system that reads one column across millions of rows at once.
+RocksDB	An embedded key-value store built on an LSM tree.	A fast drawer system that writes in batches.
+SQLMesh	A data transformation/versioning framework.	Version control for data recipes.
+MOS	Mean Opinion Score: human quality rating for audio/video (1–5).	Average star rating from listeners.
+pybind11	A library to expose C++ to Python.	A bridge letting Python call C++.
+OpenSCENARIO	ASAM standard for describing driving test scenarios.	A script format for traffic scenes.
+ASAM	Automotive standards body (OpenSCENARIO, OpenDRIVE).	A rule committee for car testing formats.
+NCAP	New Car Assessment Programme: crash/safety ratings.	The car safety star ratings.
+fPIC	Compile as position-independent code (needed for shared libraries).	Writing directions that work from any starting street.
+BO	Buffer Object: a GPU memory buffer in Linux DRM.	One box in the GPU's storeroom.
+TTM	Translation Table Maps: Linux DRM memory manager for GPU buffers in VRAM/RAM.	The storeroom manager deciding which shelf each box lives on.
+RAPL	Running Average Power Limit: Intel/AMD power measurement and capping.	A power meter and limiter inside the CPU.
+PoE	Power over Ethernet.	Sending electricity down the network cable.
+MCTP	Management Component Transport Protocol: carries management messages between chips (over SMBus/PCIe).	The internal post service for management chips.
+PLDM	Platform Level Data Model: management messages (sensors, firmware update) on top of MCTP.	The standard forms sent by that post service.
+DMTF	Standards body for Redfish, MCTP, PLDM.	The server-management rule committee.
+OCP	Open Compute Project: open data-centre hardware designs.	Open-source blueprints for servers.
+REST	Representational State Transfer: web API style using HTTP verbs on resources.	A shop counter where you GET, POST or DELETE items by name.
+RESTful	Following REST style.	Using the shop-counter style.
+I3C	Improved I2C: faster successor to I2C with in-band interrupts.	I2C upgraded with a faster party line.
+VDM	Vendor-Defined Message (USB PD / PCIe).	A private note between two devices of the same maker.
+PEC	Packet Error Checking: CRC byte on SMBus/PMBus messages.	A checksum seal on the envelope.
+DLLP	PCIe Data Link Layer Packet (ACK/NAK, flow control); BadDLLP/BadTLP count link errors.	Receipts on the PCIe motorway.
+DAX	Direct Access: apps map persistent memory/files directly, bypassing the page cache.	Reading straight off the shelf instead of photocopying first.
+LnkSta	PCIe Link Status register (lspci shows speed/width).	The link's speedometer.
+UML	Unified Modeling Language diagrams; also User-Mode Linux.	Standard boxes-and-arrows diagrams.
+LID	InfiniBand Local Identifier: a port's address in the subnet.	A port's local house number.
+GID	InfiniBand/RoCE Global Identifier (IPv6-like address); also Group ID.	A global street address.
+CNP	Congestion Notification Packet in RoCE (part of DCQCN).	A "slow down" note sent back to the sender.
+DCQCN	Data Center QCN: RoCE congestion control using ECN marks and CNPs.	A traffic-light system for RDMA.
+RoCEv2	RDMA over Converged Ethernet version 2 (routable over UDP/IP).	Express lockers that work across town.
+IB	InfiniBand.	A private high-speed rail line.
+SR-IOV	Single Root I/O Virtualization: one PCIe device appears as many virtual devices for VMs.	One big kitchen split into private mini-kitchens.
+VF	Virtual Function (SR-IOV slice of a device).	One mini-kitchen.
+PF	Physical Function (the real SR-IOV device controller).	The main kitchen that owns the mini-kitchens.
+WFI	ARM "wait for interrupt" instruction: core sleeps until an interrupt.	Napping until the doorbell rings.
+AArch64	ARM's 64-bit execution state.	ARM's 64-bit mode.
+PPTT	ACPI Processor Properties Topology Table: CPU/cache layout.	A seating chart of CPUs and caches.
+PL011	ARM's standard UART serial port design.	ARM's standard serial port.
+STLR	ARM store-release instruction (ordered store).	"Write this, after everything before it."
+LDAR	ARM load-acquire instruction (ordered load).	"Read this, before anything after it."
+ISH	ARM "inner shareable" domain for barriers (DMB ISH).	All cores in the same cluster neighbourhood.
+LSE	ARM Large System Extensions: atomic instructions like LDADD, CAS.	One-step atomic sums for many-core ARM.
+FVP	ARM Fixed Virtual Platform: software simulator of an ARM system.	A flight simulator for ARM boards.
+W1C	Write-1-to-Clear: register bits cleared by writing 1.	Pressing the button to turn the light off.
+SystemRDL	A language describing hardware registers, used to generate headers/docs.	A register spec written once, printed many ways.
+DMI	Desktop Management Interface tables (SMBIOS): board/vendor info.	The machine's ID card.
+SWMR	Single-Writer Multiple-Reader cache coherence invariant.	One person may write on the board, everyone else just reads.
+CHI	ARM Coherent Hub Interface: on-chip coherence protocol.	ARM's rulebook for caches agreeing.
+UCIe	Universal Chiplet Interconnect Express: standard die-to-die links.	A standard plug between chiplets.
+ACE	ARM AXI Coherency Extensions.	The older ARM cache-agreement rulebook.
+BusRd	Coherence message: read a line; BusRdX = read with intent to modify.	"Can I see that?" vs "I need to edit that."
+SurfaceFlinger	Android's display compositor that combines app windows.	The layout artist stacking every app's picture.
+VHAL	Android Automotive Vehicle HAL (car properties).	Android's window into the car's signals.
+VSS	COVESA Vehicle Signal Specification: standard names for car signals.	A shared dictionary of car signals.
+DBC	CAN database file: defines message IDs and signals.	The decoding sheet for CAN messages.
+SonarQube	Static code-quality analyzer.	A spell-checker for code smells.
+IoT	Internet of Things: connected small devices.	Smart gadgets on the network.
+MPKI	Misses Per Kilo-Instruction: cache/branch misses per 1000 instructions.	Mistakes per thousand steps.
+PUE	Power Usage Effectiveness: data-centre total power ÷ IT power.	How much electricity goes to cooling versus computing.
+HDD	Hard Disk Drive (spinning disk).	A record player for data.
+TRT	TensorRT.	A tuning shop for models on NVIDIA GPUs.
+ARC	Adaptive Replacement Cache: balances recent and frequent items.	A fridge that learns whether you snack on new or favourite foods.
+VMM	Virtual Machine Monitor: the user-space part that emulates devices for a VM (e.g. QEMU, Firecracker).	The stagehand building props for each virtual flat.
+HLT	x86 halt instruction (sleep until interrupt).	Napping until the doorbell.
+EPT	Extended Page Tables: Intel hardware for VM address translation.	A second address book for virtual tenants.
+vCPU	A virtual CPU given to a VM.	A pretend CPU seat in a virtual flat.
+COM1	The first PC serial port.	The PC's first serial socket.
+GitLab	Git hosting and CI platform.	A home for code with a built-in test robot.
+FSEvents	macOS API for file change notifications.	macOS telling you "this folder changed".
+ReadDirectoryChangesW	Windows API for watching folder changes.	Windows telling you "this folder changed".
+inotify	Linux API for file change notifications.	Linux telling you "this folder changed".
+JetBrains	Maker of IDEs (CLion, IntelliJ).	The IDE company.
+VCS	Version Control System (Git, Perforce).	Time-machine for code.
+IaC	Infrastructure as Code (Terraform etc.).	Writing your data centre as a recipe file.
+CoreWeave	A GPU cloud provider.	A cloud company renting GPUs.
+OpenSSL	The widely used crypto/TLS library.	The standard lock-and-key toolkit.
+HashiCorp	Maker of Terraform, Vault, Nomad.	The infrastructure tools company.
+EndpointSecurity	Apple's API for security tools to watch process/file events.	macOS's official security camera feed.
+SentinelOne	An endpoint security (EDR) vendor.	A security-camera company for computers.
+OpenShift	Red Hat's Kubernetes platform.	Red Hat's packaged Kubernetes.
+TraceID	The ID shared by every span in one distributed trace.	A parcel tracking number across every depot.
+DSAR	Data Subject Access Request (GDPR right to see your data).	Asking a company "show me everything you have on me".
+B2B	Business-to-business.	Companies selling to companies.
+OneTrust	Privacy/consent management vendor.	A consent-paperwork service.
+ADK	Agent Development Kit (Google).	A toolkit for building AI agents.
+VxWorks	Wind River's commercial RTOS used in aerospace/defence.	A heavy-duty RTOS for planes and rovers.
+CERT	Computer Emergency Response Team; also CERT C secure coding standard.	The internet's fire brigade / a safe-coding rulebook.
+LFM	Linear Frequency Modulation (radar chirp).	A whistle that rises steadily in pitch.
+gPTP	Generalized PTP (IEEE 802.1AS): time sync for TSN/automotive Ethernet.	Car-network clocks set from one master watch.
+ChArUco	A chessboard with ArUco markers for camera calibration.	A chessboard with QR-like tags for calibrating cameras.
+CFA	Color Filter Array (e.g. Bayer).	The coloured-tile mosaic over a sensor.
+ResNet	A CNN using skip connections so very deep networks train well.	An express lift that skips floors so signals don't fade.
+HydraNet	Tesla's multi-head neural network: one shared backbone, many task heads.	One body with many heads, each doing a job.
+GMAC	Gigabit Ethernet MAC controller; also giga multiply-accumulates.	The chip block that speaks Ethernet.
+FOV	Field Of View.	How wide the camera can see.
+OccGrid	Occupancy grid: a map of cells marked free, occupied or unknown.	A chessboard map: which squares have obstacles.
+QAT	Quantization-Aware Training: train while simulating low-bit maths.	Practising with rounded numbers so you're ready for them.
+PTQ	Post-Training Quantization: round a trained model to fewer bits afterwards.	Shrinking a finished photo.
+MSE	Mean Squared Error.	Average of squared misses.
+SNPE	Qualcomm's Snapdragon Neural Processing Engine runtime.	Qualcomm's AI engine runner.
+QNN	Qualcomm AI Engine Direct (Qualcomm Neural Network SDK).	Qualcomm's newer AI engine runner.
+ReLU	Rectified Linear Unit: neural activation max(0,x).	A gate that lets positives through and blocks negatives.
+XLA	Accelerated Linear Algebra: Google's ML compiler.	A compiler that fuses AI maths into fast kernels.
+TVM	Apache TVM: open ML compiler for many hardware targets.	A translator from AI models to any chip.
+RRT	Rapidly-exploring Random Tree: a path-planning algorithm.	Throwing out random branches until one reaches the goal.
+EMF	Electromotive force (back-EMF in motors).	The voltage a spinning motor pushes back.
+AC	Alternating Current.	Power that flips direction many times a second.
+FPU	Floating-Point Unit.	The decimal calculator in a CPU.
+DLC	CAN Data Length Code (bytes in the frame).	The "how many bytes" label on a CAN message.
+MDIO	Management Data I/O: bus to configure Ethernet PHYs.	The control wire to the network voice box.
+PCAN	PEAK-System CAN USB adapters/tools.	A USB plug for listening to CAN.
+SocketCAN	Linux CAN interface that treats CAN like network sockets.	CAN messages handled like network packets.
+CRC32	A 32-bit CRC checksum.	A 32-switch fingerprint of data.
+DLS	Damped Least Squares: stable inverse-kinematics solver.	Reaching for a target without jerking near awkward poses.
+AGC	Automatic Gain Control.	A volume knob that turns itself.
+IsaacLab	NVIDIA's robot-learning framework on Isaac Sim.	A robot gym in simulation.
+LIPM	Linear Inverted Pendulum Model for walking robots.	Modelling a walker as a broom balanced on a hand.
+domain randomization	Randomising simulation (friction, light, mass) so policies work on real robots.	Practising in all weathers so any real day feels familiar.
+DDP	PyTorch Distributed Data Parallel: each GPU has a full model copy and averages gradients.	Every chef cooks the same dish, then they compare notes.
+ZeRO	DeepSpeed's sharding of optimizer state/gradients/weights across GPUs.	Each mover carries only part of the furniture.
+ExaPOD	Tesla's Dojo supercomputer unit.	Tesla's AI training warehouse.
+CFP8	Tesla Dojo's configurable 8-bit floating-point format.	A tiny adjustable ruler for AI maths.
+SDE	Software Development Engineer.	A software engineer.
+GfG	GeeksforGeeks, a coding-practice website.	A coding-practice site.
+HackerRank	Online coding-test platform.	An online coding exam room.
+CodeSignal	Online coding-assessment platform.	An online coding exam room.
+ROI	Return On Investment; in vision, Region Of Interest.	What you get back for what you put in.
+Quickselect	Find the k-th smallest element in average O(n) by partitioning.	Splitting the deck around a card until the k-th lands in place.
+Dijkstra	Shortest paths with non-negative weights using a heap.	Always expanding the closest unvisited town next.
+Bellman-Ford	Shortest paths allowing negative edges, by relaxing all edges V−1 times.	Re-checking every road repeatedly until no route improves.
+sweep line	Process events sorted by position, keeping an active set.	Sliding a ruler across a timeline and noting what's open.
+greedy	Take the best-looking choice at each step.	Always grabbing the biggest coin first.
+INF	Infinity (a placeholder "very large" value).	"Further than anything."
+DLL	Doubly Linked List; on Windows, Dynamic-Link Library.	A conga line where everyone also holds the person behind.
+BPE	Byte-Pair Encoding: LLM tokenizer merging frequent character pairs.	Inventing shorthand for common letter pairs.
+HA	High Availability.	Always-open shop with backup staff.
+TP	Tensor Parallelism: split one layer's maths across GPUs.	Several chefs each cutting part of the same vegetable.
+PP	Pipeline Parallelism: different GPUs hold different layers.	An assembly line of chefs, each doing one course.
+FS	File System.	The filing system on a disk.
+ABR	Adaptive Bitrate streaming: player switches quality to fit bandwidth.	Lowering video quality on a slow connection instead of buffering.
+ETA	Estimated Time of Arrival.	When it should get there.
+DAU	Daily Active Users.	How many people use it each day.
+SP	Stack Pointer; also Service Pack.	A finger on the top plate of the stack.
+PRI	Priority.	Who goes first.
+NoC	Network-on-Chip: packet network connecting blocks inside a chip.	Roads and roundabouts inside a chip.
+ChatGPT	OpenAI's chat assistant.	OpenAI's chatbot.
+CMake	Cross-platform build-system generator for C/C++.	A recipe that writes the build instructions for any kitchen.
+DOM	Document Object Model: the browser's tree of a web page.	The family tree of a web page's elements.
+TreeMap	Java sorted map (red-black tree).	A dictionary always kept in alphabetical order.
+ArrayDeque	Java resizable double-ended queue.	A line you can join or leave at either end.
+GoogleTest	C++ unit-test framework.	A test bench for C++.
+stuck-at fault	A memory cell permanently reads 0 or 1 no matter what you write.	A light switch glued in one position.
+transition fault	A cell can't change in one direction (0→1 or 1→0).	A switch that turns on but never off.
+coupling fault	Writing one cell wrongly flips or affects a neighbouring cell.	Flicking your switch also flips the neighbour's light.
+address decoder fault	Two addresses hit the same cell, or one address hits none.	Two flats sharing one mailbox.
+March C-	A classic memory test: write/read 0s and 1s up and down the address range in set orders.	Walking the locker hallway both ways, checking and flipping each locker.
+march test	Memory test that marches through addresses applying write/read patterns.	Inspecting every locker in a fixed walking order.

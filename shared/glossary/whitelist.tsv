@@ -1,0 +1,7 @@
+# Documented false positives the audit skips. category<TAB>tokens (space separated)
+ui-label	LOOP LOG MODS TILE REAL FUZZ VIA DEV TEST POLL WARM VS SIZE PROC FIND MEAN WALK RUN BITS CTRL SYNC BUS WR RD PATH GOAL SOME HOT PAGE LEAK HASH RACK LOSS SINK LATE TINY EXIT PORT MATH DIFF LAZY INTO MANY GANG ANTI FULL RULE KEEP WAVE KEYS RUNS TRY MARK MAP TREE OVER ROOT MSG ACT EMIT PAIR RANK TEAM MASK BIG SEED AREA AGE SKEW LONG TOOL RISK EVAL GRID EACH TIER APP AM SA BD LC BBQ BANC NBLK PN ST IOV SR
+id-or-label	BSPI2C CPU0 SNE JR LFD435 P3free QParams KQuickselect JR2011805 JR2011616 JR2011818 JR2013271 US20210271259A1 AR0136A FTF TFF TFT FFF TTF PMTS HTS ATG P0free P0gated P1free P1gated P2free P2gated MxN MxK KxN NaNNaN MBs
+proper-name	OpenAMR MiddlewarE
+glued-tag-chips	(rule) CamelCase strings that are two or more topic tags rendered side by side, e.g. TreesBSTRecursionDFS, CModern, IaCML
+code-identifier	(rule) CamelCase class/function names inside code samples (LRUCache, MyCircularQueue, BadDLLP, QParams) — explained by the code comments
+level-badge-glued	(rule) a single C/A/O level badge letter rendered next to a skill name in 03 (e.g. CModern, APython, OGo)

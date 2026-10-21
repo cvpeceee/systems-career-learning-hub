@@ -1,0 +1,4 @@
+LDO	Low-DropOut regulator: a simple linear voltage regulator on the PMIC (LDO3 = the third one).	A water valve that gives a steady lower pressure.
+VPP	Vector Packet Processing (fd.io): fast user-space packet forwarding; also peak-to-peak voltage.	A sorting machine that handles packets in batches.
+LINEAR16	PMBus number format for output voltage: 16-bit value times a fixed power-of-two exponent.	A price written as whole units of a fixed coin size.
+LDO3	The third LDO (low-dropout) regulator on the PMIC: one of the board power rails.	Tap number 3 on the water-pressure panel.

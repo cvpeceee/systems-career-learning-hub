@@ -2,12 +2,22 @@
 check whether it is explained there. before = explained inline only; after = inline OR glossary chip/term card."""
 import json,re,glob,os,collections,sys
 H=os.path.dirname(os.path.abspath(__file__)); R=os.path.dirname(os.path.dirname(H))
-G=json.load(open(H+'/glossary.json')); GL={g['t'].lower():g for g in G}
+G=json.load(open(H+'/glossary.json')); GL={g['t'].lower():g for g in G}; GL_T={g['t'] for g in G}
 STOP=set('''LAB LINE JOB YOUR WORK TIP MYTH XP GO AN FOR RING PER NET TIME BUF TASK PLUS FIT FREE SAFE ROLE BEST LOCK RATE POOL GATE STEP BOOT LinkedIn SF JPMorgan JPMorganChase GitHub AceOffer NeetCode CoreAI CoderPad CoDesign LeakCode InterviewLegend PracHub RaaS TeamViewer NetSoft ProgrammingStrings CsiCamera UsbCamera BoundedQueue YuniKorn GB MB KB TB PB OpenAI LeetCode PyTorch TensorRT NXP SWE GM IBM AMD Qualcomm NVIDIA Google Meta Apple Microsoft Netflix Oracle Amazon Anthropic Tesla CrowdStrike Garmin Raytheon Genesys Truist Osano Uber Stripe Databricks Airbnb Cloudflare Roblox Lontium Ambarella HP MCQ MCQs STAR REPORTED INFERRED I II III IV V VI A OK ALL AND OR NOT THE IS IT TO OF IN ON BY DO NO YES SO AS AT IF BE WE US YOU ONE TWO SET GET PUT ADD END NEW OLD TOP LOW HIGH MAX MIN SUM BEFORE AFTER NOW THEN THIS THAT WITH WHEN WHERE WHY HOW WHAT ANY ONLY ONCE NEVER ALWAYS EVERY BOTH SAME MORE NOTE WARN WARNING ERROR INFO DEBUG FAIL FAILED PASS OK DONE TODO STOP START RESET READ WRITE SEND RECV INIT OPEN CLOSE COPY MOVE BUG HIT MISS LEFT RIGHT FRONT BACK FIRST LAST NEXT LIST KEY VALUE DATA FILE CODE NAME TEXT USE USER HOME POST TEXT IDLE BUSY LEVEL ORDER GOOD BAD RAW TRUE FALSE NULL NUL EOF INPUT OUTPUT CREATE DELETE UPDATE SELECT INSERT JOIN FROM TABLE GROUP STATUS SLOT SLOTS LINK DROP LOCAL PUBLIC PRIVATE OFF UP DOWN OUT TAKE SEE THEIR BEYOND LATER EARLIER WORST OLDEST LOWEST SLOWEST SHORTER ALLOWED ALLOW DENY ACCEPTS REJECTS WINNER EXPIRED LEAKED LEAKS OWN OWNS PAID HALTED POLLING POSTING POSTED PENDING CREATED STALE INVALID MUST DROPPED BUDGET POWER IMAGE STACK HEAP CONFIG TOTAL COUNT SCAN TAIL HEAD BODY DEMOS JOBS ACADEMY TESLA POLY NVIDIA IBM MIT AMD AMRs USA NYC EUR USD GBP JPY CEO STD BLOCK FAULT SCRIPT STYLE CASE ELSE MAKE ODD EASY MED XY XYZ ABC ABCD AA AB BA ID IDs URLs APIs CPUs GPUs'''.split())
+WL=set()
+for l in open(H+'/whitelist.tsv'):
+    if l.startswith('#') or '\t' not in l: continue
+    c,toks=l.rstrip('\n').split('\t',1)
+    if not toks.startswith('(rule)'): WL.update(toks.split())
+def rule_fp(t):
+    if re.fullmatch(r'[CAOB](SP)?[A-Z][A-Za-z0-9]+',t) and t[1:].lower() in set(GL)|{'modern','distributed','python','large','technical','public','kubernetes','go','linux','performance','device','multithreading','metrics','board','firmware','data','safe','partner','kernel','computer','fast','load','zero','undefined','camera','tensor','consensus','bare','real','edge','lock','endpoint','secure','continuous'}: return True
+    if re.fullmatch(r'[CAOB](SP)?[A-Z][A-Za-z0-9]+',t) and t[1:] in GL_T: return True  # glued tag chips / code identifiers: CamelCase with 2+ capitalised parts and lowercase letters
+    return bool(re.search(r'[a-z]',t)) and len(re.findall(r'[A-Z][a-z0-9]+|[A-Z]{2,}(?=[A-Z][a-z]|$)',t))>=2
 def terms_in(text):
     hits={}
     for m in re.finditer(r'(?<![A-Za-z0-9_])([A-Z][A-Za-z0-9]*[A-Z0-9][A-Za-z0-9]*|[a-z]{1,2}[A-Z]{2,}[A-Za-z0-9]*)(?![A-Za-z0-9_])',text):
         t=m.group(1); base=re.sub(r's$','',t) if len(t)>3 and t.endswith('s') and t[:-1].isupper() else t
+        if base in WL or (rule_fp(base) and base.lower() not in GL): continue
         if base in STOP or len(base)<2 or not re.search(r'[A-Z]{2}|[a-z][A-Z]|[A-Z][0-9]',base): continue
         if re.fullmatch(r'[A-Z][0-9]+|[A-Z]{1,2}[0-9]{1,2}[a-z]?|[0-9A-F]{4,}|[A-Z]{5,}',base) and base.lower() not in GL: continue  # labels like P1, L3, hex, SHOUTING
         hits.setdefault(base,m.start())

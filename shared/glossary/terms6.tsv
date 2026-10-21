@@ -1,0 +1,24 @@
+t-SNE	A method to visualise high-dimensional data in 2D.	Arranging similar people close together at a party.
+Qt	A C++ framework for cross-platform user interfaces.	A toolkit for building screens and buttons.
+ADR	Architecture Decision Record: a short doc recording one design decision and why.	A diary entry explaining why you chose this road.
+CACM	Communications of the ACM, a computing journal.	A computer-science magazine.
+BLK	Block device / block layer (Linux storage I/O path).	The storage loading dock in Linux.
+XACT	Transaction (abbreviation used in register/bus specs).	One complete delivery.
+BAE	BAE Systems, a defence/aerospace company.	A defence company.
+RCCB	Camera colour-filter pattern: red, clear, clear, blue (more light for night driving).	A sensor mosaic with see-through tiles for low light.
+RCCC	Camera colour-filter pattern: red plus three clear pixels.	Mostly see-through tiles with one red.
+ER	Emergency Room; also Entity-Relationship (database diagrams).	The hospital's urgent desk.
+BW	Bandwidth.	How wide the motorway is.
+LT	Lontium chip prefix (e.g. LT6911 HDMI-to-MIPI bridge).	The Lontium video bridge chips.
+TI	Texas Instruments, a chip maker.	A chip company.
+ABB	A robotics/industrial automation company.	A big industrial-robot maker.
+GT	Ground Truth (the correct labels); also NVIDIA GeForce GT.	The answer key.
+OA	Online Assessment: an automated coding test before interviews.	A take-home exam on a website.
+DS	Data Structures; also Data Science.	The containers for data.
+CC	USB-C Configuration Channel pins (detect orientation and power role); also C compiler / carbon copy.	The little wire that tells which way the plug is flipped.
+ALLM	HDMI Auto Low-Latency Mode: TV switches to game mode automatically.	The TV noticing a game and dropping its delay.
+HRT	High-Resolution Timers (Linux hrtimers).	A stopwatch with microsecond ticks.
+SCCR	Short-Circuit Current Rating of industrial electrical panels.	How big a short circuit a panel can survive.
+SIG	Special Interest Group (e.g. USB-IF, Bluetooth SIG); also signal.	A standards club.
+JMAX	Maximum jerk (rate of change of acceleration) limit in motion planning.	How suddenly you're allowed to press the pedal.
+VPs	Vice Presidents.	Senior leaders.

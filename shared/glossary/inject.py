@@ -1,7 +1,7 @@
 """Inline the shared glossary + jargon helper into each course HTML (idempotent; marker-delimited)."""
 import re,sys,os
 H=os.path.dirname(os.path.abspath(__file__)); R=os.path.dirname(os.path.dirname(H))
-DATA=open(H+'/glossary-data.js').read(); JS=open(H+'/jargon.js').read()
+DATA=open(H+'/glossary-data.js').read(); JS=open(H+'/lineguides.js').read()+'\n'+open(H+'/jargon.js').read()
 FILES={
  '02-learning-hub-v1/index.html':'.view.active',
  '03-skills-academy/index.html':'#main',

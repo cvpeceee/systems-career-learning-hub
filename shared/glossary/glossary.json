@@ -3204,6 +3204,1851 @@
 "a": "Coat-check hooks numbered by ticket."
 },
 {
+"t": "MC",
+"m": "Memory Controller or Monte Carlo, depending on context (MC/DC is a test-coverage rule).",
+"a": "The traffic warden in front of the memory chips."
+},
+{
+"t": "cuVS",
+"m": "NVIDIA's GPU library for vector search (nearest-neighbour lookups).",
+"a": "A GPU-powered librarian for \"find the most similar\"."
+},
+{
+"t": "TF",
+"m": "TensorFlow (Google's ML library); also TF-A (Trusted Firmware-A) in boot chains.",
+"a": "A LEGO set for AI models, from Google."
+},
+{
+"t": "TV",
+"m": "Television; in ML papers sometimes \"train/validation\".",
+"a": "The screen in the living room."
+},
+{
+"t": "CX",
+"m": "Customer Experience; also NVIDIA ConnectX network cards (CX-7).",
+"a": "How it feels to be the customer."
+},
+{
+"t": "PC",
+"m": "Personal Computer; also Program Counter (the CPU register holding the next instruction address).",
+"a": "A desktop computer \u2014 or a bookmark for \"next line to run\"."
+},
+{
+"t": "PI",
+"m": "Proportional-Integral controller (a PID without the D); also the number pi.",
+"a": "Steering using how far off you are and how long you've been off."
+},
+{
+"t": "AV",
+"m": "Autonomous Vehicle; also audio/video.",
+"a": "A car that drives itself."
+},
+{
+"t": "LINEAR11",
+"m": "A PMBus number format: 11-bit mantissa plus 5-bit exponent for voltages/currents.",
+"a": "Writing a price as \"digits \u00d7 a power of two\" in a small box."
+},
+{
+"t": "AER",
+"m": "PCIe Advanced Error Reporting: logs and reports link errors.",
+"a": "A black-box recorder for PCIe links."
+},
+{
+"t": "ACS",
+"m": "PCIe Access Control Services: stops devices talking to each other behind the IOMMU's back.",
+"a": "A rule that delivery drivers can't swap parcels in the lift."
+},
+{
+"t": "SystemC",
+"m": "A C++ library for modelling hardware before it's built.",
+"a": "A cardboard mock-up of a chip, written in C++."
+},
+{
+"t": "QML",
+"m": "Qt's declarative language for user interfaces.",
+"a": "A recipe card describing how a screen looks."
+},
+{
+"t": "FDE",
+"m": "Full-Disk Encryption.",
+"a": "Locking the whole filing cabinet, not just one drawer."
+},
+{
+"t": "NC",
+"m": "Network Controller; also \"no connect\" on schematics.",
+"a": "The network card."
+},
+{
+"t": "GDCH",
+"m": "Google Distributed Cloud Hosted: Google cloud that runs in a customer's own data centre, even air-gapped.",
+"a": "A Google cloud branch built inside your own building."
+},
+{
+"t": "TTF",
+"m": "Time To Failure; in march tests also a fault-pattern label.",
+"a": "How long until it breaks."
+},
+{
+"t": "MIL",
+"m": "Military (MIL-STD = US military standard, e.g. MIL-STD-1553 data bus).",
+"a": "The army's rulebook."
+},
+{
+"t": "MIL-STD-1553",
+"m": "A military command/response data bus used in aircraft.",
+"a": "A strict radio net where only the controller may start a conversation."
+},
+{
+"t": "RAW12",
+"m": "Raw sensor data with 12 bits per pixel.",
+"a": "Undeveloped film with finer shading."
+},
+{
+"t": "QC",
+"m": "Qualcomm; also Quality Control.",
+"a": "The chip company; or the inspection step."
+},
+{
+"t": "RM",
+"m": "Resource Manager; also NVIDIA's GPU resource manager in the driver.",
+"a": "The person who hands out rooms and equipment."
+},
+{
+"t": "MNT",
+"m": "Mount (Linux mount namespace).",
+"a": "Which folders a container is allowed to see."
+},
+{
+"t": "ReAct",
+"m": "An AI-agent pattern: Reason, then Act (call a tool), observe, repeat.",
+"a": "Thinking aloud, trying something, checking, repeating."
+},
+{
+"t": "ITL",
+"m": "Inter-Token Latency: time between generated tokens in an LLM.",
+"a": "The pause between words while someone speaks."
+},
+{
+"t": "GEM",
+"m": "Graphics Execution Manager: Linux DRM's GPU buffer manager.",
+"a": "The GPU's storeroom clerk."
+},
+{
+"t": "FPD",
+"m": "Flat Panel Display link (TI FPD-Link) for cameras/displays over long cables.",
+"a": "A long video cable standard for cars."
+},
+{
+"t": "RGB888",
+"m": "8 bits each of red, green, blue per pixel (24-bit colour).",
+"a": "Three 256-step paint pots per dot."
+},
+{
+"t": "LP",
+"m": "Low Power; also Linear Programming.",
+"a": "Power-saving mode."
+},
+{
+"t": "NVMe",
+"m": "Non-Volatile Memory Express: the fast protocol SSDs use over PCIe.",
+"a": "An express checkout lane designed for SSDs."
+},
+{
+"t": "BAR0",
+"m": "The first PCIe Base Address Register window of a device (usually its control registers).",
+"a": "Door number 0 of the device's control panel."
+},
+{
+"t": "ASPM",
+"m": "PCIe Active State Power Management: links nap when idle.",
+"a": "Lights that switch off in empty corridors."
+},
+{
+"t": "MiB",
+"m": "Mebibyte: 1024 \u00d7 1024 bytes.",
+"a": "A computer-sized \"million bytes\"."
+},
+{
+"t": "SPE",
+"m": "ARM Statistical Profiling Extension: hardware samples of instructions.",
+"a": "Random spot checks of what the CPU is doing."
+},
+{
+"t": "perf",
+"m": "Linux's built-in performance profiler.",
+"a": "A stopwatch and X-ray for programs."
+},
+{
+"t": "VIP",
+"m": "Virtual IP: an address that can move between machines for failover.",
+"a": "A shared phone number that rings whichever receptionist is on duty."
+},
+{
+"t": "MRU",
+"m": "Most Recently Used.",
+"a": "Whatever you just touched."
+},
+{
+"t": "kNN",
+"m": "k-Nearest Neighbours: find the k most similar items.",
+"a": "Asking your k closest neighbours for advice."
+},
+{
+"t": "LanceDB",
+"m": "An open-source vector database.",
+"a": "A filing cabinet sorted by \"similar meaning\"."
+},
+{
+"t": "NvSci",
+"m": "NVIDIA's DRIVE/Jetson libraries for sharing buffers and syncs between engines and processes (NvSciBuf, NvSciSync, NvSciStream, NvSciIpc).",
+"a": "A shared loading dock between camera, GPU and display."
+},
+{
+"t": "LCM",
+"m": "Lightweight Communications and Marshalling: a robotics message bus; also Least Common Multiple.",
+"a": "A walkie-talkie network for robot parts."
+},
+{
+"t": "GStreamer",
+"m": "A pipeline framework for audio/video on Linux.",
+"a": "LEGO pipes for media: source \u2192 filter \u2192 sink."
+},
+{
+"t": "QM",
+"m": "Quality Managed: the lowest automotive safety class (not safety-rated).",
+"a": "Normal car parts, not the brakes."
+},
+{
+"t": "FNV",
+"m": "Fowler\u2013Noll\u2013Vo: a simple, fast non-cryptographic hash.",
+"a": "A quick way to turn a name into a locker number."
+},
+{
+"t": "PostgreSQL",
+"m": "A popular open-source relational database.",
+"a": "A dependable filing cabinet with a SQL librarian."
+},
+{
+"t": "IGT",
+"m": "Intel GPU Tools: Linux graphics driver test suite.",
+"a": "The GPU driver's exam paper."
+},
+{
+"t": "TDP",
+"m": "Thermal Design Power: heat a chip is designed to dissipate.",
+"a": "How hot the stove may run continuously."
+},
+{
+"t": "PMBus",
+"m": "Power Management Bus: commands over SMBus to read/control power supplies.",
+"a": "A phone line to the power supply."
+},
+{
+"t": "SMBus",
+"m": "System Management Bus: a stricter I2C used for board management.",
+"a": "I2C with stricter manners."
+},
+{
+"t": "MHz",
+"m": "Megahertz: a million cycles per second.",
+"a": "A million ticks per second."
+},
+{
+"t": "GHz",
+"m": "Gigahertz: a billion cycles per second.",
+"a": "A billion ticks per second."
+},
+{
+"t": "DOCA",
+"m": "NVIDIA's SDK for programming BlueField DPUs.",
+"a": "The toolbox for the smart mailroom."
+},
+{
+"t": "MAD",
+"m": "InfiniBand Management Datagram; also Median Absolute Deviation.",
+"a": "A management memo on the InfiniBand network."
+},
+{
+"t": "LLC",
+"m": "Last-Level Cache: the biggest, shared CPU cache.",
+"a": "The shared pantry before the basement."
+},
+{
+"t": "SKU",
+"m": "Stock Keeping Unit: one specific product variant.",
+"a": "One exact model on the shelf."
+},
+{
+"t": "VHE",
+"m": "ARM Virtualization Host Extensions: lets the host kernel run at EL2.",
+"a": "Letting the landlord live in the manager's office."
+},
+{
+"t": "ERET",
+"m": "ARM \"exception return\" instruction.",
+"a": "Walking back out of the office to where you were."
+},
+{
+"t": "MIDR",
+"m": "ARM Main ID Register: which CPU model you are.",
+"a": "The CPU's name tag."
+},
+{
+"t": "XSDT",
+"m": "ACPI Extended System Description Table: the index of all ACPI tables.",
+"a": "The table of contents for firmware's spec sheets."
+},
+{
+"t": "RSDP",
+"m": "ACPI Root System Description Pointer: where the OS finds ACPI tables.",
+"a": "The signpost to the table of contents."
+},
+{
+"t": "SystemReady",
+"m": "ARM's certification that a board boots standard OSes via UEFI/ACPI.",
+"a": "A \"fits standard sockets\" sticker."
+},
+{
+"t": "TLM",
+"m": "Transaction-Level Modelling: simulating hardware at message level (SystemC).",
+"a": "Modelling deliveries, not every pedal of the bike."
+},
+{
+"t": "AddressSanitizer",
+"m": "ASan: finds memory errors like overflows and use-after-free.",
+"a": "A smoke detector for memory bugs."
+},
+{
+"t": "Rust",
+"m": "A systems language with compile-time memory-safety checks.",
+"a": "C with seatbelts the compiler checks."
+},
+{
+"t": "HashSet",
+"m": "A set backed by a hash table (fast \"have I seen this?\").",
+"a": "A guest list you can check instantly."
+},
+{
+"t": "RefCell",
+"m": "Rust type allowing checked mutation behind a shared reference at runtime.",
+"a": "A shared notebook with a sign-out sheet."
+},
+{
+"t": "SSTable",
+"m": "Sorted String Table: an immutable sorted file used by LSM-tree stores.",
+"a": "A printed, sorted phone book page that's never edited."
+},
+{
+"t": "CitC",
+"m": "Google's cloud-backed client workspaces for its monorepo.",
+"a": "A virtual desk with the whole company codebase on tap."
+},
+{
+"t": "MTBI",
+"m": "Mean Time Between Interventions (e.g. how often a driver must take over).",
+"a": "How many miles before someone must grab the wheel."
+},
+{
+"t": "PR",
+"m": "Pull Request: a proposed code change for review.",
+"a": "A draft handed to a colleague to check."
+},
+{
+"t": "DeepMind",
+"m": "Google's AI research lab.",
+"a": "Google's AI research team."
+},
+{
+"t": "TS",
+"m": "TypeScript; also Transport Stream (video) or timestamp.",
+"a": "JavaScript with type labels."
+},
+{
+"t": "FDB",
+"m": "Forwarding Database: switch table mapping MAC addresses to ports.",
+"a": "The switch's address book."
+},
+{
+"t": "VCN",
+"m": "Virtual Cloud Network: Oracle Cloud's private network (like a VPC).",
+"a": "Your fenced yard in Oracle's cloud."
+},
+{
+"t": "IPv4",
+"m": "Internet Protocol version 4: 32-bit addresses like 10.0.0.1.",
+"a": "The classic street-address format."
+},
+{
+"t": "IPv6",
+"m": "Internet Protocol version 6: 128-bit addresses.",
+"a": "A much longer address format so we never run out."
+},
+{
+"t": "MP",
+"m": "Multiprocessor; also megapixel.",
+"a": "Several CPUs working together."
+},
+{
+"t": "RGGB",
+"m": "Bayer colour-filter pattern on camera sensors: red, green, green, blue.",
+"a": "A mosaic of tiny coloured windows over the sensor."
+},
+{
+"t": "Bayer",
+"m": "Colour filter mosaic over a sensor; the ISP \"demosaics\" it into full colour.",
+"a": "A stained-glass grid over the camera's eye."
+},
+{
+"t": "RegNet",
+"m": "A family of efficient CNN backbones used in vision (e.g. Tesla).",
+"a": "A well-tuned standard engine for image models."
+},
+{
+"t": "BiFPN",
+"m": "Bidirectional Feature Pyramid Network: mixes image features across scales.",
+"a": "Zooming in and out repeatedly to combine detail and context."
+},
+{
+"t": "TMAC",
+"m": "Tera multiply-accumulates per second (AI chip throughput).",
+"a": "Trillions of \"multiply then add\" steps per second."
+},
+{
+"t": "IPM",
+"m": "Inverse Perspective Mapping: warping a camera image to a top-down view.",
+"a": "Turning a road photo into a map view."
+},
+{
+"t": "QA",
+"m": "Quality Assurance: testing.",
+"a": "The inspection team."
+},
+{
+"t": "INT32",
+"m": "32-bit integer.",
+"a": "A whole number in a 32-switch box."
+},
+{
+"t": "SQNR",
+"m": "Signal-to-Quantization-Noise Ratio: how much accuracy you lose when you round to fewer bits.",
+"a": "How much blurrier a photo gets when you shrink its colours."
+},
+{
+"t": "CVflow",
+"m": "Ambarella's computer-vision accelerator engine.",
+"a": "Ambarella's built-in vision calculator."
+},
+{
+"t": "NaN",
+"m": "Not a Number: the floating-point result of invalid maths like 0/0.",
+"a": "A calculator showing \"Error\"."
+},
+{
+"t": "FK",
+"m": "Forward Kinematics: joint angles \u2192 hand position.",
+"a": "Bending your arm and seeing where your hand ends up."
+},
+{
+"t": "CoM",
+"m": "Centre of Mass.",
+"a": "The balance point."
+},
+{
+"t": "CoP",
+"m": "Centre of Pressure: where ground force acts under a foot.",
+"a": "The spot on your sole carrying your weight."
+},
+{
+"t": "MFU",
+"m": "Model FLOPs Utilization: fraction of peak GPU maths actually used in training.",
+"a": "How busy the stadium of students really is."
+},
+{
+"t": "DSU",
+"m": "Disjoint Set Union (union-find).",
+"a": "Clubs that merge, each member remembering their president."
+},
+{
+"t": "KMP",
+"m": "Knuth\u2013Morris\u2013Pratt: linear-time string search using a prefix table.",
+"a": "Humming along a song without restarting after a slip."
+},
+{
+"t": "NOS",
+"m": "Network Operating System (switch OS).",
+"a": "The operating system of a network switch."
+},
+{
+"t": "AP",
+"m": "Access Point; also Application Processor (main SoC CPU, vs a small MCU).",
+"a": "The main brain of the board."
+},
+{
+"t": "DisplayPort",
+"m": "A digital video interface; can run over USB-C as \"alt mode\".",
+"a": "A video hose, like HDMI's cousin."
+},
+{
+"t": "AppendEntries",
+"m": "The Raft message a leader sends to replicate log entries (also heartbeat).",
+"a": "The captain reading out new lines for everyone's notebook."
+},
+{
+"t": "ReplicaSet",
+"m": "Kubernetes object keeping N copies of a pod running.",
+"a": "A manager making sure exactly N cashiers are on shift."
+},
+{
+"t": "UTS",
+"m": "UTS namespace: lets a container have its own hostname.",
+"a": "A name badge only that container wears."
+},
+{
+"t": "UID",
+"m": "User ID.",
+"a": "Your staff number."
+},
+{
+"t": "BSS",
+"m": "Program memory section for zero-initialised globals.",
+"a": "A shelf of empty jars set out at startup."
+},
+{
+"t": "IRQL",
+"m": "Windows Interrupt Request Level: priority level the CPU is running at.",
+"a": "A rank: higher ranks can't be interrupted by lower ones."
+},
+{
+"t": "RPS",
+"m": "Receive Packet Steering (Linux spreads packets across CPUs); also requests per second.",
+"a": "A clerk dealing mail to several sorters."
+},
+{
+"t": "RFS",
+"m": "Receive Flow Steering: send packets to the CPU running the app that wants them.",
+"a": "Delivering mail to the desk where its owner sits."
+},
+{
+"t": "DDoS",
+"m": "Distributed Denial of Service: flooding a service from many machines.",
+"a": "A thousand prank callers jamming the phone line."
+},
+{
+"t": "LangGraph",
+"m": "A library for building multi-step AI agents as graphs.",
+"a": "A flowchart that an AI follows."
+},
+{
+"t": "CrewAI",
+"m": "A framework for multi-agent AI teams.",
+"a": "A team of AI helpers with roles."
+},
+{
+"t": "AutoGen",
+"m": "Microsoft's multi-agent conversation framework.",
+"a": "AI helpers that talk to each other to solve tasks."
+},
+{
+"t": "LangChain",
+"m": "A popular library for chaining LLM calls and tools.",
+"a": "Plumbing between an AI and its tools."
+},
+{
+"t": "ROCm",
+"m": "AMD's GPU computing platform (AMD's answer to CUDA).",
+"a": "AMD's instruction manual for its stadium of students."
+},
+{
+"t": "HIP",
+"m": "AMD's CUDA-like GPU programming language.",
+"a": "CUDA-style code that also runs on AMD."
+},
+{
+"t": "BLAS",
+"m": "Basic Linear Algebra Subprograms: standard fast vector/matrix routines.",
+"a": "A standard set of times-table machines."
+},
+{
+"t": "cuBLAS",
+"m": "NVIDIA's GPU BLAS library.",
+"a": "NVIDIA's times-table machines."
+},
+{
+"t": "MIOpen",
+"m": "AMD's deep-learning kernel library.",
+"a": "AMD's AI building blocks."
+},
+{
+"t": "RCCL",
+"m": "AMD's version of NCCL for GPU group communication.",
+"a": "AMD's GPU group chat."
+},
+{
+"t": "IPMI",
+"m": "Intelligent Platform Management Interface: older protocol to talk to a BMC.",
+"a": "The caretaker's old intercom."
+},
+{
+"t": "Redfish",
+"m": "Modern REST/JSON API for server management (replaces IPMI).",
+"a": "The caretaker's new web app."
+},
+{
+"t": "NVTX",
+"m": "NVIDIA Tools Extension: markers you put in code so profilers show named ranges.",
+"a": "Sticky notes on the timeline."
+},
+{
+"t": "NPI",
+"m": "New Product Introduction: bringing a product from design to production.",
+"a": "Taking a recipe from test kitchen to the factory line."
+},
+{
+"t": "OPA",
+"m": "Open Policy Agent: a general policy engine (\"is this allowed?\").",
+"a": "A rulebook clerk every service can ask."
+},
+{
+"t": "PDF",
+"m": "Portable Document Format; in maths, probability density function.",
+"a": "A printable document."
+},
+{
+"t": "SCIM",
+"m": "System for Cross-domain Identity Management: standard for syncing user accounts.",
+"a": "One HR list that updates every app's staff list."
+},
+{
+"t": "FIDO2",
+"m": "Passwordless login standard using security keys or phones.",
+"a": "A physical key instead of a password."
+},
+{
+"t": "WebAuthn",
+"m": "The browser API for FIDO2 passwordless login.",
+"a": "The browser's keyhole for security keys."
+},
+{
+"t": "HR",
+"m": "Human Resources.",
+"a": "The people team."
+},
+{
+"t": "CTAD",
+"m": "C++ Class Template Argument Deduction: the compiler infers template types from constructor arguments.",
+"a": "The compiler guessing the box size from what you put in."
+},
+{
+"t": "UAPI",
+"m": "User-space API headers of the Linux kernel (the stable kernel\u2013user contract).",
+"a": "The public menu the kernel promises not to change."
+},
+{
+"t": "mmap",
+"m": "Map a file or device memory into a process's address space.",
+"a": "Opening a window straight into the file instead of copying it."
+},
+{
+"t": "TLV",
+"m": "Type-Length-Value: a simple encoding where each field says its type and length.",
+"a": "Labelled envelopes saying what's inside and how big."
+},
+{
+"t": "IOVA",
+"m": "I/O Virtual Address: the address a device uses, translated by the IOMMU.",
+"a": "A device's nickname address, translated by the security guard."
+},
+{
+"t": "QBUF",
+"m": "V4L2 ioctl that queues an empty buffer for the camera to fill (DQBUF takes it back).",
+"a": "Handing the camera an empty tray."
+},
+{
+"t": "DQBUF",
+"m": "V4L2 ioctl that takes back a filled buffer from the driver.",
+"a": "Taking back a full tray."
+},
+{
+"t": "HS",
+"m": "High-Speed (USB 2.0 480 Mb/s; also MIPI HS mode).",
+"a": "The fast lane."
+},
+{
+"t": "IPA",
+"m": "Intermediate Physical Address (stage-2 translation in VMs); also Image Processing Algorithms (libcamera).",
+"a": "The VM's idea of a physical address, translated again by the hypervisor."
+},
+{
+"t": "TLP",
+"m": "Transaction Layer Packet: the unit of data on PCIe.",
+"a": "One parcel on the PCIe motorway."
+},
+{
+"t": "BDF",
+"m": "Bus:Device.Function \u2014 a PCIe device's address (e.g. 01:00.0).",
+"a": "A device's street, house and flat number."
+},
+{
+"t": "INTx",
+"m": "Legacy PCI wire-style interrupts (INTA\u2013INTD).",
+"a": "Old-fashioned doorbell wires."
+},
+{
+"t": "AoS",
+"m": "Array of Structures: each element holds all fields together.",
+"a": "Each lunchbox holds a sandwich, apple and drink."
+},
+{
+"t": "SoA",
+"m": "Structure of Arrays: one array per field (better for SIMD/GPU).",
+"a": "All sandwiches in one box, all apples in another."
+},
+{
+"t": "UBWC",
+"m": "Qualcomm Universal Bandwidth Compression: compressed image buffers between engines.",
+"a": "Vacuum-packing images between kitchen stations."
+},
+{
+"t": "VTune",
+"m": "Intel's CPU profiler.",
+"a": "Intel's X-ray for programs."
+},
+{
+"t": "CMN",
+"m": "ARM Coherent Mesh Network: on-chip network linking cores and caches.",
+"a": "The road grid inside a big ARM chip."
+},
+{
+"t": "FlameGraph",
+"m": "A visualization of profiled call stacks; wide bars = where time goes.",
+"a": "A skyline where the widest buildings eat the most time."
+},
+{
+"t": "SVG",
+"m": "Scalable Vector Graphics: an image format made of shapes.",
+"a": "A drawing made from instructions, not dots."
+},
+{
+"t": "GDDR",
+"m": "Graphics DDR memory used on GPU cards.",
+"a": "Fast memory built for graphics cards."
+},
+{
+"t": "GL",
+"m": "OpenGL: a graphics API.",
+"a": "A standard way to ask the GPU to draw."
+},
+{
+"t": "OpenGL",
+"m": "Cross-platform graphics API.",
+"a": "A standard way to ask the GPU to draw."
+},
+{
+"t": "OpenCL",
+"m": "Cross-vendor GPU/accelerator compute API.",
+"a": "A vendor-neutral version of CUDA."
+},
+{
+"t": "OpenMP",
+"m": "Compiler directives for parallel loops on CPUs.",
+"a": "A note telling the compiler \"split this loop among workers\"."
+},
+{
+"t": "SASS",
+"m": "NVIDIA GPU's final machine code (below PTX).",
+"a": "The GPU's native instruction set."
+},
+{
+"t": "GSP",
+"m": "NVIDIA GPU System Processor: a RISC-V core on the GPU running firmware.",
+"a": "A small manager chip living inside the GPU."
+},
+{
+"t": "VA",
+"m": "Virtual Address.",
+"a": "The nickname address a program uses."
+},
+{
+"t": "KF",
+"m": "Kalman Filter.",
+"a": "Blending a guess with a blurry measurement."
+},
+{
+"t": "AR",
+"m": "Augmented Reality; also Auto-Regressive models.",
+"a": "Digital stickers on the real world."
+},
+{
+"t": "VR",
+"m": "Virtual Reality.",
+"a": "A fully computer-made world."
+},
+{
+"t": "QoS profile",
+"m": "ROS 2/DDS delivery settings (reliable vs best-effort, history depth).",
+"a": "Choosing registered mail or postcards for each topic."
+},
+{
+"t": "SharedPtr",
+"m": "C++/ROS shared_ptr: reference-counted smart pointer; freed when the last owner lets go.",
+"a": "A library book returned when the last borrower is done."
+},
+{
+"t": "SMI",
+"m": "System Management Interrupt (x86 firmware stealing CPU time); nvidia-smi is NVIDIA's GPU status tool.",
+"a": "An invisible boss pulling the CPU into a back room."
+},
+{
+"t": "PCA",
+"m": "Principal Component Analysis: reduce dimensions keeping the most variance.",
+"a": "Photographing a 3D object from the most informative angle."
+},
+{
+"t": "SVD",
+"m": "Singular Value Decomposition: factor a matrix into rotations and scales.",
+"a": "Breaking a stretch into turn, stretch, turn."
+},
+{
+"t": "UMAP",
+"m": "A method to squash high-dimensional data into 2D/3D for viewing.",
+"a": "Drawing a flat map of a globe of points."
+},
+{
+"t": "t-SNE",
+"m": "A method to visualise high-dimensional data in 2D.",
+"a": "Arranging similar people close together at a party."
+},
+{
+"t": "OPQ",
+"m": "Optimized Product Quantization: rotate vectors before compressing them.",
+"a": "Turning a box before packing so it fits better."
+},
+{
+"t": "DLPack",
+"m": "A standard for sharing tensors between libraries without copying.",
+"a": "A universal tray that fits every kitchen's oven."
+},
+{
+"t": "CuPy",
+"m": "NumPy-compatible arrays on NVIDIA GPUs.",
+"a": "NumPy that runs on the GPU."
+},
+{
+"t": "JNI",
+"m": "Java Native Interface: calling C/C++ from Java.",
+"a": "An interpreter between Java and C."
+},
+{
+"t": "RMM",
+"m": "RAPIDS Memory Manager: fast GPU memory pools.",
+"a": "A pre-booked block of GPU parking spaces."
+},
+{
+"t": "RAPIDS",
+"m": "NVIDIA's GPU data-science libraries (cuDF, cuML, cuVS).",
+"a": "Pandas and scikit-learn on a GPU."
+},
+{
+"t": "cuML",
+"m": "RAPIDS machine-learning library on GPUs.",
+"a": "GPU-powered scikit-learn."
+},
+{
+"t": "RAUC",
+"m": "A robust A/B OTA update framework for embedded Linux.",
+"a": "Two engines: update the spare, switch only if it starts."
+},
+{
+"t": "SWUpdate",
+"m": "Another embedded Linux update framework.",
+"a": "A careful software-swap service for devices."
+},
+{
+"t": "LTS",
+"m": "Long-Term Support release.",
+"a": "A version that gets fixes for years."
+},
+{
+"t": "iceoryx",
+"m": "Zero-copy shared-memory middleware (RouDi is its daemon).",
+"a": "A shared fridge where everyone grabs the same carton instead of copies."
+},
+{
+"t": "EGLStream",
+"m": "A Khronos API to pass image frames between producers and consumers (camera \u2192 GPU \u2192 display).",
+"a": "A conveyor belt of video frames between engines."
+},
+{
+"t": "fuzzing",
+"m": "Feeding random/mutated inputs to find crashes.",
+"a": "Shaking a vending machine every way to see if it breaks."
+},
+{
+"t": "AFL",
+"m": "American Fuzzy Lop: a classic fuzzer.",
+"a": "A tireless monkey pressing random buttons, smartly."
+},
+{
+"t": "HARA",
+"m": "Hazard Analysis and Risk Assessment (ISO 26262 safety analysis).",
+"a": "Listing everything that could hurt someone, and how badly."
+},
+{
+"t": "FCC",
+"m": "US Federal Communications Commission (radio emissions rules).",
+"a": "The radio-noise police."
+},
+{
+"t": "BlackBerry",
+"m": "Company owning QNX.",
+"a": "The company behind QNX."
+},
+{
+"t": "SIL",
+"m": "Software-In-the-Loop testing; also Safety Integrity Level (IEC 61508).",
+"a": "Testing the code against a simulated world on a PC."
+},
+{
+"t": "DBT",
+"m": "data build tool: SQL-based data transformation framework.",
+"a": "Recipe cards for transforming data tables."
+},
+{
+"t": "BigQuery",
+"m": "Google's serverless data warehouse.",
+"a": "A giant searchable spreadsheet in Google's cloud."
+},
+{
+"t": "DuckDB",
+"m": "A small embedded analytics database.",
+"a": "A pocket calculator for big tables."
+},
+{
+"t": "ClickHouse",
+"m": "A very fast column-oriented analytics database.",
+"a": "A filing system that reads one column across millions of rows at once."
+},
+{
+"t": "RocksDB",
+"m": "An embedded key-value store built on an LSM tree.",
+"a": "A fast drawer system that writes in batches."
+},
+{
+"t": "SQLMesh",
+"m": "A data transformation/versioning framework.",
+"a": "Version control for data recipes."
+},
+{
+"t": "MOS",
+"m": "Mean Opinion Score: human quality rating for audio/video (1\u20135).",
+"a": "Average star rating from listeners."
+},
+{
+"t": "pybind11",
+"m": "A library to expose C++ to Python.",
+"a": "A bridge letting Python call C++."
+},
+{
+"t": "OpenSCENARIO",
+"m": "ASAM standard for describing driving test scenarios.",
+"a": "A script format for traffic scenes."
+},
+{
+"t": "ASAM",
+"m": "Automotive standards body (OpenSCENARIO, OpenDRIVE).",
+"a": "A rule committee for car testing formats."
+},
+{
+"t": "NCAP",
+"m": "New Car Assessment Programme: crash/safety ratings.",
+"a": "The car safety star ratings."
+},
+{
+"t": "fPIC",
+"m": "Compile as position-independent code (needed for shared libraries).",
+"a": "Writing directions that work from any starting street."
+},
+{
+"t": "BO",
+"m": "Buffer Object: a GPU memory buffer in Linux DRM.",
+"a": "One box in the GPU's storeroom."
+},
+{
+"t": "TTM",
+"m": "Translation Table Maps: Linux DRM memory manager for GPU buffers in VRAM/RAM.",
+"a": "The storeroom manager deciding which shelf each box lives on."
+},
+{
+"t": "RAPL",
+"m": "Running Average Power Limit: Intel/AMD power measurement and capping.",
+"a": "A power meter and limiter inside the CPU."
+},
+{
+"t": "PoE",
+"m": "Power over Ethernet.",
+"a": "Sending electricity down the network cable."
+},
+{
+"t": "MCTP",
+"m": "Management Component Transport Protocol: carries management messages between chips (over SMBus/PCIe).",
+"a": "The internal post service for management chips."
+},
+{
+"t": "PLDM",
+"m": "Platform Level Data Model: management messages (sensors, firmware update) on top of MCTP.",
+"a": "The standard forms sent by that post service."
+},
+{
+"t": "DMTF",
+"m": "Standards body for Redfish, MCTP, PLDM.",
+"a": "The server-management rule committee."
+},
+{
+"t": "OCP",
+"m": "Open Compute Project: open data-centre hardware designs.",
+"a": "Open-source blueprints for servers."
+},
+{
+"t": "REST",
+"m": "Representational State Transfer: web API style using HTTP verbs on resources.",
+"a": "A shop counter where you GET, POST or DELETE items by name."
+},
+{
+"t": "RESTful",
+"m": "Following REST style.",
+"a": "Using the shop-counter style."
+},
+{
+"t": "I3C",
+"m": "Improved I2C: faster successor to I2C with in-band interrupts.",
+"a": "I2C upgraded with a faster party line."
+},
+{
+"t": "VDM",
+"m": "Vendor-Defined Message (USB PD / PCIe).",
+"a": "A private note between two devices of the same maker."
+},
+{
+"t": "PEC",
+"m": "Packet Error Checking: CRC byte on SMBus/PMBus messages.",
+"a": "A checksum seal on the envelope."
+},
+{
+"t": "DLLP",
+"m": "PCIe Data Link Layer Packet (ACK/NAK, flow control); BadDLLP/BadTLP count link errors.",
+"a": "Receipts on the PCIe motorway."
+},
+{
+"t": "DAX",
+"m": "Direct Access: apps map persistent memory/files directly, bypassing the page cache.",
+"a": "Reading straight off the shelf instead of photocopying first."
+},
+{
+"t": "LnkSta",
+"m": "PCIe Link Status register (lspci shows speed/width).",
+"a": "The link's speedometer."
+},
+{
+"t": "UML",
+"m": "Unified Modeling Language diagrams; also User-Mode Linux.",
+"a": "Standard boxes-and-arrows diagrams."
+},
+{
+"t": "LID",
+"m": "InfiniBand Local Identifier: a port's address in the subnet.",
+"a": "A port's local house number."
+},
+{
+"t": "GID",
+"m": "InfiniBand/RoCE Global Identifier (IPv6-like address); also Group ID.",
+"a": "A global street address."
+},
+{
+"t": "CNP",
+"m": "Congestion Notification Packet in RoCE (part of DCQCN).",
+"a": "A \"slow down\" note sent back to the sender."
+},
+{
+"t": "DCQCN",
+"m": "Data Center QCN: RoCE congestion control using ECN marks and CNPs.",
+"a": "A traffic-light system for RDMA."
+},
+{
+"t": "RoCEv2",
+"m": "RDMA over Converged Ethernet version 2 (routable over UDP/IP).",
+"a": "Express lockers that work across town."
+},
+{
+"t": "IB",
+"m": "InfiniBand.",
+"a": "A private high-speed rail line."
+},
+{
+"t": "SR-IOV",
+"m": "Single Root I/O Virtualization: one PCIe device appears as many virtual devices for VMs.",
+"a": "One big kitchen split into private mini-kitchens."
+},
+{
+"t": "VF",
+"m": "Virtual Function (SR-IOV slice of a device).",
+"a": "One mini-kitchen."
+},
+{
+"t": "PF",
+"m": "Physical Function (the real SR-IOV device controller).",
+"a": "The main kitchen that owns the mini-kitchens."
+},
+{
+"t": "WFI",
+"m": "ARM \"wait for interrupt\" instruction: core sleeps until an interrupt.",
+"a": "Napping until the doorbell rings."
+},
+{
+"t": "AArch64",
+"m": "ARM's 64-bit execution state.",
+"a": "ARM's 64-bit mode."
+},
+{
+"t": "PPTT",
+"m": "ACPI Processor Properties Topology Table: CPU/cache layout.",
+"a": "A seating chart of CPUs and caches."
+},
+{
+"t": "PL011",
+"m": "ARM's standard UART serial port design.",
+"a": "ARM's standard serial port."
+},
+{
+"t": "STLR",
+"m": "ARM store-release instruction (ordered store).",
+"a": "\"Write this, after everything before it.\""
+},
+{
+"t": "LDAR",
+"m": "ARM load-acquire instruction (ordered load).",
+"a": "\"Read this, before anything after it.\""
+},
+{
+"t": "ISH",
+"m": "ARM \"inner shareable\" domain for barriers (DMB ISH).",
+"a": "All cores in the same cluster neighbourhood."
+},
+{
+"t": "LSE",
+"m": "ARM Large System Extensions: atomic instructions like LDADD, CAS.",
+"a": "One-step atomic sums for many-core ARM."
+},
+{
+"t": "FVP",
+"m": "ARM Fixed Virtual Platform: software simulator of an ARM system.",
+"a": "A flight simulator for ARM boards."
+},
+{
+"t": "W1C",
+"m": "Write-1-to-Clear: register bits cleared by writing 1.",
+"a": "Pressing the button to turn the light off."
+},
+{
+"t": "SystemRDL",
+"m": "A language describing hardware registers, used to generate headers/docs.",
+"a": "A register spec written once, printed many ways."
+},
+{
+"t": "DMI",
+"m": "Desktop Management Interface tables (SMBIOS): board/vendor info.",
+"a": "The machine's ID card."
+},
+{
+"t": "SWMR",
+"m": "Single-Writer Multiple-Reader cache coherence invariant.",
+"a": "One person may write on the board, everyone else just reads."
+},
+{
+"t": "CHI",
+"m": "ARM Coherent Hub Interface: on-chip coherence protocol.",
+"a": "ARM's rulebook for caches agreeing."
+},
+{
+"t": "UCIe",
+"m": "Universal Chiplet Interconnect Express: standard die-to-die links.",
+"a": "A standard plug between chiplets."
+},
+{
+"t": "ACE",
+"m": "ARM AXI Coherency Extensions.",
+"a": "The older ARM cache-agreement rulebook."
+},
+{
+"t": "BusRd",
+"m": "Coherence message: read a line; BusRdX = read with intent to modify.",
+"a": "\"Can I see that?\" vs \"I need to edit that.\""
+},
+{
+"t": "SurfaceFlinger",
+"m": "Android's display compositor that combines app windows.",
+"a": "The layout artist stacking every app's picture."
+},
+{
+"t": "VHAL",
+"m": "Android Automotive Vehicle HAL (car properties).",
+"a": "Android's window into the car's signals."
+},
+{
+"t": "VSS",
+"m": "COVESA Vehicle Signal Specification: standard names for car signals.",
+"a": "A shared dictionary of car signals."
+},
+{
+"t": "DBC",
+"m": "CAN database file: defines message IDs and signals.",
+"a": "The decoding sheet for CAN messages."
+},
+{
+"t": "SonarQube",
+"m": "Static code-quality analyzer.",
+"a": "A spell-checker for code smells."
+},
+{
+"t": "IoT",
+"m": "Internet of Things: connected small devices.",
+"a": "Smart gadgets on the network."
+},
+{
+"t": "MPKI",
+"m": "Misses Per Kilo-Instruction: cache/branch misses per 1000 instructions.",
+"a": "Mistakes per thousand steps."
+},
+{
+"t": "PUE",
+"m": "Power Usage Effectiveness: data-centre total power \u00f7 IT power.",
+"a": "How much electricity goes to cooling versus computing."
+},
+{
+"t": "HDD",
+"m": "Hard Disk Drive (spinning disk).",
+"a": "A record player for data."
+},
+{
+"t": "TRT",
+"m": "TensorRT.",
+"a": "A tuning shop for models on NVIDIA GPUs."
+},
+{
+"t": "ARC",
+"m": "Adaptive Replacement Cache: balances recent and frequent items.",
+"a": "A fridge that learns whether you snack on new or favourite foods."
+},
+{
+"t": "VMM",
+"m": "Virtual Machine Monitor: the user-space part that emulates devices for a VM (e.g. QEMU, Firecracker).",
+"a": "The stagehand building props for each virtual flat."
+},
+{
+"t": "HLT",
+"m": "x86 halt instruction (sleep until interrupt).",
+"a": "Napping until the doorbell."
+},
+{
+"t": "EPT",
+"m": "Extended Page Tables: Intel hardware for VM address translation.",
+"a": "A second address book for virtual tenants."
+},
+{
+"t": "vCPU",
+"m": "A virtual CPU given to a VM.",
+"a": "A pretend CPU seat in a virtual flat."
+},
+{
+"t": "COM1",
+"m": "The first PC serial port.",
+"a": "The PC's first serial socket."
+},
+{
+"t": "GitLab",
+"m": "Git hosting and CI platform.",
+"a": "A home for code with a built-in test robot."
+},
+{
+"t": "FSEvents",
+"m": "macOS API for file change notifications.",
+"a": "macOS telling you \"this folder changed\"."
+},
+{
+"t": "ReadDirectoryChangesW",
+"m": "Windows API for watching folder changes.",
+"a": "Windows telling you \"this folder changed\"."
+},
+{
+"t": "inotify",
+"m": "Linux API for file change notifications.",
+"a": "Linux telling you \"this folder changed\"."
+},
+{
+"t": "JetBrains",
+"m": "Maker of IDEs (CLion, IntelliJ).",
+"a": "The IDE company."
+},
+{
+"t": "VCS",
+"m": "Version Control System (Git, Perforce).",
+"a": "Time-machine for code."
+},
+{
+"t": "IaC",
+"m": "Infrastructure as Code (Terraform etc.).",
+"a": "Writing your data centre as a recipe file."
+},
+{
+"t": "CoreWeave",
+"m": "A GPU cloud provider.",
+"a": "A cloud company renting GPUs."
+},
+{
+"t": "OpenSSL",
+"m": "The widely used crypto/TLS library.",
+"a": "The standard lock-and-key toolkit."
+},
+{
+"t": "HashiCorp",
+"m": "Maker of Terraform, Vault, Nomad.",
+"a": "The infrastructure tools company."
+},
+{
+"t": "EndpointSecurity",
+"m": "Apple's API for security tools to watch process/file events.",
+"a": "macOS's official security camera feed."
+},
+{
+"t": "SentinelOne",
+"m": "An endpoint security (EDR) vendor.",
+"a": "A security-camera company for computers."
+},
+{
+"t": "OpenShift",
+"m": "Red Hat's Kubernetes platform.",
+"a": "Red Hat's packaged Kubernetes."
+},
+{
+"t": "TraceID",
+"m": "The ID shared by every span in one distributed trace.",
+"a": "A parcel tracking number across every depot."
+},
+{
+"t": "DSAR",
+"m": "Data Subject Access Request (GDPR right to see your data).",
+"a": "Asking a company \"show me everything you have on me\"."
+},
+{
+"t": "B2B",
+"m": "Business-to-business.",
+"a": "Companies selling to companies."
+},
+{
+"t": "OneTrust",
+"m": "Privacy/consent management vendor.",
+"a": "A consent-paperwork service."
+},
+{
+"t": "ADK",
+"m": "Agent Development Kit (Google).",
+"a": "A toolkit for building AI agents."
+},
+{
+"t": "VxWorks",
+"m": "Wind River's commercial RTOS used in aerospace/defence.",
+"a": "A heavy-duty RTOS for planes and rovers."
+},
+{
+"t": "CERT",
+"m": "Computer Emergency Response Team; also CERT C secure coding standard.",
+"a": "The internet's fire brigade / a safe-coding rulebook."
+},
+{
+"t": "LFM",
+"m": "Linear Frequency Modulation (radar chirp).",
+"a": "A whistle that rises steadily in pitch."
+},
+{
+"t": "gPTP",
+"m": "Generalized PTP (IEEE 802.1AS): time sync for TSN/automotive Ethernet.",
+"a": "Car-network clocks set from one master watch."
+},
+{
+"t": "ChArUco",
+"m": "A chessboard with ArUco markers for camera calibration.",
+"a": "A chessboard with QR-like tags for calibrating cameras."
+},
+{
+"t": "CFA",
+"m": "Color Filter Array (e.g. Bayer).",
+"a": "The coloured-tile mosaic over a sensor."
+},
+{
+"t": "ResNet",
+"m": "A CNN using skip connections so very deep networks train well.",
+"a": "An express lift that skips floors so signals don't fade."
+},
+{
+"t": "HydraNet",
+"m": "Tesla's multi-head neural network: one shared backbone, many task heads.",
+"a": "One body with many heads, each doing a job."
+},
+{
+"t": "GMAC",
+"m": "Gigabit Ethernet MAC controller; also giga multiply-accumulates.",
+"a": "The chip block that speaks Ethernet."
+},
+{
+"t": "FOV",
+"m": "Field Of View.",
+"a": "How wide the camera can see."
+},
+{
+"t": "OccGrid",
+"m": "Occupancy grid: a map of cells marked free, occupied or unknown.",
+"a": "A chessboard map: which squares have obstacles."
+},
+{
+"t": "QAT",
+"m": "Quantization-Aware Training: train while simulating low-bit maths.",
+"a": "Practising with rounded numbers so you're ready for them."
+},
+{
+"t": "PTQ",
+"m": "Post-Training Quantization: round a trained model to fewer bits afterwards.",
+"a": "Shrinking a finished photo."
+},
+{
+"t": "MSE",
+"m": "Mean Squared Error.",
+"a": "Average of squared misses."
+},
+{
+"t": "SNPE",
+"m": "Qualcomm's Snapdragon Neural Processing Engine runtime.",
+"a": "Qualcomm's AI engine runner."
+},
+{
+"t": "QNN",
+"m": "Qualcomm AI Engine Direct (Qualcomm Neural Network SDK).",
+"a": "Qualcomm's newer AI engine runner."
+},
+{
+"t": "ReLU",
+"m": "Rectified Linear Unit: neural activation max(0,x).",
+"a": "A gate that lets positives through and blocks negatives."
+},
+{
+"t": "XLA",
+"m": "Accelerated Linear Algebra: Google's ML compiler.",
+"a": "A compiler that fuses AI maths into fast kernels."
+},
+{
+"t": "TVM",
+"m": "Apache TVM: open ML compiler for many hardware targets.",
+"a": "A translator from AI models to any chip."
+},
+{
+"t": "RRT",
+"m": "Rapidly-exploring Random Tree: a path-planning algorithm.",
+"a": "Throwing out random branches until one reaches the goal."
+},
+{
+"t": "EMF",
+"m": "Electromotive force (back-EMF in motors).",
+"a": "The voltage a spinning motor pushes back."
+},
+{
+"t": "AC",
+"m": "Alternating Current.",
+"a": "Power that flips direction many times a second."
+},
+{
+"t": "FPU",
+"m": "Floating-Point Unit.",
+"a": "The decimal calculator in a CPU."
+},
+{
+"t": "DLC",
+"m": "CAN Data Length Code (bytes in the frame).",
+"a": "The \"how many bytes\" label on a CAN message."
+},
+{
+"t": "MDIO",
+"m": "Management Data I/O: bus to configure Ethernet PHYs.",
+"a": "The control wire to the network voice box."
+},
+{
+"t": "PCAN",
+"m": "PEAK-System CAN USB adapters/tools.",
+"a": "A USB plug for listening to CAN."
+},
+{
+"t": "SocketCAN",
+"m": "Linux CAN interface that treats CAN like network sockets.",
+"a": "CAN messages handled like network packets."
+},
+{
+"t": "CRC32",
+"m": "A 32-bit CRC checksum.",
+"a": "A 32-switch fingerprint of data."
+},
+{
+"t": "DLS",
+"m": "Damped Least Squares: stable inverse-kinematics solver.",
+"a": "Reaching for a target without jerking near awkward poses."
+},
+{
+"t": "AGC",
+"m": "Automatic Gain Control.",
+"a": "A volume knob that turns itself."
+},
+{
+"t": "IsaacLab",
+"m": "NVIDIA's robot-learning framework on Isaac Sim.",
+"a": "A robot gym in simulation."
+},
+{
+"t": "LIPM",
+"m": "Linear Inverted Pendulum Model for walking robots.",
+"a": "Modelling a walker as a broom balanced on a hand."
+},
+{
+"t": "domain randomization",
+"m": "Randomising simulation (friction, light, mass) so policies work on real robots.",
+"a": "Practising in all weathers so any real day feels familiar."
+},
+{
+"t": "DDP",
+"m": "PyTorch Distributed Data Parallel: each GPU has a full model copy and averages gradients.",
+"a": "Every chef cooks the same dish, then they compare notes."
+},
+{
+"t": "ZeRO",
+"m": "DeepSpeed's sharding of optimizer state/gradients/weights across GPUs.",
+"a": "Each mover carries only part of the furniture."
+},
+{
+"t": "ExaPOD",
+"m": "Tesla's Dojo supercomputer unit.",
+"a": "Tesla's AI training warehouse."
+},
+{
+"t": "CFP8",
+"m": "Tesla Dojo's configurable 8-bit floating-point format.",
+"a": "A tiny adjustable ruler for AI maths."
+},
+{
+"t": "SDE",
+"m": "Software Development Engineer.",
+"a": "A software engineer."
+},
+{
+"t": "GfG",
+"m": "GeeksforGeeks, a coding-practice website.",
+"a": "A coding-practice site."
+},
+{
+"t": "HackerRank",
+"m": "Online coding-test platform.",
+"a": "An online coding exam room."
+},
+{
+"t": "CodeSignal",
+"m": "Online coding-assessment platform.",
+"a": "An online coding exam room."
+},
+{
+"t": "ROI",
+"m": "Return On Investment; in vision, Region Of Interest.",
+"a": "What you get back for what you put in."
+},
+{
+"t": "Quickselect",
+"m": "Find the k-th smallest element in average O(n) by partitioning.",
+"a": "Splitting the deck around a card until the k-th lands in place."
+},
+{
+"t": "Dijkstra",
+"m": "Shortest paths with non-negative weights using a heap.",
+"a": "Always expanding the closest unvisited town next."
+},
+{
+"t": "Bellman-Ford",
+"m": "Shortest paths allowing negative edges, by relaxing all edges V\u22121 times.",
+"a": "Re-checking every road repeatedly until no route improves."
+},
+{
+"t": "sweep line",
+"m": "Process events sorted by position, keeping an active set.",
+"a": "Sliding a ruler across a timeline and noting what's open."
+},
+{
+"t": "greedy",
+"m": "Take the best-looking choice at each step.",
+"a": "Always grabbing the biggest coin first."
+},
+{
+"t": "INF",
+"m": "Infinity (a placeholder \"very large\" value).",
+"a": "\"Further than anything.\""
+},
+{
+"t": "DLL",
+"m": "Doubly Linked List; on Windows, Dynamic-Link Library.",
+"a": "A conga line where everyone also holds the person behind."
+},
+{
+"t": "BPE",
+"m": "Byte-Pair Encoding: LLM tokenizer merging frequent character pairs.",
+"a": "Inventing shorthand for common letter pairs."
+},
+{
+"t": "HA",
+"m": "High Availability.",
+"a": "Always-open shop with backup staff."
+},
+{
+"t": "TP",
+"m": "Tensor Parallelism: split one layer's maths across GPUs.",
+"a": "Several chefs each cutting part of the same vegetable."
+},
+{
+"t": "PP",
+"m": "Pipeline Parallelism: different GPUs hold different layers.",
+"a": "An assembly line of chefs, each doing one course."
+},
+{
+"t": "FS",
+"m": "File System.",
+"a": "The filing system on a disk."
+},
+{
+"t": "ABR",
+"m": "Adaptive Bitrate streaming: player switches quality to fit bandwidth.",
+"a": "Lowering video quality on a slow connection instead of buffering."
+},
+{
+"t": "ETA",
+"m": "Estimated Time of Arrival.",
+"a": "When it should get there."
+},
+{
+"t": "DAU",
+"m": "Daily Active Users.",
+"a": "How many people use it each day."
+},
+{
+"t": "SP",
+"m": "Stack Pointer; also Service Pack.",
+"a": "A finger on the top plate of the stack."
+},
+{
+"t": "PRI",
+"m": "Priority.",
+"a": "Who goes first."
+},
+{
+"t": "NoC",
+"m": "Network-on-Chip: packet network connecting blocks inside a chip.",
+"a": "Roads and roundabouts inside a chip."
+},
+{
+"t": "ChatGPT",
+"m": "OpenAI's chat assistant.",
+"a": "OpenAI's chatbot."
+},
+{
+"t": "CMake",
+"m": "Cross-platform build-system generator for C/C++.",
+"a": "A recipe that writes the build instructions for any kitchen."
+},
+{
+"t": "DOM",
+"m": "Document Object Model: the browser's tree of a web page.",
+"a": "The family tree of a web page's elements."
+},
+{
+"t": "TreeMap",
+"m": "Java sorted map (red-black tree).",
+"a": "A dictionary always kept in alphabetical order."
+},
+{
+"t": "ArrayDeque",
+"m": "Java resizable double-ended queue.",
+"a": "A line you can join or leave at either end."
+},
+{
+"t": "GoogleTest",
+"m": "C++ unit-test framework.",
+"a": "A test bench for C++."
+},
+{
+"t": "stuck-at fault",
+"m": "A memory cell permanently reads 0 or 1 no matter what you write.",
+"a": "A light switch glued in one position."
+},
+{
+"t": "transition fault",
+"m": "A cell can't change in one direction (0\u21921 or 1\u21920).",
+"a": "A switch that turns on but never off."
+},
+{
+"t": "coupling fault",
+"m": "Writing one cell wrongly flips or affects a neighbouring cell.",
+"a": "Flicking your switch also flips the neighbour's light."
+},
+{
+"t": "address decoder fault",
+"m": "Two addresses hit the same cell, or one address hits none.",
+"a": "Two flats sharing one mailbox."
+},
+{
+"t": "March C-",
+"m": "A classic memory test: write/read 0s and 1s up and down the address range in set orders.",
+"a": "Walking the locker hallway both ways, checking and flipping each locker."
+},
+{
+"t": "march test",
+"m": "Memory test that marches through addresses applying write/read patterns.",
+"a": "Inspecting every locker in a fixed walking order."
+},
+{
+"t": "Qt",
+"m": "A C++ framework for cross-platform user interfaces.",
+"a": "A toolkit for building screens and buttons."
+},
+{
+"t": "ADR",
+"m": "Architecture Decision Record: a short doc recording one design decision and why.",
+"a": "A diary entry explaining why you chose this road."
+},
+{
+"t": "CACM",
+"m": "Communications of the ACM, a computing journal.",
+"a": "A computer-science magazine."
+},
+{
+"t": "BLK",
+"m": "Block device / block layer (Linux storage I/O path).",
+"a": "The storage loading dock in Linux."
+},
+{
+"t": "XACT",
+"m": "Transaction (abbreviation used in register/bus specs).",
+"a": "One complete delivery."
+},
+{
+"t": "BAE",
+"m": "BAE Systems, a defence/aerospace company.",
+"a": "A defence company."
+},
+{
+"t": "RCCB",
+"m": "Camera colour-filter pattern: red, clear, clear, blue (more light for night driving).",
+"a": "A sensor mosaic with see-through tiles for low light."
+},
+{
+"t": "RCCC",
+"m": "Camera colour-filter pattern: red plus three clear pixels.",
+"a": "Mostly see-through tiles with one red."
+},
+{
+"t": "ER",
+"m": "Emergency Room; also Entity-Relationship (database diagrams).",
+"a": "The hospital's urgent desk."
+},
+{
+"t": "BW",
+"m": "Bandwidth.",
+"a": "How wide the motorway is."
+},
+{
+"t": "LT",
+"m": "Lontium chip prefix (e.g. LT6911 HDMI-to-MIPI bridge).",
+"a": "The Lontium video bridge chips."
+},
+{
+"t": "TI",
+"m": "Texas Instruments, a chip maker.",
+"a": "A chip company."
+},
+{
+"t": "ABB",
+"m": "A robotics/industrial automation company.",
+"a": "A big industrial-robot maker."
+},
+{
+"t": "GT",
+"m": "Ground Truth (the correct labels); also NVIDIA GeForce GT.",
+"a": "The answer key."
+},
+{
+"t": "OA",
+"m": "Online Assessment: an automated coding test before interviews.",
+"a": "A take-home exam on a website."
+},
+{
+"t": "DS",
+"m": "Data Structures; also Data Science.",
+"a": "The containers for data."
+},
+{
+"t": "CC",
+"m": "USB-C Configuration Channel pins (detect orientation and power role); also C compiler / carbon copy.",
+"a": "The little wire that tells which way the plug is flipped."
+},
+{
+"t": "ALLM",
+"m": "HDMI Auto Low-Latency Mode: TV switches to game mode automatically.",
+"a": "The TV noticing a game and dropping its delay."
+},
+{
+"t": "HRT",
+"m": "High-Resolution Timers (Linux hrtimers).",
+"a": "A stopwatch with microsecond ticks."
+},
+{
+"t": "SCCR",
+"m": "Short-Circuit Current Rating of industrial electrical panels.",
+"a": "How big a short circuit a panel can survive."
+},
+{
+"t": "SIG",
+"m": "Special Interest Group (e.g. USB-IF, Bluetooth SIG); also signal.",
+"a": "A standards club."
+},
+{
+"t": "JMAX",
+"m": "Maximum jerk (rate of change of acceleration) limit in motion planning.",
+"a": "How suddenly you're allowed to press the pedal."
+},
+{
+"t": "VPs",
+"m": "Vice Presidents.",
+"a": "Senior leaders."
+},
+{
+"t": "LDO",
+"m": "Low-DropOut regulator: a simple linear voltage regulator on the PMIC (LDO3 = the third one).",
+"a": "A water valve that gives a steady lower pressure."
+},
+{
+"t": "VPP",
+"m": "Vector Packet Processing (fd.io): fast user-space packet forwarding; also peak-to-peak voltage.",
+"a": "A sorting machine that handles packets in batches."
+},
+{
+"t": "LINEAR16",
+"m": "PMBus number format for output voltage: 16-bit value times a fixed power-of-two exponent.",
+"a": "A price written as whole units of a fixed coin size."
+},
+{
+"t": "LDO3",
+"m": "The third LDO (low-dropout) regulator on the PMIC: one of the board power rails.",
+"a": "Tap number 3 on the water-pressure panel."
+},
+{
 "t": "FunctionFS",
 "m": "A way for a normal program, not kernel code, to implement one USB function of a gadget.",
 "a": "Letting a contractor run one counter of the shop instead of hiring a full-time employee.",
