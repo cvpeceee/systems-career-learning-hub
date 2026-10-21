@@ -35,7 +35,7 @@ Each video now opens with a short Poly story (hook), shows simple pictures for h
 | v03-driver-model.mp4 | 6:23 |
 | v04-device-tree.mp4 | 6:56 |
 | v05-irq-dma.mp4 | 6:24 |
-| v06-boot-chain.mp4 | 5:60 |
+| v06-boot-chain.mp4 | 6:00 |
 | v07-yocto-bsp.mp4 | 4:35 |
 | v08-v4l2-alsa.mp4 | 6:25 |
 | v09-codecs-hdmi.mp4 | 5:24 |
