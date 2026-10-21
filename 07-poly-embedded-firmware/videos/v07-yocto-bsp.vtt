@@ -1,115 +1,148 @@
 WEBVTT
 
-00:00:00.000 --> 00:00:07.512
+00:00:00.000 --> 00:00:07.605
 This video explains how a product image is assembled with Yocto, and how to live with chip vendor BSPs without drowning in patches.
 
-00:00:08.712 --> 00:00:15.341
+00:00:08.005 --> 00:00:19.707
+Yocto / BitBake: A build system that compiles a whole custom Linux image from recipes; BitBake is its build engine. Like: A bakery that follows recipe cards to bake a whole custom cake from scratch.
+
+00:00:20.807 --> 00:00:24.894
+The chip vendor sends a new kit with a kernel carrying two thousand patches.
+
+00:00:25.144 --> 00:00:31.866
+Kernel: The core of the operating system that controls memory, devices and which program runs. Like: The building manager who owns every key and decides who uses which room.
+
+00:00:32.116 --> 00:00:35.704
+Your product has its own fifty patches on top of the old kit.
+
+00:00:35.954 --> 00:00:40.853
+How do you move without breaking everything? That's what build systems and good layering are for.
+
+00:00:41.903 --> 00:00:48.625
 A vendor BSP is like a meal kit: everything in the box, pre measured, but designed for the vendor's kitchen.
 
-00:00:15.741 --> 00:00:21.674
+00:00:49.025 --> 00:00:55.782
+BSP: Board Support Package: the chip vendor's bundle of bootloader, kernel, drivers and settings for one chip or board. Like: The starter kit that comes with a new appliance: parts, manual and tools for that exact model.
+
+00:00:56.082 --> 00:01:02.038
 Yocto is your recipe book, organized in layers. Each layer adds or changes recipes.
 
-00:00:22.074 --> 00:00:28.947
+00:01:02.438 --> 00:01:09.416
 A b b append file says: use the vendor's recipe, but add our spices. You never edit the kit itself.
 
-00:00:29.347 --> 00:00:34.478
+00:01:09.816 --> 00:01:14.704
 And pinning every layer revision means you can cook exactly the same meal again next year.
 
-00:00:35.678 --> 00:00:36.363
+00:01:15.904 --> 00:01:16.600
 Words.
 
-00:00:36.763 --> 00:00:41.152
+00:01:17.000 --> 00:01:21.540
 BitBake is Yocto's engine. It reads recipes and runs their tasks.
 
-00:00:41.552 --> 00:00:47.113
+00:01:21.940 --> 00:01:27.443
 A recipe describes how to fetch, patch, configure, build and package one component.
 
-00:00:47.513 --> 00:00:55.002
+00:01:27.843 --> 00:01:35.401
 A layer is a folder of recipes, like meta qcom from Qualcomm, meta freescale for N X P, and your company's own layer.
 
-00:00:55.402 --> 00:00:59.953
+00:01:35.801 --> 00:01:40.387
 The shared state cache stores build outputs so unchanged parts are never rebuilt.
 
-00:01:00.353 --> 00:01:05.600
+00:01:40.787 --> 00:01:46.058
 Upstream means the main open source project. Downstream means a vendor or company fork of it.
 
-00:01:06.800 --> 00:01:09.064
+00:01:47.258 --> 00:01:49.290
 Here's how an image comes together.
 
-00:01:09.464 --> 00:01:13.493
+00:01:49.690 --> 00:01:54.020
 You start with poky, the Yocto reference, plus the vendor's layers.
 
-00:01:13.893 --> 00:01:19.036
+00:01:54.420 --> 00:01:59.378
 On top, your company layer adds b b append files and kernel config fragments.
 
-00:01:19.436 --> 00:01:23.384
+00:01:59.778 --> 00:02:03.713
 BitBake parses every recipe and builds a dependency graph.
 
-00:01:23.784 --> 00:01:32.514
+00:02:04.113 --> 00:02:12.368
 For each recipe, it fetches source, applies patches, configures and compiles. Anything unchanged comes from the shared state cache.
 
-00:01:32.914 --> 00:01:35.051
+00:02:12.768 --> 00:02:14.939
 Outputs are split into packages.
 
-00:01:35.451 --> 00:01:40.431
+00:02:15.339 --> 00:02:20.192
 Then the root filesystem, kernel and device tree are combined into a flashable image.
 
-00:01:40.831 --> 00:01:44.152
+00:02:20.592 --> 00:02:27.256
+Device tree: A text map of the hardware on a board (which chips, on which pins and addresses) that the kernel reads at boot. Like: The floor plan of a house, so the electrician knows where every socket is without digging into walls.
+
+00:02:27.556 --> 00:02:30.679
 And you flash it, or run it in QEMU with run qemu.
 
-00:01:45.352 --> 00:01:47.047
+00:02:31.079 --> 00:02:39.392
+QEMU: A program that emulates a whole computer, so you can test kernels without real hardware. Like: A flight simulator for software.
+
+00:02:40.492 --> 00:02:42.025
 Set up the build environment.
 
-00:01:47.447 --> 00:01:48.538
+00:02:42.425 --> 00:02:43.551
 Build an image.
 
-00:01:48.938 --> 00:01:53.814
+00:02:43.951 --> 00:02:48.920
 Open a shell inside the kernel recipe's work directory, with the cross compiler ready.
 
-00:01:54.214 --> 00:01:58.255
+00:02:49.320 --> 00:02:53.453
 Change kernel options interactively. Then save them as a fragment.
 
-00:01:58.655 --> 00:02:05.028
+00:02:53.853 --> 00:03:00.018
 Dev tool modify checks out the source for editing, and dev tool finish turns your commits into patches in your layer.
 
-00:02:05.428 --> 00:02:11.651
+00:03:00.418 --> 00:03:06.978
 Bitbake dash e shows the final value of any variable, which answers most where did this come from questions.
 
-00:02:12.051 --> 00:02:20.248
+00:03:07.378 --> 00:03:15.156
 And this line builds and boots an ARM sixty four image in QEMU, with no hardware. Expect a long first build and a lot of disk space.
 
-00:02:21.448 --> 00:02:24.350
+00:03:16.356 --> 00:03:19.050
 Now a senior strategy for vendor BSPs.
 
-00:02:24.750 --> 00:02:28.361
+00:03:19.450 --> 00:03:23.072
 Always know exactly which vendor release each product is on.
 
-00:02:28.761 --> 00:02:35.251
+00:03:23.472 --> 00:03:30.055
 Keep your changes as a numbered patch series on top. Moving to the next vendor release becomes a mechanical rebase.
 
-00:02:35.651 --> 00:02:43.662
+00:03:30.455 --> 00:03:38.895
 Before patching a vendor driver, search upstream. The fix often exists. Backport it, with its fixes tag, instead of inventing your own.
 
-00:02:44.062 --> 00:02:50.320
+00:03:39.295 --> 00:03:43.916
+Driver: Kernel code that knows how to operate one kind of hardware. Like: A translator who speaks one specific machine's language.
+
+00:03:44.166 --> 00:03:50.633
 File vendor tickets with a minimal reproduction, versions, logs, and a clear ask. That saves weeks.
 
-00:02:50.720 --> 00:02:56.142
+00:03:51.033 --> 00:03:56.803
 And keep a BSP delta document: what changed, why, and whether it can go upstream.
 
-00:02:57.342 --> 00:02:58.015
+00:03:58.003 --> 00:04:03.599
+Question for you: Why put your product changes in your own layer instead of editing the vendor's files?
+
+00:04:08.899 --> 00:04:17.351
+Answer: So a new vendor release can be dropped in and your changes reapplied cleanly, and it's always clear which changes are yours.
+
+00:04:18.451 --> 00:04:19.148
 Recap.
 
-00:02:58.415 --> 00:03:00.563
+00:04:19.548 --> 00:04:21.696
 Never edit vendor layers in place.
 
-00:03:00.963 --> 00:03:05.026
+00:04:22.096 --> 00:04:26.449
 Put changes in your own layer, as b b appends and config fragments.
 
-00:03:05.426 --> 00:03:06.901
+00:04:26.849 --> 00:04:28.475
 Pin every layer revision.
 
-00:03:07.301 --> 00:03:10.006
+00:04:28.875 --> 00:04:31.603
 Prefer upstream backports to custom fixes.
 
-00:03:10.406 --> 00:03:12.217
+00:04:32.003 --> 00:04:33.698
 And document every delta.

@@ -1,115 +1,181 @@
 WEBVTT
 
-00:00:00.000 --> 00:00:09.346
+00:00:00.000 --> 00:00:09.462
 This video explains the device tree: how we describe hardware the kernel can't discover by itself, using an HDMI bridge on I two C as the example.
 
-00:00:10.546 --> 00:00:13.774
+00:00:09.862 --> 00:00:22.691
+Device tree: A text map of the hardware on a board (which chips, on which pins and addresses) that the kernel reads at boot. Like: The floor plan of a house, so the electrician knows where every socket is without digging into walls.
+
+00:00:22.991 --> 00:00:29.713
+Kernel: The core of the operating system that controls memory, devices and which program runs. Like: The building manager who owns every key and decides who uses which room.
+
+00:00:29.963 --> 00:00:38.415
+HDMI: The common cable standard for sending video and audio to TVs and monitors. Like: A garden hose for pictures and sound.
+
+00:00:38.715 --> 00:00:50.070
+I2C: A simple two-wire bus that lets a processor talk to small chips like sensors and HDMI bridges. Like: A classroom where the teacher calls each student by number and they answer one at a time.
+
+00:00:51.170 --> 00:00:56.348
+Hardware moves the HDMI bridge's reset line to a different pin on board revision B.
+
+00:00:56.598 --> 00:00:58.885
+Do you change the driver code? No.
+
+00:00:59.135 --> 00:01:03.756
+Driver: Kernel code that knows how to operate one kind of hardware. Like: A translator who speaks one specific machine's language.
+
+00:01:04.006 --> 00:01:11.309
+You change one line in a text file that describes the board. That file is the device tree, and this video shows how it works.
+
+00:01:12.359 --> 00:01:15.575
 Think of the kernel as an electrician arriving at a new house.
 
-00:00:14.174 --> 00:00:25.818
+00:01:15.975 --> 00:01:27.910
 USB devices announce themselves, but chips on I two C or SPI can't. So the electrician needs a blueprint showing which room has which socket, and which breaker feeds it. That's the device tree.
 
-00:00:26.218 --> 00:00:33.092
+00:01:28.310 --> 00:01:37.273
+SPI: A fast four-wire bus for chips like flash memory and displays. Like: A dedicated phone line to each chip instead of a shared classroom.
+
+00:01:37.573 --> 00:01:44.399
 Each socket on the blueprint has a name tag that tells the electrician which tool to use. That's the compatible string.
 
-00:00:33.492 --> 00:00:39.842
+00:01:44.799 --> 00:01:51.034
 And when you add a room later, you hand over a renovation sheet that patches the blueprint. That's an overlay.
 
-00:00:41.042 --> 00:00:41.843
+00:01:51.434 --> 00:01:59.212
+DTB / overlay: The compiled, binary form of the device tree that the bootloader hands to the kernel; an overlay patches it. Like: The printed floor plan; an overlay is a sticky note added on top.
+
+00:02:00.262 --> 00:02:01.098
 Key words.
 
-00:00:42.243 --> 00:00:50.614
+00:02:01.498 --> 00:02:10.276
 A d t s file is device tree source text. The d t c compiler turns it into a d t b binary that the bootloader passes to the kernel.
 
-00:00:51.014 --> 00:00:56.622
+00:02:10.676 --> 00:02:17.293
+Bootloader: The small program that runs first at power-on, sets up memory and loads the kernel. Like: The stagehand who sets up the stage before the actors arrive.
+
+00:02:17.543 --> 00:02:23.371
 Compatible is the string that selects the driver, for example lontium comma l t ninety six eleven.
 
-00:00:57.022 --> 00:01:02.269
+00:02:23.771 --> 00:02:29.344
 Reg is the address of the node on its bus. For an I two C chip, that's its seven bit address.
 
-00:01:02.669 --> 00:01:10.286
+00:02:29.744 --> 00:02:37.709
 Regmap is a kernel helper that wraps register reads and writes over I two C or SPI, with caching and locking built in.
 
-00:01:10.686 --> 00:01:16.119
+00:02:38.109 --> 00:02:43.554
 Pin control decides what each physical pin does: GPIO, I two C, or UART.
 
-00:01:17.319 --> 00:01:20.094
+00:02:43.954 --> 00:02:48.261
+GPIO: General-purpose input/output: a single pin software can switch on or off, or read. Like: A light switch the software can flip or check.
+
+00:02:48.561 --> 00:02:56.375
+UART: A simple serial port, often the first console you see when a board boots. Like: A tin-can telephone straight into the board.
+
+00:02:57.475 --> 00:03:00.238
 Here is a typical node for an HDMI bridge.
 
-00:01:20.494 --> 00:01:24.313
+00:03:00.638 --> 00:03:04.539
 It lives under the third I two C controller, at address three B.
 
-00:01:24.713 --> 00:01:27.001
+00:03:04.939 --> 00:03:07.133
 The compatible string picks the driver.
 
-00:01:27.401 --> 00:01:29.769
+00:03:07.533 --> 00:03:09.774
 Reg repeats the I two C address.
 
-00:01:30.169 --> 00:01:37.692
+00:03:10.174 --> 00:03:17.801
 The interrupt comes from pin fifty of the SoC's GPIO controller, and fires on a falling edge. That's the hot plug signal.
 
-00:01:38.092 --> 00:01:42.144
+00:03:18.201 --> 00:03:28.314
+IRQ / interrupt: Interrupt request: a hardware signal that makes the processor stop and handle an event right now. Like: A doorbell: you stop what you are doing and answer it.
+
+00:03:28.614 --> 00:03:40.456
+SoC: System on a chip: one chip holding the processor cores, graphics, video, USB and more. Like: A whole city on one island: houses, factories and roads in one place.
+
+00:03:40.756 --> 00:03:53.713
+EDID / HPD: EDID is the screen's description of what it can show; hot-plug detect (HPD) is the wire that says a screen is connected. Like: A guest's dietary card (EDID) and the doorbell that says they arrived (HPD).
+
+00:03:54.013 --> 00:03:58.111
 The reset line is pin fifty two. The flag says active high.
 
-00:01:42.544 --> 00:01:48.790
+00:03:58.511 --> 00:04:04.583
 Vdd supply names the regulator that powers the chip. The driver asks for it by the name vdd.
 
-00:01:49.190 --> 00:01:58.385
+00:04:04.983 --> 00:04:13.957
 And the ports section is a graph: it says the bridge's input is connected to the SoC's D S I display output. That's how the display pipeline is wired together.
 
-00:01:59.585 --> 00:02:02.140
+00:04:15.157 --> 00:04:17.944
 Now the whole path from blueprint to running driver.
 
-00:02:02.540 --> 00:02:04.688
+00:04:18.344 --> 00:04:20.573
 You write the board's d t s file.
 
-00:02:05.088 --> 00:02:08.129
+00:04:20.973 --> 00:04:24.119
 The d t c compiler turns it into a d t b.
 
-00:02:08.529 --> 00:02:13.313
+00:04:24.519 --> 00:04:29.070
 The bootloader loads the d t b next to the kernel, and passes its address at boot.
 
-00:02:13.713 --> 00:02:17.544
+00:04:29.470 --> 00:04:33.534
 Early in boot, the kernel unflattens the blob into a tree of nodes.
 
-00:02:17.944 --> 00:02:24.620
+00:04:33.934 --> 00:04:40.842
 For each enabled node, it creates a device on the right bus. Our bridge becomes an I two C device at address three B.
 
-00:02:25.020 --> 00:02:28.120
+00:04:41.242 --> 00:04:44.400
 The bus matches it to the driver by compatible string.
 
-00:02:28.520 --> 00:02:37.877
+00:04:44.800 --> 00:04:54.088
 And probe gets its resources from the properties: devm regulator get for vdd, devm g p i o d get for reset, and a regmap for registers.
 
-00:02:39.077 --> 00:02:40.563
+00:04:54.488 --> 00:05:00.188
+probe(): The driver function the kernel calls when it finds a device that matches the driver. Like: The first handshake when a translator is introduced to the person they will translate for.
+
+00:05:00.438 --> 00:05:11.421
+regmap: A kernel helper that reads and writes a chip's registers over I2C or SPI with caching. Like: A shared notebook of a chip's settings so you do not re-ask the chip every time.
+
+00:05:12.521 --> 00:05:14.135
 A quick bus cheat sheet.
 
-00:02:40.963 --> 00:02:52.980
+00:05:14.535 --> 00:05:27.016
 I two C has two wires, addressed devices, and runs from one hundred kilohertz to one megahertz. Use i two c detect and i two c get, and on a logic analyzer look for NACKs and weak pull ups.
 
-00:02:53.380 --> 00:02:59.893
+00:05:27.416 --> 00:05:33.975
 SPI uses four wires and is faster and full duplex. You'll find flash and some audio codecs there.
 
-00:03:00.293 --> 00:03:10.869
+00:05:34.375 --> 00:05:40.041
+Codec: Software or hardware that compresses and decompresses video or audio. Like: Vacuum-packing clothes for travel, then unpacking them at the hotel.
+
+00:05:40.291 --> 00:05:51.007
 GPIOs drive resets and enables, and carry interrupts. The g p i o d API uses logical values, so an active low flag in the device tree is handled for you.
 
-00:03:11.269 --> 00:03:17.887
+00:05:51.407 --> 00:05:58.152
 And as a senior habit: document every binding you add in YAML, and run make d t b s check in CI.
 
-00:03:19.087 --> 00:03:19.761
+00:05:58.552 --> 00:06:10.615
+CI / HIL: Continuous integration runs tests on every change; hardware-in-the-loop (HIL) runs them on real boards. Like: A quality inspector at every station of the assembly line, some with real parts on the bench.
+
+00:06:11.715 --> 00:06:17.752
+Question for you: The reset pin moved on a new board revision. Where should the change go, and why?
+
+00:06:23.052 --> 00:06:31.574
+Answer: In the board's device tree, not the driver. The driver reads the pin from the description, so one driver serves every board.
+
+00:06:32.674 --> 00:06:33.371
 Recap.
 
-00:03:20.161 --> 00:03:23.481
+00:06:33.771 --> 00:06:36.998
 The device tree describes hardware that can't be discovered.
 
-00:03:23.881 --> 00:03:27.329
+00:06:37.398 --> 00:06:41.206
 Compatible picks the driver, and reg is the address on the bus.
 
-00:03:27.729 --> 00:03:31.862
+00:06:41.606 --> 00:06:45.182
 GPIOs, regulators and interrupts come from properties.
 
-00:03:32.262 --> 00:03:36.384
+00:06:45.582 --> 00:06:49.530
 Keep board specific values in the device tree, not in if defs.
 
-00:03:36.784 --> 00:03:41.149
+00:06:49.930 --> 00:06:54.469
 And in lab two, you compile an overlay and a matching platform driver.

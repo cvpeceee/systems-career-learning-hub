@@ -1,121 +1,160 @@
 WEBVTT
 
-00:00:00.000 --> 00:00:09.265
+00:00:00.000 --> 00:00:09.474
 This video lays the foundation of USB: speeds, endpoints, the four transfer types, descriptors, and the bandwidth math that decides your camera formats.
 
-00:00:10.465 --> 00:00:12.613
+00:00:09.874 --> 00:00:16.015
+Endpoint: A numbered mailbox on a USB device; each data stream uses its own. Like: Numbered pigeonholes in an office: mail for video goes in one slot, audio in another.
+
+00:00:16.265 --> 00:00:19.505
+Descriptor: A small table of facts the device reports about itself: who made it, what it can do. Like: A business card plus resume the device hands over when it is first plugged in.
+
+00:00:20.555 --> 00:00:29.610
+One USB cable carries live video, two-way sound, button presses and, sometimes, a firmware update, all at the same time.
+
+00:00:29.860 --> 00:00:36.536
+Firmware: Software that runs close to hardware, usually stored in flash memory on the device. Like: The instincts built into an animal: low-level behaviour that is there from birth.
+
+00:00:36.786 --> 00:00:39.584
+How does USB keep them from tripping over each other?
+
+00:00:39.834 --> 00:00:42.969
+With different transfer types and separate mailboxes.
+
+00:00:43.219 --> 00:00:49.047
+Even a firmware update can share the cable during a call without hurting the video. Let's see how.
+
+00:00:50.097 --> 00:00:52.326
 USB is a strict classroom.
 
-00:00:13.013 --> 00:00:16.565
+00:00:52.726 --> 00:00:56.209
 The host is the teacher. No student speaks unless asked.
 
-00:00:16.965 --> 00:00:20.379
+00:00:56.609 --> 00:01:00.115
 Each device has numbered mailboxes, called endpoints.
 
-00:00:20.779 --> 00:00:24.053
+00:01:00.515 --> 00:01:03.615
 Control transfers are paperwork, like registration.
 
-00:00:24.453 --> 00:00:27.181
+00:01:04.015 --> 00:01:06.778
 Bulk transfers are big parcels that can wait.
 
-00:00:27.581 --> 00:00:31.877
+00:01:07.178 --> 00:01:14.562
+Bulk transfer: A USB transfer type that is reliable but has no timing promise, used for files and updates. Like: Parcel post: everything arrives intact, but not at a promised minute.
+
+00:01:14.812 --> 00:01:19.259
 Interrupt transfers are small urgent notes, checked on a fixed schedule.
 
-00:00:32.277 --> 00:00:38.987
+00:01:19.659 --> 00:01:24.257
+IRQ / interrupt: Interrupt request: a hardware signal that makes the processor stop and handle an event right now. Like: A doorbell: you stop what you are doing and answer it.
+
+00:01:24.557 --> 00:01:31.174
 And isochronous transfers are a live radio broadcast: if a piece arrives late, it's as useless as lost.
 
-00:00:40.187 --> 00:00:40.872
+00:01:31.574 --> 00:01:38.343
+Isochronous transfer: A USB transfer type with guaranteed timing but no retries, used for live video and audio. Like: A live TV broadcast: always on time, and a dropped frame is simply skipped, never resent.
+
+00:01:39.443 --> 00:01:40.139
 Words.
 
-00:00:41.272 --> 00:00:49.121
+00:01:40.539 --> 00:01:48.190
 An endpoint is a numbered pipe, either IN toward the host, or OUT from it. Endpoint zero is always the control endpoint.
 
-00:00:49.521 --> 00:00:53.166
+00:01:48.590 --> 00:01:52.398
 An interface is one function of the device, like video streaming.
 
-00:00:53.566 --> 00:01:00.126
+00:01:52.798 --> 00:01:59.312
 An alternate setting is a variant of an interface. Alt zero reserves no bandwidth; higher alts reserve more.
 
-00:01:00.526 --> 00:01:07.190
+00:01:59.712 --> 00:02:06.376
 A microframe is a one hundred twenty five microsecond time slot in high speed USB. There are eight per millisecond.
 
-00:01:07.590 --> 00:01:14.846
+00:02:06.776 --> 00:02:14.090
 And w Max Packet Size encodes the bytes per transaction, plus how many extra transactions fit in each microframe.
 
-00:01:16.046 --> 00:01:16.708
+00:02:15.290 --> 00:02:15.905
 Speeds.
 
-00:01:17.108 --> 00:01:20.986
+00:02:16.305 --> 00:02:20.497
 Low speed is one and a half megabits, full speed is twelve.
 
-00:01:21.386 --> 00:01:25.008
+00:02:20.897 --> 00:02:24.472
 High speed, the fastest USB two, is four hundred eighty.
 
-00:01:25.408 --> 00:01:28.612
+00:02:24.872 --> 00:02:28.065
 SuperSpeed, USB three, is five gigabits.
 
-00:01:29.012 --> 00:01:31.450
+00:02:28.465 --> 00:02:30.822
 SuperSpeed plus is ten or twenty.
 
-00:01:31.850 --> 00:01:36.494
+00:02:31.222 --> 00:02:35.785
 USB three adds separate wires, and companion descriptors for bursts.
 
-00:01:37.694 --> 00:01:39.540
+00:02:36.985 --> 00:02:38.982
 Let's watch one microframe.
 
-00:01:39.940 --> 00:01:45.084
+00:02:39.382 --> 00:02:44.513
 The host asks the video endpoint for data, and receives up to ten twenty four bytes.
 
-00:01:45.484 --> 00:01:50.778
+00:02:44.913 --> 00:02:50.115
 Because this endpoint declared a multiplier, the host asks again in the same microframe.
 
-00:01:51.178 --> 00:01:55.380
+00:02:50.515 --> 00:02:54.717
 And a third time. That's three transactions, reserved every microframe.
 
-00:01:55.780 --> 00:02:02.793
+00:02:55.117 --> 00:03:02.037
 Next, the button endpoint's polling interval is due. The device sends a report, or says NAK: nothing new.
 
-00:02:03.193 --> 00:02:07.802
+00:03:02.437 --> 00:03:06.918
 Bulk gets whatever time is left, which is why bulk has no timing guarantee.
 
-00:02:08.202 --> 00:02:10.071
+00:03:07.318 --> 00:03:09.269
 And the next microframe starts.
 
-00:02:11.271 --> 00:02:13.849
+00:03:10.469 --> 00:03:13.116
 Now the math that decides your camera's formats.
 
-00:02:14.249 --> 00:02:21.029
+00:03:13.516 --> 00:03:20.389
 This endpoint's packet size field is hex fourteen hundred. The low eleven bits are hex four hundred: ten twenty four bytes.
 
-00:02:21.429 --> 00:02:25.876
+00:03:20.789 --> 00:03:25.445
 Bits eleven and twelve are two, meaning three transactions per microframe.
 
-00:02:26.276 --> 00:02:36.945
+00:03:25.845 --> 00:03:36.839
 Ten twenty four, times three, times eight thousand microframes per second, is about twenty four and a half megabytes per second. That's the maximum for one high speed isochronous endpoint.
 
-00:02:37.345 --> 00:02:43.603
+00:03:37.239 --> 00:03:43.694
 Uncompressed ten eighty p thirty in YUY2 needs one hundred twenty four megabytes per second. It doesn't fit.
 
-00:02:44.003 --> 00:02:51.410
+00:03:44.094 --> 00:03:51.699
+YUY2 / NV12 / MJPEG: Ways to pack image pixels: brightness and colour stored separately (YUY2, NV12) or compressed per frame (MJPEG). Like: Different ways to pack a suitcase: rolled, folded, or vacuum-sealed.
+
+00:03:51.949 --> 00:03:59.437
 Compressed M J P E G does fit. That's why USB two webcams send M J P E G at ten eighty p.
 
-00:02:51.810 --> 00:02:55.340
+00:03:59.837 --> 00:04:03.448
 And even seven twenty p uncompressed needs USB three.
 
-00:02:56.540 --> 00:02:57.213
+00:04:04.648 --> 00:04:10.674
+Question for you: Live video uses a transfer type with no retries. Why is that the right choice?
+
+00:04:15.974 --> 00:04:24.182
+Answer: For live video, a late frame is useless. It's better to skip a damaged packet and keep the timing than to stop and resend.
+
+00:04:25.282 --> 00:04:25.979
 Recap.
 
-00:02:57.613 --> 00:02:59.970
+00:04:26.379 --> 00:04:28.805
 The host asks, the device answers.
 
-00:03:00.370 --> 00:03:05.153
+00:04:29.205 --> 00:04:33.477
 Four transfer types: control, bulk, interrupt, isochronous.
 
-00:03:05.553 --> 00:03:09.361
+00:04:33.877 --> 00:04:37.732
 Alt zero reserves no bandwidth; higher alts reserve it.
 
-00:03:09.761 --> 00:03:15.229
+00:04:38.132 --> 00:04:43.565
 One high speed isochronous endpoint tops out near twenty four and a half megabytes per second.
 
-00:03:15.629 --> 00:03:19.693
+00:04:43.965 --> 00:04:48.052
 And lab four parses these descriptors, including the multiplier bits.

@@ -1,118 +1,151 @@
 WEBVTT
 
-00:00:00.000 --> 00:00:08.115
+00:00:00.000 --> 00:00:08.533
 In this video we cover the C and C plus plus habits that prevent most firmware bugs, and walk through a lock free ring buffer step by step.
 
-00:00:09.315 --> 00:00:11.661
+00:00:08.933 --> 00:00:15.609
+Firmware: Software that runs close to hardware, usually stored in flash memory on the device. Like: The instincts built into an animal: low-level behaviour that is there from birth.
+
+00:00:16.659 --> 00:00:19.550
+Your first patch at a new team goes up for review.
+
+00:00:19.800 --> 00:00:25.059
+A senior reviewer leaves one comment: this allocates memory in the camera's frame callback.
+
+00:00:25.309 --> 00:00:32.612
+It worked on your desk, but in the field it causes a stutter every few minutes. Let's learn the habits that catch this before review.
+
+00:00:33.662 --> 00:00:35.961
 Writing firmware is like cooking on a boat.
 
-00:00:12.061 --> 00:00:19.607
+00:00:36.361 --> 00:00:43.803
 You use the same recipes, but the floor moves under you. Those are interrupts, which can arrive between any two instructions.
 
-00:00:20.007 --> 00:00:22.875
+00:00:44.203 --> 00:00:54.315
+IRQ / interrupt: Interrupt request: a hardware signal that makes the processor stop and handle an event right now. Like: A doorbell: you stop what you are doing and answer it.
+
+00:00:54.615 --> 00:00:57.494
 The pantry is tiny. That's limited memory.
 
-00:00:23.275 --> 00:00:29.997
+00:00:57.894 --> 00:01:04.315
 And once you've sailed, nobody can come aboard to fix a spill. That's a shipped device in a customer's meeting room.
 
-00:00:31.197 --> 00:00:32.219
+00:01:05.515 --> 00:01:06.664
 The key words.
 
-00:00:32.619 --> 00:00:41.036
+00:01:07.064 --> 00:01:15.423
 Volatile tells the compiler a value can change outside the normal code flow, like a hardware register. It does not make code thread safe.
 
-00:00:41.436 --> 00:00:46.800
+00:01:15.823 --> 00:01:21.082
 A memory barrier stops the CPU and the compiler from reordering memory accesses across it.
 
-00:00:47.200 --> 00:00:53.515
+00:01:21.482 --> 00:01:28.007
 An I S R, or interrupt service routine, is the code the CPU jumps to when hardware raises an interrupt.
 
-00:00:53.915 --> 00:01:01.566
+00:01:28.407 --> 00:01:32.784
+ISR / top half: Interrupt service routine: the tiny, fast handler that runs the moment the interrupt fires. Like: Answering the doorbell just long enough to take the parcel.
+
+00:01:33.084 --> 00:01:40.352
 Acquire and release are atomic orderings. A release store publishes all the writes before it. An acquire load guarantees you see them.
 
-00:01:01.966 --> 00:01:08.573
+00:01:40.752 --> 00:01:47.393
 And RAII, in C plus plus, means a resource is freed in a destructor, so cleanup can't be forgotten.
 
-00:01:09.773 --> 00:01:10.643
+00:01:48.593 --> 00:01:49.475
 Six rules.
 
-00:01:11.043 --> 00:01:22.363
+00:01:49.875 --> 00:02:00.986
 One. Access registers with read L and write L in the kernel, because they include the right barriers. In bare metal, use volatile pointers, plus explicit barriers around DMA buffers.
 
-00:01:22.763 --> 00:01:29.299
+00:02:01.386 --> 00:02:08.108
+Kernel: The core of the operating system that controls memory, devices and which program runs. Like: The building manager who owns every key and decides who uses which room.
+
+00:02:08.358 --> 00:02:19.527
+DMA: Direct memory access: a hardware helper that copies data to memory without the processor doing each byte. Like: A conveyor belt that moves boxes while the worker does something else.
+
+00:02:19.827 --> 00:02:26.340
 Two. Interrupt handlers never block, never allocate, never print. Record what happened, and defer the work.
 
-00:01:29.699 --> 00:01:38.175
+00:02:26.740 --> 00:02:35.529
 Three. Share data between an interrupt and a task through a single producer, single consumer ring, or by disabling interrupts very briefly.
 
-00:01:38.575 --> 00:01:45.564
+00:02:35.929 --> 00:02:43.336
 Four. Bounds check every length that arrives from outside. A malformed USB descriptor is a classic security bug.
 
-00:01:45.964 --> 00:01:51.827
+00:02:43.736 --> 00:02:46.975
+Descriptor: A small table of facts the device reports about itself: who made it, what it can do. Like: A business card plus resume the device hands over when it is first plugged in.
+
+00:02:47.225 --> 00:02:53.170
 Five. In C plus plus daemons, use RAII for file descriptors, locks and memory maps.
 
-00:01:52.227 --> 00:02:01.736
+00:02:53.570 --> 00:03:03.543
 Six. Build with all warnings as errors, and run the sanitizers on everything that can build on a PC. In the kernel, use checkpatch, sparse, and lockdep.
 
-00:02:02.936 --> 00:02:10.296
+00:03:04.743 --> 00:03:12.696
 Now the ring buffer from lab eight, step by step. Only the interrupt writes, and only the task reads, so no lock is needed.
 
-00:02:10.696 --> 00:02:12.600
+00:03:13.096 --> 00:03:14.895
 The hardware fires an interrupt.
 
-00:02:13.000 --> 00:02:22.555
+00:03:15.295 --> 00:03:24.746
 The interrupt handler loads the tail with acquire ordering, to check whether the ring is full. If it is full, it drops the sample and counts an overrun. It never waits.
 
-00:02:22.955 --> 00:02:30.281
+00:03:25.146 --> 00:03:32.379
 It writes the data into the slot at head, masked by the capacity minus one. That's why the capacity is a power of two.
 
-00:02:30.681 --> 00:02:37.845
+00:03:32.779 --> 00:03:40.081
 Then it stores head plus one with release ordering. This is the key step: the data write is guaranteed visible before the new head.
 
-00:02:38.245 --> 00:02:41.460
+00:03:40.481 --> 00:03:43.523
 It acknowledges the interrupt and returns quickly.
 
-00:02:41.860 --> 00:02:47.410
+00:03:43.923 --> 00:03:49.519
 Later, the task loads head with acquire ordering. If head differs from tail, there's data.
 
-00:02:47.810 --> 00:02:49.633
+00:03:49.919 --> 00:03:51.672
 It reads the slot at tail.
 
-00:02:50.033 --> 00:03:00.517
+00:03:52.072 --> 00:04:02.231
 And stores tail plus one with release ordering, freeing the slot for the producer. In our test, two million items passed in order, and ThreadSanitizer found no races.
 
-00:03:01.717 --> 00:03:03.145
+00:04:03.431 --> 00:04:04.836
 Here's the real code.
 
-00:03:03.545 --> 00:03:09.814
+00:04:05.236 --> 00:04:11.563
 The producer reads its own head relaxed, because only it writes head, and the consumer's tail with acquire.
 
-00:03:10.214 --> 00:03:17.668
+00:04:11.963 --> 00:04:19.556
 Head minus tail equals capacity means full. Unsigned wraparound makes this subtraction correct even after the counters overflow.
 
-00:03:18.068 --> 00:03:20.750
+00:04:19.956 --> 00:04:22.638
 The release store of head publishes the data.
 
-00:03:21.150 --> 00:03:25.283
+00:04:23.038 --> 00:04:27.485
 On the consumer side, the acquire load of head pairs with that release.
 
-00:03:25.683 --> 00:03:31.290
+00:04:27.885 --> 00:04:33.690
 And the release store of tail hands the slot back. Two pairs of acquire and release, and no locks.
 
-00:03:32.490 --> 00:03:33.164
+00:04:34.890 --> 00:04:40.602
+Question for you: Why is calling new or malloc inside a per-frame callback risky on a device?
+
+00:04:45.902 --> 00:04:55.341
+Answer: It can take an unpredictable amount of time and fragment memory, so frames can miss their deadline. Allocate once up front and reuse buffers.
+
+00:04:56.441 --> 00:04:57.137
 Recap.
 
-00:03:33.564 --> 00:03:36.838
+00:04:57.537 --> 00:05:00.951
 Volatile is not thread safety. Use atomics or locks.
 
-00:03:37.238 --> 00:03:40.512
+00:05:01.351 --> 00:05:04.671
 Interrupt handlers record and defer. They never block.
 
-00:03:40.912 --> 00:03:43.373
+00:05:05.071 --> 00:05:07.498
 Release publishes, acquire observes.
 
-00:03:43.773 --> 00:03:46.281
+00:05:07.898 --> 00:05:10.452
 Check every length that comes from outside.
 
-00:03:46.681 --> 00:03:54.297
+00:05:10.852 --> 00:05:18.178
 And keep protocol logic in plain C that you can test on a PC with sanitizers. Every lab in this course follows that pattern.

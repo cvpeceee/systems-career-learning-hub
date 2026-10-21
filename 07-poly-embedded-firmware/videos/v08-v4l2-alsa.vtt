@@ -1,124 +1,190 @@
 WEBVTT
 
-00:00:00.000 --> 00:00:08.057
+00:00:00.000 --> 00:00:07.825
 In this video, we follow camera frames through V four L two, the Linux video API, and look at the audio side with ALSA.
 
-00:00:09.257 --> 00:00:12.462
+00:00:08.225 --> 00:00:18.326
+V4L2: Video for Linux 2: the kernel interface every Linux camera and video device uses. Like: The standard loading dock every camera truck backs into.
+
+00:00:18.626 --> 00:00:30.549
+ALSA / ASoC: Advanced Linux Sound Architecture: the kernel's audio system; ASoC is its part for chips on boards. Like: The plumbing that carries sound from microphones to programs and back to speakers.
+
+00:00:31.649 --> 00:00:35.086
+The camera starts streaming, but every frame is bright green.
+
+00:00:35.336 --> 00:00:40.200
+The sensor, the image processor and the app each thought the pixels were packed a different way.
+
+00:00:40.450 --> 00:00:44.827
+Let's follow a frame from sensor to app, and a sound from microphone to speaker.
+
+00:00:45.877 --> 00:00:49.047
 V four L two works like a cafeteria tray system.
 
-00:00:12.862 --> 00:00:16.182
+00:00:49.447 --> 00:00:52.814
 You hand empty trays to the kitchen. That's queueing a buffer.
 
-00:00:16.582 --> 00:00:21.006
+00:00:53.214 --> 00:00:57.626
 The kitchen fills them with food. That's the hardware writing a frame by DMA.
 
-00:00:21.406 --> 00:00:24.505
+00:00:58.026 --> 00:01:09.194
+DMA: Direct memory access: a hardware helper that copies data to memory without the processor doing each byte. Like: A conveyor belt that moves boxes while the worker does something else.
+
+00:01:09.494 --> 00:01:12.606
 You take a full tray off the counter. That's dequeueing.
 
-00:00:24.905 --> 00:00:26.949
+00:01:13.006 --> 00:01:14.933
 You eat, then hand the tray back.
 
-00:00:27.349 --> 00:00:33.374
+00:01:15.333 --> 00:01:21.335
 If you're slow to hand trays back, the kitchen runs out, and drops meals. Those are dropped frames.
 
-00:00:34.574 --> 00:00:35.259
+00:01:22.535 --> 00:01:23.232
 Words.
 
-00:00:35.659 --> 00:00:44.831
+00:01:23.632 --> 00:01:32.723
 V four L two is the Linux kernel API for cameras, video encoders and HDMI capture. It shows up as slash dev slash video nodes.
 
-00:00:45.231 --> 00:00:53.962
+00:01:33.123 --> 00:01:39.845
+Kernel: The core of the operating system that controls memory, devices and which program runs. Like: The building manager who owns every key and decides who uses which room.
+
+00:01:40.095 --> 00:01:48.547
+HDMI: The common cable standard for sending video and audio to TVs and monitors. Like: A garden hose for pictures and sound.
+
+00:01:48.847 --> 00:01:57.520
 The media controller describes the graph: sensor, then the CSI receiver, then the image signal processor, then the video node.
 
-00:00:54.362 --> 00:00:58.135
+00:01:57.920 --> 00:02:09.924
+Media controller: A kernel interface that describes and connects the blocks of a camera pipeline (sensor, image processor, outputs). Like: A train-yard map with switch levers you set before the train runs.
+
+00:02:10.224 --> 00:02:17.910
+MIPI CSI: The fast camera interface between an image sensor and the processor. Like: A dedicated pipe from the camera eye to the brain.
+
+00:02:18.210 --> 00:02:21.937
 A subdevice is one block in that graph, with its own formats.
 
-00:00:58.535 --> 00:01:06.604
+00:02:22.337 --> 00:02:30.510
 ALSA is Linux audio. Its system on chip layer, called ASoC, splits drivers into codec, platform and machine parts.
 
-00:01:07.004 --> 00:01:11.532
+00:02:30.910 --> 00:02:42.752
+SoC: System on a chip: one chip holding the processor cores, graphics, video, USB and more. Like: A whole city on one island: houses, factories and roads in one place.
+
+00:02:43.052 --> 00:02:47.673
+Driver: Kernel code that knows how to operate one kind of hardware. Like: A translator who speaks one specific machine's language.
+
+00:02:47.923 --> 00:02:53.589
+Codec: Software or hardware that compresses and decompresses video or audio. Like: Vacuum-packing clothes for travel, then unpacking them at the hotel.
+
+00:02:53.839 --> 00:02:58.297
 And vivid is a virtual test camera, so you can test code without hardware.
 
-00:01:12.732 --> 00:01:15.240
+00:02:59.497 --> 00:03:02.191
 Here's the exact sequence from lab seven.
 
-00:01:15.640 --> 00:01:20.864
+00:03:02.591 --> 00:03:07.583
 The app checks capabilities, and sets the format: six forty by four eighty, YUYV.
 
-00:01:21.264 --> 00:01:24.945
+00:03:07.983 --> 00:03:11.745
 It requests four buffers, and maps each one into its memory.
 
-00:01:25.345 --> 00:01:27.283
+00:03:12.145 --> 00:03:14.258
 It queues all four, empty.
 
-00:01:27.683 --> 00:01:28.821
+00:03:14.658 --> 00:03:15.981
 It starts streaming.
 
-00:01:29.221 --> 00:01:33.122
+00:03:16.381 --> 00:03:20.224
 The hardware fills buffer zero by DMA and raises an interrupt.
 
-00:01:33.522 --> 00:01:35.426
+00:03:20.624 --> 00:03:30.736
+IRQ / interrupt: Interrupt request: a hardware signal that makes the processor stop and handle an event right now. Like: A doorbell: you stop what you are doing and answer it.
+
+00:03:31.036 --> 00:03:32.894
 The driver marks buffer zero done.
 
-00:01:35.826 --> 00:01:40.551
+00:03:33.294 --> 00:03:38.135
 The app's dequeue call returns buffer zero, full, with sequence number zero.
 
-00:01:40.951 --> 00:01:46.443
+00:03:38.535 --> 00:03:44.201
 The app uses it, for example encodes it, or sends it out over USB as a webcam.
 
-00:01:46.843 --> 00:01:56.851
+00:03:44.601 --> 00:03:54.667
 And queues it back. In our QEMU run with vivid, every frame came back with six hundred fourteen thousand four hundred bytes, exactly six forty times four eighty times two.
 
-00:01:58.051 --> 00:02:01.244
+00:03:55.067 --> 00:04:03.380
+QEMU: A program that emulates a whole computer, so you can test kernels without real hardware. Like: A flight simulator for software.
+
+00:04:04.480 --> 00:04:07.614
 Now the whole camera pipeline in a conferencing device.
 
-00:02:01.644 --> 00:02:04.581
+00:04:08.014 --> 00:04:10.777
 The image sensor produces raw Bayer data.
 
-00:02:04.981 --> 00:02:08.766
+00:04:11.177 --> 00:04:14.788
 It arrives over MIPI CSI two into the SoC's receiver.
 
-00:02:09.166 --> 00:02:15.818
+00:04:15.188 --> 00:04:21.945
 The image signal processor turns it into a real picture, and runs auto exposure, white balance and focus.
 
-00:02:16.218 --> 00:02:25.181
+00:04:22.345 --> 00:04:31.111
 A scaler crops and zooms, for example for auto framing on the speaker. Buffers move between blocks as d m a buf file descriptors, with no copies.
 
-00:02:25.581 --> 00:02:29.946
+00:04:31.511 --> 00:04:34.750
+Descriptor: A small table of facts the device reports about itself: who made it, what it can do. Like: A business card plus resume the device hands over when it is first plugged in.
+
+00:04:35.000 --> 00:04:39.307
 An encoder produces H two sixty four or M J P E G.
 
-00:02:30.346 --> 00:02:35.710
+00:04:39.707 --> 00:04:45.570
+H.264 / H.265: Standard video compression formats; H.265 needs about half the bits of H.264 for the same quality. Like: Two generations of vacuum-packing: the newer one squeezes tighter.
+
+00:04:45.870 --> 00:04:53.475
+YUY2 / NV12 / MJPEG: Ways to pack image pixels: brightness and colour stored separately (YUY2, NV12) or compressed per frame (MJPEG). Like: Different ways to pack a suitcase: rolled, folded, or vacuum-sealed.
+
+00:04:53.725 --> 00:04:59.228
 And the stream leaves either over USB as a webcam, or over the network as R T P.
 
-00:02:36.910 --> 00:02:39.081
+00:05:00.428 --> 00:05:02.587
 Conferencing lives or dies on audio.
 
-00:02:39.481 --> 00:02:44.392
+00:05:02.987 --> 00:05:07.631
 Echo cancellation needs the microphone and speaker on the same clock, or with known drift.
 
-00:02:44.792 --> 00:02:48.275
+00:05:08.031 --> 00:05:11.572
 Watch for over runs and under runs in the ALSA status files.
 
-00:02:48.675 --> 00:02:55.281
+00:05:11.972 --> 00:05:18.300
 The USB host's clock is different from your board's crystal, so use asynchronous U A C with a feedback endpoint.
 
-00:02:55.681 --> 00:03:00.116
+00:05:18.700 --> 00:05:29.091
+UAC / UAC2: USB Audio Class (version 2 is the modern one): the standard "I am a mic or speaker" language. Like: The same universal plug idea as the webcam language, but for sound.
+
+00:05:29.391 --> 00:05:35.532
+Endpoint: A numbered mailbox on a USB device; each data stream uses its own. Like: Numbered pigeonholes in an office: mail for video goes in one slot, audio in another.
+
+00:05:35.782 --> 00:05:40.194
 And for video, run v four l two compliance after every driver change.
 
-00:03:01.316 --> 00:03:01.990
+00:05:41.394 --> 00:05:48.082
+Question for you: Frames arrive but the picture is green. What is the first thing to compare between the sensor and the app?
+
+00:05:53.382 --> 00:06:03.726
+Answer: The pixel format and size each side agreed on. A mismatch, such as one packing format on one side and another on the other, gives wrong colors.
+
+00:06:04.826 --> 00:06:05.523
 Recap.
 
-00:03:02.390 --> 00:03:05.675
+00:06:05.923 --> 00:06:09.069
 Queue empty, dequeue full, use it, queue it again.
 
-00:03:06.075 --> 00:03:09.024
+00:06:09.469 --> 00:06:12.255
 Hold buffers briefly, and allocate enough of them.
 
-00:03:09.424 --> 00:03:12.559
+00:06:12.655 --> 00:06:15.651
 Use d m a buf for zero copy between blocks.
 
-00:03:12.959 --> 00:03:15.362
+00:06:16.051 --> 00:06:18.651
 The media controller wires the pipeline.
 
-00:03:15.762 --> 00:03:20.255
+00:06:19.051 --> 00:06:23.521
 And for audio, keep one clock domain, or use asynchronous U A C.

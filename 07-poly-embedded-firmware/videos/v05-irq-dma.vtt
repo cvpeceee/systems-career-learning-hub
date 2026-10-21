@@ -1,133 +1,190 @@
 WEBVTT
 
-00:00:00.000 --> 00:00:10.577
+00:00:00.000 --> 00:00:10.774
 This video covers interrupts: the fast part, the slow part, and how data moves with DMA. We'll follow an HDMI hot plug interrupt on an I two C bridge, step by step.
 
-00:00:11.777 --> 00:00:13.367
+00:00:11.174 --> 00:00:21.286
+IRQ / interrupt: Interrupt request: a hardware signal that makes the processor stop and handle an event right now. Like: A doorbell: you stop what you are doing and answer it.
+
+00:00:21.586 --> 00:00:32.755
+DMA: Direct memory access: a hardware helper that copies data to memory without the processor doing each byte. Like: A conveyor belt that moves boxes while the worker does something else.
+
+00:00:33.055 --> 00:00:41.507
+HDMI: The common cable standard for sending video and audio to TVs and monitors. Like: A garden hose for pictures and sound.
+
+00:00:41.807 --> 00:00:54.764
+EDID / HPD: EDID is the screen's description of what it can show; hot-plug detect (HPD) is the wire that says a screen is connected. Like: A guest's dietary card (EDID) and the doorbell that says they arrived (HPD).
+
+00:00:55.064 --> 00:01:06.419
+I2C: A simple two-wire bus that lets a processor talk to small chips like sensors and HDMI bridges. Like: A classroom where the teacher calls each student by number and they answer one at a time.
+
+00:01:07.519 --> 00:01:11.988
+A user presses mute on the bar, and the video freezes for a split second.
+
+00:01:12.238 --> 00:01:17.358
+The interrupt handler for the button was reading a chip over a slow bus while everything else waited.
+
+00:01:17.608 --> 00:01:21.649
+Let's learn how to split interrupt work so the fast part stays fast.
+
+00:01:22.699 --> 00:01:24.266
 An interrupt is a doorbell.
 
-00:00:13.767 --> 00:00:20.350
+00:01:24.666 --> 00:01:31.307
 The top half is answering the door and signing for the package. It must take seconds, because other visitors may be waiting.
 
-00:00:20.750 --> 00:00:25.998
+00:01:31.707 --> 00:01:36.084
+ISR / top half: Interrupt service routine: the tiny, fast handler that runs the moment the interrupt fires. Like: Answering the doorbell just long enough to take the parcel.
+
+00:01:36.384 --> 00:01:41.817
 The bottom half is unpacking later in the kitchen, where you can take your time and even make phone calls.
 
-00:00:26.398 --> 00:00:31.332
+00:01:42.217 --> 00:01:47.337
+Workqueue / bottom half: A kernel queue that runs deferred work later in a normal context where sleeping is allowed. Like: Putting the parcel on the table to open properly after you have closed the door.
+
+00:01:47.637 --> 00:01:52.560
 And DMA is a conveyor belt that loads the shelves by itself, while you do other work.
 
-00:00:32.532 --> 00:00:33.217
+00:01:53.760 --> 00:01:54.457
 Words.
 
-00:00:33.617 --> 00:00:40.711
+00:01:54.857 --> 00:02:02.008
 The top half is the hard interrupt handler. It runs with that interrupt masked, must be very short, and cannot sleep.
 
-00:00:41.111 --> 00:00:47.763
+00:02:02.408 --> 00:02:08.956
 A threaded interrupt moves the slow part into a kernel thread, which may sleep, for example to talk over I two C.
 
-00:00:48.163 --> 00:00:52.169
+00:02:09.356 --> 00:02:16.078
+Kernel: The core of the operating system that controls memory, devices and which program runs. Like: The building manager who owns every key and decides who uses which room.
+
+00:02:16.328 --> 00:02:20.125
 A workqueue runs deferred functions later, in normal process context.
 
-00:00:52.569 --> 00:00:58.072
+00:02:20.525 --> 00:02:26.167
 DMA, direct memory access, lets hardware copy data into memory without the CPU.
 
-00:00:58.472 --> 00:01:04.161
+00:02:26.567 --> 00:02:31.989
 A spinlock is a lock that busy waits instead of sleeping, so it's safe in interrupt context.
 
-00:01:05.361 --> 00:01:08.031
+00:02:33.189 --> 00:02:35.999
 Let's follow a hot plug, step by step.
 
-00:01:08.431 --> 00:01:12.564
+00:02:36.399 --> 00:02:40.219
 A monitor is connected. The bridge chip pulls its interrupt line low.
 
-00:01:12.964 --> 00:01:17.074
+00:02:40.619 --> 00:02:44.601
 The interrupt controller masks that line, and calls the hard handler.
 
-00:01:17.474 --> 00:01:25.613
+00:02:45.001 --> 00:02:53.581
 Because the bridge sits on I two C, the hard handler can't read it. Reading I two C sleeps. So it simply returns I R Q WAKE THREAD.
 
-00:01:26.013 --> 00:01:28.102
+00:02:53.981 --> 00:02:55.989
 The core wakes the interrupt thread.
 
-00:01:28.502 --> 00:01:34.424
+00:02:56.389 --> 00:03:02.101
 The thread reads the bridge's status register over I two C. This sleeps, and that's fine here.
 
-00:01:34.824 --> 00:01:39.084
+00:03:02.501 --> 00:03:06.658
 It writes to clear the status, so the chip releases the interrupt line.
 
-00:01:39.484 --> 00:01:44.941
+00:03:07.058 --> 00:03:12.468
 It tells the display core that a monitor arrived, so the EDID can be read and a mode chosen.
 
-00:01:45.341 --> 00:01:56.626
+00:03:12.868 --> 00:03:24.129
 Finally it returns handled, and only now is the line unmasked. That's what the oneshot flag guarantees. Without it, a level interrupt would fire again and again before the thread could clear it.
 
-00:01:57.826 --> 00:01:59.637
+00:03:25.329 --> 00:03:27.338
 Here's what that looks like in code.
 
-00:02:00.037 --> 00:02:03.822
+00:03:27.738 --> 00:03:31.442
 The thread function reads the status through regmap. It may sleep.
 
-00:02:04.222 --> 00:02:06.091
+00:03:31.842 --> 00:03:42.825
+regmap: A kernel helper that reads and writes a chip's registers over I2C or SPI with caching. Like: A shared notebook of a chip's settings so you do not re-ask the chip every time.
+
+00:03:43.125 --> 00:03:44.727
 Then it clears the status.
 
-00:02:06.491 --> 00:02:10.381
+00:03:45.127 --> 00:03:49.086
 If the hot plug bit changed, it notifies the display core.
 
-00:02:10.781 --> 00:02:20.370
+00:03:49.486 --> 00:03:58.832
 Notice the request call passes null for the hard handler. The kernel supplies a default one that just wakes the thread, and oneshot keeps the line masked until the thread returns.
 
-00:02:21.570 --> 00:02:22.952
+00:04:00.032 --> 00:04:01.390
 Which lock to use?
 
-00:02:23.352 --> 00:02:27.566
+00:04:01.790 --> 00:04:05.645
 Data shared with a hard interrupt handler needs spin lock irq save.
 
-00:02:27.966 --> 00:02:31.554
+00:04:06.045 --> 00:04:14.659
+Spinlock / mutex: Locks that stop two pieces of code changing the same data at once; a spinlock waits busily, a mutex sleeps. Like: A single bathroom key: a spinlock is waiting at the door, a mutex is taking a seat until called.
+
+00:04:14.909 --> 00:04:18.555
 Data touched only from process context can use a mutex.
 
-00:02:31.954 --> 00:02:34.485
+00:04:18.955 --> 00:04:21.625
 Single counters and flags can be atomics.
 
-00:02:34.885 --> 00:02:40.121
+00:04:22.025 --> 00:04:27.017
 And turn on lockdep in debug builds. It reports deadlock risks before they ever happen.
 
-00:02:41.321 --> 00:02:43.376
+00:04:28.217 --> 00:04:30.400
 Now DMA, step by step.
 
-00:02:43.776 --> 00:02:50.765
+00:04:30.800 --> 00:04:37.754
 The driver maps a buffer for the device. On ARM, this cleans or invalidates the CPU caches for that memory.
 
-00:02:51.165 --> 00:02:55.345
+00:04:38.154 --> 00:04:42.775
+Driver: Kernel code that knows how to operate one kind of hardware. Like: A translator who speaks one specific machine's language.
+
+00:04:43.025 --> 00:04:47.205
 It hands the bus address to the hardware, usually through a descriptor ring.
 
-00:02:55.745 --> 00:02:59.181
+00:04:47.605 --> 00:04:50.844
+Descriptor: A small table of facts the device reports about itself: who made it, what it can do. Like: A business card plus resume the device hands over when it is first plugged in.
+
+00:04:51.094 --> 00:04:54.844
 The hardware writes the frame into memory, without the CPU.
 
-00:02:59.581 --> 00:03:01.392
+00:04:55.244 --> 00:04:57.125
 A completion interrupt arrives.
 
-00:03:01.792 --> 00:03:07.737
+00:04:57.525 --> 00:05:03.400
 Before reading, the driver syncs the buffer for the CPU, which throws away any stale cache lines.
 
-00:03:08.137 --> 00:03:10.505
+00:05:03.800 --> 00:05:06.330
 Now the CPU sees the correct data.
 
-00:03:10.905 --> 00:03:21.923
+00:05:06.730 --> 00:05:17.714
 Then it syncs back for the device, and reuses the buffer. Skip these syncs, and on ARM you'll see green stripes or stale lines in video, even though it works perfectly on x86.
 
-00:03:23.123 --> 00:03:23.796
+00:05:18.914 --> 00:05:24.765
+Question for you: Why can't you read an I2C chip directly inside the top-half interrupt handler?
+
+00:05:30.065 --> 00:05:40.468
+Answer: The top half runs with interrupts blocked and must never sleep, but an I2C transfer can sleep and is slow. Defer it to a threaded interrupt or a workqueue.
+
+00:05:40.768 --> 00:05:46.793
+Threaded IRQ: An interrupt whose slow part runs in its own kernel thread so it can sleep and talk over I2C. Like: A receptionist who takes a message, then a colleague phones back properly.
+
+00:05:47.893 --> 00:05:48.590
 Recap.
 
-00:03:24.196 --> 00:03:27.749
+00:05:48.990 --> 00:05:52.577
 The top half acknowledges and defers. It never sleeps.
 
-00:03:28.149 --> 00:03:32.062
+00:05:52.977 --> 00:05:56.971
 Devices on I two C or SPI need a threaded interrupt with oneshot.
 
-00:03:32.462 --> 00:03:35.550
+00:05:57.371 --> 00:06:06.334
+SPI: A fast four-wire bus for chips like flash memory and displays. Like: A dedicated phone line to each chip instead of a shared classroom.
+
+00:06:06.634 --> 00:06:09.757
 Choose the lock by the context that touches the data.
 
-00:03:35.950 --> 00:03:39.816
+00:06:10.157 --> 00:06:14.337
 Always use the DMA API, and sync caches on ARM.
 
-00:03:40.216 --> 00:03:48.529
+00:06:14.737 --> 00:06:22.806
 And tear down in order: disable the source, free the interrupt, cancel work, then free memory. Lab three practices exactly that.

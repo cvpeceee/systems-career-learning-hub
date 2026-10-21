@@ -1,118 +1,181 @@
 WEBVTT
 
-00:00:00.000 --> 00:00:06.966
+00:00:00.000 --> 00:00:06.815
 This video follows the boot chain from the chip's first instruction to Linux init, and shows how secure boot checks every handoff.
 
-00:00:08.166 --> 00:00:09.722
+00:00:07.215 --> 00:00:14.448
+init / .rc files: The first user program Android starts; its .rc files say which services start and when. Like: The stage manager with a script that says who walks on stage and when.
+
+00:00:14.698 --> 00:00:23.626
+Secure boot / chain of trust: Each boot stage checks the digital signature of the next before running it. Like: Each guard checks the next guard's badge before handing over the keys.
+
+00:00:24.726 --> 00:00:29.800
+Press the power button on the bar. About fifteen seconds later the screen shows the meeting room.
+
+00:00:30.050 --> 00:00:35.088
+In between, five different programs run, each checking the next one's signature.
+
+00:00:35.338 --> 00:00:38.380
+If any check fails, the bar refuses to boot.
+
+00:00:38.630 --> 00:00:43.599
+Only when every check passes does the first picture appear. Let's walk the chain.
+
+00:00:44.649 --> 00:00:46.147
 Booting is a relay race.
 
-00:00:10.122 --> 00:00:15.671
+00:00:46.547 --> 00:00:52.294
 Each runner is one boot stage, and passing the baton means loading and jumping to the next stage.
 
-00:00:16.071 --> 00:00:22.608
+00:00:52.694 --> 00:00:59.207
 In secure boot, every runner checks the next runner's ID badge before handing over. That's a signature check.
 
-00:00:23.008 --> 00:00:28.290
+00:00:59.607 --> 00:01:04.959
 And the list of valid badges is burned into the track itself, in one time programmable fuses.
 
-00:00:29.490 --> 00:00:30.175
+00:01:06.159 --> 00:01:06.856
 Words.
 
-00:00:30.575 --> 00:00:35.904
+00:01:07.256 --> 00:01:12.388
 The boot ROM is code fixed inside the chip when it's manufactured. It can never change.
 
-00:00:36.304 --> 00:00:43.212
+00:01:12.788 --> 00:01:18.720
+Boot ROM: Code burned into the chip at the factory that runs first and checks the next stage. Like: The building's foundation stone: cannot be changed and everything rests on it.
+
+00:01:19.020 --> 00:01:26.091
 The S P L, or on Qualcomm the X B L, is a small first stage loader. Its main job is setting up DRAM.
 
-00:00:43.612 --> 00:00:48.233
+00:01:26.491 --> 00:01:30.891
+U-Boot / ABL / XBL: Common bootloaders: U-Boot on many boards; ABL and XBL on Qualcomm chips. Like: Different brands of stagehand, each with its own checklist.
+
+00:01:31.191 --> 00:01:35.707
 U-Boot, or Qualcomm's A B L, is the full bootloader that loads the kernel.
 
-00:00:48.633 --> 00:00:54.275
+00:01:36.107 --> 00:01:42.725
+Bootloader: The small program that runs first at power-on, sets up memory and loads the kernel. Like: The stagehand who sets up the stage before the actors arrive.
+
+00:01:42.975 --> 00:01:49.697
+Kernel: The core of the operating system that controls memory, devices and which program runs. Like: The building manager who owns every key and decides who uses which room.
+
+00:01:49.947 --> 00:01:55.752
 T F A is ARM's trusted firmware, and the T E E is a secure world that keeps keys.
 
-00:00:54.675 --> 00:01:01.374
+00:01:56.152 --> 00:02:02.828
+Firmware: Software that runs close to hardware, usually stored in flash memory on the device. Like: The instincts built into an animal: low-level behaviour that is there from birth.
+
+00:02:03.078 --> 00:02:08.291
+TEE / TF-A: Trusted execution environment: a walled-off secure world on the processor for keys and secrets. Like: A bank vault inside the building that even the building manager cannot enter.
+
+00:02:08.591 --> 00:02:14.872
 A V B is Android verified boot. It checks Android partitions using a signed table called v b meta.
 
-00:01:02.574 --> 00:01:04.026
+00:02:15.272 --> 00:02:18.778
+AVB / dm-verity: Android Verified Boot and dm-verity: checks that the system partitions have not been changed, block by block. Like: A tamper seal on every page of the rulebook.
+
+00:02:19.878 --> 00:02:21.201
 Let's run the race.
 
-00:01:04.426 --> 00:01:12.564
+00:02:21.601 --> 00:02:30.158
 The boot ROM reads fuses to find the boot device, loads the first stage, and checks its signature against the key hash burned in fuses.
 
-00:01:12.964 --> 00:01:19.315
+00:02:30.558 --> 00:02:37.280
 The first stage sets up clocks, the power chip, and trains DRAM. Then it verifies the next images.
 
-00:01:19.715 --> 00:01:25.404
+00:02:37.680 --> 00:02:43.543
 Trusted firmware starts the secure monitor, and optionally a trusted OS that holds keys.
 
-00:01:25.804 --> 00:01:33.826
+00:02:43.943 --> 00:02:51.768
 U-Boot or A B L reads its environment, picks the A or B slot, loads the kernel and device tree, and verifies them.
 
-00:01:34.226 --> 00:01:38.197
+00:02:52.168 --> 00:03:04.997
+Device tree: A text map of the hardware on a board (which chips, on which pins and addresses) that the kernel reads at boot. Like: The floor plan of a house, so the electrician knows where every socket is without digging into walls.
+
+00:03:05.297 --> 00:03:09.454
 The kernel starts, prints to an early console, and probes drivers.
 
-00:01:38.597 --> 00:01:43.636
+00:03:09.854 --> 00:03:14.474
+Driver: Kernel code that knows how to operate one kind of hardware. Like: A translator who speaks one specific machine's language.
+
+00:03:14.724 --> 00:03:19.763
 Init starts: systemd or busybox on Linux, Android's init on Android.
 
-00:01:44.036 --> 00:01:52.035
+00:03:20.163 --> 00:03:27.895
 And on Android, d m verity keeps checking every block of the system partition as it's read, so tampering is caught even after boot.
 
-00:01:53.235 --> 00:01:55.812
+00:03:29.095 --> 00:03:31.673
 A few U-Boot commands worth knowing by heart.
 
-00:01:56.212 --> 00:01:57.989
+00:03:32.073 --> 00:03:33.640
 Print the kernel command line.
 
-00:01:58.389 --> 00:02:02.800
+00:03:34.040 --> 00:03:38.719
 Set it, adding earlycon so the kernel prints before its real console driver loads.
 
-00:02:03.200 --> 00:02:06.126
+00:03:39.119 --> 00:03:42.080
 Select the eMMC and list its partitions.
 
-00:02:06.526 --> 00:02:08.384
+00:03:42.480 --> 00:03:44.488
 Load the kernel image into memory.
 
-00:02:08.784 --> 00:02:10.281
+00:03:44.888 --> 00:03:46.374
 Load the device tree.
 
-00:02:10.681 --> 00:02:15.244
+00:03:46.774 --> 00:03:51.523
 Inspect the device tree right from the bootloader, for example to check an I two C node.
 
-00:02:15.644 --> 00:02:18.721
+00:03:51.923 --> 00:04:03.277
+I2C: A simple two-wire bus that lets a processor talk to small chips like sensors and HDMI bridges. Like: A classroom where the teacher calls each student by number and they answer one at a time.
+
+00:04:03.577 --> 00:04:06.921
 And boot it. The dash means no separate initramfs.
 
-00:02:19.921 --> 00:02:22.742
+00:04:08.121 --> 00:04:10.919
 When boot goes silent, narrow it down.
 
-00:02:23.142 --> 00:02:28.030
+00:04:11.319 --> 00:04:16.404
 No output at all? Check UART wiring and baud rate, and the boot mode pins.
 
-00:02:28.430 --> 00:02:35.640
+00:04:16.804 --> 00:04:24.618
+UART: A simple serial port, often the first console you see when a board boots. Like: A tin-can telephone straight into the board.
+
+00:04:24.918 --> 00:04:32.093
 If you see starting kernel and then nothing, it's usually a wrong device tree, a wrong load address, or the console not enabled.
 
-00:02:36.040 --> 00:02:41.055
+00:04:32.493 --> 00:04:37.276
 Add earlycon, keep boot con, and initcall debug to see how far the kernel gets.
 
-00:02:41.455 --> 00:02:46.482
+00:04:37.676 --> 00:04:42.529
 If it hangs before any console, attach JTAG and read the program counter.
 
-00:02:46.882 --> 00:02:53.790
+00:04:42.929 --> 00:04:51.822
+JTAG / SWD: Hardware debug ports that let a debugger stop the processor and read its memory. Like: A doctor's stethoscope plugged straight into the chip.
+
+00:04:52.122 --> 00:04:58.833
 And for security: never ship debug keys, and do signing in a controlled CI step, never on a laptop.
 
-00:02:54.990 --> 00:02:55.663
+00:04:59.233 --> 00:05:11.295
+CI / HIL: Continuous integration runs tests on every change; hardware-in-the-loop (HIL) runs them on real boards. Like: A quality inspector at every station of the assembly line, some with real parts on the bench.
+
+00:05:12.395 --> 00:05:18.897
+Question for you: If an attacker replaces the kernel on the flash, what stops it from running with secure boot?
+
+00:05:24.197 --> 00:05:35.017
+Answer: The bootloader checks the kernel's signature against a trusted key before running it, and the bootloader itself was checked by the stage before. The fake kernel fails the check.
+
+00:05:36.117 --> 00:05:36.814
 Recap.
 
-00:02:56.063 --> 00:03:01.578
+00:05:37.214 --> 00:05:42.880
 The chain is ROM, first stage, trusted firmware, bootloader, kernel, then init.
 
-00:03:01.978 --> 00:03:05.310
+00:05:43.280 --> 00:05:46.809
 Each stage verifies the next, anchored in fuses.
 
-00:03:05.710 --> 00:03:09.460
+00:05:47.209 --> 00:05:51.075
 Anti rollback counters stop old but validly signed images.
 
-00:03:09.860 --> 00:03:12.066
+00:05:51.475 --> 00:05:53.658
 Earlycon is your first debugging tool.
 
-00:03:12.466 --> 00:03:16.797
+00:05:54.058 --> 00:05:58.261
 And lab nine simulates image verification and automatic A B fallback.

@@ -1,124 +1,256 @@
 WEBVTT
 
-00:00:00.000 --> 00:00:08.603
-Welcome to the Poly Firmware Academy. This first video decodes the two job descriptions for your team, so every later lesson has a place on the map.
+00:00:00.000 --> 00:00:10.774
+Welcome to the Poly Firmware Academy. This first video decodes the two job postings for your team by following one real thing: what happens when our video bar is plugged into a laptop.
 
-00:00:09.003 --> 00:00:16.329
-We start with an analogy, define the key words, walk the stack from top to bottom, and finish with what success looks like.
+00:00:11.174 --> 00:00:17.850
+Firmware: Software that runs close to hardware, usually stored in flash memory on the device. Like: The instincts built into an animal: low-level behaviour that is there from birth.
 
-00:00:17.529 --> 00:00:20.304
-Picture a conference room camera bar as a restaurant.
+00:00:18.100 --> 00:00:24.485
+Every new word gets a card on screen with a plain meaning and an everyday picture, so nothing is left undefined.
 
-00:00:20.704 --> 00:00:26.114
-The diners are the apps, like Microsoft Teams or Zoom. They only ever see the dining room.
+00:00:25.685 --> 00:00:33.847
+Picture this. A sales team walks into a meeting room, plugs one USB C cable from the video bar into a laptop, and opens Zoom.
 
-00:00:26.514 --> 00:00:31.100
-The dining room is the Android framework: the system services the apps call.
+00:00:34.097 --> 00:00:36.477
+The laptop has never seen this bar before.
 
-00:00:31.500 --> 00:00:37.142
-The kitchen is the hardware abstraction layer and the native daemons. That's where the real cooking happens.
+00:00:36.727 --> 00:00:44.297
+Yet within two seconds, Zoom lists a new camera, a new microphone and a new speaker, and the mute button on the bar works.
 
-00:00:37.542 --> 00:00:40.700
-The basement wiring is the Linux kernel and its drivers.
+00:00:44.547 --> 00:00:53.057
+Nobody installed a driver. In this video we open the box and follow that magic, piece by piece, because that path is exactly your job.
 
-00:00:41.100 --> 00:00:44.014
-The front door lock is the bootloader and secure boot.
+00:00:53.307 --> 00:00:57.928
+Driver: Kernel code that knows how to operate one kind of hardware. Like: A translator who speaks one specific machine's language.
 
-00:00:44.414 --> 00:00:52.704
-And the delivery door is USB: how the camera, microphone and speaker reach a laptop. Both job postings say your work is below the dining room.
+00:00:58.978 --> 00:01:03.331
+First, one picture to hang everything on. Think of the bar as a restaurant.
 
-00:00:53.904 --> 00:00:55.355
-A few words first.
+00:01:03.731 --> 00:01:08.201
+The diners are the apps, like Teams or Zoom. They only ever see the dining room.
 
-00:00:55.755 --> 00:01:01.618
-Firmware is software that runs close to the hardware, usually stored in flash memory on the device.
+00:01:08.601 --> 00:01:13.617
+The dining room is Android's system services, the layer the postings call the framework layer.
 
-00:01:02.018 --> 00:01:09.112
-The framework layer is Android's set of Java system services, like the camera service and the USB service, that apps talk to.
+00:01:14.017 --> 00:01:21.772
+Framework layer: On Android, the Java system services apps talk to, like the camera and USB services. Like: The dining room of a restaurant: diners (apps) only ever see this room.
 
-00:01:09.512 --> 00:01:16.629
-A HAL, or hardware abstraction layer, is a fixed interface that Android calls, and that the device maker implements.
+00:01:22.022 --> 00:01:28.814
+The kitchen is where hardware gets turned into features: the hardware services and helper programs. That's your code.
 
-00:01:17.029 --> 00:01:29.695
-A BSP, or board support package, is the chip vendor's bundle: bootloader, kernel, drivers and configuration for one chip or board. You already work with these from N X P, Qualcomm and Ambarella.
+00:01:29.214 --> 00:01:33.359
+The basement wiring is the Linux kernel and its drivers. Also yours.
 
-00:01:30.095 --> 00:01:38.791
-And S V C, scalable video coding, is a video stream sent in layers, so a slow receiver can drop layers instead of the whole picture.
+00:01:33.759 --> 00:01:40.481
+Kernel: The core of the operating system that controls memory, devices and which program runs. Like: The building manager who owns every key and decides who uses which room.
 
-00:01:39.991 --> 00:01:41.988
-Now the stack, top to bottom.
+00:01:40.731 --> 00:01:44.945
+The front door lock is the boot sequence and security checks. Also yours.
 
-00:01:42.388 --> 00:01:47.380
-At the top are apps, like the Teams or Zoom room software. That's not your layer.
+00:01:45.345 --> 00:01:53.623
+And the delivery door is USB: how video, sound and button presses leave the building. The USB posting says this door is a must have.
 
-00:01:47.780 --> 00:01:52.448
-Below that, Android framework services, which call down into your code.
+00:01:54.823 --> 00:01:59.978
+Now the main walk. We'll follow the path from the laptop into the bar, one piece at a time.
 
-00:01:52.848 --> 00:02:00.603
-Then the HALs and native daemons: camera, audio and USB services written in C plus plus. This is yours.
+00:02:00.378 --> 00:02:08.331
+Piece one: the laptop. In USB the laptop is the host. It is always the one asking questions; the bar only ever answers.
 
-00:02:01.003 --> 00:02:12.009
-Then the Linux kernel drivers: video for Linux, ALSA audio, the USB gadget stack, and I two C bridge drivers, like the Lontium HDMI bridges. Also yours.
+00:02:08.731 --> 00:02:16.730
+Piece two: the USB C cable. It carries power and data, and a couple of extra wires the two sides use to agree who is the host.
 
-00:02:12.409 --> 00:02:15.753
-Then the bootloader and secure boot chain. Also yours.
+00:02:17.130 --> 00:02:33.733
+Piece three: inside the bar's main chip sits a UDC, a USB device controller: the hardware that lets the bar answer the laptop. On our Qualcomm and NXP chips it is usually a DWC3, a ready-made controller design that Synopsys sells to chip makers.
 
-00:02:16.153 --> 00:02:21.203
-And at the bottom, the silicon from Qualcomm, N X P, Ambarella and Lontium.
+00:02:34.133 --> 00:02:40.205
+UDC: USB Device Controller: the chip block that lets a gadget answer a laptop over USB. Like: The front desk of a hotel: every guest request (the laptop) arrives there first.
 
-00:02:22.403 --> 00:02:31.308
-The USB posting calls one thing a must have: deep, hands on knowledge of the full USB software stack. Here's what that means on a conferencing device.
+00:02:40.505 --> 00:02:48.574
+DWC3 (Synopsys IP): A ready-made USB controller design that Synopsys sells and many Qualcomm and NXP chips include. Like: A front desk bought from a furniture catalogue: many hotels have the same model, so one driver fits them all.
 
-00:02:31.708 --> 00:02:48.902
-Device side: the board plugs into a laptop and appears as a webcam, microphone, speaker and buttons. That path runs from the D W C 3 controller, through the Linux gadget framework, to the U V C and U A C functions, a streaming app, and Android's USB HAL.
+00:02:48.874 --> 00:03:02.980
+Piece four: Linux's gadget framework, the device side of USB that lets the board pretend to be a webcam. We describe the costume with configfs: a special folder tree where making folders and writing small files builds the gadget.
 
-00:02:49.302 --> 00:02:58.974
-Host side: the device also hosts peripherals, like extension microphones, so you need the x H C I host controller, hubs and class drivers.
+00:03:03.380 --> 00:03:10.218
+Gadget (Linux USB gadget): Linux's name for the device side of USB: the board pretends to be a webcam, mic or keyboard to a laptop. Like: An actor in costume: the same board can play "webcam" or "keyboard" depending on the costume it wears.
 
-00:02:59.374 --> 00:03:07.129
-Type C and power delivery: who is host, who is device, which way the cable is flipped, and DisplayPort over the same connector.
+00:03:10.518 --> 00:03:18.424
+configfs: A special folder tree where you build a USB gadget by creating folders and writing small files. Like: Building with LEGO by making folders: each folder is a brick (a function), and linking them snaps the toy together.
 
-00:03:07.529 --> 00:03:12.951
-Firmware updates over USB, including the small microcontrollers inside accessories.
+00:03:18.724 --> 00:03:39.750
+Piece five: the functions. UVC, the USB video class, makes the bar a webcam. UAC2, the USB audio class, makes it a microphone and speaker. HID, the human interface class, carries the mute and call buttons. Every laptop already speaks these standard languages, so no driver install is ever needed.
 
-00:03:13.351 --> 00:03:20.340
-And the debugging tools: usbmon, Wireshark and hardware analyzers. Lessons ten to fourteen cover all of this.
+00:03:40.150 --> 00:03:47.162
+UVC: USB Video Class: the standard "I am a webcam" language every computer already understands. Like: A universal power plug for cameras: plug in anywhere and it just works, no driver install.
 
-00:03:21.540 --> 00:03:25.592
-Both postings also repeat the same senior responsibilities.
+00:03:47.462 --> 00:03:52.977
+UAC / UAC2: USB Audio Class (version 2 is the modern one): the standard "I am a mic or speaker" language. Like: The same universal plug idea as the webcam language, but for sound.
 
-00:03:25.992 --> 00:03:30.114
-Lead secure, scalable, high performance C and C plus plus.
+00:03:53.277 --> 00:03:59.581
+HID: Human Interface Device: the standard language for buttons, keyboards and mice, also used for mute and call buttons. Like: The universal remote-control language: any computer knows what "button pressed" means.
 
-00:03:30.514 --> 00:03:34.786
-Define architecture, standards and best practices with other teams.
+00:03:59.881 --> 00:04:08.252
+Piece six: a normal program on the bar, the U V C streaming app. When the laptop asks for video, this app answers with frames.
 
-00:03:35.186 --> 00:03:41.351
-Troubleshoot complex system level issues, the bugs that cross hardware, kernel and Android.
+00:04:08.652 --> 00:04:19.252
+Piece seven: where frames come from. The camera sensor and image processor deliver frames through V4L2, video for Linux, the standard Linux camera interface.
 
-00:03:41.751 --> 00:03:44.839
-Own planning, documentation and testing strategy.
+00:04:19.652 --> 00:04:24.412
+V4L2: Video for Linux 2: the kernel interface every Linux camera and video device uses. Like: The standard loading dock every camera truck backs into.
 
-00:03:45.239 --> 00:03:47.108
-Mentor junior engineers.
+00:04:24.712 --> 00:04:39.689
+Piece eight: the Android USB HAL, a hardware abstraction layer: a fixed interface Android calls and we implement. It decides whether the port is in conferencing, file transfer or debug mode, and switches the gadget setup to match.
 
-00:03:47.508 --> 00:03:52.303
-And drive continuous improvement. Lesson twenty turns these into weekly habits.
+00:04:40.089 --> 00:04:47.090
+HAL: Hardware Abstraction Layer: a fixed interface Android calls, which the device maker implements for its hardware. Like: A standard wall socket: Android plugs into the same socket, and each maker wires the house behind it.
 
-00:03:53.503 --> 00:03:54.409
-To recap.
+00:04:48.190 --> 00:04:51.801
+Let's watch one moment in detail: Zoom opening the camera.
 
-00:03:54.809 --> 00:03:59.836
-Your layer is everything below the Android framework: HALs, kernel, bootloader.
+00:04:52.201 --> 00:04:57.739
+On plug in, the laptop runs enumeration: it asks the bar for its descriptors.
 
-00:04:00.236 --> 00:04:05.507
-The USB role covers device mode, host mode, Type C, updates and debugging.
+00:04:58.139 --> 00:05:05.383
+Enumeration: The first conversation after plug-in where the laptop learns what the device is and gives it an address. Like: A new employee's first morning: show ID, get a badge number, hand in a resume, get assigned a desk.
 
-00:04:05.907 --> 00:04:14.545
-The nice to have skills are Wi-Fi, Bluetooth, security, H two sixty four, H two sixty five, S V C, and HDMI.
+00:05:05.633 --> 00:05:08.872
+Descriptor: A small table of facts the device reports about itself: who made it, what it can do. Like: A business card plus resume the device hands over when it is first plugged in.
 
-00:04:14.945 --> 00:04:19.775
-And senior means leading, setting standards, mentoring, and measuring impact.
+00:05:09.122 --> 00:05:14.567
+The bar answers: I am a webcam, a microphone, a speaker, and some buttons.
 
-00:04:20.175 --> 00:04:25.747
-Next up: the C and C plus plus habits that firmware reviewers look for. See you there.
+00:05:14.967 --> 00:05:19.054
+Zoom asks the webcam to start video at a certain size and format.
+
+00:05:19.454 --> 00:05:23.564
+The gadget framework passes that request up to the streaming app as an event.
+
+00:05:23.964 --> 00:05:26.727
+The app starts the camera at exactly that format.
+
+00:05:27.127 --> 00:05:29.658
+The camera hands back a filled frame buffer.
+
+00:05:30.058 --> 00:05:33.448
+The app queues the frame to the video endpoint on the controller.
+
+00:05:33.848 --> 00:05:39.990
+Endpoint: A numbered mailbox on a USB device; each data stream uses its own. Like: Numbered pigeonholes in an office: mail for video goes in one slot, audio in another.
+
+00:05:40.240 --> 00:05:48.216
+And the controller sends it as isochronous packets, a slice every hundred and twenty five microseconds. That's how a picture appears in Zoom.
+
+00:05:48.616 --> 00:06:01.538
+Isochronous transfer: A USB transfer type with guaranteed timing but no retries, used for live video and audio. Like: A live TV broadcast: always on time, and a dropped frame is simply skipped, never resent.
+
+00:06:02.638 --> 00:06:07.468
+The posting's phrase full USB software stack also includes three more rooms.
+
+00:06:07.868 --> 00:06:16.459
+Host side: the bar also plugs in its own accessories, like extension microphones, so it runs an x H C I host controller too.
+
+00:06:16.859 --> 00:06:30.338
+xHCI: Extensible Host Controller Interface: the standard USB host controller in laptops and in our boards when they act as host. Like: The hotel manager who calls guests, as opposed to the front desk that answers them.
+
+00:06:30.638 --> 00:06:38.835
+Type C and power delivery: deciding who powers whom, which way the cable is flipped, and sending DisplayPort video over the same connector.
+
+00:06:39.235 --> 00:06:50.880
+USB Type-C: The reversible USB connector; it also negotiates power and roles through its extra pins. Like: A smart socket that works either way up and agrees on who powers whom before turning on.
+
+00:06:51.180 --> 00:07:01.640
+PD (Power Delivery): USB Power Delivery: the conversation over the Type-C cable that agrees on voltage, current and roles. Like: Two people agreeing how much to pay before handing over goods.
+
+00:07:01.940 --> 00:07:08.117
+Firmware updates over USB using D F U, including the small microcontrollers inside accessories.
+
+00:07:08.517 --> 00:07:19.477
+DFU: Device Firmware Upgrade: a standard way to send new firmware into a device over USB. Like: A car driving onto a service ramp so the mechanic can swap the engine software.
+
+00:07:19.777 --> 00:07:23.666
+MCU: Microcontroller: a small, low-power chip with its own memory, running firmware without a full operating system. Like: A pocket calculator compared with a laptop.
+
+00:07:23.966 --> 00:07:31.071
+And the debugging tools: usbmon, Wireshark and hardware analyzers. Lessons ten to fourteen cover each room.
+
+00:07:31.471 --> 00:07:40.074
+usbmon: A Linux feature that records every USB packet so you can read them in Wireshark. Like: A security camera pointed at the USB cable.
+
+00:07:41.174 --> 00:07:43.647
+Zooming back out, here's the whole stack.
+
+00:07:44.047 --> 00:07:46.985
+At the top, apps like Zoom. Not your layer.
+
+00:07:47.385 --> 00:07:51.135
+Android's framework services, which call down into your code.
+
+00:07:51.535 --> 00:07:56.446
+The hardware services and helper daemons, written in C plus plus. Yours.
+
+00:07:56.846 --> 00:08:04.984
+The kernel drivers: camera, audio, USB gadget, and I two C drivers for chips like the Lontium HDMI bridges. Yours.
+
+00:08:05.384 --> 00:08:16.739
+I2C: A simple two-wire bus that lets a processor talk to small chips like sensors and HDMI bridges. Like: A classroom where the teacher calls each student by number and they answer one at a time.
+
+00:08:17.039 --> 00:08:25.491
+HDMI: The common cable standard for sending video and audio to TVs and monitors. Like: A garden hose for pictures and sound.
+
+00:08:25.791 --> 00:08:28.287
+The bootloader and secure boot. Yours.
+
+00:08:28.687 --> 00:08:35.305
+Bootloader: The small program that runs first at power-on, sets up memory and loads the kernel. Like: The stagehand who sets up the stage before the actors arrive.
+
+00:08:35.555 --> 00:08:44.483
+Secure boot / chain of trust: Each boot stage checks the digital signature of the next before running it. Like: Each guard checks the next guard's badge before handing over the keys.
+
+00:08:44.783 --> 00:08:51.458
+And the silicon from Qualcomm, NXP, Ambarella and Lontium, delivered with each vendor's BSP.
+
+00:08:51.858 --> 00:09:04.885
+BSP: Board Support Package: the chip vendor's bundle of bootloader, kernel, drivers and settings for one chip or board. Like: The starter kit that comes with a new appliance: parts, manual and tools for that exact model.
+
+00:09:05.985 --> 00:09:09.189
+Finally, the senior behaviors both postings repeat.
+
+00:09:09.589 --> 00:09:12.898
+Lead secure, high performance C and C plus plus.
+
+00:09:13.298 --> 00:09:16.201
+Define architecture and standards with other teams.
+
+00:09:16.601 --> 00:09:20.513
+Troubleshoot the bugs that cross hardware, kernel and Android.
+
+00:09:20.913 --> 00:09:24.268
+Own planning, documentation and the test strategy.
+
+00:09:24.668 --> 00:09:29.301
+And mentor junior engineers. Lesson twenty turns these into weekly habits.
+
+00:09:30.501 --> 00:09:38.721
+Question for you: When the bar shows up in Zoom with no driver install, which two standard USB languages make the camera and the microphone work?
+
+00:09:44.021 --> 00:09:53.657
+Answer: The USB Video Class makes it a webcam, and the USB Audio Class makes it a microphone and speaker. Every laptop already speaks both.
+
+00:09:54.757 --> 00:09:55.651
+Quick recap.
+
+00:09:56.051 --> 00:09:58.826
+The laptop is the host and asks every question.
+
+00:09:59.226 --> 00:10:12.554
+Inside the bar, the path runs from the UDC, often a DWC3, through the gadget framework and configfs, to the U V C, U A C two and H I D functions, fed by the streaming app and the camera.
+
+00:10:12.954 --> 00:10:16.042
+Standard classes mean no driver install on any laptop.
+
+00:10:16.442 --> 00:10:19.774
+The Android USB HAL picks which mode the port is in.
+
+00:10:20.174 --> 00:10:28.545
+And senior means leading, setting standards and mentoring. Next up: the C and C plus plus habits firmware reviewers look for.
