@@ -1,0 +1,40 @@
+gRPC	Google's RPC framework: typed remote function calls over HTTP/2 using Protocol Buffers.	A phone line where both sides agreed on the exact script.
+GIL	Python's Global Interpreter Lock: only one thread runs Python code at a time.	One microphone passed around a panel.
+DCGM	NVIDIA Data Center GPU Manager: health and telemetry for fleets of GPUs.	A fleet dashboard for GPUs.
+PagedAttention	vLLM's trick of storing the KV cache in fixed-size pages, like virtual memory.	Storing a long conversation on loose-leaf pages instead of one giant scroll.
+GPUDirect	NVIDIA tech letting NICs and storage move data straight into GPU memory, skipping the CPU.	A delivery van that drives straight into the GPU's garage.
+QP	Queue Pair: an RDMA send queue plus receive queue, the connection object.	A pair of in/out trays between two desks.
+SaaS	Software as a Service: software you use over the web on a subscription.	Renting a car instead of owning one.
+VPN	Virtual Private Network: an encrypted tunnel across a public network.	A private tunnel under a public road.
+SYN	The first packet of a TCP handshake ("let's talk").	Knocking on the door.
+AuthN	Authentication: proving who you are.	Showing your ID.
+AuthZ	Authorization: deciding what you are allowed to do.	Checking which rooms your badge opens.
+IdP	Identity Provider: the service that logs users in and vouches for them (e.g. Okta, Google).	The passport office.
+KUnit	The Linux kernel's built-in unit-test framework.	A test bench inside the kernel.
+MLIR	Multi-Level Intermediate Representation: a compiler framework used for AI and hardware compilers.	A universal draft language between recipe and kitchen.
+OpenCV	A widely used open-source computer-vision library.	A toolbox for image processing.
+NumPy	Python's core library for fast arrays and maths.	A calculator for whole tables of numbers.
+CSV	Comma-Separated Values: a plain-text table format.	A spreadsheet saved as plain text.
+TCO	Total Cost of Ownership: all costs over a product's life, not just purchase price.	The car's price plus fuel, insurance and repairs.
+FFI	Foreign Function Interface: calling code written in another language (e.g. Rust calling C).	An interpreter between two languages.
+GitOps	Managing deployments by committing desired state to Git and letting a tool apply it.	Changing the plan on the noticeboard and letting the crew follow it.
+DSA	Data Structures and Algorithms.	The toolbox and techniques of coding interviews.
+AMR	Autonomous Mobile Robot.	A robot that drives itself around a warehouse.
+TARA	Threat Analysis and Risk Assessment (ISO 21434 car cybersecurity).	A burglary-risk survey for a car.
+YUV422	A pixel format storing brightness for every pixel and colour for every second pixel.	Full detail for light and shade, half detail for colour.
+RAW10	Raw camera sensor data with 10 bits per pixel, before the ISP processes it.	Undeveloped film.
+GiB	Gibibyte: 1024 MiB.	A computer-sized "billion bytes".
+SmartNIC	A network card with its own processors that can run networking tasks.	A mailroom with its own sorting staff.
+ThreadSanitizer	TSan: a tool that detects data races between threads.	A referee for threads.
+OpenTelemetry	The open standard and tools for traces, metrics and logs.	A common language for monitoring.
+OpenID	OpenID Connect: login identity on top of OAuth.	Showing a passport issued by a trusted country.
+KServe	A Kubernetes system for serving ML models.	A model-serving counter on Kubernetes.
+SGLang	A fast LLM serving engine with structured generation.	Another restaurant system for serving LLMs fast.
+VLA	Vision-Language-Action model: an AI that sees, understands instructions and outputs robot actions.	A robot brain that looks, listens and moves.
+EU	European Union.	The European group of countries.
+PM	Product/Program Manager; also Power Management.	The person who decides what gets built and when.
+MIPS	Million Instructions Per Second; also a CPU architecture family.	A speedometer for a CPU.
+CoreML	Apple's framework for running ML models on iPhones and Macs.	Apple's on-device AI engine.
+WaitGroup	Go construct that waits for a set of goroutines to finish.	A teacher waiting until every student hands in their test.
+goroutine	A lightweight thread managed by the Go runtime.	A cheap helper you can hire by the thousand.
+HashMap	Java's hash table class.	Coat-check hooks numbered by ticket.

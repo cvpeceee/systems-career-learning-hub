@@ -1,0 +1,473 @@
+[
+ {
+  "id": "c01-big-o",
+  "total": 235.2,
+  "orig": 148.8,
+  "new_word_cards": 3,
+  "terms": [
+   "cache",
+   "array",
+   "binary search"
+  ]
+ },
+ {
+  "id": "c02-arrays-pointers",
+  "total": 291.5,
+  "orig": 141.0,
+  "new_word_cards": 9,
+  "terms": [
+   "two pointers",
+   "sliding window",
+   "pointer",
+   "array",
+   "DMA",
+   "cache",
+   "container",
+   "ring buffer",
+   "binary search"
+  ]
+ },
+ {
+  "id": "c03-hash-tables",
+  "total": 230.4,
+  "orig": 131.7,
+  "new_word_cards": 5,
+  "terms": [
+   "hash table",
+   "hash function",
+   "HashMap",
+   "array",
+   "pointer"
+  ]
+ },
+ {
+  "id": "c04-stacks-queues",
+  "total": 250.0,
+  "orig": 127.4,
+  "new_word_cards": 7,
+  "terms": [
+   "stack",
+   "queue",
+   "monotonic stack",
+   "node",
+   "ring buffer",
+   "array",
+   "atomic"
+  ]
+ },
+ {
+  "id": "c05-linked-lists",
+  "total": 237.7,
+  "orig": 131.4,
+  "new_word_cards": 5,
+  "terms": [
+   "linked list",
+   "node",
+   "pointer",
+   "LRU",
+   "cache"
+  ]
+ },
+ {
+  "id": "c06-recursion-call-stack",
+  "total": 222.4,
+  "orig": 126.7,
+  "new_word_cards": 5,
+  "terms": [
+   "stack",
+   "recursion",
+   "binary search",
+   "node",
+   "backtracking"
+  ]
+ },
+ {
+  "id": "c07-trees-bst",
+  "total": 291.1,
+  "orig": 135.5,
+  "new_word_cards": 10,
+  "terms": [
+   "PCIe",
+   "binary search",
+   "node",
+   "BST",
+   "queue",
+   "linked list",
+   "stack",
+   "recursion",
+   "trie",
+   "edge"
+  ]
+ },
+ {
+  "id": "c08-heaps",
+  "total": 259.6,
+  "orig": 130.5,
+  "new_word_cards": 7,
+  "terms": [
+   "scheduler",
+   "heap",
+   "array",
+   "pointer",
+   "latency",
+   "queue",
+   "OS"
+  ]
+ },
+ {
+  "id": "c09-graphs-bfs-dfs",
+  "total": 330.8,
+  "orig": 130.8,
+  "new_word_cards": 13,
+  "terms": [
+   "graph",
+   "occupancy",
+   "node",
+   "edge",
+   "BFS",
+   "DFS",
+   "stack",
+   "recursion",
+   "topological sort",
+   "heap",
+   "PCIe",
+   "probe",
+   "GPU"
+  ]
+ },
+ {
+  "id": "c10-dynamic-programming",
+  "total": 236.5,
+  "orig": 122.6,
+  "new_word_cards": 6,
+  "terms": [
+   "DP",
+   "cache",
+   "memoization",
+   "recursion",
+   "stack",
+   "array"
+  ]
+ },
+ {
+  "id": "c11-union-find",
+  "total": 229.7,
+  "orig": 131.2,
+  "new_word_cards": 5,
+  "terms": [
+   "array",
+   "pointer",
+   "node",
+   "edge",
+   "stack"
+  ]
+ },
+ {
+  "id": "c12-tries",
+  "total": 243.3,
+  "orig": 120.5,
+  "new_word_cards": 7,
+  "terms": [
+   "trie",
+   "edge",
+   "node",
+   "pointer",
+   "cache",
+   "array",
+   "IP"
+  ]
+ },
+ {
+  "id": "c13-bit-tricks",
+  "total": 190.7,
+  "orig": 124.6,
+  "new_word_cards": 2,
+  "terms": [
+   "XOR",
+   "RAID"
+  ]
+ },
+ {
+  "id": "c14-binary-search",
+  "total": 197.5,
+  "orig": 121.3,
+  "new_word_cards": 3,
+  "terms": [
+   "binary search",
+   "array",
+   "edge"
+  ]
+ },
+ {
+  "id": "c15-backtracking",
+  "total": 178.9,
+  "orig": 113.1,
+  "new_word_cards": 2,
+  "terms": [
+   "backtracking",
+   "stack"
+  ]
+ },
+ {
+  "id": "c16-intervals",
+  "total": 224.6,
+  "orig": 117.5,
+  "new_word_cards": 5,
+  "terms": [
+   "heap",
+   "GPU",
+   "scheduler",
+   "node",
+   "DMA"
+  ]
+ },
+ {
+  "id": "c17-consistent-hashing",
+  "total": 211.8,
+  "orig": 101.2,
+  "new_word_cards": 6,
+  "terms": [
+   "cache",
+   "consistent hashing",
+   "edge",
+   "node",
+   "binary search",
+   "replication"
+  ]
+ },
+ {
+  "id": "c18-caching",
+  "total": 279.6,
+  "orig": 129.6,
+  "new_word_cards": 9,
+  "terms": [
+   "cache",
+   "eviction",
+   "LRU",
+   "linked list",
+   "node",
+   "LFU",
+   "TTL",
+   "CPU",
+   "CI"
+  ]
+ },
+ {
+  "id": "c19-queues-backpressure",
+  "total": 266.9,
+  "orig": 122.8,
+  "new_word_cards": 8,
+  "terms": [
+   "queue",
+   "backpressure",
+   "ring buffer",
+   "atomic",
+   "cache",
+   "SPSC",
+   "mutex",
+   "GPU"
+  ]
+ },
+ {
+  "id": "c20-replication",
+  "total": 202.1,
+  "orig": 104.7,
+  "new_word_cards": 5,
+  "terms": [
+   "replication",
+   "consensus",
+   "replica",
+   "Raft",
+   "node"
+  ]
+ },
+ {
+  "id": "c21-sharding",
+  "total": 197.4,
+  "orig": 108.3,
+  "new_word_cards": 4,
+  "terms": [
+   "sharding",
+   "partition",
+   "node",
+   "heap"
+  ]
+ },
+ {
+  "id": "c22-cap-quorums",
+  "total": 249.6,
+  "orig": 112.6,
+  "new_word_cards": 7,
+  "terms": [
+   "CAP",
+   "quorum",
+   "partition",
+   "node",
+   "replica",
+   "PACELC",
+   "latency"
+  ]
+ },
+ {
+  "id": "c23-prefix-fenwick",
+  "total": 200.8,
+  "orig": 117.3,
+  "new_word_cards": 3,
+  "terms": [
+   "Fenwick tree",
+   "prefix sum",
+   "array"
+  ]
+ },
+ {
+  "id": "c24-monotonic-stack",
+  "total": 159.1,
+  "orig": 91.1,
+  "new_word_cards": 2,
+  "terms": [
+   "stack",
+   "monotonic stack"
+  ]
+ },
+ {
+  "id": "c25-topological-sort",
+  "total": 149.8,
+  "orig": 66.5,
+  "new_word_cards": 4,
+  "terms": [
+   "topological sort",
+   "node",
+   "queue",
+   "graph"
+  ]
+ },
+ {
+  "id": "c26-grid-dp",
+  "total": 147.4,
+  "orig": 86.5,
+  "new_word_cards": 1,
+  "terms": [
+   "DP"
+  ]
+ },
+ {
+  "id": "c27-string-matching",
+  "total": 126.5,
+  "orig": 74.4,
+  "new_word_cards": 1,
+  "terms": [
+   "pointer"
+  ]
+ },
+ {
+  "id": "c28-idempotency-retries",
+  "total": 145.8,
+  "orig": 75.0,
+  "new_word_cards": 2,
+  "terms": [
+   "API",
+   "idempotency key",
+   "idempotent"
+  ]
+ },
+ {
+  "id": "c29-cdn-edge",
+  "total": 143.1,
+  "orig": 67.9,
+  "new_word_cards": 3,
+  "terms": [
+   "cache",
+   "edge",
+   "latency",
+   "TTL"
+  ]
+ },
+ {
+  "id": "c30-transactions-mvcc",
+  "total": 173.6,
+  "orig": 93.0,
+  "new_word_cards": 3,
+  "terms": [
+   "ACID",
+   "atomic",
+   "rollback"
+  ]
+ },
+ {
+  "id": "c31-leader-election",
+  "total": 174.6,
+  "orig": 77.0,
+  "new_word_cards": 5,
+  "terms": [
+   "leader election",
+   "node",
+   "lease",
+   "Raft",
+   "fencing token"
+  ]
+ },
+ {
+  "id": "o20-march-tests",
+  "total": 161.3,
+  "orig": 116.7,
+  "new_word_cards": 0,
+  "terms": []
+ },
+ {
+  "id": "o20-mcdc-1553",
+  "total": 194.2,
+  "orig": 108.3,
+  "new_word_cards": 3,
+  "terms": [
+   "MC/DC",
+   "DC",
+   "DO-178C"
+  ]
+ },
+ {
+  "id": "o20-otel-tail",
+  "total": 154.1,
+  "orig": 78.4,
+  "new_word_cards": 3,
+  "terms": [
+   "SDK",
+   "OpenTelemetry",
+   "ID"
+  ]
+ },
+ {
+  "id": "o20-outbox-saga",
+  "total": 158.6,
+  "orig": 81.5,
+  "new_word_cards": 3,
+  "terms": [
+   "queue",
+   "idempotent",
+   "saga"
+  ]
+ },
+ {
+  "id": "o20-sensor-content",
+  "total": 141.7,
+  "orig": 87.5,
+  "new_word_cards": 1,
+  "terms": [
+   "ring buffer"
+  ]
+ },
+ {
+  "id": "o20-vxlan-mtu",
+  "total": 246.8,
+  "orig": 112.7,
+  "new_word_cards": 7,
+  "terms": [
+   "VXLAN",
+   "MTU",
+   "VNI",
+   "NIC",
+   "MAC",
+   "UDP",
+   "IP"
+  ]
+ }
+]

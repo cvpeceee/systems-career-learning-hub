@@ -1,13 +1,17 @@
 [
 {
 "t": "DMA",
-"m": "Direct Memory Access: a helper engine that copies data between devices and memory without the CPU touching each byte.",
-"a": "A conveyor belt that moves boxes while the manager (CPU) does other work."
+"m": "Direct memory access: a hardware helper that copies data to memory without the processor doing each byte.",
+"a": "A conveyor belt that moves boxes while the worker does something else.",
+"say": "D M A",
+"src": "07"
 },
 {
 "t": "ISP",
-"m": "Image Signal Processor: the chip block that turns raw camera sensor data into a clean picture.",
-"a": "A photo lab that develops raw film into a finished print."
+"m": "Image signal processor: the chip block that turns raw sensor data into a good-looking picture.",
+"a": "A photo lab that develops the raw film into a finished print.",
+"say": "I S P",
+"src": "07"
 },
 {
 "t": "GPU",
@@ -91,8 +95,10 @@
 },
 {
 "t": "BSP",
-"m": "Board Support Package: the chip vendor's bundle of bootloader, kernel, drivers and configs for one board.",
-"a": "The starter kit that comes with a new house: keys, wiring diagram and fuse box labels."
+"m": "Board Support Package: the chip vendor's bundle of bootloader, kernel, drivers and settings for one chip or board.",
+"a": "The starter kit that comes with a new appliance: parts, manual and tools for that exact model.",
+"say": "B S P",
+"src": "07"
 },
 {
 "t": "ML",
@@ -116,8 +122,10 @@
 },
 {
 "t": "RTOS",
-"m": "Real-Time Operating System: a small OS that guarantees tasks run within strict time limits.",
-"a": "A train timetable that never lets a train leave late."
+"m": "Real-time operating system: a tiny scheduler that guarantees tasks run within deadlines.",
+"a": "A strict school timetable: every class starts exactly on the bell.",
+"say": "R toss",
+"src": "07"
 },
 {
 "t": "BFS",
@@ -146,18 +154,24 @@
 },
 {
 "t": "GPIO",
-"m": "General-Purpose Input/Output: a chip pin that software can switch on/off or read.",
-"a": "A simple light switch the software can flip or check."
+"m": "General-purpose input/output: a single pin software can switch on or off, or read.",
+"a": "A light switch the software can flip or check.",
+"say": "G P I O",
+"src": "07"
 },
 {
 "t": "I2C",
-"m": "Inter-Integrated Circuit: a slow two-wire bus for chips on a board to talk (sensors, bridges, power chips).",
-"a": "A party line telephone where each chip answers only to its own name."
+"m": "A simple two-wire bus that lets a processor talk to small chips like sensors and HDMI bridges.",
+"a": "A classroom where the teacher calls each student by number and they answer one at a time.",
+"say": "I two C",
+"src": "07"
 },
 {
 "t": "SPI",
-"m": "Serial Peripheral Interface: a fast four-wire bus between a main chip and peripherals like flash or displays.",
-"a": "A private phone line per chip with a dedicated \"you're up\" wire."
+"m": "A fast four-wire bus for chips like flash memory and displays.",
+"a": "A dedicated phone line to each chip instead of a shared classroom.",
+"say": "S P I",
+"src": "07"
 },
 {
 "t": "JSON",
@@ -166,8 +180,10 @@
 },
 {
 "t": "OTA",
-"m": "Over-The-Air update: sending new software to a device remotely.",
-"a": "A phone app update that arrives while you sleep."
+"m": "Over-the-air update: new software delivered to devices in the field over the network.",
+"a": "A software home delivery, no service visit needed.",
+"say": "O T A",
+"src": "07"
 },
 {
 "t": "AWS",
@@ -226,8 +242,10 @@
 },
 {
 "t": "QEMU",
-"m": "A free emulator that pretends to be a whole computer or board in software.",
-"a": "A flight simulator for computer hardware."
+"m": "A program that emulates a whole computer, so you can test kernels without real hardware.",
+"a": "A flight simulator for software.",
+"say": "kew em you",
+"src": "07"
 },
 {
 "t": "GIC",
@@ -351,8 +369,10 @@
 },
 {
 "t": "V4L2",
-"m": "Video4Linux2: the Linux kernel framework and API for cameras and video capture.",
-"a": "The standard socket that every camera plugs into on Linux."
+"m": "Video for Linux 2: the kernel interface every Linux camera and video device uses.",
+"a": "The standard loading dock every camera truck backs into.",
+"say": "V four L two",
+"src": "07"
 },
 {
 "t": "FP32",
@@ -401,8 +421,10 @@
 },
 {
 "t": "MCU",
-"m": "Microcontroller Unit: a small chip with CPU, memory and I/O on one die, running simple firmware.",
-"a": "A pocket calculator-sized computer inside a toaster."
+"m": "Microcontroller: a small, low-power chip with its own memory, running firmware without a full operating system.",
+"a": "A pocket calculator compared with a laptop.",
+"say": "M C U",
+"src": "07"
 },
 {
 "t": "GDB",
@@ -451,8 +473,10 @@
 },
 {
 "t": "UART",
-"m": "Universal Asynchronous Receiver-Transmitter: a simple two-wire serial port, often the debug console.",
-"a": "Two tin cans and a string: simple, slow, always works."
+"m": "A simple serial port, often the first console you see when a board boots.",
+"a": "A tin-can telephone straight into the board.",
+"say": "U art",
+"src": "07"
 },
 {
 "t": "HIL",
@@ -486,8 +510,10 @@
 },
 {
 "t": "HDMI",
-"m": "High-Definition Multimedia Interface: cable standard for video and audio to displays.",
-"a": "The garden hose that carries picture and sound to a TV."
+"m": "The common cable standard for sending video and audio to TVs and monitors.",
+"a": "A garden hose for pictures and sound.",
+"say": "H D M I",
+"src": "07"
 },
 {
 "t": "ROM",
@@ -711,8 +737,10 @@
 },
 {
 "t": "PHY",
-"m": "Physical layer chip: the part that turns digital bits into electrical signals on a wire.",
-"a": "The voice box that turns thoughts into sound."
+"m": "The physical-layer circuit that turns bits into electrical signals on the wire.",
+"a": "The voice box that turns your thoughts into sound waves.",
+"say": "phy",
+"src": "07"
 },
 {
 "t": "YAML",
@@ -1056,8 +1084,10 @@
 },
 {
 "t": "PD",
-"m": "USB Power Delivery: negotiation over USB-C for higher voltage/power and roles.",
-"a": "Two devices haggling over how much power to send."
+"m": "USB Power Delivery: the conversation over the Type-C cable that agrees on voltage, current and roles.",
+"a": "Two people agreeing how much to pay before handing over goods.",
+"say": "P D",
+"src": "07"
 },
 {
 "t": "ETW",
@@ -1136,8 +1166,10 @@
 },
 {
 "t": "SoC",
-"m": "System on Chip: a single chip containing CPU, GPU, memory controllers and peripherals.",
-"a": "A whole kitchen packed into one appliance."
+"m": "System on a chip: one chip holding the processor cores, graphics, video, USB and more.",
+"a": "A whole city on one island: houses, factories and roads in one place.",
+"say": "S o C",
+"src": "07"
 },
 {
 "t": "FFT",
@@ -1266,8 +1298,10 @@
 },
 {
 "t": "HAL",
-"m": "Hardware Abstraction Layer: a fixed interface the OS calls that the device maker implements.",
-"a": "A universal wall socket: appliances don't care how the power plant works."
+"m": "Hardware Abstraction Layer: a fixed interface Android calls, which the device maker implements for its hardware.",
+"a": "A standard wall socket: Android plugs into the same socket, and each maker wires the house behind it.",
+"say": "HAL",
+"src": "07"
 },
 {
 "t": "MVCC",
@@ -1276,8 +1310,10 @@
 },
 {
 "t": "HID",
-"m": "Human Interface Device: USB class for keyboards, mice and buttons; no special driver needed.",
-"a": "The universal \"I'm a button\" language."
+"m": "Human Interface Device: the standard language for buttons, keyboards and mice, also used for mute and call buttons.",
+"a": "The universal remote-control language: any computer knows what \"button pressed\" means.",
+"say": "H I D",
+"src": "07"
 },
 {
 "t": "TSDB",
@@ -1531,8 +1567,10 @@
 },
 {
 "t": "UVC",
-"m": "USB Video Class: the standard \"I'm a webcam\" USB language, so laptops need no special driver.",
-"a": "A universal webcam plug-and-play language."
+"m": "USB Video Class: the standard \"I am a webcam\" language every computer already understands.",
+"a": "A universal power plug for cameras: plug in anywhere and it just works, no driver install.",
+"say": "U V C",
+"src": "07"
 },
 {
 "t": "UAC",
@@ -1546,23 +1584,31 @@
 },
 {
 "t": "UDC",
-"m": "USB Device Controller: the hardware block that lets a board act as a USB device to a laptop.",
-"a": "The front desk that answers when the laptop knocks."
+"m": "USB Device Controller: the chip block that lets a gadget answer a laptop over USB.",
+"a": "The front desk of a hotel: every guest request (the laptop) arrives there first.",
+"say": "U D C",
+"src": "07"
 },
 {
 "t": "DWC3",
-"m": "Synopsys DesignWare USB3 controller: a ready-made USB controller design many Qualcomm/NXP chips include.",
-"a": "A front-desk model bought from a catalogue; many hotels have the same one."
+"m": "A ready-made USB controller design that Synopsys sells and many Qualcomm and NXP chips include.",
+"a": "A front desk bought from a furniture catalogue: many hotels have the same model, so one driver fits them all.",
+"say": "D W C 3",
+"src": "07"
 },
 {
 "t": "xHCI",
-"m": "eXtensible Host Controller Interface: the standard USB host controller in PCs.",
-"a": "The laptop's USB switchboard."
+"m": "Extensible Host Controller Interface: the standard USB host controller in laptops and in our boards when they act as host.",
+"a": "The hotel manager who calls guests, as opposed to the front desk that answers them.",
+"say": "x H C I",
+"src": "07"
 },
 {
 "t": "DFU",
-"m": "Device Firmware Upgrade: a USB standard for flashing new firmware.",
-"a": "A standard service door for swapping the device's brain."
+"m": "Device Firmware Upgrade: a standard way to send new firmware into a device over USB.",
+"a": "A car driving onto a service ramp so the mechanic can swap the engine software.",
+"say": "D F U",
+"src": "07"
 },
 {
 "t": "eMMC",
@@ -1751,8 +1797,10 @@
 },
 {
 "t": "URB",
-"m": "USB Request Block: the Linux kernel object describing one USB transfer.",
-"a": "A delivery order form for one USB parcel."
+"m": "USB Request Block: the kernel's envelope for one USB transfer request on the host side.",
+"a": "A filled-in courier slip attached to each package.",
+"say": "U R B",
+"src": "07"
 },
 {
 "t": "NVIC",
@@ -2111,23 +2159,31 @@
 },
 {
 "t": "SELinux",
-"m": "Security-Enhanced Linux: mandatory access rules for every process and file (used heavily in Android).",
-"a": "A strict rulebook saying which staff can enter which room, no exceptions."
+"m": "Security-Enhanced Linux: rules that say exactly which program may touch which file or device, even as root.",
+"a": "Keycards in an office: even the boss's card only opens the doors it is programmed for.",
+"say": "S E Linux",
+"src": "07"
 },
 {
 "t": "AIDL",
-"m": "Android Interface Definition Language: defines interfaces between Android processes/HALs.",
-"a": "A contract template for Android services."
+"m": "Android Interface Definition Language: the file that describes the calls between two Android processes.",
+"a": "A menu both the waiter and the kitchen agree on, so orders are never misunderstood.",
+"say": "A I D L",
+"src": "07"
 },
 {
 "t": "HIDL",
-"m": "Older Android HAL interface language (replaced by AIDL).",
-"a": "The old contract template."
+"m": "The older Android interface language that AIDL replaced for hardware services.",
+"a": "Last year's menu format, still found in older restaurants.",
+"say": "hidle",
+"src": "07"
 },
 {
 "t": "AOSP",
-"m": "Android Open Source Project: the open-source Android code base.",
-"a": "The public blueprint of Android."
+"m": "Android Open Source Project: the public Android source code a device maker builds from.",
+"a": "The public recipe book every Android kitchen starts from.",
+"say": "A O S P",
+"src": "07"
 },
 {
 "t": "VTS",
@@ -2200,24 +2256,32 @@
 "a": "The wait time that only 1 in 100 customers exceeds."
 },
 {
-"t": "kernel",
-"m": "The core of the operating system that controls hardware, memory and processes.",
-"a": "The building's engine room."
+"t": "Kernel",
+"m": "The core of the operating system that controls memory, devices and which program runs.",
+"a": "The building manager who owns every key and decides who uses which room.",
+"say": "kernel",
+"src": "07"
 },
 {
-"t": "driver",
-"m": "Code that lets the OS talk to one kind of hardware.",
-"a": "An interpreter between the OS and a device."
+"t": "Driver",
+"m": "Kernel code that knows how to operate one kind of hardware.",
+"a": "A translator who speaks one specific machine's language.",
+"say": "driver",
+"src": "07"
 },
 {
-"t": "firmware",
-"m": "Software that runs close to the hardware, usually stored in flash on the device.",
-"a": "The instincts built into a device."
+"t": "Firmware",
+"m": "Software that runs close to hardware, usually stored in flash memory on the device.",
+"a": "The instincts built into an animal: low-level behaviour that is there from birth.",
+"say": "firmware",
+"src": "07"
 },
 {
-"t": "bootloader",
-"m": "The small program that starts first, sets up hardware and loads the OS.",
-"a": "The stage crew who set up before the show."
+"t": "Bootloader",
+"m": "The small program that runs first at power-on, sets up memory and loads the kernel.",
+"a": "The stagehand who sets up the stage before the actors arrive.",
+"say": "bootloader",
+"src": "07"
 },
 {
 "t": "interrupt",
@@ -2510,34 +2574,46 @@
 "a": "Waiting for a doorbell's jangle to stop before answering."
 },
 {
-"t": "device tree",
-"m": "A text description of a board's hardware that the Linux kernel reads at boot.",
-"a": "A floor plan handed to the electrician."
+"t": "Device tree",
+"m": "A text map of the hardware on a board (which chips, on which pins and addresses) that the kernel reads at boot.",
+"a": "The floor plan of a house, so the electrician knows where every socket is without digging into walls.",
+"say": "device tree",
+"src": "07"
 },
 {
-"t": "gadget",
-"m": "Linux's name for the USB device side: the board pretends to be a webcam, mic or keyboard to a laptop.",
-"a": "An actor in costume playing \"webcam\"."
+"t": "Gadget",
+"m": "Linux's name for the device side of USB: the board pretends to be a webcam, mic or keyboard to a laptop.",
+"a": "An actor in costume: the same board can play \"webcam\" or \"keyboard\" depending on the costume it wears.",
+"say": "gadget",
+"src": "07"
 },
 {
 "t": "configfs",
-"m": "A special Linux folder tree used to build a USB gadget by creating folders and files.",
-"a": "Assembling furniture by labelling empty boxes."
+"m": "A special folder tree where you build a USB gadget by creating folders and writing small files.",
+"a": "Building with LEGO by making folders: each folder is a brick (a function), and linking them snaps the toy together.",
+"say": "config F S",
+"src": "07"
 },
 {
-"t": "descriptor",
-"m": "A small data block a USB device sends to describe itself.",
-"a": "A business card the device hands to the laptop."
+"t": "Descriptor",
+"m": "A small table of facts the device reports about itself: who made it, what it can do.",
+"a": "A business card plus resume the device hands over when it is first plugged in.",
+"say": "descriptor",
+"src": "07"
 },
 {
-"t": "enumeration",
-"m": "The process where a host discovers and configures a newly plugged USB device.",
-"a": "A receptionist checking in a new guest."
+"t": "Enumeration",
+"m": "The first conversation after plug-in where the laptop learns what the device is and gives it an address.",
+"a": "A new employee's first morning: show ID, get a badge number, hand in a resume, get assigned a desk.",
+"say": "enumeration",
+"src": "07"
 },
 {
-"t": "endpoint",
-"m": "A numbered data channel on a USB device.",
-"a": "A numbered loading dock."
+"t": "Endpoint",
+"m": "A numbered mailbox on a USB device; each data stream uses its own.",
+"a": "Numbered pigeonholes in an office: mail for video goes in one slot, audio in another.",
+"say": "endpoint",
+"src": "07"
 },
 {
 "t": "isochronous",
@@ -2545,9 +2621,11 @@
 "a": "A live broadcast: on time, no re-takes."
 },
 {
-"t": "bulk transfer",
-"m": "A USB transfer type for large data with retries but no timing guarantee.",
-"a": "Freight shipping: arrives eventually, intact."
+"t": "Bulk transfer",
+"m": "A USB transfer type that is reliable but has no timing promise, used for files and updates.",
+"a": "Parcel post: everything arrives intact, but not at a promised minute.",
+"say": "bulk transfer",
+"src": "07"
 },
 {
 "t": "pinctrl",
@@ -2561,8 +2639,10 @@
 },
 {
 "t": "probe",
-"m": "The driver function the kernel calls when it finds matching hardware.",
-"a": "A new employee's first-day setup."
+"m": "The driver function the kernel calls when it finds a device that matches the driver.",
+"a": "The first handshake when a translator is introduced to the person they will translate for.",
+"say": "probe",
+"src": "07"
 },
 {
 "t": "workqueue",
@@ -2580,9 +2660,11 @@
 "a": "The back-office team that finishes what the front desk started."
 },
 {
-"t": "threaded IRQ",
-"m": "An interrupt handler split so the heavy part runs in a kernel thread.",
-"a": "Answering the door quickly, then doing the paperwork later."
+"t": "Threaded IRQ",
+"m": "An interrupt whose slow part runs in its own kernel thread so it can sleep and talk over I2C.",
+"a": "A receptionist who takes a message, then a colleague phones back properly.",
+"say": "threaded I R Q",
+"src": "07"
 },
 {
 "t": "secure boot",
@@ -2641,8 +2723,10 @@
 },
 {
 "t": "QoS",
-"m": "Quality of Service: giving some traffic or work priority over others.",
-"a": "A priority boarding lane at the airport."
+"m": "Quality of service: marking network packets so live audio and video go ahead of bulk traffic.",
+"a": "An ambulance lane on the highway.",
+"say": "Q o S",
+"src": "07"
 },
 {
 "t": "SerDes",
@@ -2918,5 +3002,625 @@
 "t": "canary",
 "m": "Releasing a change to a small group first to catch problems.",
 "a": "The canary in the coal mine."
+},
+{
+"t": "gRPC",
+"m": "Google's RPC framework: typed remote function calls over HTTP/2 using Protocol Buffers.",
+"a": "A phone line where both sides agreed on the exact script."
+},
+{
+"t": "GIL",
+"m": "Python's Global Interpreter Lock: only one thread runs Python code at a time.",
+"a": "One microphone passed around a panel."
+},
+{
+"t": "DCGM",
+"m": "NVIDIA Data Center GPU Manager: health and telemetry for fleets of GPUs.",
+"a": "A fleet dashboard for GPUs."
+},
+{
+"t": "PagedAttention",
+"m": "vLLM's trick of storing the KV cache in fixed-size pages, like virtual memory.",
+"a": "Storing a long conversation on loose-leaf pages instead of one giant scroll."
+},
+{
+"t": "GPUDirect",
+"m": "NVIDIA tech letting NICs and storage move data straight into GPU memory, skipping the CPU.",
+"a": "A delivery van that drives straight into the GPU's garage."
+},
+{
+"t": "QP",
+"m": "Queue Pair: an RDMA send queue plus receive queue, the connection object.",
+"a": "A pair of in/out trays between two desks."
+},
+{
+"t": "SaaS",
+"m": "Software as a Service: software you use over the web on a subscription.",
+"a": "Renting a car instead of owning one."
+},
+{
+"t": "VPN",
+"m": "Virtual Private Network: an encrypted tunnel across a public network.",
+"a": "A private tunnel under a public road."
+},
+{
+"t": "SYN",
+"m": "The first packet of a TCP handshake (\"let's talk\").",
+"a": "Knocking on the door."
+},
+{
+"t": "AuthN",
+"m": "Authentication: proving who you are.",
+"a": "Showing your ID."
+},
+{
+"t": "AuthZ",
+"m": "Authorization: deciding what you are allowed to do.",
+"a": "Checking which rooms your badge opens."
+},
+{
+"t": "IdP",
+"m": "Identity Provider: the service that logs users in and vouches for them (e.g. Okta, Google).",
+"a": "The passport office."
+},
+{
+"t": "KUnit",
+"m": "The Linux kernel's built-in unit-test framework.",
+"a": "A test bench inside the kernel."
+},
+{
+"t": "MLIR",
+"m": "Multi-Level Intermediate Representation: a compiler framework used for AI and hardware compilers.",
+"a": "A universal draft language between recipe and kitchen."
+},
+{
+"t": "OpenCV",
+"m": "A widely used open-source computer-vision library.",
+"a": "A toolbox for image processing."
+},
+{
+"t": "NumPy",
+"m": "Python's core library for fast arrays and maths.",
+"a": "A calculator for whole tables of numbers."
+},
+{
+"t": "CSV",
+"m": "Comma-Separated Values: a plain-text table format.",
+"a": "A spreadsheet saved as plain text."
+},
+{
+"t": "TCO",
+"m": "Total Cost of Ownership: all costs over a product's life, not just purchase price.",
+"a": "The car's price plus fuel, insurance and repairs."
+},
+{
+"t": "FFI",
+"m": "Foreign Function Interface: calling code written in another language (e.g. Rust calling C).",
+"a": "An interpreter between two languages."
+},
+{
+"t": "GitOps",
+"m": "Managing deployments by committing desired state to Git and letting a tool apply it.",
+"a": "Changing the plan on the noticeboard and letting the crew follow it."
+},
+{
+"t": "DSA",
+"m": "Data Structures and Algorithms.",
+"a": "The toolbox and techniques of coding interviews."
+},
+{
+"t": "AMR",
+"m": "Autonomous Mobile Robot.",
+"a": "A robot that drives itself around a warehouse."
+},
+{
+"t": "TARA",
+"m": "Threat Analysis and Risk Assessment (ISO 21434 car cybersecurity).",
+"a": "A burglary-risk survey for a car."
+},
+{
+"t": "YUV422",
+"m": "A pixel format storing brightness for every pixel and colour for every second pixel.",
+"a": "Full detail for light and shade, half detail for colour."
+},
+{
+"t": "RAW10",
+"m": "Raw camera sensor data with 10 bits per pixel, before the ISP processes it.",
+"a": "Undeveloped film."
+},
+{
+"t": "GiB",
+"m": "Gibibyte: 1024 MiB.",
+"a": "A computer-sized \"billion bytes\"."
+},
+{
+"t": "SmartNIC",
+"m": "A network card with its own processors that can run networking tasks.",
+"a": "A mailroom with its own sorting staff."
+},
+{
+"t": "ThreadSanitizer",
+"m": "TSan: a tool that detects data races between threads.",
+"a": "A referee for threads."
+},
+{
+"t": "OpenTelemetry",
+"m": "The open standard and tools for traces, metrics and logs.",
+"a": "A common language for monitoring."
+},
+{
+"t": "OpenID",
+"m": "OpenID Connect: login identity on top of OAuth.",
+"a": "Showing a passport issued by a trusted country."
+},
+{
+"t": "KServe",
+"m": "A Kubernetes system for serving ML models.",
+"a": "A model-serving counter on Kubernetes."
+},
+{
+"t": "SGLang",
+"m": "A fast LLM serving engine with structured generation.",
+"a": "Another restaurant system for serving LLMs fast."
+},
+{
+"t": "VLA",
+"m": "Vision-Language-Action model: an AI that sees, understands instructions and outputs robot actions.",
+"a": "A robot brain that looks, listens and moves."
+},
+{
+"t": "EU",
+"m": "European Union.",
+"a": "The European group of countries."
+},
+{
+"t": "PM",
+"m": "Product/Program Manager; also Power Management.",
+"a": "The person who decides what gets built and when."
+},
+{
+"t": "MIPS",
+"m": "Million Instructions Per Second; also a CPU architecture family.",
+"a": "A speedometer for a CPU."
+},
+{
+"t": "CoreML",
+"m": "Apple's framework for running ML models on iPhones and Macs.",
+"a": "Apple's on-device AI engine."
+},
+{
+"t": "WaitGroup",
+"m": "Go construct that waits for a set of goroutines to finish.",
+"a": "A teacher waiting until every student hands in their test."
+},
+{
+"t": "goroutine",
+"m": "A lightweight thread managed by the Go runtime.",
+"a": "A cheap helper you can hire by the thousand."
+},
+{
+"t": "HashMap",
+"m": "Java's hash table class.",
+"a": "Coat-check hooks numbered by ticket."
+},
+{
+"t": "FunctionFS",
+"m": "A way for a normal program, not kernel code, to implement one USB function of a gadget.",
+"a": "Letting a contractor run one counter of the shop instead of hiring a full-time employee.",
+"say": "function F S",
+"src": "07"
+},
+{
+"t": "Composite device",
+"m": "One USB device that offers several functions at once, like camera plus mic plus buttons.",
+"a": "A multi-tool: one handle, several blades.",
+"say": "composite",
+"src": "07"
+},
+{
+"t": "UAC / UAC2",
+"m": "USB Audio Class (version 2 is the modern one): the standard \"I am a mic or speaker\" language.",
+"a": "The same universal plug idea as the webcam language, but for sound.",
+"say": "U A C",
+"src": "07"
+},
+{
+"t": "CDC / ACM",
+"m": "Communications Device Class: a standard USB serial port or network link, handy for debug consoles.",
+"a": "A walkie-talkie channel built into the cable for engineers to talk to the device.",
+"say": "C D C",
+"src": "07"
+},
+{
+"t": "MTP",
+"m": "Media Transfer Protocol: how a phone shows its photos as files on a computer.",
+"a": "A librarian handing you books one at a time instead of letting you into the stacks.",
+"say": "M T P",
+"src": "07"
+},
+{
+"t": "Isochronous transfer",
+"m": "A USB transfer type with guaranteed timing but no retries, used for live video and audio.",
+"a": "A live TV broadcast: always on time, and a dropped frame is simply skipped, never resent.",
+"say": "isochronous",
+"src": "07"
+},
+{
+"t": "SETUP packet / control transfer",
+"m": "The eight-byte question the host sends on endpoint zero to start every control conversation.",
+"a": "The short form you fill in at a counter before anything else happens.",
+"say": "setup packet",
+"src": "07"
+},
+{
+"t": "STALL",
+"m": "The device's way of saying \"I can't do that request.\"",
+"a": "A clerk holding up a hand: \"not at this counter.\"",
+"say": "stall",
+"src": "07"
+},
+{
+"t": "VBUS",
+"m": "The 5-volt power wire in a USB cable; seeing it tells the device a host is attached.",
+"a": "The doorbell wire: when it carries power, someone is at the door.",
+"say": "V bus",
+"src": "07"
+},
+{
+"t": "DRD / OTG",
+"m": "Dual-role device: one USB port that can switch between being host and being device.",
+"a": "A person who can be either the customer or the shopkeeper depending on who walks in.",
+"say": "D R D",
+"src": "07"
+},
+{
+"t": "USB Type-C",
+"m": "The reversible USB connector; it also negotiates power and roles through its extra pins.",
+"a": "A smart socket that works either way up and agrees on who powers whom before turning on.",
+"say": "Type C",
+"src": "07"
+},
+{
+"t": "CC pins",
+"m": "The configuration-channel wires in a Type-C cable used to detect orientation and talk Power Delivery.",
+"a": "The cable's private phone line for negotiating before the main road opens.",
+"say": "C C",
+"src": "07"
+},
+{
+"t": "Alternate mode",
+"m": "Using some Type-C wires to carry another signal, such as DisplayPort video, instead of USB data.",
+"a": "A multi-lane road where some lanes are temporarily given to buses.",
+"say": "alternate mode",
+"src": "07"
+},
+{
+"t": "usbmon",
+"m": "A Linux feature that records every USB packet so you can read them in Wireshark.",
+"a": "A security camera pointed at the USB cable.",
+"say": "USB mon",
+"src": "07"
+},
+{
+"t": "LPM / U1 / U2",
+"m": "Link power management: USB links nap between packets to save power.",
+"a": "Lights on a motion sensor that switch off when the hallway is empty.",
+"say": "L P M",
+"src": "07"
+},
+{
+"t": "Treble",
+"m": "Android's split between Google's system part and the vendor's hardware part, so each can update separately.",
+"a": "A building with a fixed wall between the landlord's floors and the tenant's floors.",
+"say": "Treble",
+"src": "07"
+},
+{
+"t": "GKI",
+"m": "Generic Kernel Image: one Google-built Linux kernel shared by many devices, with vendor drivers loaded as modules.",
+"a": "A standard car chassis from the factory, with each brand bolting on its own parts.",
+"say": "G K I",
+"src": "07"
+},
+{
+"t": "VINTF",
+"m": "The vendor interface manifest: the list that says which hardware services a device provides.",
+"a": "A restaurant's posted list of dishes it promises to serve.",
+"say": "vintf",
+"src": "07"
+},
+{
+"t": "init / .rc files",
+"m": "The first user program Android starts; its .rc files say which services start and when.",
+"a": "The stage manager with a script that says who walks on stage and when.",
+"say": "init",
+"src": "07"
+},
+{
+"t": "adb",
+"m": "Android Debug Bridge: the command-line tool that gives an engineer a shell and logs on a device.",
+"a": "A service hatch into the device for the technician.",
+"say": "A D B",
+"src": "07"
+},
+{
+"t": "CTS / VTS",
+"m": "Android's Compatibility and Vendor Test Suites, which a device must pass to ship with Google apps.",
+"a": "The driving test every new car model must pass before it can be sold.",
+"say": "C T S",
+"src": "07"
+},
+{
+"t": "Framework layer",
+"m": "On Android, the Java system services apps talk to, like the camera and USB services.",
+"a": "The dining room of a restaurant: diners (apps) only ever see this room.",
+"say": "framework layer",
+"src": "07"
+},
+{
+"t": "User space",
+"m": "Where normal programs run, outside the kernel, protected from crashing the whole system.",
+"a": "The public area of a building, separate from the staff-only control room.",
+"say": "user space",
+"src": "07"
+},
+{
+"t": "Kernel module",
+"m": "A piece of kernel code that can be loaded or removed while the system runs.",
+"a": "A plug-in cartridge for a game console.",
+"say": "kernel module",
+"src": "07"
+},
+{
+"t": "DTB / overlay",
+"m": "The compiled, binary form of the device tree that the bootloader hands to the kernel; an overlay patches it.",
+"a": "The printed floor plan; an overlay is a sticky note added on top.",
+"say": "D T B",
+"src": "07"
+},
+{
+"t": "regmap",
+"m": "A kernel helper that reads and writes a chip's registers over I2C or SPI with caching.",
+"a": "A shared notebook of a chip's settings so you do not re-ask the chip every time.",
+"say": "reg map",
+"src": "07"
+},
+{
+"t": "MMIO / register",
+"m": "Memory-mapped input/output: hardware settings that appear as memory addresses the processor writes to.",
+"a": "Dials on a control panel that happen to be numbered like house addresses.",
+"say": "M M I O",
+"src": "07"
+},
+{
+"t": "IRQ / interrupt",
+"m": "Interrupt request: a hardware signal that makes the processor stop and handle an event right now.",
+"a": "A doorbell: you stop what you are doing and answer it.",
+"say": "I R Q",
+"src": "07"
+},
+{
+"t": "ISR / top half",
+"m": "Interrupt service routine: the tiny, fast handler that runs the moment the interrupt fires.",
+"a": "Answering the doorbell just long enough to take the parcel.",
+"say": "I S R",
+"src": "07"
+},
+{
+"t": "Workqueue / bottom half",
+"m": "A kernel queue that runs deferred work later in a normal context where sleeping is allowed.",
+"a": "Putting the parcel on the table to open properly after you have closed the door.",
+"say": "workqueue",
+"src": "07"
+},
+{
+"t": "Spinlock / mutex",
+"m": "Locks that stop two pieces of code changing the same data at once; a spinlock waits busily, a mutex sleeps.",
+"a": "A single bathroom key: a spinlock is waiting at the door, a mutex is taking a seat until called.",
+"say": "spinlock",
+"src": "07"
+},
+{
+"t": "sysfs / ioctl",
+"m": "Ways a program talks to a driver: sysfs files for simple settings, ioctl calls for commands.",
+"a": "Labelled switches on the wall (sysfs) and a request form at the counter (ioctl).",
+"say": "sys F S",
+"src": "07"
+},
+{
+"t": "Media controller",
+"m": "A kernel interface that describes and connects the blocks of a camera pipeline (sensor, image processor, outputs).",
+"a": "A train-yard map with switch levers you set before the train runs.",
+"say": "media controller",
+"src": "07"
+},
+{
+"t": "ALSA / ASoC",
+"m": "Advanced Linux Sound Architecture: the kernel's audio system; ASoC is its part for chips on boards.",
+"a": "The plumbing that carries sound from microphones to programs and back to speakers.",
+"say": "ALSA",
+"src": "07"
+},
+{
+"t": "MIPI CSI",
+"m": "The fast camera interface between an image sensor and the processor.",
+"a": "A dedicated pipe from the camera eye to the brain.",
+"say": "C S I",
+"src": "07"
+},
+{
+"t": "YUY2 / NV12 / MJPEG",
+"m": "Ways to pack image pixels: brightness and colour stored separately (YUY2, NV12) or compressed per frame (MJPEG).",
+"a": "Different ways to pack a suitcase: rolled, folded, or vacuum-sealed.",
+"say": "pixel formats",
+"src": "07"
+},
+{
+"t": "U-Boot / ABL / XBL",
+"m": "Common bootloaders: U-Boot on many boards; ABL and XBL on Qualcomm chips.",
+"a": "Different brands of stagehand, each with its own checklist.",
+"say": "U boot",
+"src": "07"
+},
+{
+"t": "Boot ROM",
+"m": "Code burned into the chip at the factory that runs first and checks the next stage.",
+"a": "The building's foundation stone: cannot be changed and everything rests on it.",
+"say": "boot ROM",
+"src": "07"
+},
+{
+"t": "Secure boot / chain of trust",
+"m": "Each boot stage checks the digital signature of the next before running it.",
+"a": "Each guard checks the next guard's badge before handing over the keys.",
+"say": "secure boot",
+"src": "07"
+},
+{
+"t": "TEE / TF-A",
+"m": "Trusted execution environment: a walled-off secure world on the processor for keys and secrets.",
+"a": "A bank vault inside the building that even the building manager cannot enter.",
+"say": "T E E",
+"src": "07"
+},
+{
+"t": "AVB / dm-verity",
+"m": "Android Verified Boot and dm-verity: checks that the system partitions have not been changed, block by block.",
+"a": "A tamper seal on every page of the rulebook.",
+"say": "A V B",
+"src": "07"
+},
+{
+"t": "A/B partitions",
+"m": "Two copies of the system; update the idle one and switch, falling back if the new one fails.",
+"a": "Two identical stages: rehearse on one while the show runs on the other.",
+"say": "A B slots",
+"src": "07"
+},
+{
+"t": "Yocto / BitBake",
+"m": "A build system that compiles a whole custom Linux image from recipes; BitBake is its build engine.",
+"a": "A bakery that follows recipe cards to bake a whole custom cake from scratch.",
+"say": "Yocto",
+"src": "07"
+},
+{
+"t": "Buildroot",
+"m": "A simpler build system that makes a small Linux image from one configuration menu.",
+"a": "A meal kit: fewer choices, but dinner is ready fast.",
+"say": "Buildroot",
+"src": "07"
+},
+{
+"t": "Codec",
+"m": "Software or hardware that compresses and decompresses video or audio.",
+"a": "Vacuum-packing clothes for travel, then unpacking them at the hotel.",
+"say": "codec",
+"src": "07"
+},
+{
+"t": "H.264 / H.265",
+"m": "Standard video compression formats; H.265 needs about half the bits of H.264 for the same quality.",
+"a": "Two generations of vacuum-packing: the newer one squeezes tighter.",
+"say": "H two sixty four",
+"src": "07"
+},
+{
+"t": "I-frame / keyframe",
+"m": "A complete picture in a video stream; the frames between only store changes.",
+"a": "A full photo every so often, with sticky notes of changes in between.",
+"say": "I frame",
+"src": "07"
+},
+{
+"t": "SVC",
+"m": "Scalable Video Coding: video sent in layers so a slow receiver can drop layers instead of the whole picture.",
+"a": "A layered cake: a guest with little appetite takes just the bottom layer.",
+"say": "S V C",
+"src": "07"
+},
+{
+"t": "EDID / HPD",
+"m": "EDID is the screen's description of what it can show; hot-plug detect (HPD) is the wire that says a screen is connected.",
+"a": "A guest's dietary card (EDID) and the doorbell that says they arrived (HPD).",
+"say": "E D I D",
+"src": "07"
+},
+{
+"t": "HDCP",
+"m": "A copy-protection handshake on video links.",
+"a": "A ticket check at the cinema door.",
+"say": "H D C P",
+"src": "07"
+},
+{
+"t": "DRM / KMS",
+"m": "The Linux display system (Direct Rendering Manager) that drives screens and outputs.",
+"a": "The stage lighting desk that decides what appears on each screen.",
+"say": "D R M",
+"src": "07"
+},
+{
+"t": "TinyUSB",
+"m": "A small open-source USB stack used on microcontrollers.",
+"a": "A pocket phrasebook for USB instead of the full dictionary.",
+"say": "Tiny USB",
+"src": "07"
+},
+{
+"t": "JTAG / SWD",
+"m": "Hardware debug ports that let a debugger stop the processor and read its memory.",
+"a": "A doctor's stethoscope plugged straight into the chip.",
+"say": "J tag",
+"src": "07"
+},
+{
+"t": "Kernel oops",
+"m": "The kernel's crash report: which function failed, at which address, with the call stack.",
+"a": "A black-box flight recorder printout.",
+"say": "oops",
+"src": "07"
+},
+{
+"t": "ftrace / perf",
+"m": "Built-in Linux tracing (ftrace) and profiling (perf) tools that show where time goes.",
+"a": "A stopwatch and a step counter clipped onto the kernel.",
+"say": "F trace",
+"src": "07"
+},
+{
+"t": "ASan / KASAN",
+"m": "Address sanitizers: build options that catch memory bugs like overflows the moment they happen.",
+"a": "A smoke alarm for memory mistakes.",
+"say": "A san",
+"src": "07"
+},
+{
+"t": "CI / HIL",
+"m": "Continuous integration runs tests on every change; hardware-in-the-loop (HIL) runs them on real boards.",
+"a": "A quality inspector at every station of the assembly line, some with real parts on the bench.",
+"say": "C I",
+"src": "07"
+},
+{
+"t": "Wi-Fi / Bluetooth",
+"m": "Short-range radio links: Wi-Fi for network data, Bluetooth for headsets and accessories.",
+"a": "A home phone line and a walkie-talkie.",
+"say": "Wi-Fi and Bluetooth",
+"src": "07"
+},
+{
+"t": "SBOM / CVE",
+"m": "A software bill of materials lists every component; a CVE is a published security bug in one.",
+"a": "An ingredients label, and a product-recall notice for one ingredient.",
+"say": "S bomb",
+"src": "07"
+},
+{
+"t": "Runtime PM / suspend",
+"m": "Turning parts of the device off when idle and back on when needed.",
+"a": "Motion-sensor lights for each room of the house.",
+"say": "runtime power management",
+"src": "07"
 }
 ]
