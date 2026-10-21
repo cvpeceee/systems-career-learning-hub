@@ -8,3 +8,4 @@ prev_*/
 *.log
 .env
 source/snippets/bin/
+07-poly-embedded-firmware/source/video/cache/

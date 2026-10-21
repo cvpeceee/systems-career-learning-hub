@@ -395,8 +395,8 @@
  },
  {
   "id": "c31-leader-election",
-  "total": 174.6,
-  "orig": 77.0,
+  "total": 174.2,
+  "orig": 77.4,
   "new_word_cards": 5,
   "terms": [
    "leader election",
@@ -404,14 +404,20 @@
    "lease",
    "Raft",
    "fencing token"
-  ]
+  ],
+  "note": "body re-rendered with synced renderer (drift fixed)"
  },
  {
   "id": "o20-march-tests",
-  "total": 161.3,
+  "total": 206.3,
   "orig": 116.7,
-  "new_word_cards": 0,
-  "terms": []
+  "new_word_cards": 4,
+  "terms": [
+   "march test",
+   "stuck-at fault",
+   "transition fault",
+   "coupling fault"
+  ]
  },
  {
   "id": "o20-mcdc-1553",
