@@ -1,109 +1,148 @@
 WEBVTT
 
-00:00:00.000 --> 00:00:10.530
+00:00:00.000 --> 00:00:11.029
 This video covers the small microcontrollers inside conferencing accessories: real time operating systems, a classic bug called priority inversion, and the TinyUSB stack.
 
-00:00:11.730 --> 00:00:18.371
+00:00:11.429 --> 00:00:15.319
+MCU: Microcontroller: a small, low-power chip with its own memory, running firmware without a full operating system. Like: A pocket calculator compared with a laptop.
+
+00:00:15.619 --> 00:00:24.106
+TinyUSB: A small open-source USB stack used on microcontrollers. Like: A pocket phrasebook for USB instead of the full dictionary.
+
+00:00:25.206 --> 00:00:28.828
+The extension microphone pod on the table has no Linux at all.
+
+00:00:29.078 --> 00:00:33.211
+It runs a tiny chip with a scheduler that must answer within microseconds.
+
+00:00:33.461 --> 00:00:35.597
+Let's look inside that smaller world.
+
+00:00:36.647 --> 00:00:43.590
 An RTOS scheduler is an emergency room triage nurse. Every tick, the most urgent ready patient is seen.
 
-00:00:18.771 --> 00:00:21.871
+00:00:43.990 --> 00:00:49.145
+RTOS: Real-time operating system: a tiny scheduler that guarantees tasks run within deadlines. Like: A strict school timetable: every class starts exactly on the bell.
+
+00:00:49.445 --> 00:00:52.603
 Now a heart attack patient needs the only stretcher.
 
-00:00:22.271 --> 00:00:32.256
+00:00:53.003 --> 00:01:02.570
 But a sprained ankle patient is holding it, and flu patients, more urgent than the ankle, keep getting seen first. The heart attack waits. That's priority inversion.
 
-00:00:32.656 --> 00:00:41.700
+00:01:02.970 --> 00:01:11.770
 The fix: while the ankle patient holds the stretcher, treat them as top priority, so they return it fast. That's priority inheritance.
 
-00:00:42.900 --> 00:00:43.585
+00:01:12.970 --> 00:01:13.667
 Words.
 
-00:00:43.985 --> 00:00:49.917
+00:01:14.067 --> 00:01:20.324
 An RTOS is a real time operating system, like Free R T O S, Zephyr or ThreadX.
 
-00:00:50.317 --> 00:00:53.859
+00:01:20.724 --> 00:01:24.393
 The tick is a periodic timer interrupt that drives scheduling.
 
-00:00:54.259 --> 00:01:00.644
+00:01:24.793 --> 00:01:34.905
+IRQ / interrupt: Interrupt request: a hardware signal that makes the processor stop and handle an event right now. Like: A doorbell: you stop what you are doing and answer it.
+
+00:01:35.205 --> 00:01:41.451
 Priority inheritance temporarily raises a task holding a mutex to the priority of the task waiting for it.
 
-00:01:01.044 --> 00:01:04.771
+00:01:41.851 --> 00:01:50.466
+Spinlock / mutex: Locks that stop two pieces of code changing the same data at once; a spinlock waits busily, a mutex sleeps. Like: A single bathroom key: a spinlock is waiting at the door, a mutex is taking a seat until called.
+
+00:01:50.716 --> 00:01:54.373
 A watchdog resets the chip unless software kicks it regularly.
 
-00:01:05.171 --> 00:01:09.629
+00:01:54.773 --> 00:01:59.081
 And TinyUSB is an open source USB stack for microcontrollers.
 
-00:01:10.829 --> 00:01:13.766
+00:02:00.281 --> 00:02:03.450
 Here's lab ten's simulation, step by step.
 
-00:01:14.166 --> 00:01:17.661
+00:02:03.850 --> 00:02:07.530
 At tick zero, the low priority logger takes a mutex.
 
-00:01:18.061 --> 00:01:23.378
+00:02:07.930 --> 00:02:13.108
 At tick one, the high priority USB task wants the same mutex, and blocks.
 
-00:01:23.778 --> 00:01:32.602
+00:02:13.508 --> 00:02:22.274
 From tick two, the medium task becomes ready. It outranks low, so it runs for six ticks. Low can't finish, so it can't release the mutex.
 
-00:01:33.002 --> 00:01:38.319
+00:02:22.674 --> 00:02:28.015
 The high priority task is stuck behind a medium one, and finishes only at tick eleven.
 
-00:01:38.719 --> 00:01:43.804
+00:02:28.415 --> 00:02:33.616
 Now run it again with inheritance. When high blocks, low is boosted to high priority.
 
-00:01:44.204 --> 00:01:48.918
+00:02:34.016 --> 00:02:38.637
 Medium can't preempt it, so low finishes quickly and releases the mutex.
 
-00:01:49.318 --> 00:01:57.596
+00:02:39.037 --> 00:02:46.606
 High runs at once, and finishes at tick five instead of eleven. That's the bug that nearly sank the Mars Pathfinder mission in nineteen ninety seven.
 
-00:01:58.796 --> 00:02:02.790
+00:02:47.806 --> 00:02:51.905
 A TinyUSB device in a few lines. Initialize the stack.
 
-00:02:03.190 --> 00:02:12.292
+00:02:52.305 --> 00:03:01.686
 Call t u d task in the main loop or an RTOS task. The interrupt only records events; this function handles them. Same pattern as lesson two.
 
-00:02:12.692 --> 00:02:15.386
+00:03:02.086 --> 00:03:04.895
 The stack calls you back for the device descriptor.
 
-00:02:15.786 --> 00:02:17.957
+00:03:05.295 --> 00:03:08.534
+Descriptor: A small table of facts the device reports about itself: who made it, what it can do. Like: A business card plus resume the device hands over when it is first plugged in.
+
+00:03:08.784 --> 00:03:11.002
 And for the configuration descriptor.
 
-00:02:18.357 --> 00:02:23.767
+00:03:11.402 --> 00:03:16.789
 Class callbacks deliver data, here an H I D output report that sets the mute LED.
 
-00:02:24.967 --> 00:02:26.325
+00:03:17.189 --> 00:03:30.598
+HID: Human Interface Device: the standard language for buttons, keyboards and mice, also used for mute and call buttons. Like: The universal remote-control language: any computer knows what "button pressed" means.
+
+00:03:31.698 --> 00:03:33.219
 Bare metal essentials.
 
-00:02:26.725 --> 00:02:33.250
+00:03:33.619 --> 00:03:40.156
 At reset, startup code copies initialized data, zeroes the rest, sets clocks, and calls main.
 
-00:02:33.650 --> 00:02:36.750
+00:03:40.556 --> 00:03:43.737
 Size every task's stack, and check the high water mark.
 
-00:02:37.150 --> 00:02:40.192
+00:03:44.137 --> 00:03:47.330
 Kick the watchdog only when every task reports healthy.
 
-00:02:40.592 --> 00:02:47.813
+00:03:47.730 --> 00:03:54.672
 On a Cortex M hard fault, read the fault status register, the fault address registers, and the stacked program counter.
 
-00:02:48.213 --> 00:02:51.975
+00:03:55.072 --> 00:03:58.834
 And debug over S W D with Open O C D and gdb.
 
-00:02:53.175 --> 00:02:53.848
+00:03:59.234 --> 00:04:08.127
+JTAG / SWD: Hardware debug ports that let a debugger stop the processor and read its memory. Like: A doctor's stethoscope plugged straight into the chip.
+
+00:04:09.227 --> 00:04:17.110
+Question for you: A high-priority task waits on a lock held by a low-priority task. What goes wrong, and what is the fix?
+
+00:04:22.410 --> 00:04:35.948
+Answer: A medium task can keep the low one from running, so the high one waits too long. That is priority inversion. Priority inheritance lends the low task the high priority while it holds the lock.
+
+00:04:37.048 --> 00:04:37.744
 Recap.
 
-00:02:54.248 --> 00:02:56.779
+00:04:38.144 --> 00:04:40.664
 The highest priority ready task runs.
 
-00:02:57.179 --> 00:02:59.931
+00:04:41.064 --> 00:04:43.908
 Use mutexes with priority inheritance.
 
-00:03:00.331 --> 00:03:02.862
+00:04:44.308 --> 00:04:46.781
 Interrupts record, tasks process.
 
-00:03:03.262 --> 00:03:05.572
+00:04:47.181 --> 00:04:49.329
 Use watchdogs and stack checks.
 
-00:03:05.972 --> 00:03:08.468
+00:04:49.729 --> 00:04:52.318
 And the fault registers point straight at the bug.

@@ -47,3 +47,10 @@ VIDEOS (added 2026-10-20)
   rendering issues were found in the first pass and fixed before the final render.
   Durations: most are 3-4.5 min; v11 (enumeration) 7.5 min; v20 (career) 2.7 min, below the 3-min target.
   Not verified: playback on a physical phone (the files are standard H.264/AAC with faststart).
+
+== Oct 20 2026: jargon pass (videos v2 + glossary) ==
+- Glossary: 102 entries in source/glossary.py; 101 are used by lessons (334 first-use chips/terms across 20 lessons).
+- Headless Chrome (all 20 lessons): 271 term chips, each lesson's first chip expands on tap; Words to know rendered; Glossary tab lists 101 terms; 0 console errors.
+- Videos: all 20 re-rendered with the synced renderer (Piper en_US-lessac-medium, 854x480, burned-in captions + VTT). ffprobe: h264 854x480 + aac for all 20.
+- verify_terms.py on the 20 new VTTs: every glossary term heard is followed by its NEW WORD card at first use -> undefined: 0 (old VTTs: 263 undefined first uses).
+- Frame checks: hook, term cards (UDC, DWC3), USB path scene, pause countdown and answer frames inspected.

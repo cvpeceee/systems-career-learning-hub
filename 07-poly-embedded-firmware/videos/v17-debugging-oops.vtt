@@ -1,124 +1,169 @@
 WEBVTT
 
-00:00:00.000 --> 00:00:07.558
+00:00:00.000 --> 00:00:07.465
 This video is about detective work: decoding a kernel oops line by line, then tracing and profiling with ftrace and perf.
 
-00:00:08.758 --> 00:00:10.558
+00:00:07.865 --> 00:00:14.587
+Kernel: The core of the operating system that controls memory, devices and which program runs. Like: The building manager who owns every key and decides who uses which room.
+
+00:00:14.837 --> 00:00:19.632
+Kernel oops: The kernel's crash report: which function failed, at which address, with the call stack. Like: A black-box flight recorder printout.
+
+00:00:19.882 --> 00:00:26.198
+ftrace / perf: Built-in Linux tracing (ftrace) and profiling (perf) tools that show where time goes. Like: A stopwatch and a step counter clipped onto the kernel.
+
+00:00:27.248 --> 00:00:32.368
+Overnight, a bar in a customer's office reboots, and the log shows a wall of hexadecimal.
+
+00:00:32.618 --> 00:00:35.869
+Most engineers scroll past it. You'll read it like a map.
+
+00:00:36.119 --> 00:00:39.881
+Let's decode a kernel crash and meet the tools that find the cause.
+
+00:00:40.931 --> 00:00:42.823
 Debugging is detective work.
 
-00:00:10.958 --> 00:00:13.117
+00:00:43.223 --> 00:00:45.371
 The kernel log is the witness statement.
 
-00:00:13.517 --> 00:00:17.523
+00:00:45.771 --> 00:00:49.788
 An oops is the chalk outline. It shows exactly where it happened.
 
-00:00:17.923 --> 00:00:20.384
+00:00:50.188 --> 00:00:52.672
 Ftrace is the CCTV timeline.
 
-00:00:20.784 --> 00:00:23.756
+00:00:53.072 --> 00:00:56.184
 Perf is the traffic counter: where the time goes.
 
-00:00:24.156 --> 00:00:27.732
+00:00:56.584 --> 00:01:00.148
 And JTAG freezes time, so you can walk around the scene.
 
-00:00:28.932 --> 00:00:29.617
+00:01:00.548 --> 00:01:09.441
+JTAG / SWD: Hardware debug ports that let a debugger stop the processor and read its memory. Like: A doctor's stethoscope plugged straight into the chip.
+
+00:01:10.541 --> 00:01:11.238
 Words.
 
-00:00:30.017 --> 00:00:36.054
+00:01:11.638 --> 00:01:17.907
 An oops is the kernel's error report, with registers and a call trace. It may or may not crash the system.
 
-00:00:36.454 --> 00:00:42.596
+00:01:18.307 --> 00:01:24.670
 P C is the program counter, where it failed. L R is the link register, where it would return to.
 
-00:00:42.996 --> 00:00:48.046
+00:01:25.070 --> 00:01:30.004
 Tainted flags tell you about the kernel's state. O means an out of tree module was loaded.
 
-00:00:48.446 --> 00:00:52.173
+00:01:30.404 --> 00:01:34.212
 F addr two line maps a function plus offset to a source line.
 
-00:00:52.573 --> 00:00:55.174
+00:01:34.612 --> 00:01:37.038
 And ftrace is the kernel's built in tracer.
 
-00:00:56.374 --> 00:00:59.520
+00:01:38.238 --> 00:01:41.396
 Let's decode lab twelve's oops, line by line.
 
-00:00:59.920 --> 00:01:08.836
+00:01:41.796 --> 00:01:50.864
 Line one: a null pointer dereference at address hex eighteen. That means code read a field at offset twenty four bytes inside a struct, through a null pointer.
 
-00:01:09.236 --> 00:01:15.378
+00:01:51.264 --> 00:01:57.603
 Line two: it's an oops, number one. The first oops is the one that matters; later ones are often fallout.
 
-00:01:15.778 --> 00:01:19.505
+00:01:58.003 --> 00:02:01.683
 The modules list shows our out of tree bridge driver was loaded.
 
-00:01:19.905 --> 00:01:25.733
+00:02:02.083 --> 00:02:06.704
+Driver: Kernel code that knows how to operate one kind of hardware. Like: A translator who speaks one specific machine's language.
+
+00:02:06.954 --> 00:02:12.747
 It happened on CPU two, in a kernel worker thread, and the kernel is tainted by an out of tree module.
 
-00:01:26.133 --> 00:01:30.394
+00:02:13.147 --> 00:02:17.269
 The workqueue line names the work function: polybridge h p d work.
 
-00:01:30.794 --> 00:01:34.730
+00:02:17.669 --> 00:02:27.886
+Workqueue / bottom half: A kernel queue that runs deferred work later in a normal context where sleeping is allowed. Like: Putting the parcel on the table to open properly after you have closed the door.
+
+00:02:28.186 --> 00:02:41.142
+EDID / HPD: EDID is the screen's description of what it can show; hot-plug detect (HPD) is the wire that says a screen is connected. Like: A guest's dietary card (EDID) and the doorbell that says they arrived (HPD).
+
+00:02:41.442 --> 00:02:45.378
 P C gives the exact place: sixty bytes into that function.
 
-00:01:35.130 --> 00:01:40.273
+00:02:45.778 --> 00:02:51.154
 The call trace shows it came straight from the workqueue machinery, not from probe or an interrupt.
 
-00:01:40.673 --> 00:01:52.399
+00:02:51.554 --> 00:02:57.254
+probe(): The driver function the kernel calls when it finds a device that matches the driver. Like: The first handshake when a translator is introduced to the person they will translate for.
+
+00:02:57.504 --> 00:03:07.616
+IRQ / interrupt: Interrupt request: a hardware signal that makes the processor stop and handle an event right now. Like: A doorbell: you stop what you are doing and answer it.
+
+00:03:07.916 --> 00:03:20.060
 Now map it to a source line with f addr two line. In this scenario, the work ran after remove had freed the bridge state. The fix: cancel work sync in remove, and only schedule work after probe completes.
 
-00:01:53.599 --> 00:01:56.513
+00:03:21.260 --> 00:03:24.000
 Tracing recipes. Go to the tracing directory.
 
-00:01:56.913 --> 00:02:01.185
+00:03:24.400 --> 00:03:28.475
 Choose the function graph tracer, which shows call trees with timings.
 
-00:02:01.585 --> 00:02:05.382
+00:03:28.875 --> 00:03:32.567
 Limit it to d w c three functions, and turn tracing on.
 
-00:02:05.782 --> 00:02:09.544
+00:03:32.967 --> 00:03:46.191
+DWC3 (Synopsys IP): A ready-made USB controller design that Synopsys sells and many Qualcomm and NXP chips include. Like: A front desk bought from a furniture catalogue: many hotels have the same model, so one driver fits them all.
+
+00:03:46.491 --> 00:03:50.253
 Or enable d w c three's trace events, and stream them.
 
-00:02:09.944 --> 00:02:12.753
+00:03:50.653 --> 00:03:53.602
 Trace c m d wraps all of this in one command.
 
-00:02:13.153 --> 00:02:19.899
+00:03:54.002 --> 00:04:00.712
 Perf record with call graphs, across all CPUs, finds CPU hogs, like a memcpy in a video path.
 
-00:02:20.299 --> 00:02:25.755
+00:04:01.112 --> 00:04:06.523
 And dynamic debug turns on a module's debug prints at run time, without rebuilding.
 
-00:02:26.955 --> 00:02:27.965
+00:04:07.723 --> 00:04:08.779
 More tools.
 
-00:02:28.365 --> 00:02:33.033
+00:04:09.179 --> 00:04:13.428
 Debug builds with memory, race and lock checkers, and a leak detector.
 
-00:02:33.433 --> 00:02:39.040
+00:04:13.828 --> 00:04:19.064
 P store and ram oops keep logs across a reboot, so you can read a crash that reset the board.
 
-00:02:39.440 --> 00:02:43.283
+00:04:19.464 --> 00:04:23.296
 JTAG for hangs before the console, and for multi core lockups.
 
-00:02:43.683 --> 00:02:50.301
+00:04:23.696 --> 00:04:30.104
 On Android: tombstones for native crashes, bug reports, simple perf, and Perfetto traces.
 
-00:02:50.701 --> 00:02:55.902
+00:04:30.504 --> 00:04:35.578
 And git bisect run, with an automated test, finds the commit that broke something.
 
-00:02:57.102 --> 00:02:57.775
+00:04:36.778 --> 00:04:44.986
+Question for you: A crash log says the program counter was at polybridge_hpd_work plus 0x3c. What do you do with that?
+
+00:04:50.286 --> 00:04:58.657
+Answer: Use the matching build's symbols, for example with faddr2line, to turn that offset into the exact source file and line.
+
+00:04:59.757 --> 00:05:00.454
 Recap.
 
-00:02:58.175 --> 00:03:01.031
+00:05:00.854 --> 00:05:03.803
 An oops tells you what, where, and how.
 
-00:03:01.431 --> 00:03:04.369
+00:05:04.203 --> 00:05:07.105
 The fault address offset points to the struct field.
 
-00:03:04.769 --> 00:03:07.335
+00:05:07.505 --> 00:05:09.955
 F addr two line gives the source line.
 
-00:03:07.735 --> 00:03:10.707
+00:05:10.355 --> 00:05:13.269
 Ftrace for timelines, perf for CPU time.
 
-00:03:11.107 --> 00:03:14.207
+00:05:13.669 --> 00:05:16.850
 And every fix gets a regression test and a short write up.

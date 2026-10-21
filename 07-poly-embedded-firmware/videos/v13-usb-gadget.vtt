@@ -1,139 +1,232 @@
 WEBVTT
 
-00:00:00.000 --> 00:00:11.831
+00:00:00.000 --> 00:00:11.726
 This video shows how a Linux or Android board becomes a USB webcam, microphone and serial port, using the gadget framework and configfs. We'll build the gadget from lab six step by step.
 
-00:00:13.031 --> 00:00:14.865
+00:00:12.126 --> 00:00:25.048
+Gadget (Linux USB gadget): Linux's name for the device side of USB: the board pretends to be a webcam, mic or keyboard to a laptop. Like: An actor in costume: the same board can play "webcam" or "keyboard" depending on the costume it wears.
+
+00:00:25.348 --> 00:00:33.103
+Framework layer: On Android, the Java system services apps talk to, like the camera and USB services. Like: The dining room of a restaurant: diners (apps) only ever see this room.
+
+00:00:33.353 --> 00:00:47.332
+configfs: A special folder tree where you build a USB gadget by creating folders and writing small files. Like: Building with LEGO by making folders: each folder is a brick (a function), and linking them snaps the toy together.
+
+00:00:48.432 --> 00:00:55.909
+What if I told you that you can turn a Linux board into a webcam by creating a few folders and writing a few words into files?
+
+00:00:56.159 --> 00:00:58.550
+That's literally how it works on our bars.
+
+00:00:58.800 --> 00:01:01.355
+Then you hand the finished setup to the controller.
+
+00:01:01.605 --> 00:01:05.598
+And the laptop sees a webcam. Let's build one, step by step.
+
+00:01:06.648 --> 00:01:08.460
 Configfs is a LEGO baseplate.
 
-00:00:15.265 --> 00:00:20.791
+00:01:08.860 --> 00:01:14.293
 Each USB function, camera, microphone, serial port or buttons, is a brick.
 
-00:00:21.191 --> 00:00:23.386
+00:01:14.693 --> 00:01:17.038
 You stack bricks into a configuration.
 
-00:00:23.786 --> 00:00:31.170
+00:01:17.438 --> 00:01:24.369
 And writing the controller's name into a file called U D C plugs the whole thing into the wall. Writing an empty string unplugs it.
 
-00:00:32.370 --> 00:00:33.055
+00:01:24.769 --> 00:01:36.263
+UDC: USB Device Controller: the chip block that lets a gadget answer a laptop over USB. Like: The front desk of a hotel: every guest request (the laptop) arrives there first.
+
+00:01:37.363 --> 00:01:38.060
 Words.
 
-00:00:33.455 --> 00:00:36.589
+00:01:38.460 --> 00:01:41.432
 Gadget is Linux's name for device mode USB.
 
-00:00:36.989 --> 00:00:42.016
+00:01:41.832 --> 00:01:46.708
 Lib composite is the kernel library that combines several functions into one device.
 
-00:00:42.416 --> 00:00:46.573
+00:01:47.108 --> 00:01:53.923
+Composite device: One USB device that offers several functions at once, like camera plus mic plus buttons. Like: A multi-tool: one handle, several blades.
+
+00:01:54.173 --> 00:02:00.895
+Kernel: The core of the operating system that controls memory, devices and which program runs. Like: The building manager who owns every key and decides who uses which room.
+
+00:02:01.145 --> 00:02:05.325
 Configfs is a filesystem where making a directory creates a kernel object.
 
-00:00:46.973 --> 00:00:53.114
+00:02:05.725 --> 00:02:11.820
 Function F S lets a user space program implement a USB function. Android's adb uses it.
 
-00:00:53.514 --> 00:00:59.853
+00:02:12.220 --> 00:02:23.935
+FunctionFS: A way for a normal program, not kernel code, to implement one USB function of a gadget. Like: Letting a contractor run one counter of the shop instead of hiring a full-time employee.
+
+00:02:24.235 --> 00:02:31.340
+User space: Where normal programs run, outside the kernel, protected from crashing the whole system. Like: The public area of a building, separate from the staff-only control room.
+
+00:02:31.590 --> 00:02:41.075
+adb: Android Debug Bridge: the command-line tool that gives an engineer a shell and logs on a device. Like: A service hatch into the device for the technician.
+
+00:02:41.375 --> 00:02:47.413
 D W C 3 is the Synopsys USB three controller found in many Qualcomm and N X P chips.
 
-00:01:00.253 --> 00:01:06.082
+00:02:47.813 --> 00:02:55.881
+DWC3 (Synopsys IP): A ready-made USB controller design that Synopsys sells and many Qualcomm and NXP chips include. Like: A front desk bought from a furniture catalogue: many hotels have the same model, so one driver fits them all.
+
+00:02:56.181 --> 00:03:02.184
 And dummy h c d is a software host and device pair, for testing a gadget on one PC.
 
-00:01:07.282 --> 00:01:09.093
+00:03:03.384 --> 00:03:05.021
 The stack, from the bottom.
 
-00:01:09.493 --> 00:01:12.477
+00:03:05.421 --> 00:03:08.242
 The controller driver, such as d w c three.
 
-00:01:12.877 --> 00:01:16.162
+00:03:08.642 --> 00:03:13.263
+Driver: Kernel code that knows how to operate one kind of hardware. Like: A translator who speaks one specific machine's language.
+
+00:03:13.513 --> 00:03:16.752
 U D C core, which binds a gadget to a controller.
 
-00:01:16.562 --> 00:01:20.916
+00:03:17.152 --> 00:03:21.297
 Lib composite, which builds descriptors and answers endpoint zero.
 
-00:01:21.316 --> 00:01:28.502
+00:03:21.697 --> 00:03:24.936
+Descriptor: A small table of facts the device reports about itself: who made it, what it can do. Like: A business card plus resume the device hands over when it is first plugged in.
+
+00:03:25.186 --> 00:03:31.328
+Endpoint: A numbered mailbox on a USB device; each data stream uses its own. Like: Numbered pigeonholes in an office: mail for video goes in one slot, audio in another.
+
+00:03:31.578 --> 00:03:38.996
 Function drivers: U V C, U A C two, H I D, A C M, network, and function F S.
 
-00:01:28.902 --> 00:01:33.721
+00:03:39.396 --> 00:03:52.272
+UVC: USB Video Class: the standard "I am a webcam" language every computer already understands. Like: A universal power plug for cameras: plug in anywhere and it just works, no driver install.
+
+00:03:52.572 --> 00:04:02.963
+UAC / UAC2: USB Audio Class (version 2 is the modern one): the standard "I am a mic or speaker" language. Like: The same universal plug idea as the webcam language, but for sound.
+
+00:04:03.263 --> 00:04:16.672
+HID: Human Interface Device: the standard language for buttons, keyboards and mice, also used for mute and call buttons. Like: The universal remote-control language: any computer knows what "button pressed" means.
+
+00:04:16.972 --> 00:04:29.024
+CDC / ACM: Communications Device Class: a standard USB serial port or network link, handy for debug consoles. Like: A walkie-talkie channel built into the cable for engineers to talk to the device.
+
+00:04:29.324 --> 00:04:33.886
 User space: the U V C streaming app, adbd, and M T P.
 
-00:01:34.121 --> 00:01:39.043
+00:04:34.286 --> 00:04:45.060
+MTP: Media Transfer Protocol: how a phone shows its photos as files on a computer. Like: A librarian handing you books one at a time instead of letting you into the stacks.
+
+00:04:45.360 --> 00:04:50.457
 And on Android, the USB gadget HAL and init scripts that switch functions.
 
-00:01:40.243 --> 00:01:42.031
+00:04:50.857 --> 00:05:03.976
+HAL: Hardware Abstraction Layer: a fixed interface Android calls, which the device maker implements for its hardware. Like: A standard wall socket: Android plugs into the same socket, and each maker wires the house behind it.
+
+00:05:04.276 --> 00:05:11.509
+init / .rc files: The first user program Android starts; its .rc files say which services start and when. Like: The stage manager with a script that says who walks on stage and when.
+
+00:05:12.559 --> 00:05:14.324
 Now the script from lab six.
 
-00:01:42.431 --> 00:01:46.680
+00:05:14.724 --> 00:05:18.927
 Make a directory under configfs. The kernel creates a gadget object.
 
-00:01:47.080 --> 00:01:54.697
+00:05:19.327 --> 00:05:26.850
 Write the vendor and product IDs. These demo values belong to the Linux Foundation; real products use the company's own.
 
-00:01:55.097 --> 00:02:01.877
+00:05:27.250 --> 00:05:33.891
 Set the device class to E F, two, one, meaning composite with interface association descriptors.
 
-00:02:02.277 --> 00:02:06.166
+00:05:34.291 --> 00:05:38.227
 Add English strings: manufacturer, product, serial.
 
-00:02:06.566 --> 00:02:10.397
+00:05:38.627 --> 00:05:42.551
 Create configuration one, and declare five hundred milliamps.
 
-00:02:10.797 --> 00:02:15.511
+00:05:42.951 --> 00:05:47.850
 Create function instances: audio, serial, buttons, and video.
 
-00:02:15.911 --> 00:02:20.706
+00:05:48.250 --> 00:05:53.011
 Describe the video format, for example six forty by four eighty uncompressed.
 
-00:02:21.106 --> 00:02:24.775
+00:05:53.411 --> 00:05:57.288
 Link the functions into the configuration. Linking is composing.
 
-00:02:25.175 --> 00:02:31.351
+00:05:57.688 --> 00:06:03.946
 Finally, write the controller name into U D C. The device pulls D plus up, and the host enumerates.
 
-00:02:32.551 --> 00:02:35.616
+00:06:04.346 --> 00:06:11.591
+Enumeration: The first conversation after plug-in where the laptop learns what the device is and gives it an address. Like: A new employee's first morning: show ID, get a badge number, hand in a resume, get assigned a desk.
+
+00:06:12.641 --> 00:06:15.659
 Here's what actually happened when we ran it in QEMU.
 
-00:02:36.016 --> 00:02:40.347
+00:06:16.059 --> 00:06:24.372
+QEMU: A program that emulates a whole computer, so you can test kernels without real hardware. Like: A flight simulator for software.
+
+00:06:24.672 --> 00:06:29.072
 With serial and buttons, the host enumerated the Lab Conference Cam.
 
-00:02:40.747 --> 00:02:45.414
+00:06:29.472 --> 00:06:33.826
 The C D C A C M driver created dev tty A C M zero.
 
-00:02:45.814 --> 00:02:49.494
+00:06:34.226 --> 00:06:37.790
 And the generic H I D driver created a hid raw device.
 
-00:02:49.894 --> 00:02:54.167
+00:06:38.190 --> 00:06:42.393
 With video and audio included, binding failed with minus twenty two.
 
-00:02:54.567 --> 00:03:02.996
+00:06:42.793 --> 00:06:50.978
 Because dummy h c d has no isochronous support. That's a real lesson: test isochronous functions on a real controller, with an analyzer.
 
-00:03:04.196 --> 00:03:09.258
+00:06:51.378 --> 00:07:04.300
+Isochronous transfer: A USB transfer type with guaranteed timing but no retries, used for live video and audio. Like: A live TV broadcast: always on time, and a dropped frame is simply skipped, never resent.
+
+00:07:05.400 --> 00:07:10.044
 On Android, the framework calls the USB gadget HAL to change functions.
 
-00:03:09.658 --> 00:03:16.647
+00:07:10.444 --> 00:07:17.259
 Vendor init scripts or the HAL rewrite configfs, and rebind the controller, which re enumerates the device.
 
-00:03:17.047 --> 00:03:22.608
+00:07:17.659 --> 00:07:23.394
 A D B and M T P are function F S functions, served by user space daemons.
 
-00:03:23.008 --> 00:03:25.725
+00:07:23.794 --> 00:07:26.871
 The Type C HAL reports port roles.
 
-00:03:26.125 --> 00:03:34.426
+00:07:27.271 --> 00:07:38.916
+USB Type-C: The reversible USB connector; it also negotiates power and roles through its extra pins. Like: A smart socket that works either way up and agrees on who powers whom before turning on.
+
+00:07:39.216 --> 00:07:47.215
 And to debug d w c three, read its debugfs files, and enable its trace points to see every endpoint zero request.
 
-00:03:35.626 --> 00:03:36.299
+00:07:48.415 --> 00:07:56.252
+Question for you: Your gadget works on the bench but the laptop sees nothing after a firmware update. What two things would you check?
+
+00:07:56.552 --> 00:08:03.228
+Firmware: Software that runs close to hardware, usually stored in flash memory on the device. Like: The instincts built into an animal: low-level behaviour that is there from birth.
+
+00:08:08.478 --> 00:08:19.159
+Answer: That the gadget was bound to the device controller after setup, and that the descriptors changed together with a bumped device version so the laptop doesn't use stale cached ones.
+
+00:08:20.259 --> 00:08:20.955
 Recap.
 
-00:03:36.699 --> 00:03:41.529
+00:08:21.355 --> 00:08:26.115
 Make directory creates, link composes, and writing U D C plugs in.
 
-00:03:41.929 --> 00:03:45.087
+00:08:26.515 --> 00:08:29.557
 A U V C gadget needs a user space streaming app.
 
-00:03:45.487 --> 00:03:50.642
+00:08:29.957 --> 00:08:35.333
 Dummy h c d can't do isochronous, so use a real controller for video and audio.
 
-00:03:51.042 --> 00:03:54.908
+00:08:35.733 --> 00:08:39.250
 Android switches functions through the HAL and configfs.
 
-00:03:55.308 --> 00:03:59.012
+00:08:39.650 --> 00:08:43.424
 And d w c three trace points show every control request.

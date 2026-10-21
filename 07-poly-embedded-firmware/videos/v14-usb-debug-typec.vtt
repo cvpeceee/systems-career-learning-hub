@@ -1,136 +1,211 @@
 WEBVTT
 
-00:00:00.000 --> 00:00:08.173
+00:00:00.000 --> 00:00:08.266
 This video covers how to debug USB problems, how a Type C connection decides who is host, and how firmware gets updated over USB.
 
-00:00:09.373 --> 00:00:12.555
+00:00:08.666 --> 00:00:20.311
+USB Type-C: The reversible USB connector; it also negotiates power and roles through its extra pins. Like: A smart socket that works either way up and agrees on who powers whom before turning on.
+
+00:00:20.611 --> 00:00:27.287
+Firmware: Software that runs close to hardware, usually stored in flash memory on the device. Like: The instincts built into an animal: low-level behaviour that is there from birth.
+
+00:00:28.337 --> 00:00:34.850
+A customer escalation: the bar works on Windows laptops but drops off a particular Mac after ten minutes.
+
+00:00:35.100 --> 00:00:38.978
+Guessing won't fix it. Capturing the actual packets will.
+
+00:00:39.228 --> 00:00:44.708
+This video is your USB debugging toolbox, plus the Type C rules about who powers whom.
+
+00:00:45.758 --> 00:00:49.020
 Debugging USB is like investigating a phone call.
 
-00:00:12.955 --> 00:00:15.892
+00:00:49.420 --> 00:00:52.206
 The kernel log is one person's notes after the call.
 
-00:00:16.292 --> 00:00:19.961
+00:00:52.606 --> 00:00:59.329
+Kernel: The core of the operating system that controls memory, devices and which program runs. Like: The building manager who owns every key and decides who uses which room.
+
+00:00:59.579 --> 00:01:03.201
 Usbmon with Wireshark lets you hear the host's side of every request.
 
-00:00:20.361 --> 00:00:24.993
+00:01:03.601 --> 00:01:12.204
+usbmon: A Linux feature that records every USB packet so you can read them in Wireshark. Like: A security camera pointed at the USB cable.
+
+00:01:12.504 --> 00:01:17.055
 A hardware analyzer is a wiretap on the cable itself, hearing both sides.
 
-00:00:25.393 --> 00:00:30.501
+00:01:17.455 --> 00:01:22.552
 And only the wiretap hears line noise: retries, chirps and power state changes.
 
-00:00:31.701 --> 00:00:32.386
+00:01:23.752 --> 00:01:24.448
 Words.
 
-00:00:32.786 --> 00:00:36.653
+00:01:24.848 --> 00:01:28.564
 X H C I is the standard USB three host controller.
 
-00:00:37.053 --> 00:00:40.582
+00:01:28.964 --> 00:01:35.465
+xHCI: Extensible Host Controller Interface: the standard USB host controller in laptops and in our boards when they act as host. Like: The hotel manager who calls guests, as opposed to the front desk that answers them.
+
+00:01:35.765 --> 00:01:39.376
 Usbmon captures USB traffic inside the host's kernel.
 
-00:00:40.982 --> 00:00:49.237
+00:01:39.776 --> 00:01:47.903
 Type C is the connector. Power delivery is a protocol on its C C wire that negotiates power, data roles and alternate modes.
 
-00:00:49.637 --> 00:00:54.443
+00:01:48.303 --> 00:01:52.645
+PD (Power Delivery): USB Power Delivery: the conversation over the Type-C cable that agrees on voltage, current and roles. Like: Two people agreeing how much to pay before handing over goods.
+
+00:01:52.945 --> 00:02:03.719
+CC pins: The configuration-channel wires in a Type-C cable used to detect orientation and talk Power Delivery. Like: The cable's private phone line for negotiating before the main road opens.
+
+00:02:04.019 --> 00:02:15.617
+Alternate mode: Using some Type-C wires to carry another signal, such as DisplayPort video, instead of USB data. Like: A multi-lane road where some lanes are temporarily given to buses.
+
+00:02:15.917 --> 00:02:20.875
 Dual role, or D R D, means one port can be either host or device.
 
-00:00:54.843 --> 00:00:58.315
+00:02:21.275 --> 00:02:27.033
+DRD / OTG: Dual-role device: one USB port that can switch between being host and being device. Like: A person who can be either the customer or the shopkeeper depending on who walks in.
+
+00:02:27.333 --> 00:02:30.758
 And D F U is the device firmware upgrade class.
 
-00:00:59.515 --> 00:01:01.233
+00:02:31.158 --> 00:02:36.894
+DFU: Device Firmware Upgrade: a standard way to send new firmware into a device over USB. Like: A car driving onto a service ramp so the mechanic can swap the engine software.
+
+00:02:37.994 --> 00:02:39.666
 Load usbmon on the host.
 
-00:01:01.633 --> 00:01:03.607
+00:02:40.066 --> 00:02:42.086
 Find which bus your device is on.
 
-00:01:04.007 --> 00:01:07.048
+00:02:42.486 --> 00:02:45.620
 Capture on that bus with tshark or Wireshark.
 
-00:01:07.448 --> 00:01:09.399
+00:02:46.020 --> 00:02:48.075
 Filter on your device's address.
 
-00:01:09.799 --> 00:01:13.212
+00:02:48.475 --> 00:02:51.993
 Filter on get descriptor requests to study enumeration.
 
-00:01:13.612 --> 00:01:16.538
+00:02:52.393 --> 00:02:55.632
+Descriptor: A small table of facts the device reports about itself: who made it, what it can do. Like: A business card plus resume the device hands over when it is first plugged in.
+
+00:02:55.882 --> 00:03:03.127
+Enumeration: The first conversation after plug-in where the laptop learns what the device is and gives it an address. Like: A new employee's first morning: show ID, get a badge number, hand in a resume, get assigned a desk.
+
+00:03:03.377 --> 00:03:06.071
 Or on isochronous transfers to study video.
 
-00:01:16.938 --> 00:01:21.280
+00:03:06.471 --> 00:03:19.392
+Isochronous transfer: A USB transfer type with guaranteed timing but no retries, used for live video and audio. Like: A live TV broadcast: always on time, and a dropped frame is simply skipped, never resent.
+
+00:03:19.692 --> 00:03:23.826
 On Windows use U S B pcap, and on a Mac use I O reg.
 
-00:01:22.480 --> 00:01:24.361
+00:03:25.026 --> 00:03:26.825
 A symptom table to memorize.
 
-00:01:24.761 --> 00:01:32.133
+00:03:27.225 --> 00:03:34.342
 Enumeration error minus seventy one: check PHY tuning, cable, V bus, and when D plus is pulled up.
 
-00:01:32.533 --> 00:01:41.252
+00:03:34.742 --> 00:03:42.579
+PHY: The physical-layer circuit that turns bits into electrical signals on the wire. Like: The voice box that turns your thoughts into sound waves.
+
+00:03:42.879 --> 00:03:53.119
+VBUS: The 5-volt power wire in a USB cable; seeing it tells the device a host is attached. Like: The doorbell wire: when it carries power, someone is at the door.
+
+00:03:53.419 --> 00:04:02.080
 Works on Linux but not Windows: check total length, string descriptors, Microsoft O S descriptors, and b c d Device caching.
 
-00:01:41.652 --> 00:01:50.662
+00:04:02.480 --> 00:04:11.478
 Video stutters only on some laptops: other devices sharing the host controller, an alternate setting that's too big, or link power management.
 
-00:01:51.062 --> 00:01:55.497
+00:04:11.878 --> 00:04:16.440
 Disconnects after suspend: remote wake up and runtime power management.
 
-00:01:55.897 --> 00:02:02.212
+00:04:16.840 --> 00:04:22.750
+Runtime PM / suspend: Turning parts of the device off when idle and back on when needed. Like: Motion-sensor lights for each room of the house.
+
+00:04:23.000 --> 00:04:29.385
 Charges but no data on Type C: the orientation mux, the dual role state, or the power contract.
 
-00:02:03.412 --> 00:02:05.885
+00:04:30.585 --> 00:04:33.244
 Now a Type C attach, step by step.
 
-00:02:06.285 --> 00:02:12.659
+00:04:33.644 --> 00:04:39.867
 The laptop presents a pull up resistor on the C C wire, which says: I'm a power source and a host.
 
-00:02:13.059 --> 00:02:20.153
+00:04:40.267 --> 00:04:47.337
 The PD controller sees which C C pin is connected, so it knows which way the plug is flipped, and sets the data mux.
 
-00:02:20.553 --> 00:02:24.837
+00:04:47.737 --> 00:04:52.068
 It negotiates a power contract, for example twenty volts at three amps.
 
-00:02:25.237 --> 00:02:27.977
+00:04:52.468 --> 00:04:55.266
 It tells the SoC: you are the device.
 
-00:02:28.377 --> 00:02:33.520
+00:04:55.666 --> 00:05:01.471
+SoC: System on a chip: one chip holding the processor cores, graphics, video, USB and more. Like: A whole city on one island: houses, factories and roads in one place.
+
+00:05:01.771 --> 00:05:06.624
 The dual role driver switches the controller into gadget mode, and starts the U D C.
 
-00:02:33.920 --> 00:02:37.090
+00:05:07.024 --> 00:05:11.645
+Driver: Kernel code that knows how to operate one kind of hardware. Like: A translator who speaks one specific machine's language.
+
+00:05:11.895 --> 00:05:24.817
+Gadget (Linux USB gadget): Linux's name for the device side of USB: the board pretends to be a webcam, mic or keyboard to a laptop. Like: An actor in costume: the same board can play "webcam" or "keyboard" depending on the costume it wears.
+
+00:05:25.117 --> 00:05:36.610
+UDC: USB Device Controller: the chip block that lets a gadget answer a laptop over USB. Like: The front desk of a hotel: every guest request (the laptop) arrives there first.
+
+00:05:36.910 --> 00:05:40.196
 D plus is pulled up, and enumeration begins.
 
-00:02:37.490 --> 00:02:43.074
+00:05:40.596 --> 00:05:46.006
 Optionally, the two sides enter DisplayPort alternate mode to share a display on the same cable.
 
-00:02:44.274 --> 00:02:47.107
+00:05:47.206 --> 00:05:49.842
 Finally, a D F U firmware update.
 
-00:02:47.507 --> 00:02:52.186
+00:05:50.242 --> 00:05:54.886
 The host asks the device to switch into D F U mode, and it re enumerates.
 
-00:02:52.586 --> 00:02:54.989
+00:05:55.286 --> 00:05:57.701
 The host downloads the image in blocks.
 
-00:02:55.389 --> 00:02:59.511
+00:05:58.101 --> 00:06:02.106
 After each block, it polls status while the device writes flash.
 
-00:02:59.911 --> 00:03:03.231
+00:06:02.506 --> 00:06:05.803
 A zero length download means: that's everything.
 
-00:03:03.631 --> 00:03:10.516
+00:06:06.203 --> 00:06:13.076
 In the manifest phase, the device verifies the signature and version, and rejects bad or old images.
 
-00:03:10.916 --> 00:03:16.547
+00:06:13.476 --> 00:06:19.235
 Then it resets into the new image, or falls back to the old one. Lab nine simulates that.
 
-00:03:17.747 --> 00:03:18.420
+00:06:20.435 --> 00:06:28.423
+Question for you: The device disappears after exactly ten minutes on one laptop. Name one likely area and one tool to confirm it.
+
+00:06:33.723 --> 00:06:43.208
+Answer: Power management, such as the link going to sleep or the port suspending. Confirm with a USB packet capture and the kernel log at the moment it drops.
+
+00:06:44.308 --> 00:06:45.005
 Recap.
 
-00:03:18.820 --> 00:03:22.593
+00:06:45.405 --> 00:06:49.224
 Usbmon sees requests; an analyzer sees the wire.
 
-00:03:22.993 --> 00:03:28.461
+00:06:49.624 --> 00:06:55.476
 Use the symptom table: electrical, descriptors, bandwidth, power, roles.
 
-00:03:28.861 --> 00:03:33.726
+00:06:55.876 --> 00:07:00.566
 Type C goes: detect, negotiate, choose role, start the controller.
 
-00:03:34.126 --> 00:03:37.934
+00:07:00.966 --> 00:07:04.879
 And D F U is download, verify, reset, with a fallback.

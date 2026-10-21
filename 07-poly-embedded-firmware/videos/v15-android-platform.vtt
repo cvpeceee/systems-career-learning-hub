@@ -1,130 +1,184 @@
 WEBVTT
 
-00:00:00.000 --> 00:00:08.533
+00:00:00.000 --> 00:00:08.162
 This video goes under Android: partitions, Treble, how Android boots, and how to add your own vendor HAL with the right SELinux policy.
 
-00:00:09.733 --> 00:00:12.613
+00:00:08.562 --> 00:00:19.789
+Treble: Android's split between Google's system part and the vendor's hardware part, so each can update separately. Like: A building with a fixed wall between the landlord's floors and the tenant's floors.
+
+00:00:20.089 --> 00:00:33.208
+HAL: Hardware Abstraction Layer: a fixed interface Android calls, which the device maker implements for its hardware. Like: A standard wall socket: Android plugs into the same socket, and each maker wires the house behind it.
+
+00:00:33.508 --> 00:00:46.976
+SELinux: Security-Enhanced Linux: rules that say exactly which program may touch which file or device, even as root. Like: Keycards in an office: even the boss's card only opens the doors it is programmed for.
+
+00:00:48.076 --> 00:00:53.892
+An Android system update ships, and suddenly the camera service on the bar can't open the camera.
+
+00:00:54.142 --> 00:00:57.613
+The system part and the vendor part disagreed about their interface.
+
+00:00:57.863 --> 00:01:00.929
+Let's see how Android keeps those two halves stable.
+
+00:01:01.979 --> 00:01:04.893
 Treble is like a building with a fixed electrical panel.
 
-00:00:13.013 --> 00:00:15.451
+00:01:05.293 --> 00:01:07.626
 The apartment is the Android framework.
 
-00:00:15.851 --> 00:00:19.032
+00:01:08.026 --> 00:01:15.782
+Framework layer: On Android, the Java system services apps talk to, like the camera and USB services. Like: The dining room of a restaurant: diners (apps) only ever see this room.
+
+00:01:16.032 --> 00:01:19.422
 The walls and wiring are the vendor's HALs and drivers.
 
-00:00:19.432 --> 00:00:23.333
+00:01:19.822 --> 00:01:24.443
+Driver: Kernel code that knows how to operate one kind of hardware. Like: A translator who speaks one specific machine's language.
+
+00:01:24.693 --> 00:01:28.582
 Between them are standard plugs: versioned HAL interfaces.
 
-00:00:23.733 --> 00:00:29.178
+00:01:28.982 --> 00:01:34.195
 So Google can replace the apartment with a new Android version, without rewiring the walls.
 
-00:00:30.378 --> 00:00:31.063
+00:01:35.395 --> 00:01:36.091
 Words.
 
-00:00:31.463 --> 00:00:34.586
+00:01:36.491 --> 00:01:39.278
 A O S P is the Android open source project.
 
-00:00:34.986 --> 00:00:41.313
+00:01:39.678 --> 00:01:44.299
+AOSP: Android Open Source Project: the public Android source code a device maker builds from. Like: The public recipe book every Android kitchen starts from.
+
+00:01:44.599 --> 00:01:51.019
 Treble, with the vendor interface manifest, splits system and vendor with stable, versioned interfaces.
 
-00:00:41.713 --> 00:00:46.346
+00:01:51.419 --> 00:01:56.237
 An A I D L HAL is a hardware interface defined in the A I D L language.
 
-00:00:46.746 --> 00:00:52.609
+00:01:56.637 --> 00:02:08.607
+AIDL: Android Interface Definition Language: the file that describes the calls between two Android processes. Like: A menu both the waiter and the kitchen agree on, so orders are never misunderstood.
+
+00:02:08.907 --> 00:02:14.526
 Init dot r c is the language Android's init uses: services, triggers and properties.
 
-00:00:53.009 --> 00:01:00.950
+00:02:14.926 --> 00:02:22.159
+init / .rc files: The first user program Android starts; its .rc files say which services start and when. Like: The stage manager with a script that says who walks on stage and when.
+
+00:02:22.409 --> 00:02:30.594
 SELinux is mandatory access control. Every process and file has a label, and every access must be explicitly allowed.
 
-00:01:01.350 --> 00:01:06.354
+00:02:30.994 --> 00:02:36.021
 And G K I is the generic kernel image. Vendor code must live in loadable modules.
 
-00:01:07.554 --> 00:01:09.737
+00:02:36.421 --> 00:02:42.726
+GKI: Generic Kernel Image: one Google-built Linux kernel shared by many devices, with vendor drivers loaded as modules. Like: A standard car chassis from the factory, with each brand bolting on its own parts.
+
+00:02:43.026 --> 00:02:49.748
+Kernel: The core of the operating system that controls memory, devices and which program runs. Like: The building manager who owns every key and decides who uses which room.
+
+00:02:50.798 --> 00:02:53.062
 Android's boot, step by step.
 
-00:01:10.137 --> 00:01:14.548
+00:02:53.462 --> 00:02:58.001
 The bootloader verifies v b meta, which covers the boot and vendor images.
 
-00:01:14.948 --> 00:01:19.302
+00:02:58.401 --> 00:03:05.019
+Bootloader: The small program that runs first at power-on, sets up memory and loads the kernel. Like: The stagehand who sets up the stage before the actors arrive.
+
+00:03:05.269 --> 00:03:09.669
 The generic kernel starts, with vendor modules from the vendor boot partition.
 
-00:01:19.702 --> 00:01:24.973
+00:03:10.069 --> 00:03:15.352
 First stage init mounts the system and vendor partitions, and loads the remaining modules.
 
-00:01:25.373 --> 00:01:28.635
+00:03:15.752 --> 00:03:18.933
 The SELinux policy is loaded, in enforcing mode.
 
-00:01:29.035 --> 00:01:34.655
+00:03:19.333 --> 00:03:25.173
 Second stage init parses the r c files from system and vendor, and runs triggers in order.
 
-00:01:35.055 --> 00:01:39.559
+00:03:25.573 --> 00:03:29.880
 Service manager starts, then the HAL services, including your own.
 
-00:01:39.959 --> 00:01:43.419
+00:03:30.280 --> 00:03:33.647
 And finally zygote, system server, and the apps.
 
-00:01:44.619 --> 00:01:46.349
+00:03:34.847 --> 00:03:36.704
 Here are the lab eleven files.
 
-00:01:46.749 --> 00:01:52.589
+00:03:37.104 --> 00:03:43.083
 The interface is marked VINTF stable, with two methods: set U S B functions, and is streaming.
 
-00:01:52.989 --> 00:01:58.213
+00:03:43.483 --> 00:03:53.201
+VINTF: The vendor interface manifest: the list that says which hardware services a device provides. Like: A restaurant's posted list of dishes it promises to serve.
+
+00:03:53.501 --> 00:03:58.795
 The r c fragment tells init to start the service in the hal class, as the system user.
 
-00:01:58.613 --> 00:02:04.709
+00:03:59.195 --> 00:04:05.186
 The type enforcement file gives the service its own SELinux domain, and lets init launch it into that domain.
 
-00:02:05.109 --> 00:02:09.207
+00:04:05.586 --> 00:04:09.603
 And one narrow rule lets it write configfs files, nothing more.
 
-00:02:10.407 --> 00:02:12.299
+00:04:10.003 --> 00:04:23.981
+configfs: A special folder tree where you build a USB gadget by creating folders and writing small files. Like: Building with LEGO by making folders: each folder is a brick (a function), and linking them snaps the toy together.
+
+00:04:25.081 --> 00:04:26.916
 A safe SELinux workflow.
 
-00:02:12.699 --> 00:02:16.066
+00:04:27.316 --> 00:04:30.834
 Search the logs for a v c denials, and read each one.
 
-00:02:16.466 --> 00:02:20.634
+00:04:31.234 --> 00:04:35.599
 Add the narrowest rule that fixes it. Never ship a permissive domain.
 
-00:02:21.034 --> 00:02:24.575
+00:04:35.999 --> 00:04:39.319
 Audit two allow gives a starting point, but not the answer.
 
-00:02:24.975 --> 00:02:31.001
+00:04:39.719 --> 00:04:45.838
 Never allow rules are checked by the compatibility test suites, so broad rules fail certification.
 
-00:02:31.401 --> 00:02:37.705
+00:04:46.238 --> 00:04:52.194
 And under G K I, you can't edit the core kernel. Your drivers become modules against a stable symbol list.
 
-00:02:38.905 --> 00:02:41.970
+00:04:53.394 --> 00:04:56.633
 A few daily commands. Check USB properties.
 
-00:02:42.370 --> 00:02:44.181
+00:04:57.033 --> 00:04:58.879
 Dump the USB service state.
 
-00:02:44.581 --> 00:02:46.439
+00:04:59.279 --> 00:05:01.195
 Check that your HAL registered.
 
-00:02:46.839 --> 00:02:48.720
+00:05:01.595 --> 00:05:03.580
 Watch all logs and the kernel log.
 
-00:02:49.120 --> 00:02:51.442
+00:05:03.980 --> 00:05:06.372
 And build and flash only the vendor image.
 
-00:02:52.642 --> 00:02:53.315
+00:05:07.572 --> 00:05:13.562
+Question for you: Why does Android require the vendor part to talk to the system through fixed interfaces?
+
+00:05:18.862 --> 00:05:26.293
+Answer: So Google's system part and the device maker's hardware part can be updated separately without breaking each other.
+
+00:05:27.393 --> 00:05:28.089
 Recap.
 
-00:02:53.715 --> 00:02:57.581
+00:05:28.489 --> 00:05:31.984
 Treble connects framework and vendor through versioned HALs.
 
-00:02:57.981 --> 00:03:02.288
+00:05:32.384 --> 00:05:36.772
 Boot goes from bootloader, to the generic kernel, to init, to HALs, to zygote.
 
-00:03:02.688 --> 00:03:08.354
+00:05:37.172 --> 00:05:43.082
 A HAL needs an interface, a service, an r c file, a manifest entry, and policy.
 
-00:03:08.754 --> 00:03:11.146
+00:05:43.482 --> 00:05:45.966
 Write only narrow SELinux rules.
 
-00:03:11.546 --> 00:03:14.100
+00:05:46.366 --> 00:05:48.712
 And vendor kernel code lives in modules.

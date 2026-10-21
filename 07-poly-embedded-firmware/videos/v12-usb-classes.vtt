@@ -3,131 +3,185 @@ WEBVTT
 00:00:00.000 --> 00:00:09.276
 This video covers the standard USB classes that make a conference bar work on any laptop without a driver install: video, audio, buttons and serial.
 
-00:00:10.476 --> 00:00:13.553
+00:00:09.676 --> 00:00:14.297
+Driver: Kernel code that knows how to operate one kind of hardware. Like: A translator who speaks one specific machine's language.
+
+00:00:15.347 --> 00:00:19.701
+The same bar works on Windows, Mac and Linux without installing anything.
+
+00:00:19.951 --> 00:00:25.268
+That's not luck. The bar speaks languages every operating system already understands.
+
+00:00:25.518 --> 00:00:29.083
+Same bar, same firmware, three different laptops.
+
+00:00:29.333 --> 00:00:36.008
+Firmware: Software that runs close to hardware, usually stored in flash memory on the device. Like: The instincts built into an animal: low-level behaviour that is there from birth.
+
+00:00:36.258 --> 00:00:39.544
+Let's meet those standard languages, called classes.
+
+00:00:40.594 --> 00:00:43.624
 USB classes are standard job descriptions.
 
-00:00:13.953 --> 00:00:20.350
+00:00:44.024 --> 00:00:50.282
 If a device says: I'm a U V C camera, every operating system already has the handbook for that job.
 
-00:00:20.750 --> 00:00:23.072
+00:00:50.682 --> 00:01:03.557
+UVC: USB Video Class: the standard "I am a webcam" language every computer already understands. Like: A universal power plug for cameras: plug in anywhere and it just works, no driver install.
+
+00:01:03.857 --> 00:01:06.226
 So no custom driver install is needed.
 
-00:00:23.472 --> 00:00:30.241
+00:01:06.626 --> 00:01:13.592
 And a composite device is one person holding several jobs at once: camera, microphone, speaker and buttons.
 
-00:00:31.441 --> 00:00:32.126
+00:01:13.992 --> 00:01:20.807
+Composite device: One USB device that offers several functions at once, like camera plus mic plus buttons. Like: A multi-tool: one handle, several blades.
+
+00:01:21.857 --> 00:01:22.553
 Words.
 
-00:00:32.526 --> 00:00:36.206
+00:01:22.953 --> 00:01:26.402
 U V C is the USB video class, for cameras.
 
-00:00:36.606 --> 00:00:41.029
+00:01:26.802 --> 00:01:31.213
 U A C is the USB audio class, versions one, two and three.
 
-00:00:41.429 --> 00:00:47.629
+00:01:31.613 --> 00:01:37.128
+UAC / UAC2: USB Audio Class (version 2 is the modern one): the standard "I am a mic or speaker" language. Like: The same universal plug idea as the webcam language, but for sound.
+
+00:01:37.428 --> 00:01:43.523
 H I D is the human interface device class: keyboards, but also mute and hook switch buttons.
 
-00:00:48.029 --> 00:00:53.103
+00:01:43.923 --> 00:01:50.228
+HID: Human Interface Device: the standard language for buttons, keyboards and mice, also used for mute and call buttons. Like: The universal remote-control language: any computer knows what "button pressed" means.
+
+00:01:50.528 --> 00:01:56.007
 C D C A C M is a serial port over USB, great for debug consoles.
 
-00:00:53.503 --> 00:00:58.089
+00:01:56.407 --> 00:02:00.668
 And probe and commit is how a U V C host and camera agree on a format.
 
-00:00:59.289 --> 00:01:02.598
+00:02:01.068 --> 00:02:06.769
+probe(): The driver function the kernel calls when it finds a device that matches the driver. Like: The first handshake when a translator is introduced to the person they will translate for.
+
+00:02:07.819 --> 00:02:11.232
 Here's what happens when a laptop app opens the camera.
 
-00:01:02.998 --> 00:01:07.897
+00:02:11.632 --> 00:02:16.450
 The host sends a probe request with the format, frame size and frame interval it wants.
 
-00:01:08.297 --> 00:01:13.614
+00:02:16.850 --> 00:02:21.877
 On the device, the U V C function turns this into an event for the user space streaming app.
 
-00:01:14.014 --> 00:01:18.682
+00:02:22.277 --> 00:02:29.383
+User space: Where normal programs run, outside the kernel, protected from crashing the whole system. Like: The public area of a building, separate from the staff-only control room.
+
+00:02:29.633 --> 00:02:34.381
 The app fills in the probe structure, including the maximum payload per transfer.
 
-00:01:19.082 --> 00:01:22.866
+00:02:34.781 --> 00:02:38.369
 The host reads the probe back, to see what the device agreed to.
 
-00:01:23.266 --> 00:01:24.276
+00:02:38.769 --> 00:02:39.790
 Then it commits.
 
-00:01:24.676 --> 00:01:29.959
+00:02:40.190 --> 00:02:45.519
 It selects an alternate setting big enough for that payload. This reserves bandwidth on the bus.
 
-00:01:30.359 --> 00:01:32.762
+00:02:45.919 --> 00:02:48.485
 The streaming app receives a stream on event.
 
-00:01:33.162 --> 00:01:36.297
+00:02:48.885 --> 00:02:51.962
 It starts queueing frames from the ISP or encoder.
 
-00:01:36.697 --> 00:01:47.355
+00:02:52.362 --> 00:02:56.936
+ISP: Image signal processor: the chip block that turns raw sensor data into a good-looking picture. Like: A photo lab that develops the raw film into a finished print.
+
+00:02:57.236 --> 00:03:07.732
 And the device sends isochronous payloads, each with a small header and then image data. If any step here is wrong, the classic symptom is: the camera opens, but the picture is black.
 
-00:01:48.555 --> 00:01:53.907
+00:03:08.132 --> 00:03:21.053
+Isochronous transfer: A USB transfer type with guaranteed timing but no retries, used for live video and audio. Like: A live TV broadcast: always on time, and a dropped frame is simply skipped, never resent.
+
+00:03:22.153 --> 00:03:27.784
 Every isochronous packet starts with a payload header. The first byte is its length, often twelve.
 
-00:01:54.307 --> 00:01:59.439
+00:03:28.184 --> 00:03:33.246
 The frame I D bit toggles at each new frame. That's how the host finds frame boundaries.
 
-00:01:59.839 --> 00:02:03.066
+00:03:33.646 --> 00:03:36.769
 The end of frame bit marks the last packet of a frame.
 
-00:02:03.466 --> 00:02:08.447
+00:03:37.169 --> 00:03:42.719
 Optional presentation time and source clock fields let the host sync audio and video.
 
-00:02:08.847 --> 00:02:11.866
+00:03:43.119 --> 00:03:45.940
 An error bit tells the host to drop a bad frame.
 
-00:02:12.266 --> 00:02:17.989
+00:03:46.340 --> 00:03:52.273
 Then the image data follows. Wrong F I D or E O F handling causes torn or merged frames.
 
-00:02:19.189 --> 00:02:20.571
+00:03:53.473 --> 00:03:54.889
 Audio and buttons.
 
-00:02:20.971 --> 00:02:27.414
+00:03:55.289 --> 00:04:01.768
 U A C one works everywhere. U A C two supports high speed and higher sample rates, with clock entities.
 
-00:02:27.814 --> 00:02:33.817
+00:04:02.168 --> 00:04:08.414
 A device with its own crystal should use asynchronous mode, with a feedback endpoint that tells the host the real rate.
 
-00:02:34.217 --> 00:02:37.026
+00:04:08.814 --> 00:04:14.955
+Endpoint: A numbered mailbox on a USB device; each data stream uses its own. Like: Numbered pigeonholes in an office: mail for video goes in one slot, audio in another.
+
+00:04:15.205 --> 00:04:17.794
 Volume and mute are controls on a feature unit.
 
-00:02:37.426 --> 00:02:43.034
+00:04:18.194 --> 00:04:23.500
 For Teams and Zoom, buttons use the H I D telephony page: hook switch and phone mute.
 
-00:02:43.434 --> 00:02:48.844
+00:04:23.900 --> 00:04:29.717
 And output reports from the host drive your LEDs, so the device's mute light follows the app.
 
-00:02:50.044 --> 00:02:51.658
+00:04:30.917 --> 00:04:32.693
 Composite device rules.
 
-00:02:52.058 --> 00:02:59.036
+00:04:33.093 --> 00:04:40.024
 Group each function's interfaces with interface association descriptors, and use device class E F, two, one.
 
-00:02:59.436 --> 00:03:02.803
+00:04:40.424 --> 00:04:43.663
+Descriptor: A small table of facts the device reports about itself: who made it, what it can do. Like: A business card plus resume the device hands over when it is first plugged in.
+
+00:04:43.913 --> 00:04:47.234
 Keep interface numbers stable across firmware releases.
 
-00:03:03.203 --> 00:03:08.172
+00:04:47.634 --> 00:04:52.847
 Bump b c d Device whenever descriptors change, because Windows caches by it.
 
-00:03:08.572 --> 00:03:11.939
+00:04:53.247 --> 00:04:56.614
 And test every release on Windows, macOS and Linux.
 
-00:03:13.139 --> 00:03:13.812
+00:04:57.814 --> 00:05:03.921
+Question for you: Why does the call-control button use the human interface class rather than a custom protocol?
+
+00:05:09.221 --> 00:05:17.789
+Answer: Because every operating system and meeting app already understands that class, so the button works everywhere with no driver.
+
+00:05:18.889 --> 00:05:19.585
 Recap.
 
-00:03:14.212 --> 00:03:16.905
+00:05:19.985 --> 00:05:22.447
 Standard classes mean no driver install.
 
-00:03:17.305 --> 00:03:21.589
+00:05:22.847 --> 00:05:27.142
 For video: probe, commit, select an alternate setting, then stream.
 
-00:03:21.989 --> 00:03:25.740
+00:05:27.542 --> 00:05:31.664
 The frame I D bit toggles each frame, and end of frame closes it.
 
-00:03:26.140 --> 00:03:28.914
+00:05:32.064 --> 00:05:34.374
 Use asynchronous U A C with feedback.
 
-00:03:29.314 --> 00:03:33.285
+00:05:34.774 --> 00:05:38.826
 And H I D telephony controls give certified mute behavior.

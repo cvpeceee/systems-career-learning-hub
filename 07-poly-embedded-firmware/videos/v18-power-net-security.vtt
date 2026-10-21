@@ -1,112 +1,175 @@
 WEBVTT
 
-00:00:00.000 --> 00:00:08.371
+00:00:00.000 --> 00:00:08.417
 This video covers power management, the networking and wireless basics a meeting device needs, and the security habits both postings ask for.
 
-00:00:09.571 --> 00:00:11.904
+00:00:09.617 --> 00:00:15.167
+A bar runs warm and a call gets choppy when someone starts a big file download on the same network.
+
+00:00:15.417 --> 00:00:19.213
+Power, networking and security all touch that one moment.
+
+00:00:19.463 --> 00:00:20.856
+Let's tour each quickly.
+
+00:00:21.906 --> 00:00:24.252
 Running a device is like running a building.
 
-00:00:12.304 --> 00:00:16.380
+00:00:24.652 --> 00:00:28.460
 Turn off the lights in empty rooms. That's runtime power management.
 
-00:00:16.780 --> 00:00:21.087
+00:00:28.860 --> 00:00:34.769
+Runtime PM / suspend: Turning parts of the device off when idle and back on when needed. Like: Motion-sensor lights for each room of the house.
+
+00:00:35.019 --> 00:00:39.385
 But never plunge a busy room into darkness. That's what usage counts protect.
 
-00:00:21.487 --> 00:00:28.174
+00:00:39.785 --> 00:00:46.309
 Lock every door, including the side door the builders used. Those are JTAG, the UART console, and adb.
 
-00:00:28.574 --> 00:00:35.505
+00:00:46.709 --> 00:00:55.603
+JTAG / SWD: Hardware debug ports that let a debugger stop the processor and read its memory. Like: A doctor's stethoscope plugged straight into the chip.
+
+00:00:55.903 --> 00:01:03.716
+UART: A simple serial port, often the first console you see when a board boots. Like: A tin-can telephone straight into the board.
+
+00:01:04.016 --> 00:01:13.501
+adb: Android Debug Bridge: the command-line tool that gives an engineer a shell and logs on a device. Like: A service hatch into the device for the technician.
+
+00:01:13.801 --> 00:01:20.628
 And check every visitor's badge. That means validating every input from USB, HDMI and the network.
 
-00:00:36.705 --> 00:00:37.390
+00:01:21.028 --> 00:01:29.480
+HDMI: The common cable standard for sending video and audio to TVs and monitors. Like: A garden hose for pictures and sound.
+
+00:01:30.580 --> 00:01:31.277
 Words.
 
-00:00:37.790 --> 00:00:42.040
+00:01:31.677 --> 00:01:36.042
 Runtime power management turns individual devices off when idle.
 
-00:00:42.440 --> 00:00:47.153
+00:01:36.442 --> 00:01:41.446
 Autosuspend waits a short delay first, so devices don't flap on and off.
 
-00:00:47.553 --> 00:00:54.624
+00:01:41.846 --> 00:01:48.719
 USB link power management uses U one and U two states. Their exit latency can glitch isochronous streams.
 
-00:00:55.024 --> 00:00:58.042
+00:01:49.119 --> 00:01:54.030
+LPM / U1 / U2: Link power management: USB links nap between packets to save power. Like: Lights on a motion sensor that switch off when the hallway is empty.
+
+00:01:54.330 --> 00:02:07.252
+Isochronous transfer: A USB transfer type with guaranteed timing but no retries, used for live video and audio. Like: A live TV broadcast: always on time, and a dropped frame is simply skipped, never resent.
+
+00:02:07.552 --> 00:02:10.884
 The trusted execution environment protects keys.
 
-00:00:58.442 --> 00:01:04.201
+00:02:11.284 --> 00:02:16.938
 And c f g eight oh two eleven and Blue Z are Linux's Wi-Fi framework and Bluetooth stack.
 
-00:01:05.401 --> 00:01:09.174
+00:02:17.338 --> 00:02:23.271
+Wi-Fi / Bluetooth: Short-range radio links: Wi-Fi for network data, Bluetooth for headsets and accessories. Like: A home phone line and a walkie-talkie.
+
+00:02:23.521 --> 00:02:31.276
+Framework layer: On Android, the Java system services apps talk to, like the camera and USB services. Like: The dining room of a restaurant: diners (apps) only ever see this room.
+
+00:02:32.326 --> 00:02:36.100
 Runtime power management for a camera sensor, step by step.
 
-00:01:09.574 --> 00:01:11.792
+00:02:36.500 --> 00:02:38.729
 An app opens the video device.
 
-00:01:12.192 --> 00:01:16.371
+00:02:39.129 --> 00:02:43.401
 The driver calls p m runtime get sync. The usage count becomes one.
 
-00:01:16.771 --> 00:01:23.679
+00:02:43.801 --> 00:02:48.422
+Driver: Kernel code that knows how to operate one kind of hardware. Like: A translator who speaks one specific machine's language.
+
+00:02:48.672 --> 00:02:55.603
 The resume callback turns on regulators and clocks, and releases reset, in the order the datasheet requires.
 
-00:01:24.079 --> 00:01:26.842
+00:02:56.003 --> 00:02:58.592
 While streaming, the usage count keeps it on.
 
-00:01:27.242 --> 00:01:29.123
+00:02:58.992 --> 00:03:00.792
 The app closes the device.
 
-00:01:29.523 --> 00:01:32.495
+00:03:01.192 --> 00:03:04.036
 The driver puts its reference, with autosuspend.
 
-00:01:32.895 --> 00:01:43.553
+00:03:04.436 --> 00:03:14.734
 After the delay, the suspend callback turns clocks and regulators off. Unbalanced gets and puts are the classic bug: devices that never sleep, or that turn off mid stream.
 
-00:01:44.753 --> 00:01:47.342
+00:03:15.934 --> 00:03:18.326
 Networking basics for meeting devices.
 
-00:01:47.742 --> 00:01:54.813
+00:03:18.726 --> 00:03:25.669
 Know ip, ethtool and tcpdump, and mark real time media with D S C P so switches prioritize it.
 
-00:01:55.213 --> 00:01:59.950
+00:03:26.069 --> 00:03:30.608
 Enterprise networks use VLANs and eight oh two dot one X authentication.
 
-00:02:00.350 --> 00:02:06.271
+00:03:31.008 --> 00:03:36.813
 For Wi-Fi: i w, w p a supplicant, and where chip firmware is loaded from.
 
-00:02:06.671 --> 00:02:14.113
+00:03:37.213 --> 00:03:43.889
+Firmware: Software that runs close to hardware, usually stored in flash memory on the device. Like: The instincts built into an animal: low-level behaviour that is there from birth.
+
+00:03:44.139 --> 00:03:51.639
 For Bluetooth: capture the host controller interface with b t mon, and know the headset profiles, including L E audio.
 
-00:02:15.313 --> 00:02:16.543
+00:03:52.839 --> 00:03:54.139
 Security habits.
 
-00:02:16.943 --> 00:02:21.727
+00:03:54.539 --> 00:03:59.264
 Lock JTAG and the UART in production, and disable adb in user builds.
 
-00:02:22.127 --> 00:02:28.547
+00:03:59.664 --> 00:04:05.841
 Treat every USB descriptor, E D I D block and network packet as hostile, and fuzz the parsers.
 
-00:02:28.947 --> 00:02:32.070
+00:04:06.241 --> 00:04:09.480
+Descriptor: A small table of facts the device reports about itself: who made it, what it can do. Like: A business card plus resume the device hands over when it is first plugged in.
+
+00:04:09.730 --> 00:04:22.687
+EDID / HPD: EDID is the screen's description of what it can show; hot-plug detect (HPD) is the wire that says a screen is connected. Like: A guest's dietary card (EDID) and the doorbell that says they arrived (HPD).
+
+00:04:22.987 --> 00:04:26.180
 Keep keys in the trusted environment, never in files.
 
-00:02:32.470 --> 00:02:37.880
+00:04:26.580 --> 00:04:31.955
 Use signed updates, verified boot, d m verity, and enforcing SELinux.
 
-00:02:38.280 --> 00:02:43.191
+00:04:32.355 --> 00:04:42.781
+AVB / dm-verity: Android Verified Boot and dm-verity: checks that the system partitions have not been changed, block by block. Like: A tamper seal on every page of the rulebook.
+
+00:04:43.081 --> 00:04:56.548
+SELinux: Security-Enhanced Linux: rules that say exactly which program may touch which file or device, even as root. Like: Keycards in an office: even the boss's card only opens the doors it is programmed for.
+
+00:04:56.848 --> 00:05:01.283
 And keep a software bill of materials, with monthly security patch merges.
 
-00:02:44.391 --> 00:02:45.065
+00:05:02.483 --> 00:05:09.960
+Question for you: Live audio stutters when someone downloads a big file on the same network. What network feature helps?
+
+00:05:15.260 --> 00:05:22.482
+Answer: Quality of service marking, so audio and video packets get priority over bulk download traffic.
+
+00:05:22.782 --> 00:05:30.166
+Bulk transfer: A USB transfer type that is reliable but has no timing promise, used for files and updates. Like: Parcel post: everything arrives intact, but not at a promised minute.
+
+00:05:31.216 --> 00:05:31.912
 Recap.
 
-00:02:45.465 --> 00:02:47.682
+00:05:32.312 --> 00:05:34.460
 Balance every runtime get with a put.
 
-00:02:48.082 --> 00:02:51.449
+00:05:34.860 --> 00:05:38.215
 Watch USB link power management when streams glitch.
 
-00:02:51.849 --> 00:02:54.171
+00:05:38.615 --> 00:05:40.902
 Mark media traffic for priority.
 
-00:02:54.571 --> 00:02:56.835
+00:05:41.302 --> 00:05:43.439
 Close the debug doors in production.
 
-00:02:57.235 --> 00:02:59.685
+00:05:43.839 --> 00:05:46.532
 And validate and fuzz every external input.

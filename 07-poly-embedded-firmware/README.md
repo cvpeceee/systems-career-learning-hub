@@ -21,33 +21,37 @@ Download this folder and open `index.html` in Chrome (phone or laptop). GitHub's
 | `source/` | Generator for index.html (`python3 build.py`); `source/video/` = video scripts + renderer |
 
 ## Lessons
+Every lesson starts with **Words to know** (meaning + everyday picture for each term it uses), and each term is a tap-to-expand chip at its first use. The **Glossary** tab lists all 101 terms with the lessons that use them.
+
 1 Roles decoded · 2 Embedded C/C++ craft · 3 Linux driver model · 4 Device Tree, I2C/SPI/GPIO · 5 IRQs, workqueues, DMA, locking · 6 Boot chain & secure boot · 7 Yocto/Buildroot & vendor BSPs · 8 V4L2 & ALSA · 9 Codecs (H.264/H.265/SVC) & HDMI · 10 USB fundamentals · 11 Enumeration · 12 UVC/UAC/HID/CDC · 13 Linux USB gadget & Android USB HAL · 14 Host side, Type-C/PD, DFU, USB debugging · 15 Android below the framework · 16 MCU/RTOS & TinyUSB · 17 Debugging toolbox · 18 Power, networking, Wi-Fi/BT, security · 19 OTA & firmware testing/CI · 20 Growing to senior/staff
 
-## Videos (20, total 73 min)
+## Videos (20, total 125 min, version 2)
+Each video now opens with a short Poly story (hook), shows simple pictures for host, device and chips, pops up a **NEW WORD card** (plain meaning + everyday picture, also spoken) the first time any term is heard, asks you one pause-and-think question with a countdown, and ends with a short recap. Video 1 walks the bar's USB device path piece by piece: laptop → cable → UDC (often DWC3) → gadget + configfs → UVC / UAC2 / HID → streaming app → camera → Android USB HAL.
+
 | File | Length |
 |---|---|
-| v01-roles-decoded.mp4 | 4:27 |
-| v02-embedded-cpp.mp4 | 3:55 |
-| v03-driver-model.mp4 | 3:45 |
-| v04-device-tree.mp4 | 3:42 |
-| v05-irq-dma.mp4 | 3:50 |
-| v06-boot-chain.mp4 | 3:18 |
-| v07-yocto-bsp.mp4 | 3:13 |
-| v08-v4l2-alsa.mp4 | 3:21 |
-| v09-codecs-hdmi.mp4 | 3:23 |
-| v10-usb-fundamentals.mp4 | 3:21 |
-| v11-usb-enumeration.mp4 | 7:31 |
-| v12-usb-classes.mp4 | 3:34 |
-| v13-usb-gadget.mp4 | 4:00 |
-| v14-usb-debug-typec.mp4 | 3:39 |
-| v15-android-platform.mp4 | 3:15 |
-| v16-rtos-tinyusb.mp4 | 3:10 |
-| v17-debugging-oops.mp4 | 3:15 |
-| v18-power-net-security.mp4 | 3:01 |
-| v19-ota-testing.mp4 | 3:03 |
-| v20-senior-staff.mp4 | 2:42 |
+| v01-roles-decoded.mp4 | 10:30 |
+| v02-embedded-cpp.mp4 | 5:19 |
+| v03-driver-model.mp4 | 6:23 |
+| v04-device-tree.mp4 | 6:56 |
+| v05-irq-dma.mp4 | 6:24 |
+| v06-boot-chain.mp4 | 5:60 |
+| v07-yocto-bsp.mp4 | 4:35 |
+| v08-v4l2-alsa.mp4 | 6:25 |
+| v09-codecs-hdmi.mp4 | 5:24 |
+| v10-usb-fundamentals.mp4 | 4:49 |
+| v11-usb-enumeration.mp4 | 10:23 |
+| v12-usb-classes.mp4 | 5:40 |
+| v13-usb-gadget.mp4 | 8:45 |
+| v14-usb-debug-typec.mp4 | 7:06 |
+| v15-android-platform.mp4 | 5:50 |
+| v16-rtos-tinyusb.mp4 | 4:54 |
+| v17-debugging-oops.mp4 | 5:18 |
+| v18-power-net-security.mp4 | 5:48 |
+| v19-ota-testing.mp4 | 5:02 |
+| v20-senior-staff.mp4 | 4:16 |
 
-Rebuild: `cd source/video && python3 render.py ../../videos va vb vc vd ve v11 vf vg vh` (needs Piper + the en_US-lessac-medium voice, ffmpeg, Pillow).
+Rebuild: `cd source/video && python3 render.py ../../videos v01 va vb vc vd ve v11 vf vg vh` (hooks, questions and term cards come from `engage.py` and `../glossary.py`; check with `python3 verify_terms.py ../../videos`) (needs Piper + the en_US-lessac-medium voice, ffmpeg, Pillow).
 
 ## Related lessons in the main tutorial (added Oct 20)
 - Lesson 18 (networking) → main tutorial **38.2** VXLAN overlays, MTU math and MAC learning in C (video: `04-interactive-tutorial/videos/oct20/o20-vxlan-mtu.mp4`).

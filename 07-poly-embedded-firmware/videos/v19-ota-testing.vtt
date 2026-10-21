@@ -1,115 +1,160 @@
 WEBVTT
 
-00:00:00.000 --> 00:00:08.313
+00:00:00.000 --> 00:00:08.336
 This video covers safe over the air updates with automatic rollback, and the testing and CI strategy a senior engineer is expected to own.
 
-00:00:09.513 --> 00:00:13.750
+00:00:08.736 --> 00:00:17.919
+OTA: Over-the-air update: new software delivered to devices in the field over the network. Like: A software home delivery, no service visit needed.
+
+00:00:18.219 --> 00:00:30.282
+CI / HIL: Continuous integration runs tests on every change; hardware-in-the-loop (HIL) runs them on real boards. Like: A quality inspector at every station of the assembly line, some with real parts on the bench.
+
+00:00:31.382 --> 00:00:35.446
+Tonight ten thousand bars in customer offices will install new firmware.
+
+00:00:35.696 --> 00:00:42.371
+Firmware: Software that runs close to hardware, usually stored in flash memory on the device. Like: The instincts built into an animal: low-level behaviour that is there from birth.
+
+00:00:42.621 --> 00:00:47.231
+If one in a thousand fails to boot, that's ten angry customers by morning.
+
+00:00:47.481 --> 00:00:51.045
+Let's see how updates and tests make that number zero.
+
+00:00:52.095 --> 00:00:56.356
 Updating firmware in the field is like replacing an airplane engine mid flight.
 
-00:00:14.150 --> 00:00:16.856
+00:00:56.756 --> 00:00:59.449
 Keep one good engine running. That's slot A.
 
-00:00:17.256 --> 00:00:20.692
+00:00:59.849 --> 00:01:03.576
 Install the new engine on the other side. That's slot B.
 
-00:00:21.092 --> 00:00:22.555
+00:01:03.976 --> 00:01:05.543
 Test it before you trust it.
 
-00:00:22.955 --> 00:00:25.718
+00:01:05.943 --> 00:01:08.730
 And if it coughs, switch back automatically.
 
-00:00:26.918 --> 00:00:27.603
+00:01:09.930 --> 00:01:10.626
 Words.
 
-00:00:28.003 --> 00:00:33.019
+00:01:11.026 --> 00:01:16.030
 An A B update keeps two copies of each partition, and writes only the inactive one.
 
-00:00:33.419 --> 00:00:36.820
+00:01:16.430 --> 00:01:27.692
+A/B partitions: Two copies of the system; update the idle one and switch, falling back if the new one fails. Like: Two identical stages: rehearse on one while the show runs on the other.
+
+00:01:27.992 --> 00:01:31.463
 A boot counter tracks how many tries the new slot has left.
 
-00:00:37.220 --> 00:00:40.970
+00:01:31.863 --> 00:01:35.474
 Anti rollback refuses images older than a stored version.
 
-00:00:41.370 --> 00:00:45.213
+00:01:35.874 --> 00:01:39.763
 Hardware in the loop means automated tests on real boards in a rack.
 
-00:00:45.613 --> 00:00:49.317
+00:01:40.163 --> 00:01:43.797
 And bisecting is a binary search through commits to find a regression.
 
-00:00:50.517 --> 00:00:52.537
+00:01:44.997 --> 00:01:46.959
 An update, step by step.
 
-00:00:52.937 --> 00:00:58.661
+00:01:47.359 --> 00:01:53.037
 The agent writes the new image into the inactive slot, B. The device keeps running from A.
 
-00:00:59.061 --> 00:01:04.320
+00:01:53.437 --> 00:01:58.824
 It verifies the hash, the signature, and the version against the anti rollback counter.
 
-00:01:04.720 --> 00:01:07.170
+00:01:59.224 --> 00:02:01.987
 It marks B active, with three tries.
 
-00:01:07.570 --> 00:01:09.067
+00:02:02.387 --> 00:02:03.931
 The bootloader boots B.
 
-00:01:09.467 --> 00:01:13.601
+00:02:04.331 --> 00:02:10.949
+Bootloader: The small program that runs first at power-on, sets up memory and loads the kernel. Like: The stagehand who sets up the stage before the actors arrive.
+
+00:02:11.199 --> 00:02:15.448
 But B fails its health checks, so it never marks itself successful.
 
-00:01:14.001 --> 00:01:18.296
+00:02:15.848 --> 00:02:19.888
 The bootloader retries, decrementing the counter, until it reaches zero.
 
-00:01:18.696 --> 00:01:20.368
+00:02:20.288 --> 00:02:21.995
 Then it falls back to A.
 
-00:01:20.768 --> 00:01:30.962
+00:02:22.395 --> 00:02:32.705
 And A reports the failure, so the team sees it in telemetry. Mark a slot successful only after real health checks: services up, USB enumerated, camera streaming.
 
-00:01:32.162 --> 00:01:33.520
+00:02:33.105 --> 00:02:40.349
+Enumeration: The first conversation after plug-in where the laptop learns what the device is and gives it an address. Like: A new employee's first morning: show ID, get a badge number, hand in a resume, get assigned a desk.
+
+00:02:41.399 --> 00:02:42.758
 Now the test pyramid.
 
-00:01:33.920 --> 00:01:42.210
+00:02:43.158 --> 00:02:51.412
 At the base, unit tests on a PC with sanitizers, like labs four, five, eight, nine and ten. Seconds, on every commit.
 
-00:01:42.610 --> 00:01:51.967
+00:02:51.812 --> 00:03:01.065
 Then virtual tests: QEMU, dummy h c d, vivid and v four l two compliance, like our lab zero harness. Minutes, on every merge.
 
-00:01:52.367 --> 00:02:04.883
+00:03:01.465 --> 00:03:09.778
+QEMU: A program that emulates a whole computer, so you can test kernels without real hardware. Like: A flight simulator for software.
+
+00:03:10.078 --> 00:03:20.179
+V4L2: Video for Linux 2: the kernel interface every Linux camera and video device uses. Like: The standard loading dock every camera truck backs into.
+
+00:03:20.479 --> 00:03:32.634
 Then a hardware in the loop rack: real boards, programmable USB switches, HDMI generators, and power relays. Enumerate a thousand times on three host operating systems, every night.
 
-00:02:05.283 --> 00:02:11.285
+00:03:33.034 --> 00:03:41.487
+HDMI: The common cable standard for sending video and audio to TVs and monitors. Like: A garden hose for pictures and sound.
+
+00:03:41.787 --> 00:03:48.184
 Then certification: Teams and Zoom, USB I F compliance, and Android's test suites.
 
-00:02:11.685 --> 00:02:17.595
+00:03:48.584 --> 00:03:54.354
 And field telemetry: crashes, enumeration failures and frame drops from real rooms.
 
-00:02:18.795 --> 00:02:23.090
+00:03:55.554 --> 00:03:59.977
 On every merge, run fast checks, like parsing the golden descriptor dump.
 
-00:02:23.490 --> 00:02:25.034
+00:04:00.377 --> 00:04:03.616
+Descriptor: A small table of facts the device reports about itself: who made it, what it can do. Like: A business card plus resume the device hands over when it is first plugged in.
+
+00:04:03.866 --> 00:04:05.492
 Then run the QEMU harness.
 
-00:02:25.434 --> 00:02:29.753
+00:04:05.892 --> 00:04:10.478
 Nightly, run hardware tests, including power cuts during updates.
 
-00:02:30.153 --> 00:02:34.960
+00:04:10.878 --> 00:04:15.824
 When something breaks, start a bisect between a known bad and a known good commit.
 
-00:02:35.360 --> 00:02:39.946
+00:04:16.224 --> 00:04:20.624
 And let git bisect run your test automatically, to find the exact commit.
 
-00:02:41.146 --> 00:02:41.819
+00:04:21.824 --> 00:04:27.420
+Question for you: The new firmware fails to boot on one bar. What should happen automatically?
+
+00:04:32.720 --> 00:04:39.953
+Answer: The bootloader counts failed boot attempts and switches back to the previous, known-good copy of the system.
+
+00:04:41.053 --> 00:04:41.749
 Recap.
 
-00:02:42.219 --> 00:02:45.679
+00:04:42.149 --> 00:04:45.377
 Verify before switching, with a boot counter and fallback.
 
-00:02:46.079 --> 00:02:49.457
+00:04:45.777 --> 00:04:49.028
 Mark the slot successful only after real health checks.
 
-00:02:49.857 --> 00:02:54.768
+00:04:49.428 --> 00:04:54.234
 Test in layers: unit, virtual, hardware, certification, telemetry.
 
-00:02:55.168 --> 00:02:58.768
+00:04:54.634 --> 00:04:58.291
 Fix flaky tests, because they hide real regressions.
 
-00:02:59.168 --> 00:03:01.490
+00:04:58.691 --> 00:05:00.897
 And bisect with automated tests.
