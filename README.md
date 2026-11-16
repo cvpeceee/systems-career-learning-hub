@@ -13,12 +13,13 @@ Everything built to grow from senior systems engineer (video devices, C++, C dri
 | `05-tesla-track/` | Tesla track on its own | FSD, AI, Optimus, motor control, ROS 2 |
 | `06-leetcode-interview-prep/` | **LeetCode-style interview prep** | 110 coding problems + 28 system design questions with timer/hints/rubrics, C#/Java/C++ solutions (all tested), animated walkthroughs, call-stack execution visualizer (C++, plus Java/C# for many), 31 narrated concept videos, 25 company pages, mock interviews |
 | `07-poly-embedded-firmware/` | **Poly on-the-job academy (Linux/Android + USB firmware)** | 20 lessons with animations/quizzes, 13 hands-on labs (kernel modules, configfs USB gadget, V4L2, USB descriptor parser, A/B updates; most verified in QEMU), 30/60/90 + 12-month growth plan |
+| `08-agentic-ai-engineer/` | **Agentic AI Engineer (zero to job-ready)** | 35 interactive lessons in 13 chapters, 161-term glossary, 12 narrated videos (~69 min), 13 offline labs (113 tests: tool calling, agent loop, RAG, real MCP server, LangGraph approval, evals, guardrails, production), 12-week plan, skills map from 12 job postings |
 | `JOB_SKILL_MAP.md` | Role → skills → where in this repo | The 17 roles from the Oct 20 job alerts, with posting labels |
 | `source/` | Build files for the main course (`oct20-pack/` = ch37–41) | Rebuild instructions in its README |
 | `screenshots/` | Preview pictures | One or two per course |
 
 ## How to open
-Download the `.html` file and open it in Chrome (desktop or phone). Previewing it inside GitHub or a phone file viewer shows raw code instead of the course. The learning hub (`02`), the interview prep (`06`) and the Poly academy (`07`) need their whole folder; open `index.html`.
+Download the `.html` file and open it in Chrome (desktop or phone). Previewing it inside GitHub or a phone file viewer shows raw code instead of the course. The learning hub (`02`), the interview prep (`06`) the Poly academy (`07`) and the Agentic AI course (`08`) need their whole folder; open `index.html`.
 
 ## Recommended order
 1. Read the career plan PDF.
