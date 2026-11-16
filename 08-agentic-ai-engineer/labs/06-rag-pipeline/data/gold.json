@@ -1,0 +1,14 @@
+[
+ {"q": "what does E-4012 mean", "relevant": ["KB-102"], "kind": "exact code"},
+ {"q": "E-7730", "relevant": ["KB-112"], "kind": "exact code"},
+ {"q": "5H8T2", "relevant": ["KB-108"], "kind": "exact part number"},
+ {"q": "NIC driver 10.2.7", "relevant": ["KB-107"], "kind": "exact version"},
+ {"q": "my computer can't see the gadget once it wakes", "relevant": ["KB-101"], "kind": "paraphrase"},
+ {"q": "accessory keeps restarting itself", "relevant": ["KB-109"], "kind": "paraphrase"},
+ {"q": "screen stays dark through the hub", "relevant": ["KB-104"], "kind": "paraphrase"},
+ {"q": "notebook overheating with laggy calls", "relevant": ["KB-105"], "kind": "paraphrase"},
+ {"q": "OTA flashing fails what now", "relevant": ["KB-111"], "kind": "mixed"},
+ {"q": "battery won't charge past 80", "relevant": ["KB-103"], "kind": "mixed"},
+ {"q": "signed image verification error when updating dock", "relevant": ["KB-102"], "kind": "mixed"},
+ {"q": "internet connection on the dock keeps failing", "relevant": ["KB-107"], "kind": "mixed"}
+]

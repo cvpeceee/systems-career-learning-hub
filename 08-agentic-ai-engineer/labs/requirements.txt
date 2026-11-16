@@ -1,0 +1,8 @@
+# Offline labs (all tests)
+pytest>=8
+pydantic>=2.7
+mcp>=2.3          # official Model Context Protocol SDK, v2 API (MCPServer / Client)
+langgraph>=1.0
+# Optional: only for running against real models
+openai>=2.0        # tested with 3.51
+anthropic>=0.60    # tested with 2.9

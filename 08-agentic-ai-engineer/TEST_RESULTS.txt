@@ -1,0 +1,21 @@
+08-agentic-ai-engineer: lab test results
+Run: 2026-11-16 12:11 (America/Chicago) on Linux-6.12.113+-x86_64-with-glibc2.41, Python 3.13.5
+Libraries: pytest 9.2.0, pydantic 2.14.3, mcp 2.3.0, langgraph 1.2.22
+No API keys were used: model calls are served by labs/common/fakellm.py. Labs 07 and 08 run the real mcp and langgraph libraries.
+Starter = the TODO version you fill in; failures there are expected until you implement it.
+
+00-setup                     solution: 5 passed, 0 failed, 0 errors   | starter: 4 passed, 1 failed, 0 errors (expected)
+01-llm-basics                solution: 10 passed, 0 failed, 0 errors   | starter: 0 passed, 10 failed, 0 errors (expected)
+02-embeddings                solution: 5 passed, 0 failed, 0 errors   | starter: 0 passed, 5 failed, 0 errors (expected)
+03-llm-api-structured        solution: 9 passed, 0 failed, 0 errors   | starter: 2 passed, 7 failed, 0 errors (expected)
+04-tool-calling              solution: 6 passed, 0 failed, 0 errors   | starter: 0 passed, 6 failed, 0 errors (expected)
+05-agent-from-scratch        solution: 11 passed, 0 failed, 0 errors   | starter: 1 passed, 10 failed, 0 errors (expected)
+06-rag-pipeline              solution: 14 passed, 0 failed, 0 errors   | starter: 2 passed, 12 failed, 0 errors (expected)
+07-mcp-server-client         solution: 10 passed, 0 failed, 0 errors   | starter: 3 passed, 7 failed, 0 errors (expected)
+08-langgraph-hitl            solution: 9 passed, 0 failed, 0 errors   | starter: 1 passed, 8 failed, 0 errors (expected)
+09-multi-agent               solution: 7 passed, 0 failed, 0 errors   | starter: 0 passed, 7 failed, 0 errors (expected)
+10-evals                     solution: 9 passed, 0 failed, 0 errors   | starter: 1 passed, 8 failed, 0 errors (expected)
+11-security-guardrails       solution: 8 passed, 0 failed, 0 errors   | starter: 1 passed, 7 failed, 0 errors (expected)
+12-production                solution: 10 passed, 0 failed, 0 errors   | starter: 0 passed, 10 failed, 0 errors (expected)
+
+TOTAL solution tests passing: 113  (ALL GREEN)

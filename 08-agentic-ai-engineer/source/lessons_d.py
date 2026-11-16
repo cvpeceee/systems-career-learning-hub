@@ -43,7 +43,7 @@ def with_retries(fn, attempts=5, base=1.0, cap=30.0, sleep=time.sleep):
 anim='backoff',
 q=[dict(q='Requests fail with "context length exceeded". Retry with backoff?',o=['Yes','No: it will fail identically; trim or compact the context','Yes, with a different seed','Only at night'],a=1,w='Deterministic request errors need a changed request, not a retry.'),
 dict(q='Why add jitter to backoff?',o=['To make retries slower','So many clients that failed together don\'t retry in lockstep and overload the server again','It is required by HTTP','To save tokens'],a=1,w='Synchronised retries create a "thundering herd". Randomness spreads them out.')],
-lab='Lab 12 (<code>labs/12-production</code>): retries with a fake clock, Retry-After handling, a token-bucket limiter, a circuit breaker with half-open state, and a fallback model.')
+lab='Lab 12 (<code>labs/12-production</code>): retries with a fake clock, Retry-After handling, a token-bucket limiter, a circuit breaker with half-open state, provider fallback, a response cache and a cost tracker.')
 
 les(id='costlat',ch=10,t='Cost and latency: caching, routing and fewer tokens',mins=30,
 why='estimate and cut the cost and latency of an agent using prompt caching, response caching, model routing, batching, parallel tool calls and context trimming.',

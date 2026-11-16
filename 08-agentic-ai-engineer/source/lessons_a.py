@@ -148,7 +148,7 @@ def test_search_finds_watchdog():
 q=[dict(q='What does <code>@dataclass</code> above a class do?',o=['Makes fields private','Generates the constructor, equality and printing code from the field list','Enforces types at run time','Makes the class thread-safe'],a=1,w='It generates boilerplate. It does <i>not</i> check types at run time. Pydantic does that.'),
 dict(q='You call two model APIs with <code>await asyncio.gather(a(), b())</code>. Each takes 2 s. Roughly how long does it take?',o=['4 s','2 s','1 s','It depends on the number of CPU cores'],a=1,w='Both waits overlap on one thread, so about 2 s. Cores do not matter because the time is spent waiting on the network, not computing.'),
 dict(q='Why do agent libraries care about your function\'s type hints and docstring?',o=['For speed','They turn them into the tool\'s JSON Schema and description that the model reads','Python requires them','For logging'],a=1,w='<code>unit: int</code> becomes <code>{"type":"integer"}</code> in the schema, and the docstring becomes the description the model uses to choose the tool.')],
-lab='Lab 00 has no code to write: run <code>labs/README.md</code> setup and <code>python -m pytest -q</code> to confirm your environment works.')
+lab='Lab 00 (<code>labs/00-setup</code>): follow the setup in <code>labs/README.md</code>, then write a three-line <code>ask()</code> that sends one message to the fake model. The tests also confirm your Python version and packages.')
 
 les(id='nexttoken',ch=1,t='What an LLM really is: next-token prediction',mins=30,
 why='explain tokens, next-token prediction, and why "the model knows things" is the wrong mental model.',
@@ -220,7 +220,7 @@ d=r'''<h3>Choosing the next token</h3>
 <p>cost per task = Σ over model calls of (input tokens × input price + output tokens × output price).</p>
 <p>Use the calculator in Chapter 10 with your provider's real prices. The point is the <b>shape</b>: agents multiply input tokens by the number of steps, so trimming context and cutting steps is usually the biggest lever.</p>''',
 anim='ctxbudget',
-lab='Lab 01 (<code>labs/01-llm-basics</code>): implement softmax with temperature, top-p filtering and sampling, train a tiny bigram next-token model on firmware logs, and estimate token cost.',
+lab='Lab 01 (<code>labs/01-llm-basics</code>): implement softmax with temperature, top-p filtering and sampling, train a tiny bigram next-token model on a few device-log sentences, and estimate token cost.',
 q=[dict(q='You need the model to extract fields from invoices into JSON. Which temperature makes most sense?',o=['0–0.3','1.0','1.5–2.0','Temperature does not matter for JSON'],a=0,w='Extraction wants the most likely, consistent answer. Combine low temperature with structured output (next chapter).'),
 dict(q='Your agent\'s replies sometimes end mid-JSON. What do you check first?',o=['The temperature','The stop reason, which likely says the max output token limit was hit','The tokenizer','The embedding model'],a=1,w='A cut-off reply reports a "max tokens" or "incomplete" stop reason. Raise the limit, ask for shorter output, or use strict structured output.'),
 dict(q='Each step of an 8-step agent sends ~20k input tokens and gets ~300 output tokens. Roughly how many input tokens are billed per task?',o=['20k','160k','2.4k','300'],a=1,w='8 × 20k = 160k input tokens. History re-sent at every step dominates agent cost, so prompt caching and trimming matter (Chapter 10).')])

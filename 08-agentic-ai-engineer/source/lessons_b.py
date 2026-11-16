@@ -264,7 +264,7 @@ SELECT id, body FROM chunks WHERE product = 'videobar' ORDER BY emb &lt;=&gt; $1
 anim='chunker',
 q=[dict(q='Retrieved chunks often start with "It also supports…" and the answers are vague. Cheapest strong fix?',o=['A bigger LLM','Prepend document title / section headers to each chunk, and split on structure','Lower temperature','Remove overlap'],a=1,w='Chunks that lost their context embed and read poorly. Context headers and structure-aware splitting fix much of this.'),
 dict(q='Why store metadata like product and version with each chunk?',o=['For decoration','To filter searches (e.g. only firmware 3.8 docs, only docs this user may see)','Embeddings need it','It speeds up the LLM'],a=1,w='Metadata filters make retrieval precise and enforce access control.')],
-lab='Lab 06 (<code>labs/06-rag-pipeline</code>) part A: implement the chunker with overlap and an in-memory vector index with metadata filters.')
+lab='Lab 06 (<code>labs/06-rag-pipeline</code>) part A: implement the overlapping chunker. The vector index with metadata filters is provided (you built one in Lab 02).')
 
 les(id='rag2',ch=4,t='RAG part 2: hybrid search, reranking and grounded answers',mins=40,
 why='combine keyword and vector search with RRF, add a reranker, and generate answers that cite their sources.',

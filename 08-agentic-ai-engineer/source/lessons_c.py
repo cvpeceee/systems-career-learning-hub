@@ -115,7 +115,7 @@ tool_message = result.structured_content or "\n".join(c.text for c in result.con
 <li>Design for the model: small, clear tools, compact results, helpful error messages and deterministic ordering.</li></ul>''',
 q=[dict(q='Your stdio MCP server works in tests but the host shows garbled protocol errors. Likely cause?',o=['Wrong Python version','A print() statement writing to stdout, which corrupts the JSON-RPC stream','Missing GPU','Too many tools'],a=1,w='On stdio, stdout carries protocol messages only. Log to stderr.'),
 dict(q='Where does the MCP SDK get the tool\'s input schema?',o=['You must write JSON Schema by hand','From the function\'s type hints (and defaults); the docstring becomes the description','From the model','From the function name only'],a=1,w='Type hints → JSON Schema, docstring → description. Write both carefully, because the model reads them.')],
-lab='Lab 07 (<code>labs/07-mcp-server-client</code>): a fleet MCP server with two tools, a resource and a prompt, tested in-process and over a real stdio subprocess with the official <code>mcp</code> v2 SDK. These tests run the real protocol, not a mock.')
+lab='Lab 07 (<code>labs/07-mcp-server-client</code>): a fleet MCP server with three tools (one with side effects), a resource and a prompt, plus a client that feeds MCP tools into your agent loop, tested in-process and over a real stdio subprocess with the official <code>mcp</code> v2 SDK. These tests run the real protocol, not a mock.')
 
 les(id='frameworks',ch=6,t='Agent frameworks, honestly compared (and when to use none)',mins=35,
 why='describe what LangGraph, the OpenAI Agents SDK, the Claude Agent SDK, CrewAI, Microsoft Agent Framework, LlamaIndex and Google ADK are each for, and justify a choice in an interview.',
