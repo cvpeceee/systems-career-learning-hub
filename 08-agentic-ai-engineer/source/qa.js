@@ -19,6 +19,9 @@ const F='file:///workspace/chandra-learning-repo/08-agentic-ai-engineer/index.ht
   }
   for(const v of ['home','lessons','labs','videos','plan','skills','glossary']){ await p.evaluate(v=>go(v),v); await p.waitForTimeout(150); const ow=await p.evaluate(()=>document.documentElement.scrollWidth>innerWidth+2); if(ow) over.push(v); }
   await p.evaluate(()=>go('skills')); const la=await p.$('#app a[data-l]'); if(la){await la.click(); await p.waitForTimeout(100); const t=await p.evaluate(()=>cur); if(t<0) errs.push('skills link did not open lesson');}
+  await p.evaluate(()=>go('videos')); await p.evaluate(()=>document.querySelectorAll('video').forEach(v=>{v.preload='metadata';v.load()})); await p.waitForTimeout(2500);
+  const vs=await p.evaluate(()=>[...document.querySelectorAll('video')].map(v=>({d:v.duration,t:v.textTracks.length})));
+  const vbad=vs.filter(v=>!(v.d>60)||!v.t).length; console.log(vp.width,'videos',vs.length,'loaded',vs.length-vbad); if(vbad) errs.push(vbad+' videos failed to load');
   console.log(vp.width,'lessons',n,'overflow',JSON.stringify(over),'no-chips',JSON.stringify(nochips),'errors',errs.length); errs.slice(0,12).forEach(e=>console.log('  ',e)); if(errs.length||over.length) bad++;
   await ctx.close(); }
  if(process.env.NOSHOT){await b.close(); console.log('BAD',bad); process.exit(bad?1:0);}
@@ -42,4 +45,5 @@ const F='file:///workspace/chandra-learning-repo/08-agentic-ai-engineer/index.ht
  await shot(M,'#l11','15-phone-chapter-drawer.png',async p=>{await p.click('#menu'); await p.waitForTimeout(350);});
  await shot(D,'#videos','16-desktop-videos.png');
  await shot(M,'#labs','17-phone-labs.png');
+ await shot(M,'#l10','18-phone-lesson-video.png',async p=>{await p.evaluate(()=>{const v=document.querySelector('.vid video'); v.scrollIntoView(); v.currentTime=60;}); await p.waitForTimeout(1200);});
  await b.close(); console.log('BAD',bad); process.exit(bad?1:0); })();
