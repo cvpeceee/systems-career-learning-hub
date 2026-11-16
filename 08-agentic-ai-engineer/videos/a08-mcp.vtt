@@ -1,0 +1,130 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:06.722
+This video explains a new standard for plugging tools into chat apps, and why so many job postings mention it.
+
+00:00:07.122 --> 00:00:21.019
+Tool: A function your program lets the model request: search, read a file, query a database, run a test. The model never runs it itself. Like: A button on a panel the model may ask the operator to press.
+
+00:00:22.119 --> 00:00:24.592
+Your team builds a handy fleet lookup tool.
+
+00:00:24.842 --> 00:00:29.393
+One person wants it in their desktop chat app, another in their code editor,
+
+00:00:29.643 --> 00:00:32.221
+and a third inside the agent you are building.
+
+00:00:32.471 --> 00:00:50.571
+Agent: An LLM in a loop that decides its own next step: it calls tools, reads the results, and keeps going until the goal is met or a limit is hit. Like: A technician with a toolbox and a ticket, not a script: they choose which tool to use next based on what they just saw.
+
+00:00:50.871 --> 00:00:57.465
+Without a standard, that is three separate integrations. With MCP it is one server that all of them can plug into.
+
+00:00:57.715 --> 00:01:15.769
+MCP: Model Context Protocol: an open standard for plugging tools and data into AI apps. You write one MCP server, and any MCP-capable app can use its tools. Like: USB for AI tools: one standard plug, so any device works with any host.
+
+00:01:16.869 --> 00:01:19.574
+Think back to computers before USB.
+
+00:01:19.974 --> 00:01:23.074
+Every device needed its own port and its own driver.
+
+00:01:23.474 --> 00:01:38.381
+MCP, the Model Context Protocol, does for AI tools what USB did for devices. You build a tool server once, and any application that speaks MCP can plug it in: desktop chat apps, code editors, and your own agents.
+
+00:01:38.781 --> 00:01:49.102
+Model: A trained file of numbers plus the math that uses them to turn an input into an output. For text, the input is your words and the output is a guess at the next word. Like: A compiled lookup engine: firmware image (the numbers) plus the code that reads it.
+
+00:01:49.352 --> 00:02:06.372
+AI: Artificial intelligence: software that does tasks we used to think needed a person, usually by learning patterns from examples instead of following hand-written rules. Like: A trainee who learns a job by watching thousands of worked examples rather than reading a rulebook.
+
+00:02:06.672 --> 00:02:11.920
+It is an open protocol with official libraries in Python, TypeScript and other languages.
+
+00:02:13.120 --> 00:02:15.419
+Here is a connection, step by step.
+
+00:02:15.819 --> 00:02:23.946
+The host starts the server as a local process and talks over standard input and output, or connects to a remote server over HTTP.
+
+00:02:24.346 --> 00:02:34.690
+HTTP / REST: HTTP is the request-response protocol of the web (GET, POST...). A REST API is one designed around HTTP URLs and verbs. Like: The postal system: an address (URL), a verb on the envelope (POST), a letter (JSON) and a reply.
+
+00:02:34.940 --> 00:02:37.889
+The client asks: which tools do you have?
+
+00:02:38.289 --> 00:02:44.083
+The server answers with names, descriptions and argument schemas, exactly what tool calling needs.
+
+00:02:44.483 --> 00:02:59.808
+JSON Schema: A standard JSON document that describes what valid JSON must look like: which fields, their types, which are required. Like: A C header file for data: it declares the struct so both sides agree on the layout.
+
+00:03:00.108 --> 00:03:19.438
+Tool calling (function calling): You describe functions to the model (name, purpose, parameters). Instead of answering in prose, the model can reply "call get_weather with city=Austin". Your code runs it and sends the result back. Like: The model writes a work order; your code is the technician who actually turns the screwdriver.
+
+00:03:19.738 --> 00:03:24.301
+Later, the model requests a tool, just like in the tool calling video.
+
+00:03:24.701 --> 00:03:26.907
+The client forwards the call to the server.
+
+00:03:27.307 --> 00:03:31.254
+And the server returns the result, or an error flag the model can read.
+
+00:03:32.454 --> 00:03:35.461
+An MCP server can offer three kinds of things.
+
+00:03:35.861 --> 00:03:39.855
+Tools: actions the model may call, possibly with side effects.
+
+00:03:40.255 --> 00:03:46.768
+Resources: read-only data with an address, like fleet colon slash slash devices slash D1.
+
+00:03:47.168 --> 00:03:50.013
+Prompts: reusable templates a user can pick.
+
+00:03:50.413 --> 00:04:01.500
+Prompt: Everything you send the model in one call: instructions, examples, data and the question. Like: The full test vector you feed a device under test.
+
+00:04:01.800 --> 00:04:13.143
+And one warning. A server's tool descriptions go straight into the model's context, so a malicious server can plant instructions there. Only connect servers you trust, and review what they expose.
+
+00:04:14.343 --> 00:04:24.305
+Here is a real server with the official Python library, version two. Most tutorials online still show version one, where the class was called Fast M C P.
+
+00:04:24.705 --> 00:04:26.609
+Create the server and give it a name.
+
+00:04:27.009 --> 00:04:32.791
+A decorator registers a normal Python function as a tool. The type hints become the argument schema.
+
+00:04:33.191 --> 00:04:42.386
+Type hints: Optional type labels in Python such as x: int or -> str. Python does not enforce them at run time, but tools and libraries read them, e.g. to build a tool schema. Like: Comments the compiler can read: they document intent and let tools catch mistakes.
+
+00:04:42.636 --> 00:04:45.457
+The docstring becomes the description the model reads.
+
+00:04:45.857 --> 00:04:53.601
+And run starts it on standard input and output. Lab seven tests this server both in the same process and as a real subprocess.
+
+00:04:54.801 --> 00:05:00.072
+Question for you: What is the difference between an MCP tool and an MCP resource?
+
+00:05:06.372 --> 00:05:17.958
+Answer: A tool is an action the model may call, with arguments, and it may have side effects. A resource is read-only data addressed by a URI that the host can load as context.
+
+00:05:19.058 --> 00:05:19.709
+Recap.
+
+00:05:20.109 --> 00:05:24.544
+MCP is a standard plug between AI applications and tools.
+
+00:05:24.944 --> 00:05:28.984
+The host's client connects, and the server offers its capabilities.
+
+00:05:29.384 --> 00:05:31.799
+Those are tools, resources and prompts.
+
+00:05:32.199 --> 00:05:35.217
+And treat every server as code you are choosing to trust.

@@ -44,7 +44,7 @@ d=r'''<h3>The job in one sentence</h3>
 </ol>
 <div class="key"><b>Realistic pace:</b> about 8–10 hours a week for 12 weeks (see the Plan tab). Build the labs and at least two capstones before you apply. Interviewers ask "show me something you built".</div>''',
 q=[dict(q='Which part of an agent actually executes a tool such as "reboot device"?',o=['The language model','Your application code','The MCP protocol itself','The vector database'],a=1,w='The model only <i>asks</i> for a tool call in structured text. Your code decides whether to allow it, runs it, and returns the result. That is why permissions live in your code.'),
-dict(q='Which skill appears in almost every agentic engineering posting besides Python?',o=['Training models from scratch','Evals and testing of LLM behaviour','CUDA kernel writing','Mobile UI design'],a=1,w='Evaluation (golden sets, regression tests, LLM-as-judge) shows up across nearly all postings because it is how teams prove an agent works.')],
+dict(q='Which skill appears in almost every agentic engineering posting besides Python?',o=['Training models from scratch','Evals and testing of LLM behaviour','CUDA kernel writing (low-level GPU programming)','Mobile UI design'],a=1,w='Evaluation (golden sets, regression tests, LLM-as-judge) shows up across nearly all postings because it is how teams prove an agent works.')],
 th=[('Write the job in one sentence in your own words, then compare with the one above.','Something like: "I build systems where an LLM chooses some steps, and I make them reliable, safe, testable and cheap enough for production."')])
 
 les(id='python',ch=0,t='Python for a C++/Java engineer, in one sitting',mins=40,
@@ -405,7 +405,7 @@ t = Triage.model_validate_json(msg.content[0].text)</code></pre>
                 {"role": "assistant", "content": text},
                 {"role": "user", "content": f"That JSON was invalid: {e}. Reply with corrected JSON only."}]
     raise RuntimeError("model never produced valid output")</code></pre>
-<div class="fw"><b>Firmware link:</b> this is a CRC check plus NAK and resend, with a retry limit, so a bad sender cannot hang you.</div>
+<div class="fw"><b>Firmware link:</b> this is a CRC check plus a NAK (negative acknowledgement) and resend, with a retry limit, so a bad sender cannot hang you.</div>
 
 <h3>Schema design tips that change results</h3>
 <ul>

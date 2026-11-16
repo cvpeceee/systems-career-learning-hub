@@ -336,7 +336,7 @@ def reciprocal_rank(retrieved: list[str], relevant: set[str]) -> float:
 <li><b>Answer correctness</b>: does it match a reference answer? Use exact facts where possible, and a judge with a rubric otherwise.</li>
 <li><b>Citation validity</b>: are cited IDs real, and do they contain the claim? This is partly checkable in code.</li>
 <li><b>"Not found" behaviour</b>: include questions whose answer is <i>not</i> in the docs. The right output is a refusal.</li></ul>
-<p>Libraries such as RAGAS and DeepEval package these metrics. Knowing how to compute them yourself is what interviewers probe.</p>
+<p>Open-source evaluation libraries such as RAGAS and DeepEval package these metrics. Knowing how to compute them yourself is what interviewers probe.</p>
 
 <h3>Diagnosis table</h3>
 <div class="tbl"><table><tr><th>Recall@k</th><th>Faithfulness</th><th>Likely problem → fix</th></tr>

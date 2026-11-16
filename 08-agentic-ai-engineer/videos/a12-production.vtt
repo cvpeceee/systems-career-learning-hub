@@ -1,0 +1,142 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:04.133
+This last core video covers what it takes to run all of this for real users.
+
+00:00:05.333 --> 00:00:08.723
+Launch day. Real users arrive all at once.
+
+00:00:08.973 --> 00:00:13.257
+The model provider starts rejecting requests: too many, slow down.
+
+00:00:13.507 --> 00:00:23.829
+Model: A trained file of numbers plus the math that uses them to turn an input into an output. For text, the input is your words and the output is a guess at the next word. Like: A compiled lookup engine: firmware image (the numbers) plus the code that reads it.
+
+00:00:24.079 --> 00:00:26.610
+The bill climbs faster than anyone planned.
+
+00:00:26.860 --> 00:00:33.849
+And someone asks why one answer took forty seconds. Nobody can say, because nothing was traced. Let's fix all four.
+
+00:00:34.899 --> 00:00:38.417
+First, the provider will fail sometimes. Plan for it.
+
+00:00:38.817 --> 00:00:46.549
+Retry only temporary errors, such as rate limits, overload and timeouts. Never retry a bad request or a failed login.
+
+00:00:46.949 --> 00:01:02.471
+Retry: Sending a failed request again. Safe for temporary errors (timeouts, 429, 5xx) and idempotent operations; dangerous for actions that may have half-happened. Like: Re-sending a NAKed USB packet.
+
+00:01:02.771 --> 00:01:18.073
+Rate limit: A cap the provider puts on how many requests or tokens you may send per minute. Exceed it and you get HTTP status 429 ("too many requests"). Like: A bus arbiter that makes you wait when you hog the bus.
+
+00:01:18.373 --> 00:01:28.103
+Wait longer after each failure, with some randomness so thousands of clients do not retry at the same instant. If the server says how long to wait, wait exactly that long.
+
+00:01:28.503 --> 00:01:35.979
+A circuit breaker stops calling a provider that keeps failing, then tries one request after a cool-down, like a fuse that resets.
+
+00:01:36.379 --> 00:01:41.139
+And a fallback sends the request to a second model or provider when the first is down.
+
+00:01:41.539 --> 00:01:53.300
+Fallback model: A second model or provider you switch to when the first is down, slow or rate-limited. Like: A redundant power supply that takes over when the main one fails.
+
+00:01:54.400 --> 00:01:57.872
+Second, you must be able to see inside every run.
+
+00:01:58.272 --> 00:02:02.567
+Each user request gets one trace, the full story of that run.
+
+00:02:02.967 --> 00:02:21.392
+Trace / span: A trace is the full record of one request through your system; it is made of spans, timed steps such as one model call or one tool call, with inputs, outputs, tokens and errors. Like: A logic analyser capture of one transaction, with each bus phase timestamped.
+
+00:02:21.692 --> 00:02:28.542
+Inside it, every model call and tool call is a span, a timed step with a parent, nested like a call stack.
+
+00:02:28.942 --> 00:02:42.839
+Tool: A function your program lets the model request: search, read a file, query a database, run a test. The model never runs it itself. Like: A button on a panel the model may ask the operator to press.
+
+00:02:43.139 --> 00:03:02.470
+Tool calling (function calling): You describe functions to the model (name, purpose, parameters). Instead of answering in prose, the model can reply "call get_weather with city=Austin". Your code runs it and sends the result back. Like: The model writes a work order; your code is the technician who actually turns the screwdriver.
+
+00:03:02.770 --> 00:03:08.494
+Each span records tokens, latency, errors, and which prompt and model version ran.
+
+00:03:08.894 --> 00:03:27.923
+Token: The unit an LLM reads and writes: a common word, part of a word, or a punctuation mark, each mapped to an integer ID. Prices and limits are counted in tokens. Like: A USB packet: the model never sees "characters", only fixed units it was built to process.
+
+00:03:28.223 --> 00:03:38.103
+Latency: How long a request takes from sending it to getting the answer. Like: Interrupt latency: the wait between the event and your handler running.
+
+00:03:38.403 --> 00:03:49.490
+Prompt: Everything you send the model in one call: instructions, examples, data and the question. Like: The full test vector you feed a device under test.
+
+00:03:49.790 --> 00:04:01.667
+Dashboards and alerts sit on top: slowest requests, cost per task, error rates. OpenTelemetry is the common standard, and tools like LangSmith and Langfuse specialise in agent traces.
+
+00:04:02.067 --> 00:04:16.847
+OpenTelemetry: The open standard and libraries for emitting traces, metrics and logs in a vendor-neutral format. Many LLM tracing tools accept it. Like: A standard debug connector pin-out that every probe brand supports.
+
+00:04:17.147 --> 00:04:36.930
+LangSmith / Langfuse / Braintrust: Hosted or self-hosted tools that store LLM traces, run evals over datasets and compare prompt versions. Langfuse is open source; LangSmith is from the LangChain team; Braintrust is a commercial platform. Like: A lab notebook and test-results database built for LLM experiments.
+
+00:04:37.230 --> 00:04:55.330
+Agent: An LLM in a loop that decides its own next step: it calls tools, reads the results, and keeps going until the goal is met or a limit is hit. Like: A technician with a toolbox and a ticket, not a script: they choose which tool to use next based on what they just saw.
+
+00:04:56.430 --> 00:04:58.055
+Third, cost and speed.
+
+00:04:58.455 --> 00:05:03.169
+Measure cost per completed task, because one task can mean many model calls.
+
+00:05:03.569 --> 00:05:10.930
+Use prompt caching from the provider when many requests share a long identical beginning, such as a big system prompt or document.
+
+00:05:11.330 --> 00:05:29.267
+Prompt caching: The provider remembers the processed form of a long, unchanged prompt prefix (system prompt, tools, documents) so repeat calls that start the same way are faster and billed lower. Like: Keeping the bootloader in RAM so only the changed app image needs loading.
+
+00:05:29.567 --> 00:05:43.604
+System prompt: The instructions you, the developer, put at the top of every request: who the model is, the rules, the output format. Users normally cannot see it. Like: The standing orders pinned on the wall of a control room.
+
+00:05:43.904 --> 00:05:51.543
+Route easy requests to smaller, cheaper models, and save the large ones for hard cases. Prove the switch with your evals.
+
+00:05:51.943 --> 00:06:10.438
+Eval: A repeatable test for an LLM system: fixed inputs, an expected result or a grading rule, and a score. Because outputs vary, you measure pass rates rather than one pass/fail. Like: A production test fixture that measures yield across a batch, not one unit.
+
+00:06:10.738 --> 00:06:17.146
+And stream the output so users see progress within a second or two, even when the full answer takes longer.
+
+00:06:18.346 --> 00:06:25.510
+Question for you: The provider returns 429 with a Retry-After header of 7 seconds. What should your client do?
+
+00:06:31.810 --> 00:06:42.630
+Answer: Wait the 7 seconds the server asked for, then retry, with a cap on attempts. Without a Retry-After header, use exponential backoff with random jitter.
+
+00:06:42.930 --> 00:07:00.508
+Exponential backoff + jitter: On a temporary error, wait and retry, doubling the wait each time (1 s, 2 s, 4 s...) with a little randomness (jitter) so many clients do not retry in lockstep. Like: Ethernet's collision back-off: wait a random, growing slot before re-sending.
+
+00:07:01.608 --> 00:07:02.258
+Recap.
+
+00:07:02.658 --> 00:07:05.735
+Retry temporary errors, with backoff and jitter.
+
+00:07:06.135 --> 00:07:09.118
+Use circuit breakers and fallbacks for outages.
+
+00:07:09.518 --> 00:07:24.646
+Circuit breaker: After repeated failures to a dependency, stop calling it for a cool-down period and fail fast (or use a fallback) instead of piling on. Like: A real breaker: trips on overload, protects the circuit, resets later.
+
+00:07:24.946 --> 00:07:27.291
+Trace every model call and tool call.
+
+00:07:27.691 --> 00:07:35.969
+And manage cost per task with caching, routing and streaming. Lab twelve builds every one of these pieces, and the capstones put them together.
+
+00:07:36.369 --> 00:07:49.825
+Routing: A first, cheap step classifies the request, then code sends it to the right specialised prompt, tool set or model. Like: An interrupt controller dispatching each IRQ to its own handler.
+
+00:07:50.125 --> 00:08:02.943
+Streaming: Receiving the reply token by token as it is generated, instead of waiting for the whole thing. Like: Watching a progress bar fill rather than staring at a blank screen until the download finishes.

@@ -1,0 +1,74 @@
+[
+ {
+  "id": "a01-what-agent-engineers-build",
+  "title": "What an agent engineer actually builds",
+  "dur": "6:56",
+  "lesson": "role"
+ },
+ {
+  "id": "a02-how-llms-generate",
+  "title": "How a language model writes, one token at a time",
+  "dur": "6:22",
+  "lesson": "nexttoken"
+ },
+ {
+  "id": "a03-embeddings",
+  "title": "Embeddings: searching by meaning",
+  "dur": "5:14",
+  "lesson": "embed"
+ },
+ {
+  "id": "a04-calling-a-model",
+  "title": "Calling a model API, and getting reliable output",
+  "dur": "5:09",
+  "lesson": "apis"
+ },
+ {
+  "id": "a05-tool-calling",
+  "title": "Tool calling: how a model asks your code to act",
+  "dur": "3:49",
+  "lesson": "tools"
+ },
+ {
+  "id": "a06-agent-loop",
+  "title": "The agent loop, and the guard rails that make it safe",
+  "dur": "5:25",
+  "lesson": "loop"
+ },
+ {
+  "id": "a07-rag",
+  "title": "RAG: answers grounded in your own documents",
+  "dur": "6:35",
+  "lesson": "rag1"
+ },
+ {
+  "id": "a08-mcp",
+  "title": "MCP: one standard plug for AI tools",
+  "dur": "5:36",
+  "lesson": "mcp1"
+ },
+ {
+  "id": "a09-human-approval",
+  "title": "Human approval and resume with LangGraph",
+  "dur": "4:56",
+  "lesson": "langgraph"
+ },
+ {
+  "id": "a10-evals",
+  "title": "Evals: proving your agent works, every time you change it",
+  "dur": "5:22",
+  "lesson": "evals"
+ },
+ {
+  "id": "a11-prompt-injection",
+  "title": "Prompt injection, and defences that hold",
+  "dur": "5:40",
+  "lesson": "inject"
+ },
+ {
+  "id": "a12-production",
+  "title": "Production: retries, limits, tracing and cost",
+  "dur": "8:04",
+  "lesson": "reliab"
+ }
+]

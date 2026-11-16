@@ -127,7 +127,7 @@ d=r'''<h3>The decision, in order</h3>
 <li><b>Fine-tune or distil for cost</b>: train a small model to imitate a large model on your narrow task, then route that task to the small model.</li></ol>
 
 <h3>How fine-tuning works, in one paragraph</h3>
-<p>Supervised fine-tuning continues training on (input, ideal output) pairs, nudging the weights so the model produces outputs like yours. Full fine-tuning updates every weight and is expensive. <b>LoRA</b> (Hu et al., 2021) freezes the original weights and trains small add-on matrices, which cuts memory use dramatically and produces a small adapter file. QLoRA does the same on a quantised base model. Hosted providers offer fine-tuning APIs for some of their models, and libraries such as Hugging Face's PEFT and TRL do it for open-weight models.</p>
+<p>Supervised fine-tuning continues training on (input, ideal output) pairs, nudging the weights so the model produces outputs like yours. Full fine-tuning updates every weight and is expensive. <b>LoRA</b> (Hu et al., 2021) freezes the original weights and trains small add-on matrices, which cuts memory use dramatically and produces a small adapter file. QLoRA does the same on a quantised base model. Hosted providers offer fine-tuning APIs for some of their models, and libraries such as Hugging Face's PEFT and TRL (open-source fine-tuning libraries) do it for open-weight models.</p>
 <div class="warn"><b>Costs people forget:</b> collecting and cleaning data, keeping it free of PII, re-running fine-tunes when the base model is retired, and evaluating every version. Fine-tuning is a maintenance commitment.</div>
 
 <h3>Small and local models</h3>
@@ -141,7 +141,7 @@ local = OpenAI(base_url="http://localhost:11434/v1", api_key="unused")
 r = local.chat.completions.create(model=LOCAL_MODEL, messages=[{"role": "user", "content": "Summarise: ..."}])
 print(r.choices[0].message.content)</code></pre>
 <p>Small models are weaker at long multi-step tool use. Use them for well-scoped steps (classify, extract, summarise) and verify them on your eval set.</p>
-<div class="fw"><b>Your edge:</b> on-device inference (quantised models on NPUs and GPUs, memory budgets, latency) is where embedded and AI meet. Robotics teams, including humanoid teams like Optimus, need people who understand both the agent layer and the constrained hardware underneath.</div>''',
+<div class="fw"><b>Your edge:</b> on-device inference (quantised models on NPUs (neural processing units: the AI accelerators in recent phones and laptops) and GPUs, memory budgets, latency) is where embedded and AI meet. Robotics teams, including humanoid teams like Optimus, need people who understand both the agent layer and the constrained hardware underneath.</div>''',
 anim='decide',
 q=[dict(q='The assistant doesn\'t know your product\'s 2026 release notes. Best fix?',o=['Fine-tune on the release notes','RAG over the release notes (or a search tool)','Raise temperature','Use a reasoning model'],a=1,w='Knowledge gaps call for retrieval: it stays current, cites sources and respects access rules.'),
 dict(q='What does LoRA change during fine-tuning?',o=['All weights','Only small add-on matrices; the original weights stay frozen','The tokenizer','The context window'],a=1,w='That is why LoRA is cheap and why the result is a small adapter file.')])
@@ -152,7 +152,7 @@ an=r'''<p>A hiring manager reading your résumé asks one question: "has this pe
 d=r'''<h3>Capstone 1: Firmware Log Triage Agent (your signature project)</h3>
 <p><b>What</b>: an agent that takes a device ID and a symptom, searches logs and firmware history through an <b>MCP server you wrote</b>, retrieves relevant known-issue docs (RAG), and returns a structured root-cause hypothesis with quoted evidence and a next diagnostic step. Risky actions (reboot, reflash) need human approval.</p>
 <p><b>Skills proven</b>: tool design, MCP, agent loop, RAG, structured output, HITL, evals, tracing, security.</p>
-<ol><li><b>M1</b> (week 1): an MCP server over sample logs (generate realistic dmesg/USB logs, or use public ones), with tests.</li>
+<p>M1, M2 … are milestones, in order.</p><ol><li><b>M1</b> (week 1): an MCP server over sample logs (generate realistic dmesg/USB logs, or use public ones), with tests.</li>
 <li><b>M2</b>: a hand-written agent loop using the server; structured <code>Triage</code> output.</li>
 <li><b>M3</b>: RAG over a known-issues knowledge base with hybrid search; measure recall@5.</li>
 <li><b>M4</b>: port to LangGraph with an approval interrupt for <code>reboot_device</code>.</li>
@@ -194,7 +194,7 @@ d=r'''<h3>The framework: 7 steps (say them out loud)</h3>
 
 <h3>Worked answer 1: "Design an IT/firmware support agent that can resolve tickets"</h3>
 <details class="sol"><summary>Show the full answer</summary>
-<p><b>Clarify</b>: internal employees; about 2k tickets/day; target first response under 10 s; may reset passwords and reboot conference-room devices; ticket data contains PII. Success = the percentage resolved without a human, with CSAT held.</p>
+<p><b>Clarify</b>: internal employees; about 2k tickets/day; target first response under 10 s; may reset passwords and reboot conference-room devices; ticket data contains PII. Success = the percentage resolved without a human, with customer satisfaction (CSAT, the post-ticket survey score) held.</p>
 <p><b>Baseline</b>: route by category. FAQs → RAG answer (workflow). Device problems → an agent with diagnostic tools. Account actions → a workflow with approval.</p>
 <p><b>Components</b>: a router (small model, structured output: category + confidence); RAG over the KB with hybrid search + reranker + permission filters; an agent with tools <code>get_device_status</code>, <code>search_logs</code>, <code>reboot_device</code> (approval), <code>create_escalation</code>; state in Postgres; LangGraph for the HITL interrupt.</p>
 <p><b>Flow</b>: ticket → redact PII for logging → router → (FAQ) retrieve + answer with citations → (device) agent loop, max 8 steps → if it proposes a reboot, interrupt and ask the device owner → resume → reply + close, or escalate with a summary of findings.</p>

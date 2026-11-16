@@ -1,0 +1,112 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:06.211
+This video shows how a long-running job pauses for a human decision and picks up exactly where it stopped.
+
+00:00:07.411 --> 00:00:13.274
+An agent drafts a plan: flash firmware 3.8.2 to forty devices in building three.
+
+00:00:13.524 --> 00:00:31.624
+Agent: An LLM in a loop that decides its own next step: it calls tools, reads the results, and keeps going until the goal is met or a limit is hit. Like: A technician with a toolbox and a ticket, not a script: they choose which tool to use next based on what they just saw.
+
+00:00:31.924 --> 00:00:36.092
+If the plan is wrong, forty meeting rooms go dark at nine in the morning.
+
+00:00:36.342 --> 00:00:43.877
+So the agent should stop, show the plan to a person, wait, maybe for hours, and then carry on exactly where it left off.
+
+00:00:44.927 --> 00:00:51.696
+LangGraph describes an agent as a graph, which is a state machine you draw in code. Here is our rollout agent.
+
+00:00:52.096 --> 00:01:10.347
+LangGraph: A library (from the LangChain team) where you define an agent as a graph: nodes are steps, edges are transitions, a typed state object flows through, with checkpoints so runs can pause and resume. Like: Writing your agent as an explicit state machine with save points.
+
+00:01:10.647 --> 00:01:24.509
+Graph (nodes and edges): A set of nodes (steps) connected by edges (allowed transitions). Conditional edges choose the next node from the current state. Like: A state-machine diagram: bubbles and arrows with guard conditions.
+
+00:01:24.809 --> 00:01:30.684
+The plan step asks a model to turn the request into a structured plan: version and device list.
+
+00:01:31.084 --> 00:01:41.405
+Model: A trained file of numbers plus the math that uses them to turn an input into an output. For text, the input is your words and the output is a guess at the next word. Like: A compiled lookup engine: firmware image (the numbers) plus the code that reads it.
+
+00:01:41.655 --> 00:01:46.264
+A routing step, which is plain code, checks how many devices are affected.
+
+00:01:46.664 --> 00:01:50.124
+If more than one, the approve step pauses and asks a human.
+
+00:01:50.524 --> 00:01:55.957
+The execute step flashes the devices, or does nothing if the human rejected the plan.
+
+00:01:57.157 --> 00:01:58.527
+Here is the timeline.
+
+00:01:58.927 --> 00:02:04.361
+Your app starts the graph with the request and a thread ID, which names this particular run.
+
+00:02:04.761 --> 00:02:12.748
+After every step, the graph saves its state to a checkpoint store. This is a checkpoint, like a journal in flash that survives a reset.
+
+00:02:13.148 --> 00:02:28.149
+Checkpoint: A saved snapshot of an agent's state after a step, so a run can resume after a crash, a deploy or a long human wait. Like: A save point in a game, or a firmware update journal that survives power loss.
+
+00:02:28.449 --> 00:02:32.558
+At the approve step, the graph pauses and hands the plan back to your app.
+
+00:02:32.958 --> 00:02:38.404
+Your app shows the plan to a person. That could take minutes or days. Nothing is running meanwhile.
+
+00:02:38.804 --> 00:02:42.310
+The person approves, edits the plan, or rejects it.
+
+00:02:42.710 --> 00:02:46.959
+Your app resumes the run with that decision, using the same thread ID.
+
+00:02:47.359 --> 00:02:53.176
+And the graph continues from its last checkpoint, even if the original process restarted in between.
+
+00:02:54.376 --> 00:02:56.349
+Two details catch people out.
+
+00:02:56.749 --> 00:03:01.393
+When you resume, the paused step runs again from its first line, not from the middle.
+
+00:03:01.793 --> 00:03:08.341
+So anything with side effects, like sending a notification, goes after the pause, or must be safe to repeat.
+
+00:03:08.741 --> 00:03:13.943
+In production, store checkpoints in a database, such as Postgres, not in memory.
+
+00:03:14.343 --> 00:03:20.925
+And for flows that run for days or must never be lost, teams also use durable workflow engines such as Temporal.
+
+00:03:21.325 --> 00:03:40.470
+Durable execution: Running a long workflow so every completed step is recorded; after a crash it resumes from the last recorded step instead of starting over. Temporal is a well-known engine for this. Like: A firmware updater that journals each block written, so a power cut resumes mid-way instead of bricking.
+
+00:03:40.770 --> 00:03:55.828
+Workflow (vs agent): LLM calls wired together by fixed code paths you wrote. Predictable and cheap. An agent, by contrast, decides the path itself. Like: A fixed assembly line, versus a craftsman who decides the order of work.
+
+00:03:56.128 --> 00:04:10.815
+Temporal: An open-source durable execution engine: you write workflows as normal code, and it records each step so they survive crashes and can run for days. Like: A flight recorder that can also replay the flight from any point.
+
+00:04:11.915 --> 00:04:19.113
+Question for you: After a human approves, the code that ran just before interrupt sends a second notification. Why?
+
+00:04:25.413 --> 00:04:34.376
+Answer: On resume, the interrupted node runs again from its first line. Put side effects after the interrupt, or make them safe to repeat.
+
+00:04:35.476 --> 00:04:36.126
+Recap.
+
+00:04:36.526 --> 00:04:39.522
+A LangGraph agent is a state machine of steps.
+
+00:04:39.922 --> 00:04:44.577
+Interrupt pauses for a human, and a resume command continues with their decision.
+
+00:04:44.977 --> 00:04:47.706
+Checkpoints let a pause survive restarts.
+
+00:04:48.106 --> 00:04:55.153
+And the paused step re-runs, so keep side effects after the pause. Lab eight tests every one of these paths.

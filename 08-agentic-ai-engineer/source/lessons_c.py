@@ -31,7 +31,7 @@ d=r'''<h3>The cast</h3>
 
 <h3>Why it matters for the job</h3>
 <ul><li>Postings increasingly list "build MCP servers" and "tool schema design" as requirements. Several say their MCP server is already in production.</li>
-<li>MCP turns your internal APIs into something every agent in the company can use, which is platform work with leverage.</li>
+<li>MCP turns your internal APIs into something every agent in the company can use, so one server you build is reused by every team's agents instead of each team writing its own integration.</li>
 <li>It concentrates risk: a server is arbitrary code execution offered to a model. The spec tells hosts to obtain user consent before invoking tools and to treat tool descriptions from untrusted servers as untrusted (more in Chapter 9).</li></ul>
 
 <h3>MCP vs A2A</h3>
@@ -127,7 +127,7 @@ d=r'''<h3>What every framework gives you</h3>
 <div class="tbl"><table><tr><th>Framework</th><th>Core idea</th><th>Reach for it when</th><th>Watch out for</th></tr>
 <tr><td><b>LangGraph</b> (LangChain team; Python and JS)</td><td>An agent is an explicit graph: nodes, conditional edges, a typed state, checkpointers, <code>interrupt()</code> for human input, durable execution</td><td>Stateful, long-running, auditable workflows with HITL. The framework named most often in the postings we read</td><td>More concepts to learn, and verbose for tiny agents</td></tr>
 <tr><td><b>OpenAI Agents SDK</b> (Python, TS)</td><td>Few primitives: Agent, Runner, tools, handoffs, guardrails, sessions, built-in tracing</td><td>Fast, clean agents and handoffs, especially on OpenAI models (other providers are supported via adapters)</td><td>Less explicit control flow than a graph</td></tr>
-<tr><td><b>Claude Agent SDK</b> (Python, TS)</td><td>The Claude Code harness as a library: file, shell and web tools, permission modes, hooks, subagents, MCP</td><td>Agents that operate on files, repos or a computer (coding, log digging, ops), on Claude models</td><td>Tied to Anthropic models. Powerful tools mean you must configure permissions and sandboxing</td></tr>
+<tr><td><b>Claude Agent SDK</b> (Python, TS)</td><td>The Claude Code harness as a library: file, shell and web tools, permission modes, hooks, subagents, MCP</td><td>Agents that operate on files, repos or a computer (coding, log digging, ops), on Claude models</td><td>Tied to Anthropic models. Its tools can edit files and run shell commands, so you must configure permissions and sandboxing</td></tr>
 <tr><td><b>CrewAI</b> (Python)</td><td>Role-based "crews" of agents with tasks, plus event-driven Flows</td><td>Quick multi-role prototypes and business workflows</td><td>Role-play abstractions can hide what is actually sent to the model</td></tr>
 <tr><td><b>Microsoft Agent Framework</b> (Python, .NET)</td><td>Successor to AutoGen and Semantic Kernel (1.0 in April 2026): agents, graph workflows, multi-agent patterns, MCP and A2A</td><td>.NET/Azure shops and enterprise integration</td><td>AutoGen itself is archived. Don't start new work on it (a community fork, AG2, continues)</td></tr>
 <tr><td><b>LlamaIndex</b> (Python, TS)</td><td>Data first: loaders, indexing and retrieval, plus agents and workflows</td><td>RAG-heavy systems over many document types</td><td>Overlaps with your own retrieval code. Use the parts you need</td></tr>
@@ -484,7 +484,7 @@ def redact(text: str) -> str:
     return text</code></pre>
 <ul><li>Regex catches structured PII (emails, phone numbers, card numbers). Names and addresses need a named-entity recogniser (for example Microsoft Presidio). Neither is perfect.</li>
 <li>Redact <b>before</b> logging and tracing, and before sending to third parties when policy requires it. Keep a reversible mapping only if you truly need it, and protect it.</li>
-<li>Know your provider's data-retention and training-use terms, and the regulations that apply (GDPR and others). Regulated postings (banking, insurance) ask for this explicitly.</li></ul>''',
+<li>Know your provider's data-retention and training-use terms, and the regulations that apply (for example GDPR, the EU data-protection law). Regulated postings (banking, insurance) ask for this explicitly.</li></ul>''',
 q=[dict(q='Where must the "needs approval" check for reboot_device live?',o=['In the system prompt','In code that runs before the tool executes, outside the model\'s control','In the tool description','In the user\'s message'],a=1,w='Policies enforced in code hold even if the model is fooled. Prompt text does not.'),
 dict(q='A coding agent runs tests in a container with network on and the developer\'s cloud credentials mounted. Biggest risk?',o=['Slow tests','A prompt-injected agent can exfiltrate credentials or code over the network','High token cost','Flaky tests'],a=1,w='Remove credentials from the sandbox and default network to off or allowlisted.')],
 lab='Lab 11 (<code>labs/11-security-guardrails</code>): a policy engine with taint tracking, path sandboxing, PII redaction and an end-to-end test proving an injected document cannot trigger a destructive tool.')

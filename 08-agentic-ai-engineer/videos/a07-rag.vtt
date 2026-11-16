@@ -1,0 +1,124 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:05.550
+This video covers the most common pattern in production systems: answering from your own documents.
+
+00:00:06.750 --> 00:00:11.336
+A customer asks your support bot which firmware fixes the dock wake-up bug.
+
+00:00:11.586 --> 00:00:17.774
+The bot answers, with total confidence, version 3.2. That version does not exist.
+
+00:00:18.024 --> 00:00:26.313
+The right answer, 2.1.4, was sitting in your knowledge base the whole time. This video is about making the model look it up and prove it.
+
+00:00:26.563 --> 00:00:36.884
+Model: A trained file of numbers plus the math that uses them to turn an input into an output. For text, the input is your words and the output is a guess at the next word. Like: A compiled lookup engine: firmware image (the numbers) plus the code that reads it.
+
+00:00:37.934 --> 00:00:39.119
+Think of an exam.
+
+00:00:39.519 --> 00:00:47.262
+Without retrieval, the model answers from memory, which may be outdated, or may never have contained your internal documents at all.
+
+00:00:47.662 --> 00:00:57.937
+With retrieval augmented generation, or RAG, your code first finds the most relevant passages in your own documents, and puts them in the prompt. It becomes an open book exam.
+
+00:00:58.337 --> 00:01:15.091
+RAG: Retrieval-augmented generation: before asking the model, search your own documents for the relevant passages and paste them into the prompt so it answers from them. Like: An open-book exam: first find the right pages, then write the answer from them.
+
+00:01:15.391 --> 00:01:26.478
+Prompt: Everything you send the model in one call: instructions, examples, data and the question. Like: The full test vector you feed a device under test.
+
+00:01:26.778 --> 00:01:31.364
+And you require a citation for every claim, so anyone can check the page.
+
+00:01:31.764 --> 00:01:43.606
+Citation: An answer that names which retrieved chunk each claim came from, so a person or a program can verify it. Like: A footnote that points to the exact datasheet page.
+
+00:01:44.706 --> 00:01:47.992
+Here is the full pipeline, which you build in lab six.
+
+00:01:48.392 --> 00:01:53.756
+Split documents into chunks, short passages with a little overlap so no fact is cut in half.
+
+00:01:54.156 --> 00:02:09.759
+Chunking: Cutting documents into smaller passages (chunks) before indexing, so a search returns just the relevant part rather than a whole manual. Like: Splitting a firmware image into flash pages: small units you can find and fetch individually.
+
+00:02:10.059 --> 00:02:23.887
+Chunk overlap: Repeating a little text at the end of one chunk and the start of the next, so a sentence cut at a boundary still appears whole in one of them. Like: Overlapping photos in a panorama so nothing falls in the seam.
+
+00:02:24.187 --> 00:02:28.924
+Index every chunk twice: once for keyword search, once as embedding vectors.
+
+00:02:29.324 --> 00:02:46.240
+BM25 (keyword search): The classic keyword-search ranking formula: scores a document higher when it contains the query words, especially rare ones, without rewarding endless repetition. Like: grep with judgement: rare words like an error code count far more than "the".
+
+00:02:46.540 --> 00:03:02.167
+Embedding: A list of numbers (a vector) that represents the meaning of a piece of text, made so that texts with similar meaning get nearby vectors. Like: GPS coordinates for meaning: "puppy" and "dog" are neighbours, "invoice" is in another city.
+
+00:03:02.467 --> 00:03:20.218
+Vector: An ordered list of numbers, such as [0.12, -0.80, 0.33]. In this course, almost always an embedding. Like: A fixed-size array of floats, exactly like float v[1536] in C.
+
+00:03:20.518 --> 00:03:23.908
+For each question, retrieve candidates with both methods.
+
+00:03:24.308 --> 00:03:33.689
+Merge the two ranked lists. A simple, robust way is reciprocal rank fusion, which scores each chunk by its positions in the lists, not by raw scores.
+
+00:03:34.089 --> 00:03:53.431
+RRF: Reciprocal rank fusion: a simple way to merge ranked lists. Each document scores 1/(k + its rank) in each list (k is often 60); add the scores and sort. Like: Merging two judges' rankings by giving points for placement, not raw scores they cannot compare.
+
+00:03:53.731 --> 00:03:58.875
+Rerank the shortlist with a slower model that reads the question and each passage together.
+
+00:03:59.275 --> 00:04:15.912
+Reranker: A second, slower but sharper model that re-scores the top results of a search by reading the query and each passage together, then re-orders them. Like: A first-pass resume filter, then a hiring manager who reads the shortlisted ones carefully.
+
+00:04:16.212 --> 00:04:27.636
+Finally, the model answers using only those passages, citing them, and your code checks that every citation points to a real passage. If not, the answer becomes: I don't know.
+
+00:04:28.836 --> 00:04:31.541
+How do you know any of this works? You measure.
+
+00:04:31.941 --> 00:04:36.341
+Build a set of real questions where you know which document holds the answer.
+
+00:04:36.741 --> 00:04:41.049
+Recall at k asks: did the right document make the top k results?
+
+00:04:41.449 --> 00:05:03.287
+Recall@k / MRR: Retrieval metrics. Recall@k: of the passages that should be found, what fraction appear in the top k. MRR (mean reciprocal rank): on average, how high the first correct passage ranks (1 for first place, 1/2 for second...). Like: Did the right part show up in the first page of catalogue results, and how close to the top?
+
+00:05:03.587 --> 00:05:13.258
+Top-k: Keep only the k best results, for example the 5 highest-scoring chunks. Like: "Show me the top 5" on any leaderboard.
+
+00:05:13.558 --> 00:05:17.935
+M R R, mean reciprocal rank, asks how close to the top it was.
+
+00:05:18.335 --> 00:05:30.502
+Then change one thing at a time, such as chunk size or adding the reranker, and measure again. In the lab's small example, hybrid search lifts recall at 3 from 0.75 to 1.0.
+
+00:05:30.902 --> 00:05:48.248
+Hybrid search: Running keyword search and semantic search together and merging the two ranked lists, so you catch both exact identifiers and paraphrases. Like: Asking both the parts catalogue (exact part numbers) and the experienced tech (meaning), then combining their answers.
+
+00:05:49.348 --> 00:05:56.174
+Question for you: Your RAG bot gives wrong answers. How do you tell whether retrieval or generation is at fault?
+
+00:06:02.474 --> 00:06:17.498
+Answer: Look at what was retrieved for the failing questions. If the right passage was not in the top results, fix retrieval and measure recall at k. If it was there and the answer still went wrong, fix the prompt, the model, or the citation check.
+
+00:06:18.598 --> 00:06:19.248
+Recap.
+
+00:06:19.648 --> 00:06:23.967
+RAG means finding the right passages first, then answering only from them.
+
+00:06:24.367 --> 00:06:27.130
+Hybrid search combines keywords and vectors.
+
+00:06:27.530 --> 00:06:30.885
+Rerank, cite, and verify the citations in code.
+
+00:06:31.285 --> 00:06:34.385
+And measure retrieval with recall at k and M R R.
