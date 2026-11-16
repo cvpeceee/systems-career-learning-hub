@@ -1,0 +1,118 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:04.052
+Now we wrap that idea in a loop, and add the safety limits around it.
+
+00:00:05.252 --> 00:00:08.863
+Picture an agent asked to find a document that does not exist.
+
+00:00:09.113 --> 00:00:27.213
+Agent: An LLM in a loop that decides its own next step: it calls tools, reads the results, and keeps going until the goal is met or a limit is hit. Like: A technician with a toolbox and a ticket, not a script: they choose which tool to use next based on what they just saw.
+
+00:00:27.513 --> 00:00:31.495
+It searches, finds nothing, and searches again with the same words.
+
+00:00:31.745 --> 00:00:33.219
+Every call costs money.
+
+00:00:33.469 --> 00:00:39.715
+By morning it is still going. The loop itself is ten lines of code. The guard rails around it are the engineering.
+
+00:00:39.965 --> 00:00:56.544
+Guardrail: An automatic check that runs before or after the model (or before a tool runs) and blocks, fixes or flags bad input or output. Like: A hardware interlock: the machine cannot start while the guard is open, whatever the operator wants.
+
+00:00:57.644 --> 00:01:02.869
+Here is the core loop from lab five. It starts with a system message and the user's goal.
+
+00:01:03.269 --> 00:01:09.132
+It runs for at most a fixed number of steps. That is guard rail one, like a watchdog timer.
+
+00:01:09.532 --> 00:01:16.184
+Each step calls the model with the history and the tool descriptions, adds up the tokens spent, and appends the reply.
+
+00:01:16.584 --> 00:01:26.906
+Model: A trained file of numbers plus the math that uses them to turn an input into an output. For text, the input is your words and the output is a guess at the next word. Like: A compiled lookup engine: firmware image (the numbers) plus the code that reads it.
+
+00:01:27.156 --> 00:01:41.053
+Tool: A function your program lets the model request: search, read a file, query a database, run a test. The model never runs it itself. Like: A button on a panel the model may ask the operator to press.
+
+00:01:41.353 --> 00:02:00.382
+Token: The unit an LLM reads and writes: a common word, part of a word, or a punctuation mark, each mapped to an integer ID. Prices and limits are counted in tokens. Like: A USB packet: the model never sees "characters", only fixed units it was built to process.
+
+00:02:00.682 --> 00:02:05.221
+If the reply has no tool calls, it is the final answer, and we return it.
+
+00:02:05.621 --> 00:02:24.952
+Tool calling (function calling): You describe functions to the model (name, purpose, parameters). Instead of answering in prose, the model can reply "call get_weather with city=Austin". Your code runs it and sends the result back. Like: The model writes a work order; your code is the technician who actually turns the screwdriver.
+
+00:02:25.252 --> 00:02:29.722
+Guard rail two: a token budget, so one run cannot spend without limit.
+
+00:02:30.122 --> 00:02:36.066
+Guard rail three: if the exact same call repeats too often, the agent is stuck, so stop.
+
+00:02:36.466 --> 00:02:42.677
+Otherwise run each tool, turning any failure into an error result, and append the result with its call ID.
+
+00:02:43.877 --> 00:02:46.211
+You already know every one of these ideas.
+
+00:02:46.611 --> 00:02:48.770
+A watchdog becomes the step limit.
+
+00:02:49.170 --> 00:02:51.562
+A power budget becomes the token budget.
+
+00:02:51.962 --> 00:02:55.050
+A stuck loop detector becomes the repeated call check.
+
+00:02:55.450 --> 00:03:03.252
+And a trace buffer becomes a record of every model call and tool call, with timings. Without that trace, debugging an agent is guesswork.
+
+00:03:03.652 --> 00:03:22.077
+Trace / span: A trace is the full record of one request through your system; it is made of spans, timed steps such as one model call or one tool call, with inputs, outputs, tokens and errors. Like: A logic analyser capture of one transaction, with each bus phase timestamped.
+
+00:03:23.177 --> 00:03:25.534
+One more problem appears in long runs.
+
+00:03:25.934 --> 00:03:34.073
+Every step adds messages, and the context window, the maximum the model can read at once, is finite. Cost grows with it too.
+
+00:03:34.473 --> 00:03:49.809
+Context window: The maximum number of tokens the model can look at in one call: your instructions, the chat history, documents and its own reply must all fit. Like: The RAM of a microcontroller: whatever does not fit is simply not there.
+
+00:03:50.109 --> 00:03:55.160
+One fix is trimming: drop the oldest turns, but keep the system message and the goal.
+
+00:03:55.560 --> 00:04:04.674
+A better fix for long tasks is compaction: ask a model to summarise old turns into one short note, like log rotation that keeps a digest.
+
+00:04:05.074 --> 00:04:20.016
+Compaction (summarising history): When the conversation gets too long, replacing older messages with a short summary so the agent can keep working within the context window. Like: Log rotation with a summary line: keep the gist, free the space.
+
+00:04:20.316 --> 00:04:25.726
+Either way, never separate a tool call from its result, or the provider rejects the request.
+
+00:04:26.926 --> 00:04:31.303
+Question for you: Name three limits every production agent loop needs.
+
+00:04:31.603 --> 00:04:49.285
+Agent loop: The core cycle of every agent: call the model, if it asked for tools run them and append the results, call the model again, stop when it gives a final answer. Like: The main loop of firmware: read inputs, decide, act, repeat until shutdown.
+
+00:04:55.585 --> 00:05:06.347
+Answer: A maximum number of steps, a token or cost budget, and loop detection that stops repeated identical tool calls. A wall-clock timeout is a good fourth.
+
+00:05:07.447 --> 00:05:08.097
+Recap.
+
+00:05:08.497 --> 00:05:14.442
+An agent is a loop: call the model, run the tools it asks for, feed back the results, repeat.
+
+00:05:14.842 --> 00:05:18.429
+Step limits, budgets and loop detection are not optional.
+
+00:05:18.829 --> 00:05:19.979
+Trace every step.
+
+00:05:20.379 --> 00:05:24.616
+And trim or compact history without ever splitting a tool call from its result.

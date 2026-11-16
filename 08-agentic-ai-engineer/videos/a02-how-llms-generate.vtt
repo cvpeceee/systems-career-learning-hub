@@ -1,0 +1,127 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:04.957
+How does a chatbot actually write its answers? Three ideas, one at a time.
+
+00:00:06.157 --> 00:00:10.534
+Ask a chatbot the same question twice and you often get two different answers.
+
+00:00:10.784 --> 00:00:13.617
+Nothing is broken, and no one changed the model.
+
+00:00:13.867 --> 00:00:24.189
+Model: A trained file of numbers plus the math that uses them to turn an input into an output. For text, the input is your words and the output is a guess at the next word. Like: A compiled lookup engine: firmware image (the numbers) plus the code that reads it.
+
+00:00:24.439 --> 00:00:30.569
+By the end of this video you will know exactly where that randomness comes from, and which knob controls it.
+
+00:00:31.619 --> 00:00:33.476
+Start with something familiar.
+
+00:00:33.876 --> 00:00:38.752
+Your phone keyboard suggests the next word, based on the last few words you typed.
+
+00:00:39.152 --> 00:00:47.802
+A large language model, or LLM, does the same thing, but it looks at thousands of words of context and has learned from a huge amount of text.
+
+00:00:48.202 --> 00:01:03.016
+LLM: Large language model: a model trained on a huge amount of text whose one skill is predicting the next piece of text. Chat assistants are built on it. Like: Phone autocomplete scaled up until it has read most of the public internet.
+
+00:01:03.316 --> 00:01:13.231
+It does not see letters. Text is first split into tokens, which are whole words or pieces of words, each with an ID number. Pricing and limits are counted in tokens too.
+
+00:01:13.631 --> 00:01:32.660
+Token: The unit an LLM reads and writes: a common word, part of a word, or a punctuation mark, each mapped to an integer ID. Prices and limits are counted in tokens. Like: A USB packet: the model never sees "characters", only fixed units it was built to process.
+
+00:01:33.760 --> 00:01:36.012
+Here is one step, in slow motion.
+
+00:01:36.412 --> 00:01:40.487
+The model reads every token so far, for example: the dock is not.
+
+00:01:40.887 --> 00:01:46.843
+It gives every possible next token a score. Detected scores high, banana scores very low.
+
+00:01:47.243 --> 00:01:53.234
+A function called softmax turns those scores into probabilities that add up to one hundred percent.
+
+00:01:53.634 --> 00:02:08.669
+Softmax: The formula that turns raw scores into probabilities: raise e to each score, then divide each by the total. Like: Normalising a histogram so the bars add up to 100%, with big bars made even bigger.
+
+00:02:08.969 --> 00:02:13.265
+Then one token is picked, at random, weighted by those probabilities.
+
+00:02:13.665 --> 00:02:20.631
+It is appended, and the whole thing runs again for the next token. A long answer is just this loop, hundreds of times.
+
+00:02:21.831 --> 00:02:26.985
+That random pick is why the same question can get two answers. Two settings control it.
+
+00:02:27.385 --> 00:02:33.353
+Temperature. Low temperature sharpens the probabilities, so the top choice wins almost every time.
+
+00:02:33.753 --> 00:02:49.368
+Temperature: A setting that sharpens or flattens the next-token probabilities. Low (near 0) means almost always the top choice; high means more variety and more mistakes. Like: A dial between "always play the safest move" and "take creative risks".
+
+00:02:49.668 --> 00:02:54.312
+High temperature flattens them, so you get more variety, and more mistakes.
+
+00:02:54.712 --> 00:03:02.027
+Top p keeps only the most likely tokens whose probabilities add up to p, say ninety percent, and samples from those.
+
+00:03:02.427 --> 00:03:20.538
+Top-p (nucleus sampling): A sampling rule: keep only the most likely tokens whose chances add up to p (for example 0.9), throw away the long tail, then pick from what is left. Like: Shortlisting candidates until the shortlist covers 90% of the votes, then drawing from the shortlist.
+
+00:03:20.838 --> 00:03:33.098
+Sampling: Picking the next token at random according to its probability, instead of always taking the most likely one. Like: Drawing a ball from a bag where some colours have more balls than others.
+
+00:03:33.398 --> 00:03:43.302
+For agents that call tools, keep the randomness low and still validate every output, because a low setting reduces variation but does not prove correctness.
+
+00:03:43.702 --> 00:04:01.802
+Agent: An LLM in a loop that decides its own next step: it calls tools, reads the results, and keeps going until the goal is met or a limit is hit. Like: A technician with a toolbox and a ticket, not a script: they choose which tool to use next based on what they just saw.
+
+00:04:02.102 --> 00:04:15.999
+Tool: A function your program lets the model request: search, read a file, query a database, run a test. The model never runs it itself. Like: A button on a panel the model may ask the operator to press.
+
+00:04:17.099 --> 00:04:19.723
+One more consequence of next token prediction.
+
+00:04:20.123 --> 00:04:36.911
+Next-token prediction: The single job an LLM does: given all the tokens so far, output a probability for every possible next token, pick one, append it, repeat. Like: A predictive keyboard that keeps tapping its own top suggestion until the message is done.
+
+00:04:37.211 --> 00:04:42.865
+The model always produces the most plausible continuation, whether or not it knows the answer.
+
+00:04:43.265 --> 00:04:51.078
+Plausible is not the same as true. A confident made-up answer is called a hallucination. It is like a technician who never says I don't know.
+
+00:04:51.478 --> 00:05:06.606
+Hallucination: When a model states something false with full confidence, because it produces likely-sounding text rather than looking facts up. Like: A confident colleague who fills a memory gap with a plausible guess instead of saying "I don't know".
+
+00:05:06.906 --> 00:05:15.579
+The fix is not a better question. You give the model real facts through tools and document search, and you check what it claims. That is most of this course.
+
+00:05:16.779 --> 00:05:25.080
+Question for you: A model gives slightly different answers every run, and you need repeatable output for a classifier. What do you change first?
+
+00:05:31.380 --> 00:05:44.290
+Answer: Lower the temperature, toward zero, so the most likely token wins almost every time. Then add structured output and tests, because even low temperature is not a full guarantee on every provider.
+
+00:05:44.590 --> 00:06:00.066
+Structured output: Making the model reply in a machine-readable shape, usually JSON that matches a schema you give, instead of free prose. Like: A form with labelled boxes instead of a blank page: easy for the next program to read.
+
+00:06:01.166 --> 00:06:01.816
+Recap.
+
+00:06:02.216 --> 00:06:04.608
+Text becomes tokens with ID numbers.
+
+00:06:05.008 --> 00:06:09.536
+At each step the model scores every possible next token, and one is sampled.
+
+00:06:09.936 --> 00:06:13.047
+Temperature and top p control how random that choice is.
+
+00:06:13.447 --> 00:06:20.843
+And plausible is not true, so we ground answers in real data and verify them. Lab one has you build all of this by hand.

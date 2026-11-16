@@ -1,0 +1,115 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:06.618
+Time to send a first real request, see why the reply can forget everything, and get output your code can trust.
+
+00:00:07.818 --> 00:00:10.407
+A user writes: hi, I am Chandra.
+
+00:00:10.657 --> 00:00:12.224
+The bot replies politely.
+
+00:00:12.474 --> 00:00:15.806
+One message later the user asks: what is my name?
+
+00:00:16.056 --> 00:00:22.233
+And the bot has no idea. The model did not forget. It never remembered, and this video shows why.
+
+00:00:22.483 --> 00:00:32.804
+Model: A trained file of numbers plus the math that uses them to turn an input into an output. For text, the input is your words and the output is a guess at the next word. Like: A compiled lookup engine: firmware image (the numbers) plus the code that reads it.
+
+00:00:33.854 --> 00:00:35.897
+Here is what travels over the wire.
+
+00:00:36.297 --> 00:00:44.540
+Your code sends a list of messages. A system message sets the rules, like you triage support tickets. A user message carries the question.
+
+00:00:44.940 --> 00:00:49.991
+The API returns the reply, plus how many tokens you used and why it stopped.
+
+00:00:50.391 --> 00:00:58.297
+API: Application programming interface: the set of calls one program offers another. Here, usually an HTTP endpoint you send JSON to. Like: The ioctl list a driver exposes: the only doors into it.
+
+00:00:58.547 --> 00:01:17.576
+Token: The unit an LLM reads and writes: a common word, part of a word, or a punctuation mark, each mapped to an integer ID. Prices and limits are counted in tokens. Like: A USB packet: the model never sees "characters", only fixed units it was built to process.
+
+00:01:17.876 --> 00:01:21.382
+Your code appends that reply to its own copy of the conversation.
+
+00:01:21.782 --> 00:01:31.999
+For the next turn, you send the entire history again, plus the new message. The API is stateless, like a server that keeps no session: it remembers nothing between calls.
+
+00:01:32.399 --> 00:01:47.887
+Stateless API: The model keeps no memory between calls. To "continue a chat" you resend the whole history each time (or let a server-side feature store it for you). Like: A UDP server: every packet must carry everything needed to answer it.
+
+00:01:48.187 --> 00:01:52.981
+That is why the bot in the story forgot the name. Someone sent only the latest message.
+
+00:01:54.181 --> 00:02:02.552
+Here is a real call with the official OpenAI Python library. The client reads your API key from an environment variable, never from code.
+
+00:02:02.952 --> 00:02:05.170
+You call responses dot create.
+
+00:02:05.570 --> 00:02:10.283
+The model name comes from configuration, because names change several times a year.
+
+00:02:10.683 --> 00:02:14.979
+Instructions play the system role, and input holds the conversation.
+
+00:02:15.379 --> 00:02:17.701
+Output text gives you the reply.
+
+00:02:18.101 --> 00:02:29.641
+And usage tells you the input and output tokens, which is what you pay for. Anthropic's Messages API has the same shape with different field names, and lab three wraps both behind one function.
+
+00:02:30.841 --> 00:02:34.545
+Agents need output that code can read, not just prose.
+
+00:02:34.945 --> 00:02:53.045
+Agent: An LLM in a loop that decides its own next step: it calls tools, reads the results, and keeps going until the goal is met or a limit is hit. Like: A technician with a toolbox and a ticket, not a script: they choose which tool to use next based on what they just saw.
+
+00:02:53.345 --> 00:03:00.671
+Ask for JSON that matches a schema, which is like a struct definition: field names, types, allowed values.
+
+00:03:01.071 --> 00:03:09.117
+JSON: A plain-text format for structured data: objects in {braces}, lists in [brackets], strings in quotes. The lingua franca of web APIs. Like: A struct printed as text so any language can read it back.
+
+00:03:09.367 --> 00:03:24.692
+JSON Schema: A standard JSON document that describes what valid JSON must look like: which fields, their types, which are required. Like: A C header file for data: it declares the struct so both sides agree on the layout.
+
+00:03:24.992 --> 00:03:30.623
+Use the provider's structured output feature when the model supports it. It makes malformed JSON rare.
+
+00:03:31.023 --> 00:03:46.499
+Structured output: Making the model reply in a machine-readable shape, usually JSON that matches a schema you give, instead of free prose. Like: A form with labelled boxes instead of a blank page: easy for the next program to read.
+
+00:03:46.799 --> 00:03:54.101
+Still validate every reply, for example with Pydantic, because the values can be wrong even when the format is right.
+
+00:03:54.501 --> 00:04:09.710
+Pydantic: A popular Python library: you declare a class with typed fields, and it validates data against it and can emit the matching JSON Schema. Like: A struct definition that also checks every incoming packet against itself.
+
+00:04:10.010 --> 00:04:20.634
+If validation fails, send the exact error back and ask again, a bounded number of times. It is a negative acknowledgement with a reason, so the sender can retransmit correctly.
+
+00:04:21.834 --> 00:04:28.904
+Question for you: Your chat app sends only the newest user message to the API. What goes wrong, and how do you fix it?
+
+00:04:35.204 --> 00:04:49.171
+Answer: The model sees no earlier turns, so it loses all context. The API keeps no memory between calls, so your code must send the conversation history, trimmed or summarised to fit, with every request.
+
+00:04:50.271 --> 00:04:50.921
+Recap.
+
+00:04:51.321 --> 00:04:55.025
+You send messages with roles: system, user and assistant.
+
+00:04:55.425 --> 00:04:59.558
+The API is stateless, so your code sends the history every time.
+
+00:04:59.958 --> 00:05:03.197
+Model names live in config and keys live in the environment.
+
+00:05:03.597 --> 00:05:08.752
+And reliable output means a schema, validation, and a bounded repair loop.

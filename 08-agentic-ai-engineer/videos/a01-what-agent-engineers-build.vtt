@@ -1,0 +1,142 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:09.474
+Welcome. In this first video: the difference between a chat assistant and software that acts on its own, what one run looks like, and what employers ask for.
+
+00:00:10.674 --> 00:00:16.305
+Picture a support engineer at two in the morning typing one question: why did dock D1 reboot last night?
+
+00:00:16.555 --> 00:00:20.096
+Instead of guessing, the agent searches the device logs.
+
+00:00:20.346 --> 00:00:38.446
+Agent: An LLM in a loop that decides its own next step: it calls tools, reads the results, and keeps going until the goal is met or a limit is hit. Like: A technician with a toolbox and a ticket, not a script: they choose which tool to use next based on what they just saw.
+
+00:00:38.746 --> 00:00:43.099
+It checks which firmware the dock runs, and compares it with the known issues.
+
+00:00:43.349 --> 00:00:53.566
+Then it replies with the cause, the fix, and the exact log lines it relied on. Building that, safely and reliably, is the job this course prepares you for.
+
+00:00:54.616 --> 00:00:56.845
+Let's separate two words people mix up.
+
+00:00:57.245 --> 00:01:04.083
+A chatbot answers once, from what the model already learned. It is like asking a colleague a question across the desk.
+
+00:01:04.483 --> 00:01:14.805
+Model: A trained file of numbers plus the math that uses them to turn an input into an output. For text, the input is your words and the output is a guess at the next word. Like: A compiled lookup engine: firmware image (the numbers) plus the code that reads it.
+
+00:01:15.055 --> 00:01:24.877
+An agent is given a goal. It decides which tools to call, reads what comes back, and keeps going until the goal is met, like a technician working through a troubleshooting checklist.
+
+00:01:25.277 --> 00:01:39.174
+Tool: A function your program lets the model request: search, read a file, query a database, run a test. The model never runs it itself. Like: A button on a panel the model may ask the operator to press.
+
+00:01:39.474 --> 00:01:45.511
+And you, the engineer, build everything around the model: the loop, the tools, the limits and the checks.
+
+00:01:46.711 --> 00:01:50.183
+Here is one run of the agent from the story, step by step.
+
+00:01:50.583 --> 00:01:52.591
+A goal arrives from a user.
+
+00:01:52.991 --> 00:01:58.262
+The model reads it and picks the next step, for example: call the log search tool for D1.
+
+00:01:58.662 --> 00:02:04.142
+Your code checks that request and runs the tool. The model never touches your systems directly.
+
+00:02:04.542 --> 00:02:06.841
+The result goes back to the model as text.
+
+00:02:07.241 --> 00:02:16.749
+And the cycle repeats until the model gives a final answer, or one of your limits stops it. That cycle is called the agent loop, and you will write it yourself in lab five.
+
+00:02:17.149 --> 00:02:34.831
+Agent loop: The core cycle of every agent: call the model, if it asked for tools run them and append the results, call the model again, stop when it gives a final answer. Like: The main loop of firmware: read inputs, decide, act, repeat until shutdown.
+
+00:02:35.931 --> 00:02:41.585
+We read twelve current agentic engineer job postings. The same skills came up again and again.
+
+00:02:41.985 --> 00:02:57.067
+Agentic: Describes software where an LLM, not fixed code, chooses some of the control flow: which tool to call and when to stop. Like: A self-driving mode, as opposed to cruise control that only holds one setting.
+
+00:02:57.367 --> 00:02:59.990
+Python, and calling model APIs well.
+
+00:03:00.390 --> 00:03:08.297
+API: Application programming interface: the set of calls one program offers another. Here, usually an HTTP endpoint you send JSON to. Like: The ioctl list a driver exposes: the only doors into it.
+
+00:03:08.547 --> 00:03:11.844
+Tool calling, and agent frameworks such as LangGraph.
+
+00:03:12.244 --> 00:03:31.575
+Tool calling (function calling): You describe functions to the model (name, purpose, parameters). Instead of answering in prose, the model can reply "call get_weather with city=Austin". Your code runs it and sends the result back. Like: The model writes a work order; your code is the technician who actually turns the screwdriver.
+
+00:03:31.875 --> 00:03:48.210
+Agent framework: A library that provides the agent loop, tool plumbing, state and tracing for you, so you write less glue code. Like: An RTOS instead of a hand-rolled super-loop: more features, more to learn, less control.
+
+00:03:48.510 --> 00:04:06.761
+LangGraph: A library (from the LangChain team) where you define an agent as a graph: nodes are steps, edges are transitions, a typed state object flows through, with checkpoints so runs can pause and resume. Like: Writing your agent as an explicit state machine with save points.
+
+00:04:07.061 --> 00:04:12.088
+RAG, which means answering from your company's own documents instead of the model's memory.
+
+00:04:12.488 --> 00:04:29.241
+RAG: Retrieval-augmented generation: before asking the model, search your own documents for the relevant passages and paste them into the prompt so it answers from them. Like: An open-book exam: first find the right pages, then write the answer from them.
+
+00:04:29.541 --> 00:04:34.789
+Evals and observability, which means measuring quality and seeing inside every run.
+
+00:04:35.189 --> 00:04:53.684
+Eval: A repeatable test for an LLM system: fixed inputs, an expected result or a grading rule, and a score. Because outputs vary, you measure pass rates rather than one pass/fail. Like: A production test fixture that measures yield across a batch, not one unit.
+
+00:04:53.984 --> 00:05:09.320
+Observability: Being able to answer "what happened and why?" from the outside, using traces, logs and metrics, without adding new code. Like: Having a debug UART, a trace port and counters wired out before the field failure, not after.
+
+00:05:09.620 --> 00:05:15.135
+And security plus production reliability. Each of these is a chapter, and each has a lab.
+
+00:05:16.335 --> 00:05:20.445
+Good news: you already know the hard parts, under different names.
+
+00:05:20.845 --> 00:05:23.051
+State machines become agent graphs.
+
+00:05:23.451 --> 00:05:37.313
+Graph (nodes and edges): A set of nodes (steps) connected by edges (allowed transitions). Conditional edges choose the next node from the current state. Like: A state-machine diagram: bubbles and arrows with guard conditions.
+
+00:05:37.613 --> 00:05:40.597
+Watchdog timers become step and cost limits.
+
+00:05:40.997 --> 00:05:45.328
+Logic analyser captures become traces of every model and tool call.
+
+00:05:45.728 --> 00:06:04.153
+Trace / span: A trace is the full record of one request through your system; it is made of spans, timed steps such as one model call or one tool call, with inputs, outputs, tokens and errors. Like: A logic analyser capture of one transaction, with each bus phase timestamped.
+
+00:06:04.453 --> 00:06:11.093
+And memory protection becomes tool permissions. Throughout the course, every new idea is tied back to one of these.
+
+00:06:12.293 --> 00:06:18.075
+Question for you: In one sentence: what makes the system in the story an agent rather than a chatbot?
+
+00:06:24.375 --> 00:06:33.849
+Answer: It decides on its own which tools to call, uses their results, and keeps going until the goal is met, instead of answering once from memory.
+
+00:06:34.949 --> 00:06:35.599
+Recap.
+
+00:06:35.999 --> 00:06:38.878
+An agent pursues a goal by calling tools in a loop.
+
+00:06:39.278 --> 00:06:43.028
+The model only suggests. Your code decides and executes.
+
+00:06:43.428 --> 00:06:48.107
+Employers want model APIs, tools, RAG, evals and safety.
+
+00:06:48.507 --> 00:06:55.125
+And your firmware instincts map directly onto all of it. Next: how a language model produces text at all.
