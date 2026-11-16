@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Agentic AI Engineer: from zero to job-ready</title>
+<style>
+:root{--bg:#0b1220;--panel:#111a2e;--panel2:#16223b;--ink:#e2e8f0;--mut:#94a3b8;--acc:#38bdf8;--hl:#f59e0b;--ok:#22c55e;--bad:#ef4444;--vio:#a78bfa;--line:#26344f}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+a{color:var(--acc);cursor:pointer}
+header{position:sticky;top:0;z-index:20;background:#0b1220;border-bottom:1px solid var(--line);padding:8px 12px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+header .brand{font-weight:800;font-size:16px;margin-right:6px}#menu{display:none;font-size:20px;padding:2px 10px}
+nav{display:flex;gap:4px;flex-wrap:wrap}nav a{padding:4px 9px;border-radius:8px;text-decoration:none;font-weight:600;font-size:14px}nav a.on{background:#0c4a6e;color:#e0f2fe}
+.pbar{flex:1;min-width:120px;height:8px;background:#1e293b;border-radius:6px;overflow:hidden}.pbar i{display:block;height:100%;background:linear-gradient(90deg,#22c55e,#38bdf8);width:0;transition:width .4s}
+.ptxt{font-size:12px;color:var(--mut)}
+.wrap{display:flex;max-width:1200px;margin:0 auto}
+aside{width:290px;flex:none;border-right:1px solid var(--line);height:calc(100vh - 50px);position:sticky;top:50px;overflow:auto;padding:10px 8px;font-size:14px}
+aside h5{margin:12px 6px 4px;color:var(--vio);font-size:12px;text-transform:uppercase;letter-spacing:.05em}
+aside a{display:block;padding:4px 8px;border-radius:6px;text-decoration:none;color:var(--ink)}aside a:hover{background:var(--panel2)}aside a.cur{background:#0c4a6e}aside a .ck{color:var(--ok);font-weight:700}
+main{flex:1;min-width:0;padding:14px 18px 60px;max-width:900px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px;margin:12px 0}
+.plain{background:#172554;border:1px solid #3b82f6;border-radius:12px;padding:12px 14px;margin:10px 0}.plain h4{margin:0 0 4px;color:var(--acc)}
+.why{background:#052e16;border:1px solid #166534;border-radius:12px;padding:10px 14px;margin:10px 0;color:#dcfce7}
+.jar{background:#1c1917;border:1px solid #a16207;border-radius:12px;padding:6px 14px;margin:10px 0}.jar summary{cursor:pointer;color:var(--hl);font-weight:700;padding:4px 0}.jar dt{color:var(--hl);font-weight:700;margin-top:6px}.jar dd{margin:0 0 4px 0;color:#e7e5e4}.jar dd i{color:#bbf7d0}
+.tag{display:inline-block;background:#1e293b;border-radius:10px;padding:2px 9px;margin:2px;font-size:12px;color:var(--vio)}
+h1{font-size:24px;line-height:1.25;margin:6px 0}h2{font-size:20px;margin:22px 0 6px}h3{font-size:17px;margin:18px 0 6px;color:var(--acc)}h4{margin:14px 0 4px}
+p{margin:8px 0}ul,ol{padding-left:22px}li{margin:4px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.lcard{cursor:pointer;transition:transform .15s}.lcard:hover{transform:translateY(-2px);border-color:var(--acc)}
+pre{background:#020617;border:1px solid var(--line);border-radius:8px;padding:10px;overflow:auto;font-size:13px;line-height:1.5;-webkit-overflow-scrolling:touch}
+code{background:#1e293b;border-radius:4px;padding:0 4px;font-size:.9em;word-break:break-word}pre code{background:none;padding:0;word-break:normal}
+.tbl{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;width:100%;font-size:14px}td,th{border:1px solid var(--line);padding:6px 8px;vertical-align:top;text-align:left}th{background:var(--panel2)}
+button{background:var(--panel2);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:7px 12px;font-size:15px;cursor:pointer;margin:3px}button.pri{background:#0369a1;border-color:#0ea5e9}button:disabled{opacity:.45}
+input[type=range]{width:100%;accent-color:var(--acc)}input[type=search],input[type=text],input[type=number],textarea,select{width:100%;background:#020617;color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:8px;font-size:15px}
+.py{border-left:4px solid #eab308;background:#1c1a0b;padding:8px 12px;border-radius:6px;margin:10px 0}.py b:first-child{color:#facc15}
+.fw{border-left:4px solid var(--vio);background:#1e1533;padding:8px 12px;border-radius:6px;margin:10px 0}.fw b:first-child{color:var(--vio)}
+.warn{border-left:4px solid var(--bad);background:#2a1215;padding:8px 12px;border-radius:6px;margin:10px 0}
+.key{border-left:4px solid var(--ok);background:#0b2617;padding:8px 12px;border-radius:6px;margin:10px 0}
+details.hint,details.sol{background:var(--panel2);border:1px dashed #475569;border-radius:8px;padding:6px 12px;margin:8px 0}details summary{cursor:pointer;font-weight:700;color:var(--acc)}details.sol summary{color:var(--ok)}
+.quiz .qq{border-left:3px solid var(--vio);padding:8px 12px;margin:10px 0;background:var(--panel2);border-radius:6px}
+.quiz .opt{display:block;width:100%;text-align:left;margin:5px 0}.opt.right{border-color:var(--ok);background:#052e16}.opt.wrong{border-color:var(--bad);background:#2a1215}
+.quiz .ex{display:none;margin-top:6px;color:#dcfce7}.quiz .qq.done .ex{display:block}
+.chip{border-bottom:2px dotted var(--hl);cursor:help;color:#fde68a}.chipx{display:block;background:#1c1917;border:1px solid #a16207;border-radius:8px;padding:6px 10px;margin:6px 0;font-size:14px;color:#e7e5e4}.chipx i{color:#bbf7d0}
+.wid{background:#020617;border:1px solid var(--line);border-radius:12px;padding:12px;margin:14px 0}.wid h4{margin:0 0 6px;color:var(--hl)}.wid .cap{min-height:2.6em;color:var(--hl);font-weight:600;margin:6px 0}
+.wid svg{width:100%;height:auto;display:block}
+.bars .row{display:flex;align-items:center;gap:6px;margin:3px 0;font-size:14px}.bars .lab{width:92px;flex:none;text-align:right;font-family:ui-monospace,monospace}.bars .bar{height:18px;background:var(--acc);border-radius:4px;transition:width .3s}.bars .row.pick .bar{background:var(--hl)}.bars .pct{font-size:12px;color:var(--mut);width:46px;flex:none}
+.toks span{display:inline-block;margin:2px;padding:1px 5px;border-radius:5px;font-family:ui-monospace,monospace;font-size:14px;white-space:pre}
+.gen{font-family:ui-monospace,monospace;background:#0f172a;border-radius:8px;padding:8px;min-height:2.4em}.gen b{color:var(--hl)}
+.msg{border-radius:8px;padding:6px 10px;margin:5px 0;font-size:14px;border:1px solid var(--line)}.msg .r{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--mut);display:block}
+.m-system{background:#1e1533}.m-user{background:#172554}.m-assistant{background:#0b2617}.m-tool{background:#1c1917}.msg.new{animation:pop .5s}
+@keyframes pop{from{transform:scale(.96);opacity:.2}to{transform:none;opacity:1}}
+.fade{animation:fd .3s}@keyframes fd{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+.nav2{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-top:24px}
+.small{font-size:13px;color:var(--mut)}.ok{color:var(--ok)}.bad{color:var(--bad)}.hl{color:var(--hl)}
+.pill{display:inline-block;padding:2px 8px;border-radius:999px;font-size:12px;border:1px solid var(--line);margin:2px}
+.vid video{width:100%;border-radius:10px;background:#000}
+.flow{display:flex;flex-wrap:wrap;gap:6px;align-items:center}.flow .st{padding:6px 10px;border-radius:8px;border:2px solid #334155;background:var(--panel2);font-size:14px;opacity:.35;transition:all .3s}.flow .st.on{opacity:1;border-color:var(--acc)}.flow .st.cur{border-color:var(--hl);box-shadow:0 0 0 3px #f59e0b33}.flow .ar{color:#475569}
+@media (max-width:900px){aside{position:fixed;left:0;top:0;height:100vh;background:var(--bg);z-index:30;transform:translateX(-100%);transition:transform .25s;box-shadow:4px 0 20px #000a;padding-top:14px}aside.open{transform:none}#menu{display:inline-block}main{padding:10px 12px 60px}}
+@media (max-width:600px){nav{flex-wrap:nowrap;overflow-x:auto;width:100%;order:3;-webkit-overflow-scrolling:touch;scrollbar-width:none}nav a{white-space:nowrap}.pbar{order:2;min-width:60px}.ptxt{order:2}}
+#wid,.quiz,.jar,h2,h3{scroll-margin-top:120px}
+@media (max-width:480px){body{font-size:15.5px}h1{font-size:21px}header .brand{font-size:14px}nav a{font-size:13px;padding:3px 7px}.bars .lab{width:70px}}
+</style></head><body>
+<header><button id="menu" aria-label="Chapters">☰</button><span class="brand">🤖 Agentic AI Engineer</span>
+<nav><a data-v="home">Home</a><a data-v="lessons">Lessons</a><a data-v="labs">Labs</a><a data-v="videos">Videos</a><a data-v="plan">Plan</a><a data-v="skills">Skills map</a><a data-v="glossary">Glossary</a></nav>
+<div class="pbar" title="Lessons completed"><i id="pb"></i></div><span class="ptxt" id="pt"></span></header>
+<div class="wrap"><aside id="side"></aside><main id="app"></main></div>
+<script>
+const D=/*DATA*/;
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const GL={};D.glossary.forEach(g=>GL[g.k]=g);
+const KEY='agentic08-done';let done=new Set(JSON.parse(localStorage.getItem(KEY)||'[]'));
+const save=()=>{localStorage.setItem(KEY,JSON.stringify([...done]));prog();side()};
+function prog(){const n=D.lessons.length,d=D.lessons.filter(l=>done.has(l.id)).length;$('#pb').style.width=(100*d/n)+'%';$('#pt').textContent=d+'/'+n}
+let cur=-1;
+function side(){let h='';D.chapters.forEach((c,ci)=>{h+=`<h5>${ci}. ${esc(c.t)}</h5>`;D.lessons.forEach((l,i)=>{if(l.ch===ci)h+=`<a class="${i===cur?'cur':''}" onclick="lesson(${i})">${done.has(l.id)?'<span class="ck">✓</span> ':''}${i+1}. ${esc(l.t)}</a>`})});$('#side').innerHTML=h}
+$('#menu').onclick=()=>$('#side').classList.toggle('open');
+function setNav(v){$$('nav a').forEach(a=>a.classList.toggle('on',a.dataset.v===v));$('#side').classList.remove('open')}
+function home(){cur=-1;setNav('home');side();const d=D.lessons.filter(l=>done.has(l.id)).length;const nxt=D.lessons.findIndex(l=>!done.has(l.id));
+app.innerHTML=`<div class="fade">${D.home}
+<div class="card"><b>Your progress:</b> ${d} of ${D.lessons.length} lessons done. ${nxt>=0?`<button class="pri" onclick="lesson(${nxt})">${d?'Continue':'Start'}: ${nxt+1}. ${esc(D.lessons[nxt].t)}</button>`:'<span class="ok">All done. Go build the capstones!</span>'}</div>
+<h2>Chapters</h2><div class="grid">${D.chapters.map((c,ci)=>{const ls=D.lessons.map((l,i)=>[l,i]).filter(([l])=>l.ch===ci);const dn=ls.filter(([l])=>done.has(l.id)).length;return `<div class="card lcard" onclick="lesson(${ls[0][1]})"><div class="tag">Chapter ${ci}</div><h3 style="margin:4px 0">${esc(c.t)}</h3><div class="small">${esc(c.b)}</div><div class="small" style="margin-top:6px">${dn}/${ls.length} lessons · ${c.h}</div></div>`}).join('')}</div></div>`}
+function lessons(){cur=-1;setNav('lessons');side();app.innerHTML=`<div class="fade"><h1>All lessons</h1>${D.chapters.map((c,ci)=>`<h2>${ci}. ${esc(c.t)}</h2><div class="grid">${D.lessons.map((l,i)=>l.ch===ci?`<div class="card lcard" onclick="lesson(${i})"><div class="tag">${i+1}</div> ${done.has(l.id)?'<span class="ok">✓</span>':''} <b>${esc(l.t)}</b><div class="small">${esc(l.why)}</div></div>`:'').join('')}</div>`).join('')}</div>`}
+function chipify(root,seen){const w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{acceptNode:n=>n.parentElement.closest('code,pre,a,button,.chip,.chipx,h1,summary,.wid,.jar,.nochip')?NodeFilter.FILTER_REJECT:NodeFilter.FILTER_ACCEPT});const nodes=[];while(w.nextNode())nodes.push(w.currentNode);
+ for(const n of nodes){let t=n.nodeValue;if(!t.trim())continue;let best=null;for(const k of D.lessons[cur].terms){if(seen.has(k))continue;const g=GL[k];const re=new RegExp(g.rx,g.ci?'i':'');const m=re.exec(t);if(m&&m[0]&&(!best||m.index<best.m.index))best={m,k}}
+  if(best){seen.add(best.k);const sp=document.createElement('span');sp.className='chip';sp.tabIndex=0;sp.dataset.k=best.k;sp.textContent=best.m[0];const after=document.createTextNode(t.slice(best.m.index+best.m[0].length));n.nodeValue=t.slice(0,best.m.index);n.after(sp,after);nodes.splice(nodes.indexOf(n)+1,0,after)}}}
+function lesson(i){cur=i;setNav('');side();const l=D.lessons[i],c=D.chapters[l.ch];
+ const words=l.terms.map(k=>GL[k]).map(g=>`<dt>${esc(g.t)}</dt><dd>${esc(g.m)} <i>Like: ${esc(g.a)}</i></dd>`).join('');
+ const quiz=(l.q||[]).map((q,qi)=>`<div class="qq" id="q${qi}"><b>Q${qi+1}.</b> ${q.q}${q.o.map((o,oi)=>`<button class="opt" onclick="pick(${qi},${oi})">${String.fromCharCode(65+oi)}. ${o}</button>`).join('')}<div class="ex"></div></div>`).join('');
+ const think=(l.th||[]).map(([q,a])=>`<details class="hint"><summary>Think: ${q}</summary><p>${a}</p></details>`).join('');
+ app.innerHTML=`<div class="fade"><div class="tag">Chapter ${l.ch}: ${esc(c.t)}</div> <span class="tag">Lesson ${i+1} of ${D.lessons.length}</span> ${l.mins?`<span class="tag">~${l.mins} min</span>`:''}
+ <h1>${esc(l.t)}</h1><div class="why"><b>After this lesson you can:</b> ${l.why}</div>
+ <div class="plain"><h4>The big picture first</h4>${l.an}</div>
+ ${words?`<details class="jar"><summary>Words to know in this lesson (${l.terms.length}) — tap to open</summary><dl>${words}</dl></details>`:''}
+ <div id="body">${l.d}</div>
+ ${l.anim?`<div class="wid" id="wid"></div>`:''}
+ ${l.after||''}
+ ${l.lab?`<div class="key"><b>Hands-on:</b> ${l.lab}</div>`:''}
+ ${l.video?`<div class="card vid"><b>🎬 Watch:</b> ${esc(l.video.t)} (${l.video.dur})<video controls preload="none" playsinline src="videos/${l.video.id}.mp4"><track kind="captions" srclang="en" label="English" src="videos/${l.video.id}.vtt" default></video></div>`:''}
+ ${quiz||think?`<h2>Check yourself</h2><div class="quiz">${quiz}</div>${think}`:''}
+ <div class="nav2">${i>0?`<button onclick="lesson(${i-1})">← ${esc(D.lessons[i-1].t)}</button>`:'<span></span>'}<button class="pri" id="mk">${done.has(l.id)?'✓ Completed (tap to undo)':'Mark complete'}</button>${i<D.lessons.length-1?`<button onclick="lesson(${i+1})">${esc(D.lessons[i+1].t)} →</button>`:''}</div></div>`;
+ const seen=new Set();chipify($('#body'),seen);
+ $('#mk').onclick=()=>{done.has(l.id)?done.delete(l.id):done.add(l.id);save();lesson(i)};
+ if(l.anim&&W[l.anim])W[l.anim]($('#wid'));scrollTo(0,0);history.replaceState(null,'','#l'+(i+1))}
+function pick(qi,oi){const q=D.lessons[cur].q[qi],el=$('#q'+qi);if(el.classList.contains('done'))return;el.classList.add('done');el.querySelectorAll('.opt').forEach((b,j)=>{if(j===q.a)b.classList.add('right');else if(j===oi)b.classList.add('wrong')});el.querySelector('.ex').innerHTML=(oi===q.a?'<b class="ok">Correct.</b> ':'<b class="bad">Not quite.</b> ')+q.w}
+document.addEventListener('click',e=>{const c=e.target.closest('.chip');if(!c)return;const n=c.nextElementSibling;if(n&&n.classList.contains('chipx')){n.remove();return}const g=GL[c.dataset.k];c.insertAdjacentHTML('afterend',`<span class="chipx"><b>${esc(g.t)}</b>: ${esc(g.m)} <i>Like: ${esc(g.a)}</i></span>`)});
+document.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.classList&&e.target.classList.contains('chip'))e.target.click()});
+function labs(){cur=-1;setNav('labs');side();app.innerHTML=`<div class="fade">${D.labsIntro}${D.labs.map(b=>`<div class="card"><div class="tag">${esc(b.id)}</div> <b>${esc(b.t)}</b><p>${b.what}</p><pre><code>${esc(b.run)}</code></pre><div class="small">Lessons: ${b.ls.map(i=>`<a onclick="lesson(${i})">${i+1}</a>`).join(' · ')} · <span class="ok">${esc(b.status)}</span></div></div>`).join('')}</div>`}
+function videos(){cur=-1;setNav('videos');side();app.innerHTML=`<div class="fade"><h1>Narrated videos</h1><div class="plain">Each video opens with a short story, says every new word out loud with an everyday picture (NEW WORD cards), stops for a pause-and-think question, and ends with a recap. Captions are built from the same timeline as the audio.</div>${D.videos.map(v=>`<div class="card vid"><b>${esc(v.t)}</b> <span class="small">${v.dur} · lesson <a onclick="lesson(${v.l})">${v.l+1}</a></span><video controls preload="none" playsinline src="videos/${v.id}.mp4"><track kind="captions" srclang="en" label="English" src="videos/${v.id}.vtt" default></video></div>`).join('')}</div>`}
+function plan(){cur=-1;setNav('plan');side();app.innerHTML=`<div class="fade">${D.plan}</div>`}
+function skills(){cur=-1;setNav('skills');side();app.innerHTML=`<div class="fade">${D.skills}</div>`;$$('#app [data-l]').forEach(a=>a.onclick=()=>lesson(+a.dataset.l))}
+function glossary(){cur=-1;setNav('glossary');side();app.innerHTML=`<div class="fade"><h1>Glossary</h1><div class="plain">Every term used in the course: a plain meaning and an everyday picture. Tap a lesson number to jump there.</div><input type="search" id="gs" placeholder="Search (e.g. token, RAG, MCP)"><div id="gl"></div></div>`;const r=()=>{const k=$('#gs').value.toLowerCase();$('#gl').innerHTML=D.glossary.filter(g=>g.ls.length&&(!k||(g.t+g.m+g.a).toLowerCase().includes(k))).sort((a,b)=>a.t.localeCompare(b.t)).map(g=>`<div class="card" style="margin:8px 0;padding:10px 14px"><b class="hl">${esc(g.t)}</b>: ${esc(g.m)}<div style="color:#bbf7d0">Like: ${esc(g.a)}</div><div class="small">Lessons: ${g.ls.map(i=>`<a onclick="lesson(${i})">${i+1}</a>`).join(' · ')}</div></div>`).join('')};$('#gs').oninput=r;r()}
+function go(v){({home,lessons,labs,videos,plan,skills,glossary})[v]();scrollTo(0,0);history.replaceState(null,'','#'+v)}
+$$('nav a').forEach(a=>a.onclick=()=>go(a.dataset.v));
+/*WIDGETS*/
+prog();const h=location.hash.match(/^#l(\d+)$/);if(h&&D.lessons[+h[1]-1])lesson(+h[1]-1);else if(['#lessons','#labs','#videos','#plan','#skills','#glossary'].includes(location.hash))go(location.hash.slice(1));else home();
+</script></body></html>
